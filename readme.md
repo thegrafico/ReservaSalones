@@ -15,7 +15,7 @@ inicialicen el repo en la carpeta donde van a trabajar
   clonen este repo
 
 ```
-git clone "https://github.com/thegrafico/ReservaSalones"
+git clone "https://github.com/thegrafico/ReservaSalones.git"
 ```
 
 
