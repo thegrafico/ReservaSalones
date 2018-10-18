@@ -4,9 +4,11 @@ Este repositorio es para la clase de Base de datos. Como ya saben, el proyecto s
 Comandos para bajar el repositorio:
 
   inicialicen el repo en la carpeta donde van a trabajar
+
   **git init**
 
   clonen este repo
+
   **git clone "https://github.com/thegrafico/ReservaSalones"**
 
 
