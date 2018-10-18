@@ -24,3 +24,5 @@ git clone "https://github.com/thegrafico/ReservaSalones"
 Si usan windows, recuerden bajar NodeJs, en youtube hay varios videos de como hacer el setup.
 
 Cuando tengan node instalado, por favor dejarlo saber por el grupo.
+
+Instalar mysql tambien.
