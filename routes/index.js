@@ -8,10 +8,12 @@ router.get('/', async function(req, res, next) {
 
   const accessToken = await authHelper.getAccessToken(req.cookies, res);
   const userName = req.cookies.graph_user_name;
+  const email = req.cookies.graph_user_email;
+  console.log(res);
 
   if (accessToken && userName) {
     parms.user = userName;
-    parms.debug = `User: ${userName}\nAccess Token: ${accessToken}`;
+    parms.debug = `User: ${userName}\nEmail: ${email}\nAccess Token: ${accessToken}`;
   } else {
     parms.signInUrl = authHelper.getAuthUrl();
     parms.debug = parms.signInUrl;

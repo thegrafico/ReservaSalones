@@ -8,35 +8,36 @@ var path          = require('path');
 var cookieParser  = require('cookie-parser');
 var logger        = require('morgan');
 require('dotenv').config();
+var loginRoute    = require('./routes/login');
 var indexRouter   = require('./routes/index');
 var authorize     = require('./routes/authorize');
-var sql           = require('mysql');
+// var sql           = require('mysql');
 //-------------END IMPORTS
 //var usersRouter = require('./routes/users');
 
 //ESTO ES LO QUE NOS PERMITE USER EL SERVIDOR
 var app = express();
 
-//--------TESTING DATABASE
-var connection = sql.createConnection({
-host     : 'localhost',  //THIS IS THE SAME FOR YOUR
-user     : 'root',      //THIS IS THE SAME FOR YOUR
-password : pass,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-database : 'COEN4420'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
-});
-
-connection.connect();
-
-connection.query('SELECT * FROM Apply', function (error, results, fields) {
-  if (error) throw error;
-
-  for (var i = 0; i < results.length; i++) {
-    console.log('The solution is: ', results[i]);
-  }
-});
-
-connection.end();
-//--------END TESTING
+// //--------TESTING DATABASE
+// var connection = sql.createConnection({
+// host     : 'localhost',  //THIS IS THE SAME FOR YOUR
+// user     : 'root',      //THIS IS THE SAME FOR YOUR
+// password : pass,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+// database : 'COEN4420'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+// });
+//
+// connection.connect();
+//
+// connection.query('SELECT * FROM Apply', function (error, results, fields) {
+//   if (error) throw error;
+//
+//   for (var i = 0; i < results.length; i++) {
+//     console.log('The solution is: ', results[i]);
+//   }
+// });
+//
+// connection.end();
+// //--------END TESTING
 
 
 // view engine setup
@@ -50,7 +51,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS
-app.use('/', indexRouter);
+app.use("/", loginRoute);
+app.use('/home', indexRouter);
 app.use('/authorize', authorize);
 
 //PAGE NOT FOUND ERROR catch 404 and forward to error handler

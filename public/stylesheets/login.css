@@ -1,3 +1,52 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    background-image: url("../imgs/");
+    background-image: url("../imgs/interb.jpg");
+}
+
+#box-login{
+  text-align: center;
+  background-color: rgba(207, 196, 206, 0.7);
+  padding: 25px;
+  margin-top: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  height: 300px;
+  border: 3px solid rgba(27, 29, 46, 0.5);
+}
+
+#welcome-text{
+  font-size: 3.5em;
+  font-weight: bold;
+}
+
+#box-login-welcome p {
+  font-size: 2.5em;
+}
+
+.link-button-box{
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 40%;
+  padding: 10px;
+  height: 30px;
+  line-height: 1.6;
+  background-color: black;
+  border-radius: 10px;
+}
+.link-button-box:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#Login-link{
+  padding: 20px 40px;
+    text-decoration: none;
+  color: white;
 }

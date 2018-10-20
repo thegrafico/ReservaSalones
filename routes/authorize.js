@@ -18,7 +18,7 @@ router.get('/', async function(req, res, next) {
     }
 
     // Redirect to home
-    res.redirect('/');
+    res.redirect('/home');
   } else {
     // Otherwise complain
     res.render('error', { title: 'Error', message: 'Authorization error', error: { status: 'Missing code parameter' } });
@@ -30,7 +30,7 @@ router.get('/signout', function(req, res, next) {
   authHelper.clearCookies(res);
 
   // Redirect to home
-  res.redirect('/');
+  res.redirect('/')
 });
 
 module.exports = router;
