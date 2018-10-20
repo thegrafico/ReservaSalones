@@ -8,7 +8,7 @@ router.get('/', async function(req, res, next) {
 
   const accessToken = await authHelper.getAccessToken(req.cookies, res);
   const userName = req.cookies.graph_user_name;
-
+  parms.debug = `User: ${req.cookies}`
   if (accessToken && userName) {
     parms.user = userName;
     parms.debug = `User: ${userName}\nAccess Token: ${accessToken}`;
