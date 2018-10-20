@@ -10,33 +10,33 @@ var logger        = require('morgan');
 require('dotenv').config();
 var indexRouter   = require('./routes/index');
 var authorize     = require('./routes/authorize');
-// var sql           = require('mysql');
+var sql           = require('mysql');
 //-------------END IMPORTS
 //var usersRouter = require('./routes/users');
 
 //ESTO ES LO QUE NOS PERMITE USER EL SERVIDOR
 var app = express();
 
-// //--------TESTING DATABASE
-// var connection = sql.createConnection({
-// host     : 'localhost',  //THIS IS THE SAME FOR YOUR
-// user     : 'root',      //THIS IS THE SAME FOR YOUR
-// password : pass,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-// database : 'COEN4420'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
-// });
-//
-// connection.connect();
-//
-// connection.query('SELECT * FROM Apply', function (error, results, fields) {
-//   if (error) throw error;
-//
-//   for (var i = 0; i < results.length; i++) {
-//     console.log('The solution is: ', results[i]);
-//   }
-// });
-//
-// connection.end();
-// //--------END TESTING
+//--------TESTING DATABASE
+var connection = sql.createConnection({
+host     : 'localhost',  //THIS IS THE SAME FOR YOUR
+user     : 'root',      //THIS IS THE SAME FOR YOUR
+password : pass,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+database : 'COEN4420'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+});
+
+connection.connect();
+
+connection.query('SELECT * FROM Apply', function (error, results, fields) {
+  if (error) throw error;
+
+  for (var i = 0; i < results.length; i++) {
+    console.log('The solution is: ', results[i]);
+  }
+});
+
+connection.end();
+//--------END TESTING
 
 
 // view engine setup
