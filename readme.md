@@ -15,7 +15,7 @@ inicialicen el repo en la carpeta donde van a trabajar
   clonen este repo
 
 ```
-git clone "https://github.com/thegrafico/ReservaSalones"
+git clone "https://github.com/thegrafico/ReservaSalones.git"
 ```
 
 
@@ -24,3 +24,5 @@ git clone "https://github.com/thegrafico/ReservaSalones"
 Si usan windows, recuerden bajar NodeJs, en youtube hay varios videos de como hacer el setup.
 
 Cuando tengan node instalado, por favor dejarlo saber por el grupo.
+
+Instalar mysql tambien.
