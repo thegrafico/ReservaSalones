@@ -4,7 +4,7 @@ var authHelper = require('../helpers/auth');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  let parms = { title: 'Home', active: { home: true } };
+  let parms = {layout: 'login'};
   parms.signInUrl = authHelper.getAuthUrl();
 
   res.render('login', parms);

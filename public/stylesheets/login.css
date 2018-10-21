@@ -4,17 +4,21 @@
 }
 
 body {
-    background-image: url("../imgs/interb.jpg");
+  background:url("../imgs/interb.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 #box-login{
   text-align: center;
   background-color: rgba(207, 196, 206, 0.7);
   padding: 25px;
-  margin-top: 300px;
+  margin-top: 200px;
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
+  width: 40%;
   height: 300px;
   border: 3px solid rgba(27, 29, 46, 0.5);
 }
