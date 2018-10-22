@@ -1,3 +1,5 @@
+var passFormySql = require('../passmySql');
+
 var express = require('express');
 var router = express.Router();
 var authHelper = require('../helpers/auth');
@@ -8,7 +10,7 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
 host     : 'localhost',  //THIS IS THE SAME FOR YOUR
 user     : 'root',      //THIS IS THE SAME FOR YOUR
-password : 'Lana02210712RN',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+password : passFormySql,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
 database : 'Room_Reservation'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
 });
 
