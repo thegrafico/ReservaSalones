@@ -1,0 +1,55 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: rgb(32, 37, 34);
+  font-family: 'Krub', sans-serif;
+}
+
+.boxMaster{
+  width: 100%;
+}
+
+.reservation-box{
+  margin-left: 10%;
+  border: 1px solid blue;
+  display: inline-block;
+}
+.appointment-box{
+  display: inline-block;
+  border: 1px solid green;
+}
+
+.tableInfo{
+  margin-top: 100px;
+  width: 40%;
+  height: 500px;
+}
+
+.info-box{
+  width: 100%;
+}
+
+.img-box{
+  border-radius: 50%;
+  width: 350px;
+  height: 350px;
+  background-size: cover;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 30px;
+}
+
+.textStyle{
+  text-align: center;
+  color: white;
+}
+.textStyle:hover{
+  cursor: pointer;
+}
+
+.textStyle h1{
+
+}
