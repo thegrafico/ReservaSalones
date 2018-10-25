@@ -1,25 +1,25 @@
-// var passFormySql = require('../passmySql');
+var passFormySql = require('../passmySql');
 var express = require('express');
 var router = express.Router();
 var authHelper = require('../helpers/auth');
 
-//to use the DBS
-// var mysql = require('mysql');
-//
-// var connection = mysql.createConnection({
-// host   +  : 'localhost',  //THIS IS THE SAME FOR YOUR
-// user     : 'root',      //THIS IS THE SAME FOR YOUR
-// password : passFormySql,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-// database : 'Room_Reservation'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
-// });
-//
-// connection.connect(function(err) {
-//   if (err) {
-//     console.error('error connecting: ' + err.stack);
-//     return;
-//   }
-//   console.log('connected as id ' + connection.threadId);
-// });
+to use the DBS
+var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+host   +  : 'localhost',  //THIS IS THE SAME FOR YOUR
+user     : 'root',      //THIS IS THE SAME FOR YOUR
+password : passFormySql,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+database : 'Room_Reservation'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+});
+
+connection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err.stack);
+    return;
+  }
+  console.log('connected as id ' + connection.threadId);
+});
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -28,7 +28,7 @@ router.get('/', async function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
-  // connection.query('SELECT * FROM Students', function (error, results, fields) {
+  connection.query('SELECT * FROM Students', function (error, results, fields) {
 
     if (error) throw error;
 
@@ -42,14 +42,14 @@ router.get('/', async function(req, res, next) {
       parms.debug = parms.signInUrl;
     }
 
-    // parms.results = results;
-    //
-    // for (var i = 0; i < results.length; i++) {
-    //   console.log('The solution is: ', results[i]);
-    // }
+    parms.results = results;
+
+    for (var i = 0; i < results.length; i++) {
+      console.log('The solution is: ', results[i]);
+    }
 
     res.render('index', parms);
-  // });
+  });
 });
 
 module.exports = router;
