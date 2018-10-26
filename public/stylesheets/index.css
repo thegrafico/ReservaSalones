@@ -7,28 +7,41 @@ body{
   font-family: 'Krub', sans-serif;
 }
 
-.boxMaster{
+#R_boxMaster{
   width: 100%;
 }
 
 .reservation-box{
-  margin-left: 10%;
+  padding: 20px;
   border: 1px solid blue;
   display: inline-block;
 }
 .appointment-box{
+  padding: 20px;
+  float: right;
   display: inline-block;
-  border: 1px solid green;
 }
 
 .tableInfo{
-  margin-top: 100px;
+  box-shadow: 5px 10px 8px 10px rgb(189, 188, 252);
+  margin-top: 25px;
   width: 40%;
   height: 500px;
 }
 
 .info-box{
+  text-align: center;
   width: 100%;
+}
+
+.info-box a{
+  font-style: none;
+  color: white;
+  text-decoration: none;
+  font-size: 2.0em;
+  padding: 10px 20px;
+  background-color: rgb(64, 64, 73);
+  border-radius: 8px;
 }
 
 .img-box{
@@ -42,14 +55,12 @@ body{
   margin-bottom: 30px;
 }
 
-.textStyle{
-  text-align: center;
-  color: white;
-}
-.textStyle:hover{
-  cursor: pointer;
+.info-box a:hover{
+  background-color: rgba(64, 64, 73, 0.5);
 }
 
-.textStyle h1{
 
+.nav-wrapper{
+  padding: 0 10px;
+  background-color:rgb(98, 138, 142);
 }

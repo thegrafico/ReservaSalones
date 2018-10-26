@@ -3,11 +3,11 @@ var express = require('express');
 var router = express.Router();
 var authHelper = require('../helpers/auth');
 
-to use the DBS
+// to use the DBS
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-host   +  : 'localhost',  //THIS IS THE SAME FOR YOUR
+host     : 'localhost',  //THIS IS THE SAME FOR YOUR
 user     : 'root',      //THIS IS THE SAME FOR YOUR
 password : passFormySql,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
 database : 'Room_Reservation'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
@@ -28,28 +28,33 @@ router.get('/', async function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
-  connection.query('SELECT * FROM Students', function (error, results, fields) {
+  if(userName){
 
-    if (error) throw error;
+    connection.query('SELECT * FROM Students', function (error, results, fields) {
 
-    let parms = { title: 'Home', active: { home: true } };
+      if (error) throw error;
 
-    if (accessToken && userName) {
-      parms.user = userName;
-      parms.debug = `User: ${userName}\nEmail: ${email}\nAccess Token: ${results[1].email}`;
-    } else {
-      parms.signInUrl = authHelper.getAuthUrl();
-      parms.debug = parms.signInUrl;
-    }
+      let parms = { title: 'Home', active: { home: true } };
 
-    parms.results = results;
+      if (accessToken && userName) {
+        parms.user = userName;
+        parms.debug = `User: ${userName}\nEmail: ${email}\nAccess Token: ${results[1].email}`;
+      } else {
+        parms.signInUrl = authHelper.getAuthUrl();
+        parms.debug = parms.signInUrl;
+      }
 
-    for (var i = 0; i < results.length; i++) {
-      console.log('The solution is: ', results[i]);
-    }
+      parms.results = results;
 
-    res.render('index', parms);
-  });
+      for (var i = 0; i < results.length; i++) {
+        console.log('The solution is: ', results[i]);
+      }
+
+      res.render('index', parms);
+    });
+  }else{ //enter here si no nadie se ha autentificado
+    res.redirect('/');
+  }
 });
 
 module.exports = router;
