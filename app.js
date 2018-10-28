@@ -8,6 +8,8 @@ require('dotenv').config();
 var loginRoute    = require('./routes/login');
 var indexRouter   = require('./routes/index');
 var authorize     = require('./routes/authorize');
+var reservationRouter = require('./routes/reservation');
+
 var bodyParser = require('body-parser');
 
 //-------------END IMPORTS
@@ -28,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS
 app.use("/", loginRoute);
 app.use('/home', indexRouter);
+app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
 
 //PAGE NOT FOUND ERROR catch 404 and forward to error handler

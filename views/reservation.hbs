@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
+
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/css/util.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <!--===============================================================================================-->
+
+  <link rel="shortcut icon" type="image/png" href="/imgs/interb.jpg">
+  <link rel="stylesheet" href="/stylesheets/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Krub:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+  <title>{{title}}</title>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/home" class="brand-logo">{{user}}</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {{#if user}}
+        <li><a href="/home">Home</a></li>
+        <li><a href="/authorize/signout">Sing Out</a></li>
+          {{/if}}
+      </ul>
+    </div>
+  </nav>
+
+  <div id="table-box">
+
+    <div class="table100 ver3 m-b-110">
+  		<div class="table100-head">
+  			<table>
+  				<thead>
+  					<tr class="row100 head">
+  						<th class="cell100 column1">Description</th>
+  						<th class="cell100 column5">Building</th>
+  						<th class="cell100 column2">Room</th>
+  						<th class="cell100 column3">Capacity</th>
+  						<th class="cell100 column4">Hour</th>
+  					</tr>
+  				</thead>
+  			</table>
+  		</div>
+
+  		<div class="table100-body js-pscroll">
+  			<table>
+
+          <tbody>
+            {{#each results}}
+  					<tr class="row100 body">
+
+  							<td class="cell100 column1">{{this.description}}</td>
+  							<td class="cell100 column2">{{this.edifName}}</td>
+  							<td class="cell100 column3">{{this.roomID}}</td>
+  							<td class="cell100 column4">{{this.capacityNumber}}</td>
+  							<td class="cell100 column5">8:00am - 9:00pm</td>
+  					</tr>
+            {{/each}}
+  				</tbody>
+  			</table>
+  		</div>
+    </div>
+  </div>
+
+
+  <!--===============================================================================================-->
+	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+
+	</script>
+<!--===============================================================================================-->
+
+</body>
+</html>

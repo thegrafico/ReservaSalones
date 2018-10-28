@@ -19,6 +19,7 @@ connection.connect(function(err) {
     return;
   }
   console.log('connected as id ' + connection.threadId);
+
 });
 
 /* GET home page. */
@@ -34,7 +35,7 @@ router.get('/', async function(req, res, next) {
 
       if (error) throw error;
 
-      let parms = { title: 'Home', active: { home: true } };
+      let parms = { title: 'Home', active: { home: true }, urlReservation: '/reservation', urlAppoitment: '/appoitment' };
 
       if (accessToken && userName) {
         parms.user = userName;
@@ -53,8 +54,9 @@ router.get('/', async function(req, res, next) {
       res.render('index', parms);
     });
   }else{ //enter here si no nadie se ha autentificado
+    connection.end();
     res.redirect('/');
+
   }
 });
-
 module.exports = router;
