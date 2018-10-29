@@ -37,28 +37,34 @@
       <a href="/home" class="brand-logo">{{user}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         {{#if user}}
-        <li><a href="/home">Home</a></li>
-        <li><a href="/authorize/signout">Sing Out</a></li>
-          {{/if}}
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sing Out</a></li>
+        {{/if}}
       </ul>
     </div>
   </nav>
 
   <div class="input-field col s12">
-    <form class="formBox" action="index.html" method="post">
 
-    <div id="selectBox">
-     <select  multiple>
-       <option value="0" disabled selected>Building</option>
-       <option value="1">All</option>
-       <option value="2">Edif G</option>
-       <option value="3">Edif F</option>
-       <option value="3">Edif C</option>
-     </select>
-    </div>
+    <form id="formBox" action="/home/reservation" method="POST">
 
+      <div id="selectBox">
+        <label for="sOption">Building</label>
+        <select id="sOption" multiple name="buildingOption">
+          <option name= "edifAll" value="All" selected>All</option>
+          <option name= "edifG"   value="G">Edif G</option>
+          <option name= "edifF"   value="F">Edif F</option>
+          <option name= "edifC"   value="C">Edif C</option>
+        </select>
+      </div>
+
+      <div class="dateBox">
+        <input id="date" name="date" type="text" class="datepicker" value="Date: mm/dd/yyyy">
+      </div>
+
+      <input type="submit" value="submit">
     </form>
- </div>
+  </div>
 
   <div id="table-box">
 
@@ -67,11 +73,10 @@
   			<table>
   				<thead>
   					<tr class="row100 head">
+              <th class="cell100 column5">Building</th>
+              <th class="cell100 column2">Room</th>
   						<th class="cell100 column1">Description</th>
-  						<th class="cell100 column5">Building</th>
-  						<th class="cell100 column2">Room</th>
-  						<th class="cell100 column3">Capacity</th>
-  						<th class="cell100 column4">Hour</th>
+              <th class="cell100 column4">Hour</th>
   					</tr>
   				</thead>
   			</table>
@@ -82,18 +87,18 @@
 
           <tbody>
             {{#each results}}
-  					<tr class="row100 body">
-
+    					<tr class="row100 body">
+                <td class="cell100 column2">{{this.edifName}}</td>
+                <td class="cell100 column3">{{this.roomID}}</td>
   							<td class="cell100 column1">{{this.description}}</td>
-  							<td class="cell100 column2">{{this.edifName}}</td>
-  							<td class="cell100 column3">{{this.roomID}}</td>
-  							<td class="cell100 column4">{{this.capacityNumber}}</td>
-  							<td class="cell100 column5">8:00am - 9:00pm</td>
-  					</tr>
+  							<td class="cell100 column5">10/25 | 8:00 - 9:00 am </td>
+  					  </tr>
             {{/each}}
   				</tbody>
-  			</table>
+
+        </table>
   		</div>
+
     </div>
   </div>
 
@@ -102,7 +107,8 @@
 	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
 	<script>
-		$('.js-pscroll').each(function(){
+
+    $('.js-pscroll').each(function(){
 			var ps = new PerfectScrollbar(this);
 
 			$(window).on('resize', function(){
@@ -111,11 +117,25 @@
 		});
 
     $(document).ready(function(){
-        $('select').formSelect();
-      });$(document).ready(function(){
-    $('select').formSelect();
-  });
+      $('select').formSelect();
+    });
 
+    $(document).ready(function(){
+      $('.datepicker').datepicker();
+    });
+
+    // //para que no actualize siempre
+    // $("#formBox").submit(function(e) {
+    //     e.preventDefault();
+    // });
+
+    function ckechBtn(){
+      var checkedValue =  $("#sOption" ).val();
+      checkedValue.forEach(function(elem){
+        console.log(elem);
+      });
+      return true;
+    }
 	</script>
 <!--===============================================================================================-->
 

@@ -3,7 +3,6 @@
   padding: 0;
 }
 body{
-  background-color: rgb(32, 37, 34);
   font-family: 'Krub', sans-serif;
 }
 
@@ -65,19 +64,37 @@ body{
 
 #table-box{
   margin-top: 25px;
-  width: 90%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 100px;
 }
-.formBox{
-  border: 1px solid red;
+#formBox{
   width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
 #selectBox{
   width: 25%;
+  display: inline-block;
+  border-bottom: 1px solid rgba(80, 83, 89, 0.5);
 }
 #selectBox select option{
   color: white;
+}
+
+.dateBox{
+  margin-left: 40%;
+  display: inline-block;
+  width: 25%;
+  border-bottom: 1px solid rgba(80, 83, 89, 0.5);
+}
+tr th{
+  text-align: center;
+}
+.cell100{
+  width: 20%;
+}
+tr td{
+  text-align: center;
 }
