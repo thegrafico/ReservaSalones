@@ -41,14 +41,10 @@ router.post('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
-  //Edif
-  var all 				= req.body.buildingOption[0],
-		 edifG 				= req.body.buildingOption[1],
-		 edifF 	      = req.body.buildingOption[2],
-		 edifC 				= req.body.buildingOption[3];
+  console.log("Result", req.body.buildingOption);
+  var stringRequest = generateString(req.body.buildingOption);
 
-
-     console.log(all, edifC);
+  console.log(stringRequest);
 
   if(userName){
     connection.query('SELECT * FROM  building', function (error, results, fields) {
@@ -64,5 +60,31 @@ router.post('/', function(req, res, next) {
     res.redirect('/');
   }
 });
+
+function generateString(str){
+  var result = "";
+
+    for(var i = 0; i < str.length ; i++){
+
+      if(str[i] == "*"){
+        return "*";
+      }
+    }
+
+    for(var i = 0; i < str.length ; i++){
+
+      if(str[i] != undefined){
+
+        if(i == str.length - 1){
+          result += str[i];
+        }else{
+          result += str[i] + " and ";
+        }
+      }
+
+    }
+    console.log("RESULTADO: ", result);
+    return result;
+}
 
 module.exports = router;
