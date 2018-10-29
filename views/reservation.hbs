@@ -6,21 +6,27 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
 
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/css/util.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
   <!--===============================================================================================-->
 
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
   <link rel="shortcut icon" type="image/png" href="/imgs/interb.jpg">
-  <link rel="stylesheet" href="/stylesheets/index.css">
   <link href="https://fonts.googleapis.com/css?family=Krub:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/index.css">
 
   <title>{{title}}</title>
 </head>
@@ -37,6 +43,22 @@
       </ul>
     </div>
   </nav>
+
+  <div class="input-field col s12">
+    <form class="formBox" action="index.html" method="post">
+
+    <div id="selectBox">
+     <select  multiple>
+       <option value="0" disabled selected>Building</option>
+       <option value="1">All</option>
+       <option value="2">Edif G</option>
+       <option value="3">Edif F</option>
+       <option value="3">Edif C</option>
+     </select>
+    </div>
+
+    </form>
+ </div>
 
   <div id="table-box">
 
@@ -75,11 +97,10 @@
     </div>
   </div>
 
-
   <!--===============================================================================================-->
-	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
 	<script>
 		$('.js-pscroll').each(function(){
 			var ps = new PerfectScrollbar(this);
@@ -88,6 +109,12 @@
 				ps.update();
 			})
 		});
+
+    $(document).ready(function(){
+        $('select').formSelect();
+      });$(document).ready(function(){
+    $('select').formSelect();
+  });
 
 	</script>
 <!--===============================================================================================-->
