@@ -32,11 +32,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next){
 
   db.getConnection(function(err, connection) {
-    if (err) throw err;
+
     connection.query('SELECT * FROM  admin', function (error, results, fields) {
-      if(results != undefined)
+
       res.cookie('admini', results, {maxAge: 3600000, httpOnly: true});
+
+      connection.release();
+
     });
+    if (err) throw err;
+
   });
 	//move to the next function
 	next();
@@ -48,21 +53,15 @@ app.use('/home', indexRouter);
 app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
 
-//PAGE NOT FOUND ERROR catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+//
+// //PAGE NOT FOUND ERROR catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 //EXPORTAMOS TODAS LAS FUNCIONALIDADES PARA USARLA CUANDO INICIEMOS EL APP
-module.exports = app;
+app.listen(3000, process.env.IP, function(){
+	console.log("Server Init on port 3000");
+});

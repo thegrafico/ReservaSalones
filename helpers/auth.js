@@ -45,6 +45,7 @@ function saveValuesToCookie(token, res) {
   res.cookie('graph_access_token', token.token.access_token, {maxAge: 3600000, httpOnly: true});
   // Save the user's name in a cookie
   res.cookie('graph_user_name', user.name, {maxAge: 3600000, httpOnly: true});
+
   //ADDED THIS
   //saving the email
   res.cookie('graph_user_email', user.email, {maxAge: 3600000, httpOnly: true});

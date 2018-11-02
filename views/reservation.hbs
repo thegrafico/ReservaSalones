@@ -61,8 +61,7 @@
       <div class="dateBox">
         <input id="date" name="date" type="text" class="datepicker" value="Date: mm-dd-yyyy">
       </div>
-      <button type="submit" class="btn waves-effect waves-light sub" name="button">Submit
-      </button>
+      <button type="submit" class="btn waves-effect waves-light sub" name="button">Submit</button>
     </form>
   </div>
 
@@ -89,8 +88,8 @@
             {{#each results}}
     					<tr class="row100 body">
                 <td class="cell100 column2">{{this.edifName}}</td>
-                <td class="cell100 column3">{{this.roomID}}</td>
-  							<td class="cell100 column1">{{this.description}}</td>
+                <td class="cell100 column3">{{this.roomID}} </td>
+  							<td class="cell100 column1">{{this.description}} || Capacidad: {{this.capacity}}</td>
   							<td class="cell100 column5">10/25 | 8:00 - 9:00 am </td>
   					  </tr>
             {{/each}}

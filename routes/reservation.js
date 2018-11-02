@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var authHelper = require('../helpers/auth');
 
 var db = require("../helpers/mysqlConnection").mysql_pool;
 
@@ -13,18 +12,18 @@ router.get('/', function(req, res, next) {
 
 
   if(userName){
+    let query = `SELECT * FROM Building Natural Join Room`;
     db.getConnection(function(err, connection) {
-
-      connection.query('SELECT * FROM  building', function (error, results, fields) {
-        if (error) throw error;
-
+      connection.query(query, function (error, results, fields) {
         parms.results = results;
         parms.user = userName;
         res.render('reservation', parms);
-      
-      connection.end();
 
+        if (error) throw error;
+        connection.release();
       });
+      
+      if(err) throw err;
     });
   }else{
     res.redirect('/');

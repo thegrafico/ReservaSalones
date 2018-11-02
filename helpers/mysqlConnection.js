@@ -4,6 +4,7 @@ var config;
 
 config = {
     mysql_pool : mysql.createPool({
+      connectionLimit : 15,
       host     : 'localhost',  //THIS IS THE SAME FOR YOUR
       user     : 'root',      //THIS IS THE SAME FOR YOUR
       password : passFormySql,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB

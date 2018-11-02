@@ -12,14 +12,14 @@ router.get('/', async function(req, res, next) {
   const email = req.cookies.graph_user_email;
   let parms = { title: 'Home', active: { home: true }, urlReservation: '/reservation', urlAppoitment: '/appoitment' };
 
-  let query =`INSERT INTO User (emailID, name, privilege)` +
-    ` SELECT * FROM (SELECT '${email}', '${userName}', ${0}) as nUser`  +
-    ` WHERE NOT EXISTS (SELECT emailID FROM User where emailID = '${email}')`;
-
   //here we can see the admin!
-  console.log(req.cookies.admini[0]);
-
+  // console.log(req.cookies.admini[0]);
   if(userName){
+
+    let query =`INSERT INTO User (emailID, name, privilege)` +
+      ` SELECT * FROM (SELECT '${email}', '${userName}', ${0}) as nUser`  +
+      ` WHERE NOT EXISTS (SELECT emailID FROM User where emailID = '${email}')`;
+
     db.getConnection(function(err, connection) {
 
       if (err) throw error;
