@@ -9,8 +9,9 @@ var loginRoute    = require('./routes/login');
 var indexRouter   = require('./routes/index');
 var authorize     = require('./routes/authorize');
 var reservationRouter = require('./routes/reservation');
-
 var bodyParser = require('body-parser');
+
+var db = require("./helpers/mysqlConnection").mysql_pool;
 
 //-------------END IMPORTS
 
@@ -26,6 +27,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//this is a midleware tha run in every route.
+app.use(function(req, res, next){
+
+  db.getConnection(function(err, connection) {
+    if (err) throw err;
+    connection.query('SELECT * FROM  admin', function (error, results, fields) {
+      if(results != undefined)
+      res.cookie('admini', results, {maxAge: 3600000, httpOnly: true});
+    });
+  });
+	//move to the next function
+	next();
+});
 
 //AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS
 app.use("/", loginRoute);

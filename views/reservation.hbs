@@ -46,12 +46,12 @@
 
   <div class="input-field col s12">
 
-    <form id="formBox" action="/home/reservation" method="POST">
+    <form id="formBox" action="/home/reservation" method="GET">
 
       <div id="selectBox">
         <label for="sOption">Building</label>
         <select id="sOption" multiple name="buildingOption">
-          <option name= "edifAll" value="*" selected>All</option>
+          <option name= "edifAll" value="" disabled selected>Select Your building!</option>
           <option name= "edifG"   value="G">Edif G</option>
           <option name= "edifF"   value="F">Edif F</option>
           <option name= "edifC"   value="C">Edif C</option>
@@ -59,10 +59,10 @@
       </div>
 
       <div class="dateBox">
-        <input id="date" name="date" type="text" class="datepicker" value="Date: mm/dd/yyyy">
+        <input id="date" name="date" type="text" class="datepicker" value="Date: mm-dd-yyyy">
       </div>
-
-      <input type="submit" value="submit">
+      <button type="submit" class="btn waves-effect waves-light sub" name="button">Submit
+      </button>
     </form>
   </div>
 
