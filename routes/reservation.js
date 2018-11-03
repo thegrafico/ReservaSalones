@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
         if (error) throw error;
         connection.release();
       });
-      
+
       if(err) throw err;
     });
   }else{
@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
 
   let parms = {layout: 'reservation', title: 'Reservation'};
   const userName = req.cookies.graph_user_name;
-  const email = req.cookies.graph_user_email;
+  const email = req.cookiesstringRequest.graph_user_email;
 
   console.log("Result", req.body.buildingOption);
   var stringRequest = generateString(req.body.buildingOption);

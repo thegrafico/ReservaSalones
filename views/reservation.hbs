@@ -50,7 +50,7 @@
 
       <div id="selectBox">
         <label for="sOption">Building</label>
-        <select id="sOption" multiple name="buildingOption">
+        <select class="sOption" multiple name="buildingOption">
           <option name= "edifAll" value="" disabled selected>Select Your building!</option>
           <option name= "edifG"   value="G">Edif G</option>
           <option name= "edifF"   value="F">Edif F</option>
@@ -65,42 +65,54 @@
     </form>
   </div>
 
-  <div id="table-box">
+  <form class="/" action="index.html" method="post">
 
-    <div class="table100 ver3 m-b-110">
-  		<div class="table100-head">
-  			<table>
-  				<thead>
-  					<tr class="row100 head">
-              <th class="cell100 column5">Building</th>
-              <th class="cell100 column2">Room</th>
-  						<th class="cell100 column1">Description</th>
-              <th class="cell100 column4">Hour</th>
-  					</tr>
-  				</thead>
-  			</table>
-  		</div>
+    <div id="table-box">
 
-  		<div class="table100-body js-pscroll">
-  			<table>
 
-          <tbody>
-            {{#each results}}
-    					<tr class="row100 body">
-                <td class="cell100 column2">{{this.edifName}}</td>
-                <td class="cell100 column3">{{this.roomID}} </td>
-  							<td class="cell100 column1">{{this.description}} || Capacidad: {{this.capacity}}</td>
-  							<td class="cell100 column5">10/25 | 8:00 - 9:00 am </td>
-  					  </tr>
-            {{/each}}
-  				</tbody>
+      <div class="table100 ver3 m-b-110">
+    		<div class="table100-head">
+    			<table>
+    				<thead>
+    					<tr class="row100 head">
+                <th class="cell100 column5">Building</th>
+                <th class="cell100 column2">Room</th>
+    						<th class="cell100 column1">Description</th>
+                <th class="cell100 column4">Hour</th>
+                <th class="cell100 column4">Reserve</th>
+    					</tr>
+    				</thead>
+    			</table>
+    		</div>
 
-        </table>
-  		</div>
+    		<div class="table100-body js-pscroll">
+    			<table>
 
+            <tbody>
+              {{#each results}}
+      					<tr class="row100 body">
+                  <td class="cell100 column2">{{this.edifName}}</td>
+                  <td class="cell100 column3">{{this.roomID}} </td>
+    							<td class="cell100 column1">{{this.description}} || Capacidad: {{this.capacity}}</td>
+    							<td class="cell100 column5">10/25 | 8:00 - 9:00 am </td>
+                  <td class="cell100 column5">
+                    <label>
+                    <input type="checkbox" checked="checked" />
+                    <span>Yellow</span>
+                  </label>
+                  </td>
+                </tr>
+              {{/each}}
+    				</tbody>
+
+          </table>
+    		</div>
+
+      </div>
     </div>
-  </div>
 
+    <button type="submit" class="btn waves-effect waves-light sub" name="button">Reservation</button>
+  </form>
   <!--===============================================================================================-->
 <!--===============================================================================================-->
 	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -129,7 +141,7 @@
     // });
 
     function ckechBtn(){
-      var checkedValue =  $("#sOption" ).val();
+      var checkedValue =  $(".sOption" ).val();
       checkedValue.forEach(function(elem){
         console.log(elem);
       });

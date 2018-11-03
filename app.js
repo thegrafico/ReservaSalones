@@ -31,18 +31,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 //this is a midleware tha run in every route.
 app.use(function(req, res, next){
 
-  db.getConnection(function(err, connection) {
+  if(req.cookies.admini == undefined){
 
-    connection.query('SELECT * FROM  admin', function (error, results, fields) {
+    db.getConnection(function(err, connection) {
 
-      res.cookie('admini', results, {maxAge: 3600000, httpOnly: true});
+      connection.query('SELECT * FROM  admin', function (error, results, fields) {
 
-      connection.release();
+        res.cookie('admini', results, {maxAge: 3600000, httpOnly: true});
 
+        connection.release();
+      });
     });
-    if (err) throw err;
-
-  });
+  }
 	//move to the next function
 	next();
 });
@@ -60,8 +60,8 @@ app.use('/authorize', authorize);
 // });
 
 
-
 //EXPORTAMOS TODAS LAS FUNCIONALIDADES PARA USARLA CUANDO INICIEMOS EL APP
 app.listen(3000, process.env.IP, function(){
 	console.log("Server Init on port 3000");
 });
+app.timeout = 120000;
