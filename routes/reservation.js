@@ -10,8 +10,9 @@ router.get('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
-
+  //if there are username
   if(userName){
+
     let query = `SELECT * FROM Building Natural Join Room`;
     db.getConnection(function(err, connection) {
       connection.query(query, function (error, results, fields) {

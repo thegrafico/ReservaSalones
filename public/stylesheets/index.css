@@ -12,7 +12,6 @@ body{
 
 .reservation-box{
   padding: 20px;
-  border: 1px solid blue;
   display: inline-block;
 }
 .appointment-box{
@@ -71,8 +70,7 @@ body{
 }
 #formBox{
   width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: -5%;
 }
 #selectBox{
   margin-left: 20%;
@@ -102,4 +100,22 @@ tr td{
 .sub{
   width: 10%;
   margin-left: 5%;
+}
+
+.sub2{
+  display: block;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -90px;
+  margin-bottom: 100px;
+}
+#time{
+  color: white;
+}
+
+.select-wrapper input.select-dropdown{
+  color:#808080;
+  font-size: 15px;
+  line-height: 1.4
 }

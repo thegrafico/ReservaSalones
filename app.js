@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //this is a midleware tha run in every route.
 app.use(function(req, res, next){
-
+  //added to send just one time
   if(req.cookies.admini == undefined){
 
     db.getConnection(function(err, connection) {
@@ -43,8 +43,7 @@ app.use(function(req, res, next){
       });
     });
   }
-	//move to the next function
-	next();
+  next();
 });
 
 //AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS

@@ -59,8 +59,10 @@ function clearCookies(res) {
   // Clear cookies
   res.clearCookie('graph_access_token', {maxAge: 3600000, httpOnly: true});
   res.clearCookie('graph_user_name', {maxAge: 3600000, httpOnly: true});
+  res.clearCookie('graph_user_email', {maxAge: 3600000, httpOnly: true});
   res.clearCookie('graph_refresh_token', {maxAge: 7200000, httpOnly: true});
   res.clearCookie('graph_token_expires', {maxAge: 3600000, httpOnly: true});
+  res.clearCookie('admini', {maxAge: 3600000, httpOnly: true});
 }
 
 async function getAccessToken(cookies, res) {
