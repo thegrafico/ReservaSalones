@@ -31,7 +31,6 @@
   <title>{{title}}</title>
 </head>
 <body>
-
   <nav>
     <div class="nav-wrapper">
       <a href="/home" class="brand-logo">{{user}}</a>
@@ -46,7 +45,7 @@
 
   <div class="input-field col s12">
 
-    <form id="formBox" action="/home/reservation" method="GET">
+    <form id="formBox" action="/home/reservation" method="POST">
 
       <div id="selectBox">
         <label for="ediOption">Building</label>
@@ -96,11 +95,11 @@
     							<td class="cell100 column1">{{this.description}} || Capacidad: {{this.capacity}}</td>
     							<td class="cell100 column5">
 
-                    <select style="color:black;" id="time" multiple name="timeOption">
+                    <select id="time" multiple name="timeOption">
                       <option name= "" disabled selected>Hour</option>
-                      <option name= "8am"   value="8">8 am</option>
-                      <option name= "9am"   value="9">9 am</option>
-                      <option name= "10am"   value="10">10 am</option>
+                      {{#each hourAvailable}}
+                        <option name= "" value="">{{this.time}}</option>
+                      {{/each}}
                     </select>
 
                   </td>
@@ -135,7 +134,7 @@
 				ps.update();
 			})
 		});
-
+    //--------------------inicializar el datepiker-------------------
     $(document).ready(function(){
       $('select').formSelect();
     });
@@ -143,12 +142,14 @@
     $(document).ready(function(){
       $('.datepicker').datepicker();
     });
+    //end datepiker
 
     // //para que no actualize siempre
     // $("#formBox").submit(function(e) {
     //     e.preventDefault();
     // });
 
+    //function when button is clicked
     function ckechBtn(){
       var checkedValue =  $("#ediOption" ).val();
       checkedValue.forEach(function(elem){
@@ -156,9 +157,10 @@
       });
       return true;
     }
+    //function that activate when a select option changes
     $(function() {
       $("#ediOption").on('change', function() {
-        alert($(this).val());
+        // alert($(this).val());
       });
     });
 	</script>
