@@ -5,7 +5,7 @@ var db = require("../helpers/mysqlConnection").mysql_pool;
 
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
+router.get('/', async function(req, res) {
 
   const accessToken = await authHelper.getAccessToken(req.cookies, res);
   const userName = req.cookies.graph_user_name;

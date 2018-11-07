@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
+  console.log("USER:", res);
+
   //if there are username
   if(userName){
 
@@ -16,25 +18,33 @@ router.get('/', function(req, res, next) {
     db.getConnection(function(err, connection) {
       connection.query(query, function (error, results, fields) {
 
+        //se encarga de darle la hora a cada salon
         results.forEach(function(e){
+          //le doy valores antes de enviarlo por parametro.
           e.hourAvailable =  getHour(e.hourAvailable);
-          console.log(e.roomID, e.hourAvailable);
+          // console.log(e.roomID, e.hourAvailable);
         });
 
+        //parameters that go to be sending
         parms.results = results;
         parms.user = userName;
 
-        // results.forEach(function(e){
-        //   letras.push(getHour(e.hourAvailable));
-        // });
-
-        res.render('reservation', parms, );
+        res.render('reservation', parms);
 
         //close the connection
-        if (error) throw error;
+        if (error){
+          console.log(err);
+          res.sendStatus(500);
+          return;
+        }
         connection.release();
+
       });
-      if(err) throw err;
+      if(err){
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      }
     });
   }else{
     res.redirect('/');
@@ -51,6 +61,8 @@ router.post('/', function(req, res, next) {
   var stringRequest = generarString(req.body.buildingOption);
   console.log(stringRequest);
 
+  console.log(req.body);
+
   if(stringRequest == "" || stringRequest == undefined){
     query = `SELECT * FROM Building Natural Join Room`;
   }else{
@@ -60,22 +72,42 @@ router.post('/', function(req, res, next) {
   if(userName){
     db.getConnection(function(err, connection) {
       connection.query(query, function (error, results, fields) {
+
+        //se encarga de darle la hora a cada salon
+        results.forEach(function(e){
+          //le doy valores antes de enviarlo por parametro.
+          e.hourAvailable =  getHour(e.hourAvailable);
+          // console.log(e.roomID, e.hourAvailable);
+        });
+
         parms.results = results;
         parms.user = userName;
+
 
         stringRequest = undefined;
         res.render('reservation', parms);
 
-        if (error) throw error;
+        //close the connection
+        if (error){
+          console.log(err);
+          res.sendStatus(500);
+          return;
+        }
         connection.release();
       });
-      if(err) throw err;
+      if(err){
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      }
     });
   }else{
     res.redirect('/');
   }
 });
 
+//Get hour le da la hora segun los parametros que hay en la base de dato
+//va desde la letra a hasta la i, cada letra significa una hora.
 function getHour(str){
 
   var hour = [];
@@ -106,6 +138,7 @@ function getHour(str){
 
   return hour;
 }
+//genera el string para la query
 function generarString(str){
 
   var result = "";

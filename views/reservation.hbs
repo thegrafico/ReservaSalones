@@ -43,14 +43,13 @@
     </div>
   </nav>
 
+  <!-- Form FOR SEARCH FOR BUILDING -->
   <div class="input-field col s12">
-
     <form id="formBox" action="/home/reservation" method="POST">
 
       <div id="selectBox">
-        <label for="ediOption">Building</label>
         <select id="ediOption" multiple name="buildingOption">
-          <option name= "edifAll" value="" disabled selected>Select Your building!</option>
+          <option name= "edifAll" value="" disabled hidden>Select Building!</option>
           <option name= "edifG"   value="G">Edif G</option>
           <option name= "edifF"   value="F">Edif F</option>
           <option name= "edifC"   value="C">Edif C</option>
@@ -58,16 +57,16 @@
       </div>
 
       <div class="dateBox">
-        <input id="date" name="date" type="text" class="datepicker" value="Date: mm-dd-yyyy">
+        <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
       </div>
       <button type="submit" class="btn waves-effect waves-light sub" name="button">Submit</button>
     </form>
   </div>
 
-  <form class="/" action="index.html" method="post">
+  <!-- FORM FOR MAKE RESERVATION -->
+  <form id="formReservation" action="/home/reservation/" onsubmit="reservationbtn()" method="POST">
 
     <div id="table-box">
-
 
       <div class="table100 ver3 m-b-110">
     		<div class="table100-head">
@@ -98,16 +97,16 @@
                     <select id="time" multiple name="timeOption">
                       <option name= "" disabled selected>Hour</option>
                       {{#each hourAvailable}}
-                        <option name= "" value="">{{this.time}}</option>
+                        <option name= "reserve[{{this.time}}]" value="{{this.time}}">{{this.time}}</option>
                       {{/each}}
                     </select>
 
                   </td>
                   <td class="cell100 column5">
                     <label>
-                    <input type="checkbox" name="{{this.roomID}}"/>
-                    <span>Reserve</span>
-                  </label>
+                      <input class="roomID" value="{{this.roomID}}" type="checkbox" name="reserve[{{this.roomID}}]"/>
+                      <span>Reserve</span>
+                    </label>
                   </td>
                 </tr>
               {{/each}}
@@ -119,51 +118,15 @@
       </div>
     </div>
 
-    <button type="submit" class="btn waves-effect waves-light sub sub2" name="button">Make Reservation!</button>
+    <button type="submit" id="MakeReservation" class="btn waves-effect waves-light sub sub2" name="button">
+      Make Reservation!
+    </button>
+
   </form>
   <!--===============================================================================================-->
 <!--===============================================================================================-->
 	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
-	<script>
-
-    $('.js-pscroll').each(function(){
-			var ps = new PerfectScrollbar(this);
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-    //--------------------inicializar el datepiker-------------------
-    $(document).ready(function(){
-      $('select').formSelect();
-    });
-
-    $(document).ready(function(){
-      $('.datepicker').datepicker();
-    });
-    //end datepiker
-
-    // //para que no actualize siempre
-    // $("#formBox").submit(function(e) {
-    //     e.preventDefault();
-    // });
-
-    //function when button is clicked
-    function ckechBtn(){
-      var checkedValue =  $("#ediOption" ).val();
-      checkedValue.forEach(function(elem){
-        console.log(elem);
-      });
-      return true;
-    }
-    //function that activate when a select option changes
-    $(function() {
-      $("#ediOption").on('change', function() {
-        // alert($(this).val());
-      });
-    });
-	</script>
+  <script src="/javascripts/mainJS.js"></script>
 <!--===============================================================================================-->
 
 </body>

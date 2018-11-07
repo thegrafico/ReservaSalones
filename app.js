@@ -10,9 +10,7 @@ var indexRouter   = require('./routes/index');
 var authorize     = require('./routes/authorize');
 var reservationRouter = require('./routes/reservation');
 var bodyParser = require('body-parser');
-
-var db = require("./helpers/mysqlConnection").mysql_pool;
-
+var db = require("./helpers/mysqlConnection").mysql_pool; //pool connection
 //-------------END IMPORTS
 
 //ESTO ES LO QUE NOS PERMITE USER EL SERVIDOR
@@ -30,20 +28,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //this is a midleware tha run in every route.
 app.use(function(req, res, next){
-  //added to send just one time
-  if(req.cookies.admini == undefined){
-
-    db.getConnection(function(err, connection) {
-
-      connection.query('SELECT * FROM  admin', function (error, results, fields) {
-
-        res.cookie('admini', results, {maxAge: 3600000, httpOnly: true});
-
-        connection.release();
-      });
+  db.getConnection(function(err, connection) {
+    if (err){
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    connection.query('SELECT * FROM  admin', function (error, results, fields) {
+      if (error){
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      }
+      connection.release();
+      res.locals.CurrentUser =  results;
+      //move to the next function
+      next();
     });
-  }
-  next();
+  });
 });
 
 //AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS
