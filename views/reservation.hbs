@@ -43,6 +43,19 @@
     </div>
   </nav>
 
+  <div class="flashContainer">
+      {{#if error }}
+          <div class="alert-danger" role="alert">
+              {{error}}
+          </div>
+      {{/if}}
+      {{#if success}}
+          <div class="alert-success" role="alert">
+              {{ success}}
+          </div>
+      {{/if}}
+  </div>
+
   <!-- Form FOR SEARCH FOR BUILDING -->
   <div class="input-field col s12">
     <form id="formBox" action="/home/reservation" method="POST">
@@ -62,7 +75,6 @@
       <button type="submit" class="btn waves-effect waves-light sub" name="button">Submit</button>
     </form>
   </div>
-
   <!-- FORM FOR MAKE RESERVATION -->
   <form id="formReservation" action="/home/reservation/" onsubmit="reservationbtn()" method="POST">
 
@@ -94,17 +106,17 @@
     							<td class="cell100 column1">{{this.description}} || Capacidad: {{this.capacity}}</td>
     							<td class="cell100 column5">
 
-                    <select id="time" multiple name="timeOption">
+                    <select id="time" multiple name="Time[hora]">
                       <option name= "" disabled selected>Hour</option>
                       {{#each hourAvailable}}
-                        <option name= "reserve[{{this.time}}]" value="{{this.time}}">{{this.time}}</option>
+                        <option name= "{{this.time}}" value="{{this.time}}&{{../this.roomID}}">{{this.time}}</option>
                       {{/each}}
                     </select>
 
                   </td>
                   <td class="cell100 column5">
                     <label>
-                      <input class="roomID" value="{{this.roomID}}" type="checkbox" name="reserve[{{this.roomID}}]"/>
+                      <input class="roomID" value="{{this.roomID}}" type="checkbox" name="Time[salon]"/>
                       <span>Reserve</span>
                     </label>
                   </td>

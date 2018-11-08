@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
-  console.log("USER:", res);
+  // console.log("USER:", res);
 
   //if there are username
   if(userName){
@@ -57,10 +57,17 @@ router.post('/', function(req, res, next) {
   let query = '';
   const userName = req.cookies.graph_user_name;
 
+  // if(req.body.Reserve == undefined){
+  //   req.flash('error', 'Need to check reserve room');
+  //   res.redirect('/home/reservation');
+  // }
+  // else if(req.body.TimeRoom == undefined){
+  //   req.flash('error', 'You mush choose a hour!');
+  //   res.redirect('/home/reservation');
+  // }
   // console.log("Result", req.body.buildingOption);
   var stringRequest = generarString(req.body.buildingOption);
   console.log(stringRequest);
-
   console.log(req.body);
 
   if(stringRequest == "" || stringRequest == undefined){

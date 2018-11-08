@@ -43,13 +43,17 @@ $(function() {
 //btn for form reservation submit
 function reservationbtn(){
 
+  //check if checkbox is working
   $('input:checkbox.roomID').each(function () {
-
       var sThisVal = (this.checked ? $(this).val() : undefined);
       if(sThisVal != undefined){
         // alert(sThisVal);
       }
     });
+
+    if(!$(".reserveChoose" ).val()){
+      
+    }
 
   // alert("Pase por aqui");
 
