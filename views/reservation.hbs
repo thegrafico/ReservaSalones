@@ -106,17 +106,17 @@
     							<td class="cell100 column1">{{this.description}} || Capacidad: {{this.capacity}}</td>
     							<td class="cell100 column5">
 
-                    <select id="time" multiple name="Time[hora]">
+                    <select id="time" multiple name="TimeSalon">
                       <option name= "" disabled selected>Hour</option>
                       {{#each hourAvailable}}
-                        <option name= "{{this.time}}" value="{{this.time}}&{{../this.roomID}}">{{this.time}}</option>
+                        <option name= "{{this.time}}" value="{{this.time}}%{{../this.roomID}}%">{{this.time}}</option>
                       {{/each}}
                     </select>
 
                   </td>
                   <td class="cell100 column5">
                     <label>
-                      <input class="roomID" value="{{this.roomID}}" type="checkbox" name="Time[salon]"/>
+                      <input class="roomID" value="{{this.roomID}}" type="checkbox" name="Salon"/>
                       <span>Reserve</span>
                     </label>
                   </td>

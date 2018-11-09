@@ -56,8 +56,8 @@ router.post('/', function(req, res, next) {
   let parms = {layout: 'reservation', title: 'Reservation'};
   let query = '';
   const userName = req.cookies.graph_user_name;
-
-  // if(req.body.Reserve == undefined){
+  //
+  // if(req.body.Time == undefined){
   //   req.flash('error', 'Need to check reserve room');
   //   res.redirect('/home/reservation');
   // }
@@ -65,7 +65,7 @@ router.post('/', function(req, res, next) {
   //   req.flash('error', 'You mush choose a hour!');
   //   res.redirect('/home/reservation');
   // }
-  // console.log("Result", req.body.buildingOption);
+
   var stringRequest = generarString(req.body.buildingOption);
   console.log(stringRequest);
   console.log(req.body);
