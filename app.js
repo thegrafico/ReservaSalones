@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 app.use(require("express-session")({
-	secret: "23135165 is a cool guy",
+	secret: "2313516asdasdass5 is a cool guy",
 	resave: false,
 	saveUninitialized: false
 }));

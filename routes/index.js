@@ -9,12 +9,15 @@ router.get('/', async function(req, res) {
 
   const accessToken = await authHelper.getAccessToken(req.cookies, res);
   const userName = req.cookies.graph_user_name;
+
+  console.log("UserName: ", userName);
   const email = req.cookies.graph_user_email;
+  console.log("EMAIL: ", email);
   let parms = { title: 'Home', active: { home: true }, urlReservation: '/reservation', urlAppoitment: '/appoitment' };
 
   //here we can see the admin!
   // console.log(req.cookies.admini[0]);
-  if(userName){
+  // if(userName){
 
     let query =`INSERT INTO User (emailID, name, privilege)` +
       ` SELECT * FROM (SELECT '${email}', '${userName}', ${0}) as nUser`  +
@@ -37,8 +40,8 @@ router.get('/', async function(req, res) {
           res.render('index', parms);
       });
     });
-  }else{ //enter here si no nadie se ha autentificado
-    res.redirect('/');
-  }
+  // }else{ //enter here si no nadie se ha autentificado
+    // res.redirect('/');
+  // }
 });
 module.exports = router;

@@ -16,7 +16,7 @@ const oauth2 = require('simple-oauth2').create(credentials);
 function getAuthUrl() {
   const returnVal = oauth2.authorizationCode.authorizeURL({
     redirect_uri: process.env.REDIRECT_URI,
-    scope: 'openid email'
+    scope: process.env.APP_SCOPES
   });
   console.log(`Generated auth url: ${returnVal}`);
   return returnVal;
@@ -48,7 +48,7 @@ function saveValuesToCookie(token, res) {
 
   //ADDED THIS
   //saving the email
-  res.cookie('graph_user_email', user.email, {maxAge: 3600000, httpOnly: true});
+  res.cookie('graph_user_email', user.preferred_username, {maxAge: 3600000, httpOnly: true});
   // Save the refresh token in a cookie
   res.cookie('graph_refresh_token', token.token.refresh_token, {maxAge: 7200000, httpOnly: true});
   // Save the token expiration time in a cookie
