@@ -9,8 +9,6 @@ router.get('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
-  // console.log("USER:", res);
-
   //if there are username
   if(userName){
 
