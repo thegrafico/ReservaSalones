@@ -7,8 +7,8 @@ config = {
       connectionLimit : 15,
       host     : 'localhost',  //THIS IS THE SAME FOR YOUR
       user     : 'root',      //THIS IS THE SAME FOR YOUR
-      password : 'Lana02210712RN',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-      database : 'DB_Proyect'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+      password : '6197',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+      database : 'InterReservations'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
     })
 };
 
