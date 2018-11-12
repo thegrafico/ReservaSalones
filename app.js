@@ -35,34 +35,34 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 app.use(require("express-session")({
-	secret: "Thegrafico is a cool guy",
+	secret: "2313516asdasdass5 is a cool guy",
 	resave: false,
 	saveUninitialized: false
 }));
 
-//this is a midleware tha run in every route.
-app.use(function(req, res, next){
-  db.getConnection(function(err, connection) {
-    if (err){
-      console.log(err);
-      res.sendStatus(500);
-      return;
-    }
-    connection.query('SELECT * FROM  admin', function (error, results, fields) {
-      if (error){
-        console.log(err);
-        res.sendStatus(500);
-        return;
-      }
-      connection.release();
-      res.locals.CurrentUser =  results;
-      res.locals.error = req.flash("error"); //error mesage go red
-      res.locals.success = req.flash("success"); //success message go green
-      //move to the next function
-      next();
-    });
-  });
-});
+// this is a midleware tha run in every route. esto es para el admin
+// app.use(function(req, res, next){
+//   db.getConnection(function(err, connection) {
+//     if (err){
+//       console.log(err);
+//       res.sendStatus(500);
+//       return;
+//     }
+//     connection.query('SELECT * FROM  admin', function (error, results, fields) {
+//       if (error){
+//         console.log(err);
+//         res.sendStatus(500);
+//         return;
+//       }
+//       connection.release();
+//       res.locals.CurrentUser =  results;
+//       res.locals.error = req.flash("error"); //error mesage go red
+//       res.locals.success = req.flash("success"); //success message go green
+//       //move to the next function
+//       next();
+//     });
+//   });
+// });
 
 //AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS
 app.use("/", loginRoute);
@@ -71,15 +71,17 @@ app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
 app.use("/", adminRoute);
 
-//
+
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));
 // });
 
 
-//EXPORTAMOS TODAS LAS FUNCIONALIDADES PARA USARLA CUANDO INICIEMOS EL APP
+// EXPORTAMOS TODAS LAS FUNCIONALIDADES PARA USARLA CUANDO INICIEMOS EL APP
 app.listen(3000, process.env.IP, function(){
-	console.log("Server Init on port 3000");
+	console.log("Server is hosted in http://localhost:3000");
 });
 app.timeout = 120000;
+
+// module.exports = app;

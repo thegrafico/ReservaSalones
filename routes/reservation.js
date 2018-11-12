@@ -5,7 +5,10 @@ var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-  let parms = {layout: 'reservation', title: 'Reservation'};
+    //cambiamos esto para cambiar el view
+  var layoutRender = 'reservation'
+
+  let parms = {layout: layoutRender, title: 'Reservation'};
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
@@ -14,7 +17,7 @@ router.get('/', function(req, res, next) {
   //if there are username
   if(userName){
 
-    let query = `SELECT * FROM Building Natural Join Room`;
+    let query = `SELECT * FROM Buildings Natural Join Room`;
     db.getConnection(function(err, connection) {
       connection.query(query, function (error, results, fields) {
 
@@ -29,7 +32,7 @@ router.get('/', function(req, res, next) {
         parms.results = results;
         parms.user = userName;
 
-        res.render('reservation', parms);
+        res.render(layoutRender, parms);
 
         //close the connection
         if (error){
@@ -71,9 +74,9 @@ router.post('/', function(req, res, next) {
   console.log(req.body);
 
   if(stringRequest == "" || stringRequest == undefined){
-    query = `SELECT * FROM Building Natural Join Room`;
+    query = `SELECT * FROM Buildings Natural Join Room`;
   }else{
-    query = `SELECT * FROM Building NATURAL JOIN Room WHERE ${stringRequest}`;
+    query = `SELECT * FROM Buildings NATURAL JOIN Room WHERE ${stringRequest}`;
   }
 
   if(userName){

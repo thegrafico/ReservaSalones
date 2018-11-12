@@ -101,22 +101,22 @@
             <tbody>
               {{#each results}}
       					<tr class="row100 body">
-                  <td class="cell100 column2">{{this.roomID}} </td>
-                  <td class="cell100 column3">{{this.edifName}}</td>
-    							<td class="cell100 column1">{{this.description}} || Capacidad: {{this.capacity}}</td>
+                  <td class="cell100 column2">{{this.RoomID}} </td>
+                  <td class="cell100 column3">{{this.EdifName}}</td>
+    							<td class="cell100 column1">{{this.Description}} || Capacidad: {{this.capacity}}</td>
     							<td class="cell100 column5">
 
                     <select id="time" multiple name="TimeSalon">
                       <option name= "" disabled selected>Hour</option>
                       {{#each hourAvailable}}
-                        <option name= "{{this.time}}" value="{{this.time}}%{{../this.roomID}}%">{{this.time}}</option>
+                        <option name= "{{this.time}}" value="{{this.time}}%{{../this.RoomID}}%">{{this.time}}</option>
                       {{/each}}
                     </select>
 
                   </td>
                   <td class="cell100 column5">
                     <label>
-                      <input class="roomID" value="{{this.roomID}}" type="checkbox" name="Salon"/>
+                      <input class="roomID" value="{{this.RoomID}}" type="checkbox" name="Salon"/>
                       <span>Reserve</span>
                     </label>
                   </td>

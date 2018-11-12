@@ -21,5 +21,18 @@
     "node": "^10.13.0",
     "nodemon": "^1.18.5",
     "simple-oauth2": "^2.2.1"
-  }
+  },
+  "description": "Este repositorio es para la clase de Base de datos. Como ya saben, el proyecto se encarga de reservar salones para estudiantes con el email de office 365.",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegrafico/ReservaSalones.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegrafico/ReservaSalones/issues"
+  },
+  "homepage": "https://github.com/thegrafico/ReservaSalones#readme"
 }
