@@ -1,14 +1,14 @@
 var express = require('express'); //server
 var router = express.Router(); //router
 var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
-var building = "Building";
+
 
 /* GET users listing. */
 //shows the available bildings and hours available
 router.get('/', function(req, res, next) {
 
-    //cambiamos esto para cambiar el view
-  var layoutRender = 'reservation';
+  var building = "Building";    
+  var layoutRender = 'reservation';//cambiamos esto para cambiar el view
 
   let parms = {layout: layoutRender, title: 'Reservation'};
   //graba el username e email de los cookies que se grabaron en auth

@@ -1,15 +1,19 @@
 //--------------ESTOS SON IMPORTS, COMO EN JAVA
-var createError       = require('http-errors');
-var express           = require('express');
-var path              = require('path');
-var cookieParser      = require('cookie-parser');
-var logger            = require('morgan');
-require('dotenv').config();
-var loginRoute        = require('./routes/login');//file routes for the js files
-var adminRoute        = require('./routes/admin');
+var createError   = require('http-errors'); //es para cuando quieres generar un error
+var express       = require('express');     //uno de los mas importantes, crea el servidor
+var path          = require('path');        //para que su pueda mandejar las localizaciones de los files en la compu
+var cookieParser  = require('cookie-parser');// para guardar cookies, datos del usuario
+var logger        = require('morgan');      //Lib de Microsoft para que el usuario se quede logged in
+require('dotenv').config();                 // Esto lo necesitan todas las aplicaciones que tengan autentificacin de Microsoft
+// estas son las rutas del web, hace referencias a las carpetas que ya tenemos
+var loginRoute        = require('./routes/login');//saves path to login js in routes folder
+var adminRoute        = require('./routes/admin');// '' admin js in routes folder
 var indexRouter       = require('./routes/index');
 var authorize         = require('./routes/authorize');
 var reservationRouter = require('./routes/reservation');
+//saves path tho the js file that will administrate the profesor selection window
+var appointmentRouter = require('./routes/STUD_APP_HUB_PT1');
+
 var bodyParser        = require('body-parser');
 var flash						  = require("connect-flash");
 // var db                = require("./helpers/mysqlConnection").mysql_pool; //pool connection
@@ -64,10 +68,12 @@ app.use(require("express-session")({
 //   });
 // });
 
-//AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS
+//AQUI ESTAN NUESTRAS RUTAS WEB, o sea las crea y llama a los
+//"middleware"
 app.use("/", loginRoute);
 app.use('/home', indexRouter);
-app.use("/home/reservation", reservationRouter)
+app.use("/home/reservation", reservationRouter);
+app.use("/home/appointment", appointmentRouter);
 app.use('/authorize', authorize);
 app.use("/", adminRoute);
 

@@ -1,17 +1,20 @@
+//page for student user
+
 var express = require('express');
 var router = express.Router();
 var authHelper = require('../helpers/auth');
 var db = require("../helpers/mysqlConnection").mysql_pool;
-var user = 'User';
+
 
 
 /* GET home page. */
 router.get('/', async function(req, res) {
 
+  var user = 'User';
   const accessToken = await authHelper.getAccessToken(req.cookies, res);
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
-  let parms = { title: 'Home', active: { home: true }, urlReservation: '/reservation', urlAppoitment: '/appoitment' };
+  let parms = { title: 'Home', active: { home: true }, urlReservation: '/reservation', urlAppoitment: '/appointment'};
 
   //here we can see the admin!
   // console.log(req.cookies.admini[0]);
