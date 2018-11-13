@@ -7,7 +7,7 @@ var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 //shows the available bildings and hours available
 router.get('/', function(req, res, next) {
 
-  var building = "Building";    
+  var building = "Building";
   var layoutRender = 'reservation';//cambiamos esto para cambiar el view
 
   let parms = {layout: layoutRender, title: 'Reservation'};
