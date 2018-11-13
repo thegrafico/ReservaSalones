@@ -6,17 +6,33 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.1.0",
     "express": "~4.16.0",
+    "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.3.0",
     "morgan": "~1.9.0",
     "mysql": "^2.16.0",
-    "node": "^10.12.0",
-    "nodemon": "^1.18.4",
+    "node": "^10.13.0",
+    "nodemon": "^1.18.5",
     "simple-oauth2": "^2.2.1"
-  }
+  },
+  "description": "Este repositorio es para la clase de Base de datos. Como ya saben, el proyecto se encarga de reservar salones para estudiantes con el email de office 365.",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegrafico/ReservaSalones.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegrafico/ReservaSalones/issues"
+  },
+  "homepage": "https://github.com/thegrafico/ReservaSalones#readme"
 }

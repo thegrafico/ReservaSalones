@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!--===============================================================================================-->
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
+
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <!--===============================================================================================-->
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+  <link rel="shortcut icon" type="image/png" href="/imgs/interb.jpg">
+  <link href="https://fonts.googleapis.com/css?family=Krub:400,700" rel="stylesheet">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/index.css">
+
+  <title>{{title}}</title>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/home" class="brand-logo">{{user}}</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {{#if user}}
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sing Out</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="flashContainer">
+      {{#if error }}
+          <div class="alert-danger" role="alert">
+              {{error}}
+          </div>
+      {{/if}}
+      {{#if success}}
+          <div class="alert-success" role="alert">
+              {{ success}}
+          </div>
+      {{/if}}
+  </div>
+
+  <!-- Form FOR SEARCH FOR BUILDING -->
+  <div class="input-field col s12">
+    <form id="formBox" action="/home/reservation" method="POST">
+
+      <div id="selectBox">
+        <select id="ediOption" multiple name="buildingOption">
+          <option name= "edifAll" value="" disabled hidden>Select Building!</option>
+          <option name= "edifG"   value="G">Edif G</option>
+          <option name= "edifF"   value="F">Edif F</option>
+          <option name= "edifC"   value="C">Edif C</option>
+        </select>
+      </div>
+
+      <div class="dateBox">
+        <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+      </div>
+      <button type="submit" class="btn waves-effect waves-light sub" name="button">Submit</button>
+    </form>
+  </div>
+  <!-- FORM FOR MAKE RESERVATION -->
+  <form id="formReservation" action="/home/reservation/" onsubmit="reservationbtn()" method="POST">
+
+    <div id="table-box">
+
+      <div class="table100 ver3 m-b-110">
+    		<div class="table100-head">
+    			<table>
+    				<thead>
+    					<tr class="row100 head">
+                <th class="cell100 column5">Room</th>
+                <th class="cell100 column2">Building</th>
+    						<th class="cell100 column1">Description</th>
+                <th class="cell100 column4">Hour (MAX = 3)</th>
+                <th class="cell100 column4">Reserve</th>
+    					</tr>
+    				</thead>
+    			</table>
+    		</div>
+
+    		<div class="table100-body js-pscroll">
+    			<table>
+
+            <tbody>
+              {{#each results}}
+      					<tr class="row100 body">
+                  <td class="cell100 column2">{{this.RoomID}} </td>
+                  <td class="cell100 column3">{{this.EdifName}}</td>
+    							<td class="cell100 column1">{{this.Description}} || Capacidad: {{this.capacity}}</td>
+    							<td class="cell100 column5">
+
+                    <select id="time" multiple name="TimeSalon">
+                      <option name= "" disabled selected>Hour</option>
+                      {{#each hourAvailable}}
+                        <option name= "{{this.time}}" value="{{this.time}}%{{../this.RoomID}}%">{{this.time}}</option>
+                      {{/each}}
+                    </select>
+
+                  </td>
+                  <td class="cell100 column5">
+                    <label>
+                      <input class="roomID" value="{{this.RoomID}}" type="checkbox" name="Salon"/>
+                      <span>Reserve</span>
+                    </label>
+                  </td>
+                </tr>
+              {{/each}}
+    				</tbody>
+
+          </table>
+    		</div>
+
+      </div>
+    </div>
+
+    <button type="submit" id="MakeReservation" class="btn waves-effect waves-light sub sub2" name="button">
+      Make Reservation!
+    </button>
+
+  </form>
+  <!--===============================================================================================-->
+<!--===============================================================================================-->
+	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  <script src="/javascripts/mainJS.js"></script>
+<!--===============================================================================================-->
+
+</body>
+</html>

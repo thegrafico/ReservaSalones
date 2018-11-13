@@ -5,41 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{title}}</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="shortcut icon" type="image/png" href="/imgs/interb.jpg">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Krub:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
   </head>
   <body>
 
     <!-- Nav bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="/">Node Graph Tutorial</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item{{#if active.home}} active{{/if}}">
-            <a class="nav-link" href="/">Home</a>
-          </li>
+    <nav>
+      <div class="nav-wrapper" style=" ;">
+        <a href="#" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
           {{#if user}}
-            <li class="nav-item{{#if active.inbox}} active{{/if}}">
-              <a class="nav-link" href="/mail">Inbox</a>
-            </li>
-          {{/if}}
-        </ul>
-        <ul class="navbar-nav justify-content-end">
-          {{#if user}}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{user}}</a>
-              <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/authorize/signout">Sign Out</a>
-              </div>
-            </li>
-          {{else}}
-            <li class="nav-item">
-              <a class="nav-link" href="{{signInUrl}}">Sign In</a>
-            </li>
-          {{/if}}
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sing Out</a></li>
+            {{/if}}
         </ul>
       </div>
     </nav>
@@ -49,14 +32,15 @@
       {{{body}}}
 
       <!-- Debug output -->
-      {{#if debug}}
+      <!-- {{#if debug}}
+       href="{{signInUrl}}"
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Debug</h5>
             <pre class="bg-light border p-3"><code>{{debug}}</code></pre>
           </div>
         </div>
-      {{/if}}
+      {{/if}} -->
     </main>
 
     <!-- Bootstrap core JavaScript
