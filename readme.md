@@ -35,3 +35,5 @@ Si usan windows, recuerden bajar NodeJs e instalar npm, en youtube hay varios vi
 Cuando tengan node instalado, por favor dejarlo saber por el grupo.
 
 Instalar mysql tambien.
+
+Dimelo jajaj
