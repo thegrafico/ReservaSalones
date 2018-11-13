@@ -36,4 +36,4 @@ Cuando tengan node instalado, por favor dejarlo saber por el grupo.
 
 Instalar mysql tambien.
 
-Dimelo jajaj
+Dimelo jajaja
