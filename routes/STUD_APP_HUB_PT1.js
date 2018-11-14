@@ -13,28 +13,26 @@ var dataB = require("../helpers/mysqlConnection").mysql_pool;
 //basically page response as in the layout, buttons, all html stuff, etc
 router.get('/', function (req, res) {
 
-  //sets up the name of the layout to be displayed
-  var layName = 'STUD_APP_HUB_PT1';
-  //sets up window title
-  var titleName = 'Appointment';
-  //records userName again to display in the tab
-  const userName = req.cookies.graph_user_name;
-  //object that will be sent to the hbs fie for the variables to be displayed
-  let parms = {title: titleName}
+  var layName = 'STUD_APP_HUB_PT1';  //sets up the name of the layout to be displayed
+  var titleName = 'Appointment';  //sets up window title
+  const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
+
 
   //console.log("userName: " + userName);
 //if a value exists in the username variable
 if(userName){
+  var initial = "initial";
+  var name = "professorName";
+  var email = "professorEmail";
+  var description = "Department";
+  let parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
+  parms [initial] = undefined;
+  parms [name] = undefined;
+  parms [email] = undefined;
+  parms [description] = undefined;
 
   //defines the name of the professor table as a variable
   var professor = 'Professor';
-
-  //sets up the different indexes to be used for
-  //the result of the query array
-  var name = 0;
-  var email = 1;
-  var description = 2;
-
 
   //defines the query i want to make
   let query = `SELECT * FROM ${professor}`;
@@ -61,10 +59,10 @@ if(userName){
     })
   })
 
-  parms.initial = "Initial";
-  parms.professorName = "name";
-  parms.professorEmail = "Email";
-  parms.Department = "department";
+  parms[initial] = "Initial";
+  parms[name] = "name";
+  parms[email] = "Email";
+  parms[description] = "department";
   //devines a variable in the object parms and defines it as the userName
   parms.user = userName;
 
