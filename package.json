@@ -1,6 +1,6 @@
 {
   "name": "node-tutorial",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -22,14 +22,14 @@
     "nodemon": "^1.18.5",
     "simple-oauth2": "^2.2.1"
   },
-  "description": "Este repositorio es para la clase de Base de datos. Como ya saben, el proyecto se encarga de reservar salones para estudiantes con el email de office 365.",
+  "description": "Web application to make reservation & appointments with professors",
   "main": "app.js",
   "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thegrafico/ReservaSalones.git"
   },
-  "author": "",
+  "author": "Raul, Noah, Carlos, Kemuel, Francisco, Eliud",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thegrafico/ReservaSalones/issues"
