@@ -6,7 +6,8 @@ drop table if exists Users;
 drop table if exists Professor;
 drop table if exists Appointment;
 drop table if exists Reservation;
-drop table if exists Admin;
+drop table if exists Admin;					/*previous version had Admin table*/
+drop table if exists Administrator;			/*New Version of admin table*/
 drop table if exists ReservationRequest;
 drop table if exists ProfHour;
 drop table if exists AppointmentRequest;
@@ -14,13 +15,13 @@ drop table if exists AppointmentRequest;
 /* Creating the Tables*/
 
 create table Building(buildingName varchar(10), roomID varchar(10));
-create table Room(roomID varchar(10), capacity int, description varchar(255), hourAvailabile varchar(10));
+create table Room(roomID varchar(10), capacity int, description varchar(255), hourAvailable varchar(10));
 create table Users(emailID varchar(30), name varchar(15), privilege varchar(15));
-create table Professor(profName varchar(15), profesorEmail varchar(30), descripcion varchar(255));
-create table ProfHour(profesorEmail varchar(30), day varchar(10), hour varchar(10));
-create table Appointment(emailID varchar(30), profesorEmail varchar(30), appHour varchar(15), fecha date, appointmentID varchar(10));
-create table Reservation(emailID varchar(30), roomID varchar(10), revHour varchar(10), fecha date, reservationID varchar(10));
-create table Admin(emailID varchar(30), adminName varchar(20));
+create table Professor(profName varchar(15), profEmail varchar(30), description varchar(255));
+create table ProfHour(profEmail varchar(30), day varchar(10), hour varchar(10));
+create table Appointment(emailID varchar(30), profEmail varchar(30), appHour varchar(15), date date, appointmentID varchar(10));
+create table Reservation(emailID varchar(30), roomID varchar(10), revHour varchar(10), data date, reservationID varchar(10));
+create table Administrator(emailID varchar(30), adminName varchar(20));
 create table ReservationRequest(emailID varchar(30), reservationID varchar(10), desicionRS boolean);
 create table AppointmentRequest(emailID varchar(30), appointmentID varchar(10), desicionAP boolean);
 
@@ -131,7 +132,7 @@ insert into ProfHour values('jyeckle@inter.bayamon.edu', 'Thu', 'dcf');
 
 
 
-/* Entering data to Admin */
+/* Entering data to Administrator */
 
 
 
