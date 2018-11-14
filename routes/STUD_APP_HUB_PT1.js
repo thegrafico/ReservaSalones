@@ -21,15 +21,17 @@ router.get('/', function (req, res) {
   //console.log("userName: " + userName);
 //if a value exists in the username variable
 if(userName){
+  //sets up the names of the variables used in hbs
   var initial = "initial";
   var name = "professorName";
   var email = "professorEmail";
   var description = "Department";
   let parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
-  parms [initial] = undefined;
-  parms [name] = undefined;
-  parms [email] = undefined;
-  parms [description] = undefined;
+  //initializes the different variables of parms that will be used in the hbs
+  parms [initial];
+  parms [name];
+  parms [email];
+  parms [description];
 
   //defines the name of the professor table as a variable
   var professor = 'Professor';
@@ -54,6 +56,19 @@ if(userName){
       //example using the results array
       //console.log(results[0]["profName"]);
 
+      //check for each table entry
+      results.forEach(function (elements){
+
+        console.log(elements);
+        console.log(elements.length);
+
+        //check for each table element
+        for (var i = 0; i <elements.length; i++ ){
+
+        }
+
+      })
+
       if (error) throw error;
 
     })
@@ -75,6 +90,15 @@ else {
 
 //res.send('Birds home page')
 })
+
+//converts index number to an equivalent table name
+function getColumn (index, name, email, description){
+  return 0;
+switch (index){
+  case '0':
+}
+
+}
 // // define the about route
 // router.get('/about', function (req, res) {
 //   res.send('About birds')

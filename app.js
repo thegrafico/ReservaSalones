@@ -1,7 +1,6 @@
 //--------------ESTOS SON IMPORTS, COMO EN JAVA
-//importa paquetes basicos de npm que se van a utilizar en el codigo
 var createError   = require('http-errors'); //es para cuando quieres generar un error
-var express       = require('express');     
+var express       = require('express');     //import packets from nodejs-npm
 var path          = require('path');        //para que su pueda mandejar las localizaciones de los files en la compu
 var cookieParser  = require('cookie-parser');// para guardar cookies, datos del usuario
 var logger        = require('morgan');      //Lib de Microsoft para que el usuario se quede logged in
@@ -12,21 +11,20 @@ var adminRoute        = require('./routes/admin');// '' admin js in routes folde
 var indexRouter       = require('./routes/index');
 var authorize         = require('./routes/authorize');
 var reservationRouter = require('./routes/reservation');
-//saves path to the js file that will administrate the profesor selection window
-var profListRouter = require('./routes/STUD_APP_HUB_PT1');
-//Saves pathto the js file that will manage appoinment selection
-var appointment = require ('./routes/STUD_APP_HUB_PT2');
+var profListRouter = require('./routes/STUD_APP_HUB_PT1');//saves path to the js file that will administrate the profesor selection window
+var appointment = require ('./routes/STUD_APP_HUB_PT2');//Saves pathto the js file that will manage appoinment selection
+var professorRouter   = require('./routes/profHome');
+var profAppointmentRouter = require('./routes/profAppointment');
 
 var bodyParser        = require('body-parser');
 var flash						  = require("connect-flash");
 // var db                = require("./helpers/mysqlConnection").mysql_pool; //pool connection
 
 //-------------END IMPORTS
-
 // specify which port it is going to run in
 var port = 3000;
 //ESTO ES LO QUE NOS PERMITE USER EL SERVIDOR
-var app = express();
+var app = express();  //se usa solamente en app
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -79,7 +77,10 @@ app.use("/", loginRoute);
 app.use('/home', indexRouter);
 app.use("/home/reservation", reservationRouter);
 app.use("/home/appointment", profListRouter);
+app.use('/professor-home', professorRouter);
+app.use('/professor-home/view-appointment', profAppointmentRouter);
 app.use('/authorize', authorize);
+
 app.use("/", adminRoute);
 
 //
@@ -91,7 +92,7 @@ app.use("/", adminRoute);
 
 //EXPORTAMOS TODAS LAS FUNCIONALIDADES PARA USARLA CUANDO INICIEMOS EL APP
 app.listen(port, process.env.IP, function(){
-	console.log("Server Init on port: " + port);
-	console.log("http://localhost:" + port);
+	console.log("Server Init on port 3000");
+	console.log("http://localhost:3000");
 });
 app.timeout = 120000;
