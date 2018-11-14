@@ -16,8 +16,8 @@ drop table if exists AppointmentRequest;
 
 create table Building(buildingName varchar(10), roomID varchar(10));
 create table Room(roomID varchar(10), capacity int, description varchar(255), hourAvailable varchar(10));
-create table Users(emailID varchar(30), name varchar(15), privilege varchar(15));
-create table Professor(profName varchar(15), profEmail varchar(30), description varchar(255));
+create table Users(emailID varchar(30), name varchar(30), privilege varchar(15));
+create table Professor(profName varchar(30), profEmail varchar(30), description varchar(255));
 create table ProfHour(profEmail varchar(30), day varchar(10), hour varchar(10));
 create table Appointment(emailID varchar(30), profEmail varchar(30), appHour varchar(15), date date, appointmentID varchar(10));
 create table Reservation(emailID varchar(30), roomID varchar(10), revHour varchar(10), data date, reservationID varchar(10));
