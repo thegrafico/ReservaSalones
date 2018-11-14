@@ -48,7 +48,7 @@ router.get('/', async function(req, res) {
         //console.log(dbEmail);
 
         if (error) throw error;                                      //checks for error
-        if (dbEmail == email) res.redirect('/professor');            //if the email was on the db route to professor
+        if (dbEmail == email) res.redirect('/professor-home');            //if the email was on the db route to professor
         //res.redirect('/professor');
 
         else{
