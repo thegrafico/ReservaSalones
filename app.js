@@ -76,8 +76,8 @@ app.use("/", loginRoute);
 app.use('/home', indexRouter);
 app.use("/home/reservation", reservationRouter);
 app.use("/home/appointment", appointmentRouter);
-app.use('/professor', professorRouter);
-app.use('/professor/appointment', profAppointmentRouter)
+app.use('/professor-home', professorRouter);
+app.use('/professor-home/view-appointment', profAppointmentRouter)
 app.use('/authorize', authorize);
 
 app.use("/", adminRoute);
