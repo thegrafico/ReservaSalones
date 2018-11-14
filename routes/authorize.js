@@ -26,60 +26,7 @@ router.get('/', async function(req, res, next) {
 
     console.log("email: ",req.cookies);
     // Redirect to home
-    //res.redirect('/home');
-
-    //if(userName){
-
-    // let query =`INSERT INTO ${user} (emailID, name, privilege)` +
-    //   ` SELECT * FROM (SELECT '${email}', '${userName}', ${0}) as nUser`  +
-    //   ` WHERE NOT EXISTS (SELECT emailID FROM ${user} where emailID = '${email}')`;
-
-    let query =`select profesorEmail` +
-                ` from professor` +
-                ` where profesorEmail = '${email}'`;
-
-    db.getConnection(function(err, connection) {
-
-
-      if (err) throw error;
-
-
-      connection.query(query, function (error, results, fields) {
-        console.log(results);
-        var dbEmail = null;
-
-        //console.log(results[0].profesorEmail);
-        console.log(dbEmail);
-
-        if (results != "") dbEmail = results[0].profesorEmail;
-        console.log(dbEmail);
-
-        if (error) throw error;
-        if (dbEmail == email) res.redirect('/professor');
-        //res.redirect('/professor');
-
-        else{
-          res.redirect('/home');
-        }
-      
-
-
-        /*=if (accessToken && userName) {
-          parms.user = userName;
-          parms.debug = `User: ${userName}\nEmail: ${email}\nAccess Token: ${accessToken}`;
-        } 
-        else {
-          parms.signInUrl = authHelper.getAuthUrl();
-          parms.debug = parms.signInUrl;
-        }
-          res.render('index', parms);
-      });*/
-
-
-      });
-    });
-  //}
-
+    res.redirect('/home');
 
 }
   else {
