@@ -1,46 +1,55 @@
 #uno {
-  border-style: solid;
-  border-color: black;
-  border-width: medium;
-  height: 300px;
-  padding: 40px 5px 60px 5px;
-  margin: 0px 0px 0px 0px;
+  /* border-style: solid;
+  border-color: black; */
+  /* border-width: medium; */
 
+  padding: 18% 5px 60px 5px;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  background: rgb(6, 161, 23);
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  /* color: black; */
  }
-/* .circle {
 
-    background: green;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-
-}  */
-
-/* #pos{
-  position: fixed;
-  text-align: center;
-} */
 .nav-wrapper{
-  background-color: green;
+  background-color: rgb(6, 161, 23);
 }
-/* #ini{
-  background-color: green;
-  line-height: 1.6em;
-  width: 1.6em;
-  border-radius: .8em;
 
-} */
- #ini {
-  background: green;
-  /* border-radius: 0.8em;
-  -moz-border-radius: 0.8em;
-  -webkit-border-radius: 0.8em;
-  color: black;
-  display: inline-block;
-  font-weight: bold;
-  line-height: 1.6em;
-  margin-right: 15px;
-  text-align: center;
-  width: 1.6em;*/
+#ini {
+  /* background: green;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  color: black; */
+  font-size: 22px;
+  margin: auto;
 }
+.box0{
+  width: 80%;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#box {
+  width: 24%;
+  /* border-style: solid; */
+  background-color: rgba(123, 129, 123, 0.32);
+  /* border-color: black; */
+
+  border-radius: 20%;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 300px;
+  text-align: center;
+  padding: 10px 5px 5px 5px;
+}
+body{
+
+  background-color: white;
+  background-size: cover;
+}
+
+/* rgb(6,  161, 23) Inter Green */

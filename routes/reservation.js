@@ -29,6 +29,7 @@ router.get('/', function(req, res, next) {
         results.forEach(function(e){
           //le doy valores antes de enviarlo por parametro.
           //lo puse en comments porque causa un error al regresar un valor indefinido
+
           // console.log(e.roomID, getHour(e.hourAvailable));
           // e.hourAvailable =  getHour(e.hourAvailable);
           // console.log(e.roomID, e.hourAvailable);

@@ -38,7 +38,7 @@ router.get('/', async function(req, res) {
           parms.signInUrl = authHelper.getAuthUrl();
           parms.debug = parms.signInUrl;
         }
-          res.render('index', parms);
+ 
       });
     });
   }else{ //enter here si no nadie se ha autentificado

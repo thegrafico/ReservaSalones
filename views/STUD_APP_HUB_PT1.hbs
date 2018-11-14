@@ -1,38 +1,223 @@
-<!-- <div class="jumbotron">
-  <h1>Node Graph Tutorial</h1>
-  <p class="lead">This sample app shows how to use the Microsoft Graph API to access Outlook data from Node.js</p>
-  {{#if user}}
-    <p>Welcome {{user}}!</p>
-  {{else}}
-    <a class="btn btn-primary btn-large" href="{{signInUrl}}">Click here to login</a>
-  {{/if}}
-</div> -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Appointment</title>
+    <link rel="stylesheet" href="SAHstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+
+  </head>
+  <body>
+
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+            <li><a href="/home">Home</a></li>
+            <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+
+  <!-- First Row Begins -->
   <div class="row">
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p>
+    <!-- First Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
     </div>
-    <!-- <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-  </div> -->
-<!--
-  <div class="row">
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-  </div>
+    <!-- First Box End-->
 
-  <div class="row">
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-  </div>
+    <!-- Second Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+        <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Second Box End -->
 
+    <!-- Third Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Third Box End -->
+
+    <!-- Fourth Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Fourth Box End-->
+  </div>
+  <!-- First Row End -->
+
+  <!-- Second Row Begins -->
   <div class="row">
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-    <div id="uno" class="col s3"><h3 id="ini">{{initial}}</h3><p>{{professorName}}</p><a>{{professorEmail}}</a><p>{{Department}}</p></div>
-  </div> -->
+    <!-- First Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+        <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- First Box End-->
+
+    <!-- Second Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Second Box End -->
+
+    <!-- Third Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Third Box End -->
+
+    <!-- Fourth Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Fourth Box End-->
+  </div>
+  <!-- Second Row End -->
+
+  <!-- Third Row Begins -->
+  <div class="row">
+    <!-- First Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- First Box End-->
+
+    <!-- Second Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Second Box End -->
+
+    <!-- Third Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Third Box End -->
+
+    <!-- Fourth Box Start-->
+    <div class="box0">
+      <div id="box" class="col s3">
+        <div id="uno" >
+          <h3 id="ini"><a href="http://google.com">{{initial}}</a></h3>
+        </div>
+        <div class="2box">
+          <p>{{professorName}}</p>
+          <a>{{professorEmail}}</a>
+          <p>{{Department}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Fourth Box End-->
+  </div>
+  <!-- Third Row End -->
+
+  </div>
+  <!-- Fourth Row End -->
+
+
+
+  </body>
+</html>
