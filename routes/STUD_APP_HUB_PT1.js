@@ -26,12 +26,15 @@ if(userName){
   var name = "professorName";
   var email = "professorEmail";
   var description = "Department";
-  let parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
+  var parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
   //initializes the different variables of parms that will be used in the hbs
-  parms [initial];
-  parms [name];
-  parms [email];
-  parms [description];
+
+  var a = "00000";
+  parms [initial] = new Object();
+  parms [name] = new Object();
+  parms [email] = new Object();
+  parms [description] = new Object();
+
 
   //defines the name of the professor table as a variable
   var professor = 'Professor';
@@ -59,7 +62,6 @@ if(userName){
       //check for each table entry
       results.forEach(function (elements){
 
-        console.log(elements);
         console.log(elements.length);
 
         //check for each table element
@@ -70,19 +72,26 @@ if(userName){
       })
 
       if (error) throw error;
-
+        //console.log(a);
+      a = "hey";
+      console.log(a);
+      parms[initial] = results[0]["profName"] ;
+      parms[name] = results[0]["profName"];
+      parms[email] = results[0]["profEmail"];
+      parms[description] = results[0]["description"];
+      //it reanders the webpage visual and styling elements
+        res.render(layName, parms);
     })
   })
 
-  parms[initial] = "Initial";
-  parms[name] = "name";
-  parms[email] = "Email";
-  parms[description] = "department";
-  //devines a variable in the object parms and defines it as the userName
+  console.log(a);
+
+
+
+  //devines a variab    console.log(elements);le in the object parms and defines it as the userName
   parms.user = userName;
 
-//it reanders the webpage visual and styling elements
-  res.render(layName, parms);
+
 }
 else {
   res.redirect('/');

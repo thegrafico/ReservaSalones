@@ -15,6 +15,7 @@ var profListRouter = require('./routes/STUD_APP_HUB_PT1');//saves path to the js
 var appointment = require ('./routes/STUD_APP_HUB_PT2');//Saves pathto the js file that will manage appoinment selection
 var professorRouter   = require('./routes/profHome');
 var profAppointmentRouter = require('./routes/profAppointment');
+var profReservationRouter = require('./routes/profReservation');
 
 var bodyParser        = require('body-parser');
 var flash						  = require("connect-flash");
@@ -77,8 +78,10 @@ app.use("/", loginRoute);
 app.use('/home', indexRouter);
 app.use("/home/reservation", reservationRouter);
 app.use("/home/appointment", profListRouter);
+app.use("/home/appointment/professor", appointment)
 app.use('/professor-home', professorRouter);
 app.use('/professor-home/view-appointment', profAppointmentRouter);
+app.use('/professor-home/view-reservation', profReservationRouter);
 app.use('/authorize', authorize);
 
 app.use("/", adminRoute);

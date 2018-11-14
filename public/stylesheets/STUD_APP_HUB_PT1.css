@@ -3,19 +3,24 @@
   border-color: black; */
   /* border-width: medium; */
 
-  padding: 18% 5px 60px 5px;
+  padding: 24% 5px 60px 5px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  background: rgb(6, 161, 23);
+  /* background: yellow; */
+  background-image: url(https://yt3.ggpht.com/a-/AN66SAw6n5ThiDDTRs-mZiVjY_aXfQUjP0thuVXENQ=s900-mo-c-c0xffffffff-rj-k-no);
+  background-size: cover;
   height: 150px;
   width: 150px;
   border-radius: 50%;
+  border-color: black;
+  border-style: solid;
   /* color: black; */
  }
 
 .nav-wrapper{
-  background-color: rgb(6, 161, 23);
+  background: rgb(0,177,32);
+  background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
 }
 
 #ini {
@@ -36,10 +41,11 @@
 #box {
   width: 24%;
   /* border-style: solid; */
-  background-color: rgba(123, 129, 123, 0.32);
+  /* background-color: rgba(121, 250, 6, 0.65); */
+  background-color: rgba(62, 62, 62, 0.2);
   /* border-color: black; */
 
-  border-radius: 20%;
+  /* border-radius: 20%; */
   margin-left: 5px;
   margin-right: 5px;
   height: 300px;
@@ -47,9 +53,5 @@
   padding: 10px 5px 5px 5px;
 }
 body{
-
   background-color: white;
-  background-size: cover;
 }
-
-/* rgb(6,  161, 23) Inter Green */
