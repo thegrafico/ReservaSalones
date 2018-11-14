@@ -1,0 +1,55 @@
+#uno {
+  /* border-style: solid;
+  border-color: black; */
+  /* border-width: medium; */
+
+  padding: 18% 5px 60px 5px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background: rgb(6, 161, 23);
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  /* color: black; */
+ }
+
+.nav-wrapper{
+  background-color: rgb(6, 161, 23);
+}
+
+#ini {
+  /* background: green;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  color: black; */
+  font-size: 22px;
+  margin: auto;
+}
+.box0{
+  width: 80%;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#box {
+  width: 24%;
+  /* border-style: solid; */
+  background-color: rgba(123, 129, 123, 0.32);
+  /* border-color: black; */
+
+  border-radius: 20%;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 300px;
+  text-align: center;
+  padding: 10px 5px 5px 5px;
+}
+body{
+
+  background-color: white;
+  background-size: cover;
+}
+
+/* rgb(6,  161, 23) Inter Green */
