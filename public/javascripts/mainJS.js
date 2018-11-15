@@ -5,7 +5,7 @@ $('.js-pscroll').each(function(){
     ps.update();
   })
 });
-//--------------------inicializar el datepiker-------------------
+//----------Date Picker Function Starts------------
 $(document).ready(function(){
   $('select').formSelect();
 });
@@ -13,8 +13,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('.datepicker').datepicker();
 });
-
-//-----------------end datepiker----------------------
+//----------Date Picker Function Ends--------------
 
 // //para que no actualize siempre
 // $("#formReservation").submit(function(e) {
@@ -52,7 +51,7 @@ function reservationbtn(){
     });
 
     if(!$(".reserveChoose" ).val()){
-      
+
     }
 
   // alert("Pase por aqui");

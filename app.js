@@ -10,6 +10,7 @@ var adminRoute        = require('./routes/admin');
 var indexRouter       = require('./routes/index');
 var authorize         = require('./routes/authorize');
 var reservationRouter = require('./routes/reservation');
+var studAppHub 				= require('./routes/STUD_APP_HUB_PT2');
 var bodyParser        = require('body-parser');
 var flash						  = require("connect-flash");
 var db                = require("./helpers/mysqlConnection").mysql_pool; //pool connection
@@ -73,6 +74,7 @@ app.use('/home', indexRouter);
 app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
 app.use("/", adminRoute);
+app.use('/home/appointment', studAppHub);
 
 //
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
@@ -87,4 +89,3 @@ app.listen(port, process.env.IP, function(){
 });
 
 app.timeout = 120000;
-
