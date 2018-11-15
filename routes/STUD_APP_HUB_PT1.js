@@ -34,7 +34,7 @@ if(userName){
   parms [name] = new Object();
   parms [email] = new Object();
   parms [description] = new Object();
-
+  
 
   //defines the name of the professor table as a variable
   var professor = 'Professor';
@@ -61,7 +61,7 @@ if(userName){
 
       //check for each table entry
       results.forEach(function (elements){
-
+        
         console.log(elements.length);
 
         //check for each table element
