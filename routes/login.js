@@ -7,6 +7,8 @@ router.get('/', function(req, res) {
   let parms = {layout: 'login'};
   parms.signInUrl = authHelper.getAuthUrl();
 
+
+
   res.render('login', parms);
 });
 
