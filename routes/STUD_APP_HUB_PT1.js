@@ -34,7 +34,7 @@ if(userName){
   parms [name] = new Object();
   parms [email] = new Object();
   parms [description] = new Object();
-  
+
 
   //defines the name of the professor table as a variable
   var professor = 'Professor';
@@ -61,7 +61,7 @@ if(userName){
 
       //check for each table entry
       results.forEach(function (elements){
-        
+
         console.log(elements.length);
 
         //check for each table element
@@ -79,8 +79,9 @@ if(userName){
       parms[name] = results[0]["profName"];
       parms[email] = results[0]["profEmail"];
       parms[description] = results[0]["description"];
+      parms.layout = 'STUD_APP_HUB_PT1';
       //it reanders the webpage visual and styling elements
-        res.render(layName, parms);
+      res.render(layName, parms);
     })
   })
 

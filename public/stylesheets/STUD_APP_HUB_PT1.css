@@ -10,11 +10,11 @@
   /* background: yellow; */
   background-image: url(https://yt3.ggpht.com/a-/AN66SAw6n5ThiDDTRs-mZiVjY_aXfQUjP0thuVXENQ=s900-mo-c-c0xffffffff-rj-k-no);
   background-size: cover;
-  height: 150px;
-  width: 150px;
+  height: 15em;
+  width: 15em;
   border-radius: 50%;
-  border-color: black;
-  border-style: solid;
+  /* border-color: black;
+  border-style: solid; */
   /* color: black; */
  }
 
@@ -23,14 +23,21 @@
   background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
 }
 
-#ini {
-  /* background: green;
-  height: 150px;
-  width: 150px;
+#profBut {
+  height: 15em;
+  width: 15em;
   border-radius: 50%;
-  color: black; */
+}
+
+#profName {
+  margin-bottom: 0.5em;
+}
+
+#ini {
+  color: black;
+  margin-top: auto;
+  margin-bottom: auto;
   font-size: 22px;
-  margin: auto;
 }
 .box0{
   width: 80%;
@@ -48,7 +55,8 @@
   /* border-radius: 20%; */
   margin-left: 5px;
   margin-right: 5px;
-  height: 300px;
+  width: 300px;
+  height: 450px;
   text-align: center;
   padding: 10px 5px 5px 5px;
 }

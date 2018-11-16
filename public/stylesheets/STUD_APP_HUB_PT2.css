@@ -1,7 +1,7 @@
 /* ============ TASK ============ */
 /*== 1. Fix profContact class   ==*/
 /*== 2. Create Inter Background ==*/
-/*== 3.  ==*/
+/*== 3. Make page responsive    ==*/
 /*== 4.  ==*/
 /*== 5.  ==*/
 /*== 6.  ==*/
@@ -14,7 +14,7 @@
 
 /* Professor Div Starts */
 .row {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .profUser {
