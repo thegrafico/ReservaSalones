@@ -19,6 +19,8 @@ router.get('/', async function(req, res) {
 
   console.log(req.cookies);
 
+  parms.layout = 'index';
+
   //here we can see the admin!
   // console.log(req.cookies.admini[0]);
 

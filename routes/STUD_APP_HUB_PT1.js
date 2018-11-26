@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
   const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
 
 
-  //console.log("userName: " + userName);
+//console.log("userName: " + userName);
 //if a value exists in the username variable
 if(userName){
   //sets up the names of the variables used in hbs
@@ -61,18 +61,20 @@ if(userName){
 
       //check for each table entry
       results.forEach(function (elements){
-
         console.log(elements.length);
-
         //check for each table element
         for (var i = 0; i <elements.length; i++ ){
 
         }
-
       })
 
+      // Table
+      // var boxes = 
+
+
+
       if (error) throw error;
-        //console.log(a);
+      //console.log(a);
       a = "hey";
       console.log(a);
       parms[initial] = results[0]["profName"] ;
