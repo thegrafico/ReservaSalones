@@ -1,0 +1,55 @@
+.nav-wrapper {
+  background-color: rgb(6, 161, 23);
+}
+
+#hub2 {
+  background-color: rgba(254, 253, 252, 0.4);
+  border-width: 10px;
+  border-radius: 10px;
+  /* border-style: solid; */
+  height: 900px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+.shape {
+  margin: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 400px;
+  width: 400px;
+  border: 3px solid black;
+  border-radius: 50%;
+  float: bottom;
+  shape-outside: margin-box;
+}
+
+.res {
+  background-image: url(https://www.greenvillelibrary.org/sites/default/files/inline-images/main-conference-room-1.jpg);
+  background-size: cover;
+  background-size: contain;
+}
+
+.prof{
+  background-image: url(https://www.w3schools.com/howto/img_avatar.png);
+  background-size: cover;
+  background-size: contain;
+
+}
+
+.info {
+  height: 180px;
+  width: 450px;
+  background-color: rgb(6, 161, 23);
+  font-size: 30px;
+  padding-top: 40PX;
+}
+
+.shape {
+  background-size: cover;
+  background-size: contain;
+  }

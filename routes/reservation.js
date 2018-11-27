@@ -2,24 +2,35 @@ var express = require('express'); //server
 var router = express.Router(); //router
 var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 
+
 /* GET users listing. */
+//shows the available bildings and hours available
 router.get('/', function(req, res, next) {
 
-  let parms = {layout: 'reservation', title: 'Reservation'};
+  var building = "Building";
+  var layoutRender = 'reservation';//cambiamos esto para cambiar el view
+
+  let parms = {layout: layoutRender, title: 'Reservation'};
+  //graba el username e email de los cookies que se grabaron en auth
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
-  //if there are username
+  // console.log("USER:", res);
+
+  //if there are username then enter,
+  //if not, then it is undefined
   if(userName){
 
-    let query = `SELECT * FROM Building Natural Join Room`;
+    let query = `SELECT * FROM ${building} Natural Join Room`;
     db.getConnection(function(err, connection) {
       connection.query(query, function (error, results, fields) {
 
         //se encarga de darle la hora a cada salon
         results.forEach(function(e){
           //le doy valores antes de enviarlo por parametro.
-          e.hourAvailable =  getHour(e.hourAvailable);
+          //lo puse en comments porque causa un error al regresar un valor indefinido
+          // console.log(e.roomID, getHour(e.hourAvailable));
+          // e.hourAvailable =  getHour(e.hourAvailable);
           // console.log(e.roomID, e.hourAvailable);
         });
 
@@ -69,9 +80,9 @@ router.post('/', function(req, res, next) {
   console.log(req.body);
 
   if(stringRequest == "" || stringRequest == undefined){
-    query = `SELECT * FROM Building Natural Join Room`;
+    query = `SELECT * FROM ${building} Natural Join Room`;
   }else{
-    query = `SELECT * FROM Building NATURAL JOIN Room WHERE ${stringRequest}`;
+    query = `SELECT * FROM ${building} NATURAL JOIN Room WHERE ${stringRequest}`;
   }
 
   if(userName){
@@ -90,7 +101,7 @@ router.post('/', function(req, res, next) {
 
 
         stringRequest = undefined;
-        res.render('reservation', parms);
+        res.render(layoutRender, parms);
 
         //close the connection
         if (error){

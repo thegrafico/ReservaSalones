@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="DIRECTOR_HUB.css">
+    <title>Welcome</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper z-depth-2">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+            <li><a href="/home">Home</a></li>
+            <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row">
+      <div class="col s4">
+        <div class="circle">
+
+        </div>
+        <!-- <div class="button"> -->
+        <a class="waves-effect waves-light btn">Make Appointments</a>
+      <!-- </div> -->
+      </div>
+      <div class="col s4">
+        <div class="button">
+        <a class="waves-effect waves-light btn">Make Reservation</a>
+      </div>
+      </div>
+      <div class="col s4">
+        <div class="button">
+        <a class="waves-effect waves-light btn">View Appointments</a>
+      </div>
+      </div>
+
+
+    </div>
+
+  </body>
+</html>

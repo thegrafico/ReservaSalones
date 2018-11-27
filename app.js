@@ -10,9 +10,16 @@ var adminRoute        = require('./routes/admin');
 var indexRouter       = require('./routes/index');
 var authorize         = require('./routes/authorize');
 var reservationRouter = require('./routes/reservation');
+var studAppHubPT1			= require('./routes/STUD_APP_HUB_PT1');																										// I Was Here Biatch
+var studAppHubPT2 		= require('./routes/STUD_APP_HUB_PT2');
+var profHome					= require('./routes/profHome');
+var admin							= require('./routes/admin');
 var bodyParser        = require('body-parser');
 var flash						  = require("connect-flash");
 var db                = require("./helpers/mysqlConnection").mysql_pool; //pool connection
+
+// Port Variable
+var port = 3000;
 
 //-------------END IMPORTS
 
@@ -41,28 +48,28 @@ app.use(require("express-session")({
 }));
 
 //this is a midleware tha run in every route.
-app.use(function(req, res, next){
-  db.getConnection(function(err, connection) {
-    if (err){
-      console.log(err);
-      res.sendStatus(500);
-      return;
-    }
-    connection.query('SELECT * FROM  admin', function (error, results, fields) {
-      if (error){
-        console.log(err);
-        res.sendStatus(500);
-        return;
-      }
-      connection.release();
-      res.locals.CurrentUser =  results;
-      res.locals.error = req.flash("error"); //error mesage go red
-      res.locals.success = req.flash("success"); //success message go green
-      //move to the next function
-      next();
-    });
-  });
-});
+// app.use(function(req, res, next){
+//   db.getConnection(function(err, connection) {
+//     if (err){
+//       console.log(err);
+//       res.sendStatus(500);
+//       return;
+//     }
+//     connection.query('SELECT * FROM  admin', function (error, results, fields) {
+//       if (error){
+//         console.log(err);
+//         res.sendStatus(500);
+//         return;
+//       }
+//       connection.release();
+//       res.locals.CurrentUser =  results;
+//       res.locals.error = req.flash("error"); //error mesage go red
+//       res.locals.success = req.flash("success"); //success message go green
+//       //move to the next function
+//       next();
+//     });
+//   });
+// });
 
 //AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS
 app.use("/", loginRoute);
@@ -70,6 +77,10 @@ app.use('/home', indexRouter);
 app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
 app.use("/", adminRoute);
+app.use('/home/appointment', studAppHubPT1);
+app.use('/home/appointment/professor', studAppHubPT2);
+app.use('/profHome', profHome);
+app.use('/admin', admin);
 
 //
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
@@ -79,7 +90,8 @@ app.use("/", adminRoute);
 
 
 //EXPORTAMOS TODAS LAS FUNCIONALIDADES PARA USARLA CUANDO INICIEMOS EL APP
-app.listen(3000, process.env.IP, function(){
-	console.log("Server Init on port 3000");
+app.listen(port, process.env.IP, function(){
+	console.log("Server Init on port " + port);
 });
+
 app.timeout = 120000;
