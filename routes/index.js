@@ -9,7 +9,7 @@ var db = require("../helpers/mysqlConnection").mysql_pool;
 
 /* GET home page. */
 router.get('/', async function(req, res) {
-
+  var layName = './Student/index';  //sets up the name of the layout to be displayed
   var user = 'Users';                   //variable to edit the users table of your datebase
   var pTable = 'Professor';             //variable to edit the professor table of your datebase
   const accessToken = await authHelper.getAccessToken(req.cookies, res);
@@ -19,7 +19,7 @@ router.get('/', async function(req, res) {
 
   console.log(req.cookies);
 
-  parms.layout = 'index';
+  parms.layout = layName;
 
   //here we can see the admin!
   // console.log(req.cookies.admini[0]);
@@ -75,7 +75,7 @@ router.get('/', async function(req, res) {
               parms.debug = parms.signInUrl;
             }
 
-            res.render('index', parms);
+            res.render(layName, parms);
             });
           });
         }

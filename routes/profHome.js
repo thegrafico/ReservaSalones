@@ -10,8 +10,8 @@ router.get('/', function (req, res) {	//requirements for the code
 
 	if(userName){
   	const userName = req.cookies.graph_user_name; //gets the username from the email
-  	var layout = 'InterHub';
-  	let parms ={tittle: 'ProfessorHome', urlProfRev: '/professor-home/view-reservation', urlProfApp: '/professor-home/view-appointment'}
+  	var layout = './Professor/InterHub';
+  	let parms ={tittle: 'ProfessorHome', urlReservation: '/reservation', urlProfApp: '/professor-home/view-appointment'}
 
 
 

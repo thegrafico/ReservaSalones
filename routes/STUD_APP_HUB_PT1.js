@@ -13,7 +13,7 @@ var dataB = require("../helpers/mysqlConnection").mysql_pool;
 //basically page response as in the layout, buttons, all html stuff, etc
 router.get('/', function (req, res) {
 
-  var layName = 'STUD_APP_HUB_PT1';  //sets up the name of the layout to be displayed
+  var layName = './Student/STUD_APP_HUB_PT1';  //sets up the name of the layout to be displayed
   var titleName = 'Appointment';  //sets up window title
   const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
 
@@ -69,7 +69,7 @@ if(userName){
       })
 
       // Table
-      // var boxes = 
+      // var boxes =
 
 
 
@@ -81,7 +81,7 @@ if(userName){
       parms[name] = results[0]["profName"];
       parms[email] = results[0]["profEmail"];
       parms[description] = results[0]["description"];
-      parms.layout = 'STUD_APP_HUB_PT1';
+      parms.layout = layName;
       //it reanders the webpage visual and styling elements
       res.render(layName, parms);
     })
