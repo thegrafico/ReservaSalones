@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Materialize Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="VIEW_APP.css">
+
+    <title>Appointment</title>
+  </head>
+  <body>
+
+    <nav>
+      <div class="nav-wrapper z-depth-2">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+            <li><a href="/home">Home</a></li>
+            <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row">
+
+     <div class="col s3">
+       <div class="req_box z-depth-3">
+         <div class="button">
+           <p>{{Name}}</p>
+             <a class="waves-effect waves-light btn-small btnG">Decline</a>
+       </div>
+       <div class="button2">
+             <a class="waves-effect waves-light btn-small btnR">Accept</a>
+       </div>
+       </div>
+     </div>
+
+     <div class="col s9">
+
+       <!--=============== Date picker Start ===============-->
+       <div class="dateBox ">
+        <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+       </div>
+       <!--=============== Date picker Start ===============-->
+
+       <div class="cal_box z-depth-3">
+
+
+       </div>
+
+    </div>
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="VIEW_APP.js"></script>
+
+  </body>
+</html>
