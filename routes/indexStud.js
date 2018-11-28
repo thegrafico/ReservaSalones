@@ -9,9 +9,9 @@ var db = require("../helpers/mysqlConnection").mysql_pool;
 
 /* GET home page. */
 router.get('/', async function(req, res) {
-  var layName = './Student/index';  //sets up the name of the layout to be displayed
-  var user = 'Users';                   //variable to edit the users table of your datebase
-  var pTable = 'Professor';             //variable to edit the professor table of your datebase
+  var layName = './Student/indexStud';  //sets up the name of the layout to be displayed
+  var user = 'Users';                   //variable to edit the users table of your database
+  var pTable = 'Professor';             //variable to edit the professor table of your database
   const accessToken = await authHelper.getAccessToken(req.cookies, res);
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;

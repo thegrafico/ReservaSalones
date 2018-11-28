@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="VIEW_APP.css">
+    <link rel="stylesheet" href="/stylesheets/VIEW_APP.css">
 
     <title>Appointment</title>
   </head>
@@ -19,10 +19,10 @@
 
     <nav>
       <div class="nav-wrapper z-depth-2">
-        <a href="/home" class="brand-logo">{{user}}</a>
+        <a href="/profHome" class="brand-logo">{{user}}</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           {{#if user}}
-            <li><a href="/home">Home</a></li>
+            <li><a href="/profHome">Home</a></li>
             <li><a href="/authorize/signout">Sign Out</a></li>
           {{/if}}
         </ul>
@@ -33,6 +33,7 @@
 
      <div class="col s3">
        <div class="req_box z-depth-3">
+         {{#if Name}}
          <div class="button">
            <p>{{Name}}</p>
              <a class="waves-effect waves-light btn-small btnG">Decline</a>
@@ -40,6 +41,7 @@
        <div class="button2">
              <a class="waves-effect waves-light btn-small btnR">Accept</a>
        </div>
+       {{/if}}
        </div>
      </div>
 
@@ -51,15 +53,39 @@
        </div>
        <!--=============== Date picker Start ===============-->
 
-       <div class="cal_box z-depth-3">
 
+              <div class="cal_box z-depth-3">
+                <table>
+                   <thead>
+                     <tr>
+                         <th>Student Name</th>
+                         <th>E-mail</th>
+                         <th>Hour</th>
+                     </tr>
+                   </thead>
+                   <tbody>
 
-       </div>
+                     <tr>
+                       <td>
+                         {{Name}}
+                       </td>
+                       <td>
+                         {{E-mail}}
+                       </td>
+                       <td>
+                         {{Hour}}
+                       </td>
+                     </tr>
 
-    </div>
+                   </tbody>
+                 </table>
 
-    <!-- Javascript -->
-    <script type="text/javascript" src="VIEW_APP.js"></script>
+              </div>
 
-  </body>
-</html>
+           </div>
+
+           <!-- Javascript -->
+           <script type="text/javascript" src="/behavior/VIEW_APP.js"></script>
+
+         </body>
+       </html>
