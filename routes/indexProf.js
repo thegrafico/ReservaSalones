@@ -10,10 +10,8 @@ router.get('/', function (req, res) {	//requirements for the code
 
 	if(userName){
   	const userName = req.cookies.graph_user_name; //gets the username from the email
-  	var layout = './Professor/InterHub';
-  	let parms ={tittle: 'ProfessorHome', urlReservation: '/reservation', urlProfApp: '/professor-home/view-appointment'}
-
-
+  	var layout = './Professor/indexProf';
+  	let parms = { title: 'profHome', active: { home: true }, urlReservation: '/reservation', urlProfApp: '/Appointments'};
 
 	//res.send('Testing Professor Home');
 	parms.user = userName;
@@ -24,12 +22,5 @@ router.get('/', function (req, res) {	//requirements for the code
 		res.redirect('/');
 	}
 })
-
-
-
-
-
-
-
 
 module.exports = router;			//requirements for the code

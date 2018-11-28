@@ -9,19 +9,20 @@
 }
 
 .req_box {
-  margin-top: 15px;
+  margin-top: 10px;
   overflow-y: scroll;
-  height: 580px;
-  border: 2px black solid; // Como le gusta a Eliud, Francisco y Carlos
-  background-color: green;
+  height: 590px;
+  background-color: rgba(0, 0, 0, 0.1);
+  /* border: 2px black solid; // Como le gusta a Eliud, Francisco y Carlos */
 
 }
 
 .cal_box{
-  margin-top: 15px;
+  margin-top: 10px;
   overflow-y: scroll;
-  height: 527px;
-  border: 2px black solid;
+  height: 535px;
+  background-color: rgba(0, 0, 0, 0.1);
+  /* border: 2px black solid; */
 }
 .s3{
 padding-left: 0px
@@ -37,6 +38,11 @@ padding-left: 0px
   background-color: rgb(6, 161, 23);
   float:right;
 }
+.datepicker-date-display {
+  background-color: rgb(6, 161, 23);
+}
+
+
 
 
 
