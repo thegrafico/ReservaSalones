@@ -1,57 +1,61 @@
 #uno {
-  /* border-style: solid;
-  border-color: black; */
-  /* border-width: medium; */
-
   padding: 24% 5px 60px 5px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  /* background: yellow; */
   background-image: url(https://yt3.ggpht.com/a-/AN66SAw6n5ThiDDTRs-mZiVjY_aXfQUjP0thuVXENQ=s900-mo-c-c0xffffffff-rj-k-no);
   background-size: cover;
-  height: 150px;
-  width: 150px;
+  height: 17em;
+  width: 17em;
   border-radius: 50%;
-  border-color: black;
-  border-style: solid;
-  /* color: black; */
  }
 
-.nav-wrapper{
+.nav-wrapper {
   background: rgb(0,177,32);
   background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
 }
 
-#ini {
-  /* background: green;
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  color: black; */
-  font-size: 22px;
-  margin: auto;
+#profName {
+  margin-bottom: 0.5em;
 }
+
+#ini {
+  color: black;
+  margin-top: 6em;
+  margin-bottom: auto;
+  font-size: 22px;
+}
+
 .box0{
   width: 80%;
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
 }
+
+.profInfo {
+  text-align: center;
+  font-size: 20px;
+  margin: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  background-color: white;
+  border-radius: 25px;
+}
+
 #box {
   width: 24%;
-  /* border-style: solid; */
-  /* background-color: rgba(121, 250, 6, 0.65); */
   background-color: rgba(62, 62, 62, 0.2);
-  /* border-color: black; */
-
-  /* border-radius: 20%; */
   margin-left: 5px;
   margin-right: 5px;
-  height: 300px;
+  width: 315px;
+  height: 400px;
   text-align: center;
   padding: 10px 5px 5px 5px;
+  border-radius: 25px;
 }
-body{
+
+body {
   background-color: white;
 }
