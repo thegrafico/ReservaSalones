@@ -31,18 +31,21 @@
     <!-- First Row Begins -->
     <div class="row">
       <!-- First Box Start-->
+      {{#each results}}
       <div class="box0">
         <div id="box" class="col s3 z-depth-3">
           <div id="uno">
-            <h3 id="ini"><a href="/home/appointment/professor">{{profName}}</a></h3>
+            <h3 id="ini"><a href="/home/appointment/professor">{{this.name}}</a></h3>
           </div>
 
           <div class="profInfo">
-            <p>{{profEmail}}</p>
+            <p>{{this.email}}</p>
             <p>Faculty Member</p>
           </div>
-
+        </div>
       </div>
+      {{/each}}
+    </div>
 
 
   </body>
