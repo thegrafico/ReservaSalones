@@ -1,97 +1,66 @@
-//--------------ESTOS SON IMPORTS, COMO EN JAVA
-var createError   = require('http-errors'); //es para cuando quieres generar un error
-var express       = require('express');     //import packets from nodejs-npm
-var path          = require('path');        //para que su pueda mandejar las localizaciones de los files en la compu
-var cookieParser  = require('cookie-parser');// para guardar cookies, datos del usuario
-var logger        = require('morgan');      //Lib de Microsoft para que el usuario se quede logged in
-require('dotenv').config();                 // Esto lo necesitan todas las aplicaciones que tengan autentificacin de Microsoft
-// estas son las rutas del web, hace referencias a las carpetas que ya tenemos
-var loginRoute        = require('./routes/login');//saves path to login js in routes folder
-var adminRoute        = require('./routes/admin');// '' admin js in routes folder
-var indexRouter       = require('./routes/index');
-var authorize         = require('./routes/authorize');
-var reservationRouter = require('./routes/reservation');
-//saves path tho the js file that will administrate the profesor selection window
-var appointmentRouter = require('./routes/STUD_APP_HUB_PT1');
-var professorRouter   = require('./routes/profHome');
-var profAppointmentRouter = require('./routes/profAppointment');
-
+/* === All of the Imports === */
+require('dotenv').config();
+var createError       = require('http-errors');
+var express           = require('express');
+var path              = require('path');
+var cookieParser      = require('cookie-parser');
+var logger            = require('morgan');
 var bodyParser        = require('body-parser');
 var flash						  = require("connect-flash");
-// var db                = require("./helpers/mysqlConnection").mysql_pool; //pool connection
+var db                = require("./helpers/mysqlConnection").mysql_pool; //pool connection
+/* === END IMPORTS === */
 
-//-------------END IMPORTS
+/* ==== All of the Route pages === */
+var loginRoute        = require('./routes/login');							// Login route, this is where the  user is  greeted.
+var authorize         = require('./routes/authorize');					// Microsoft authentication page.
+var indexStud         = require('./routes/indexStud');					// Index route, this route takes us to the student decision page.
+var reservationRouter = require('./routes/reservation');				// Reservation route, takes the user to the Room Reservation Hub.
+var studAppHubPT1			= require('./routes/STUD_APP_HUB_PT1');		// Student Appointment Hub Pt 1, Which Professor.
+var studAppHubPT2 		= require('./routes/STUD_APP_HUB_PT2');		// Student Appointment Hub Pt 2, Shows Professor choosen hours.
+var indexProf					= require('./routes/indexProf');					// Professor Home, this page displays students request and appoints already accepted.
+var profAppointment 	= require('./routes/profAppointment');		//
+var admin							= require('./routes/admin');							// Admin Home, this pages displays any room reservation.
+/* === Routes End Here === */
 
-//ESTO ES LO QUE NOS PERMITE USER EL SERVIDOR
-var app = express();  //se usa solamente en app
+/* === Port === */
+var port = 3000;
 
-// view engine setup
+/*=== This is what allows us to use the server.  ===*/
+var app = express();
+
+/* === VIEWS Engine === */
 app.set('views', path.join(__dirname, 'views'));
 
-//to use hbs
+/* === Allows us to use the .hbs file type. === */
 app.set('view engine', 'hbs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//to use flash message
+/* === Flash Message === */
 app.use(flash());
 
-app.use(require("express-session")({
-	secret: "Thegrafico is a cool guy",
-	resave: false,
-	saveUninitialized: false
-}));
-
-//this is a midleware tha run in every route.
-// app.use(function(req, res, next){
-//   db.getConnection(function(err, connection) {
-//     if (err){
-//       console.log(err);
-//       res.sendStatus(500);
-//       return;
-//     }
-//     connection.query('SELECT * FROM  admin', function (error, results, fields) {
-//       if (error){
-//         console.log(err);
-//         res.sendStatus(500);
-//         return;
-//       }
-//       connection.release();
-//       res.locals.CurrentUser =  results;
-//       res.locals.error = req.flash("error"); //error mesage go red
-//       res.locals.success = req.flash("success"); //success message go green
-//       //move to the next function
-//       next();
-//     });
-//   });
-// });
-
-//AQUI ESTAN NUESTRAS RUTAS WEB, o sea las crea y llama a los
-//"middleware"
+/* === All of the Routes. === */
 app.use("/", loginRoute);
-app.use('/home', indexRouter);
-app.use("/home/reservation", reservationRouter);
-app.use("/home/appointment", appointmentRouter);
-app.use('/professor-home', professorRouter);
-app.use('/professor-home/view-appointment', profAppointmentRouter);
+app.use('/home', indexStud);
+app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
+app.use('/home/appointment', studAppHubPT1);
+app.use('/home/appointment/professor', studAppHubPT2);
+app.use('/profHome', indexProf);
+app.use('/profHome/Appointments', profAppointment);
+app.use('/admin', admin);
 
-app.use("/", adminRoute);
-
-//
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));
 // });
 
-
-//EXPORTAMOS TODAS LAS FUNCIONALIDADES PARA USARLA CUANDO INICIEMOS EL APP
-app.listen(3000, process.env.IP, function(){
-	console.log("Server Init on port 3000");
-	console.log("http://localhost:3000");
+/* === Export all of the functionality. === */
+app.listen(port, process.env.IP, function(){
+	console.log("Server Init on port " + port);
 });
+
 app.timeout = 120000;

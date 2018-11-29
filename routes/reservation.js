@@ -7,7 +7,7 @@ var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 //shows the available bildings and hours available
 router.get('/', function(req, res, next) {
 
-  var building = "building";    
+  var building = "Building";
   var layoutRender = 'reservation';//cambiamos esto para cambiar el view
 
   let parms = {layout: layoutRender, title: 'Reservation'};
@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
         parms.results = results;
         parms.user = userName;
 
-        res.render(layoutRender, parms);
+        res.render('reservation', parms);
 
         //close the connection
         if (error){
@@ -101,7 +101,7 @@ router.post('/', function(req, res, next) {
 
 
         stringRequest = undefined;
-        res.render('reservation', parms);
+        res.render(layoutRender, parms);
 
         //close the connection
         if (error){

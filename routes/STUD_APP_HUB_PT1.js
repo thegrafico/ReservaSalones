@@ -1,57 +1,7 @@
-/*
-//THIS PART HANDLES ALL THE LOGIC
-//OF THE PAGE WHERE THE USER WILL SELECT THE PROFESSOR HE WANTS
-
-//https://expressjs.com/en/guide/routing.html
-var express = require ('express');  //Sets up Server
-var router = express.Router();      //To use for routing and webpage purposes
-
-//para utilizar todas las funciones relacionadas a acceso de la
-//base de datos en mysql. Hace referencia la funcion en el folder "helpers"
-//en my sql connection que es donde se guardo la funcion
-var db = require("../helpers/mysqlConnection").mysql_pool;
-
-//sets a variable to replace the name
-//of the table being used for the query
-var appointment = 'Appointment';
-
-
-//this is the communication with the middleware
-//that makes the software be able to connect to the DATABASE
-//https://expressjs.com/en/guide/writing-middleware.html
-//shows list of profesors
-router.get('/',function (req,res, next){
-
-  //once running, we set the visual layout
-  //which is governed by an hbs file written in HTML
-  //some parts left in commentary since the file has not been made yet
-
-  //define a local object named parms
-  //contains layout and title of this page
-  let pageLay = {layout: 'STUB_APP_HUB_PT1' , title: 'Appointment'};
-
-  // gets the user's name and email from the auth js file
-  const userName = req.cookies.graph_user_name;
-  const email = req.cookies.graph_user_email;
-
-function str(){
-    console.log (userName + ", You're in");
-  }
-
-    //res.render (pageLay)
-var express = require ('express');  //Sets up Server
-const seatingRouter = express.Router()
-seatingRouter.use(function (req, res, next){
-  console.log("Yaaayy");
-  next()
-})
-
-
-
-})
-*/
 var express = require('express')
 var router = express.Router()
+//to interact with the databea and make queries
+var dataB = require("../helpers/mysqlConnection").mysql_pool;
 
 // middleware that is specific to this router
 // router.use(function timeLog (req, res, next) {
@@ -63,14 +13,90 @@ var router = express.Router()
 //basically page response as in the layout, buttons, all html stuff, etc
 router.get('/', function (req, res) {
 
-  const userName = req.cookies.graph_user_name;
+var layName = './Student/STUD_APP_HUB_PT1';  //sets up the name of the layout to be displayed
+var titleName = 'Appointment';  //sets up window title
+const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
 
-  //saves name of the layout being used
-  //the hbd file that will be presented in the webpage
-  
+//if a value exists in the username variable
+if(userName){
 
-res.send(userName)
+  //sets up the names of the variables used in hbs
+  var name = "professorName";
+  var email = "professorEmail";
+  var description = "Department";
+  var parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
+  //initializes the different variables of parms that will be used in the hbs
+
+  parms [name] = new Object();
+  parms [email] = new Object();
+  parms [description] = new Object();
+
+
+  //defines the name of the professor table as a variable
+
+  //defines the query i want to make
+  let query = `SELECT * FROM `;
+  //establishes connection to database
+  dataB.getConnection(function(err, connection){
+
+
+
+
+
+    //to make the query to the dataBase
+    connection.query(query, function(error, results, fields){
+
+      //result of query is called results,
+      //it is an array,
+      //which the first index is given by numbers
+      //and the second is given by name,
+      // an example of how to call a similar array would be like this
+      // var array1 = {once: "once", twice: "twice"};
+      // var array2 = [array1];
+      // console.log(array2[0]["once"]);
+      //example using the results array
+      //console.log(results[0]["profName"]);
+
+      //check for each table entry
+      // results.forEach(function (elements){
+      //   //check for each table element
+      //   for (var i = 0; i <elements.length; i++ ){
+      //
+      //   }
+      // })
+
+      if (error) throw error;
+
+      parms[name] = results[0]["profName"];
+      parms[email] = results[0]["profEmail"];
+      parms.layout = layName;
+
+      //it reanders the webpage visual and styling elements
+      res.render(layName, parms);
+    }
+
+    function
+
+    )
+  })
+
+  // Defines a variable in the object parms and defines it as the userName
+  parms.user = userName;
+
+}
+  else {
+    res.redirect('/');
+  }
 })
+
+//converts index number to an equivalent table name
+function getColumn (index, name, email, description){
+  return 0;
+switch (index){
+  case '0':
+}
+
+}
 // // define the about route
 // router.get('/about', function (req, res) {
 //   res.send('About birds')
