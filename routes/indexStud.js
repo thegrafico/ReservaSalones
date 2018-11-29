@@ -72,9 +72,9 @@ router.get('/', async function(req, res) {
 
               if (err) throw error;                                                     //if there is a db error, display error
 
-              connection.query(query, function (error, results, fields) {
+              connection.query(query, function (error, results, fields) {               //query that adds the email if it's not on the db
 
-                if (error) throw error;
+                if (error) throw error;                                                 //checks if there was an error if the query
 
                 if (accessToken && userName) {
                   parms.user = userName;
@@ -90,6 +90,7 @@ router.get('/', async function(req, res) {
           });
         }
         else {
+          authHelper.clearCookies(res); //clears the user cookies
           res.redirect('/');            // if the email is not from @INTERBAYAMON it redirects to login
         }
         }
