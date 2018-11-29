@@ -56,10 +56,7 @@ insert into Users values( 16, 'Catherine Aguilar Ramos','caguilar@bayamon.inter.
 insert into Users values( 17, 'Javier Quintana Mendez', 'jquintana@bayamon.inter.edu');
 
 /* Example of adding Users */
-/*
-insert into Users (name, email) values('Name', 'email@interbayamon.edu');
-*/
-:00:00
+/* insert into Users (name, email) values('Name', 'email@interbayamon.edu'); */
 /* === Entering data to Rooms === */
 
 /* Department F First Floor*/
