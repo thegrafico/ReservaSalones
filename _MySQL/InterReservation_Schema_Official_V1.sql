@@ -109,59 +109,58 @@ insert into Rooms values('G247B', 25, '1');
 /* === Entering data to ProfHours === */
 /* = Available Hours = */
 
-insert into ProfHours values(2, '11:00:00', '12', 'Tue', 'Normal Hours'),             /*Wilson*/
-                            (2, '13', '15', 'Tue', 'Normal Hours'),             /*Wilson*/
-                            (2, '11', '12', 'Thu', 'Normal Hours'),             /*Wilson*/
-                            (2, '13', '15', 'Thu', 'Normal Hours');             /*Wilson*/
-insert into ProfHours values(3, '10', '12', 'Mon', 'Normal Hours'),             /*Omar Meza*/
-                            (3, '10', '12', 'Wed', 'Normal Hours');             /*Omar Meza*/
-insert into ProfHours values(4, '10', '13', 'Tue', 'Normal Hours'),             /*Heriberto*/
-                            (4, '11', '14', 'Wed', 'Normal Hours');             /*Heriberto*/
-insert into ProfHours values(5, '14', '15', 'Mon', 'Normal Hours');             /*Muniz*/
-insert into ProfHours values(5, '10', '11:30:00', 'Tue', 'Normal Hours'),          /*Muniz*/
-                            (6, '10', '11:30:00', 'Thu', 'Normal Hours');          /*Otoniel Diaz*/
-insert into ProfHours values(7, '10', '11', 'Wed', 'Normal Hours');             /*Francisco Parra*/
+insert into ProfHours values(2, '11:00:00', '12:00:00', 'Tue', 'Normal Hours'),             /*Wilson*/
+                            (2, '13:00:00', '15:00:00', 'Tue', 'Normal Hours'),             /*Wilson*/
+                            (2, '11:00:00', '12:00:00', 'Thu', 'Normal Hours'),             /*Wilson*/
+                            (2, '1:00:00', '15:00:00', 'Thu', 'Normal Hours');             /*Wilson*/
+insert into ProfHours values(3, '10:00:00', '12:00:00', 'Mon', 'Normal Hours'),             /*Omar Meza*/
+                            (3, '10:00:00', '12:00:00', 'Wed', 'Normal Hours');             /*Omar Meza*/
+insert into ProfHours values(4, '10:00:00', '13:00:00', 'Tue', 'Normal Hours'),             /*Heriberto*/
+                            (4, '11:00:00', '14:00:00', 'Wed', 'Normal Hours');             /*Heriberto*/
+insert into ProfHours values(5, '14:00:00', '15:00:00', 'Mon', 'Normal Hours');             /*Muniz*/
+insert into ProfHours values(5, '10:00:00', '11:30:00', 'Tue', 'Normal Hours'),          /*Muniz*/
+                            (6, '10:00:00', '11:30:00', 'Thu', 'Normal Hours');          /*Otoniel Diaz*/
+insert into ProfHours values(7, '10:00:00', '11:00:00', 'Wed', 'Normal Hours');             /*Francisco Parra*/
 insert into ProfHours values(8, '13:50:00', '14:50:00', 'Mon', 'Normal Hours'),       /* Ruben Flores*/
                             (8, '13:50:00', '14:50:00', 'Tue', 'Normal Hours'),       /* Ruben Flores*/
                             (8, '10:30:00', '11:30:00', 'Tue', 'Normal Hours'),       /* Ruben Flores*/
                             (8, '10:30:00', '11:30:00', 'Wed', 'Normal Hours'),       /* Ruben Flores*/
                             (8, '10:30:00', '11:30:00', 'Thu', 'Normal Hours');       /* Ruben Flores*/
-insert into ProfHours values(9, '9', '10:30:00', 'Tue', 'Normal Hours'),           /*Amilcar*/
-                            (9, '9', '10:30:00', 'Thu', 'Normal Hours');           /*Amilcar*/
-insert into ProfHours values(10, '8', '10:30:00', 'Mon', 'Normal Hours'),          /*Caroline*/
-                            (10, '8', '8:30:00',  'Tue', 'Normal Hours'),          /*Caroline*/
+insert into ProfHours values(9, '9:00:00', '10:30:00', 'Tue', 'Normal Hours'),           /*Amilcar*/
+                            (9, '9:00:00', '10:30:00', 'Thu', 'Normal Hours');           /*Amilcar*/
+insert into ProfHours values(10, '8:00:00', '10:30:00', 'Mon', 'Normal Hours'),          /*Caroline*/
+                            (10, '8:00:00', '8:30:00',  'Tue', 'Normal Hours'),          /*Caroline*/
                             (10, '13:50:00','14:50:00','Tue', 'Normal Hours'),        /*Caroline*/
-                            (10, '8', '8:30:00',  'Wed', 'Normal Hours'),          /*Caroline*/
+                            (10, '8:00:00', '8:30:00',  'Wed', 'Normal Hours'),          /*Caroline*/
                             (10, '13:50:00','14:50:00','Wed', 'Normal Hours'),        /*Caroline*/
-                            (10, '8', '8:30:00', 'Thu', 'Normal Hours');           /*Caroline*/
-insert into ProfHours values(11, '9', '10', 'Mon', 'Normal Hours'),             /*Rafael Salgado*/
-                            (11, '9', '10', 'Wed', 'Normal Hours'),             /*Rafael Salgado*/
-                            (11, '16', '17', 'Mon', 'Normal Hours'),            /*Rafael Salgado*/
-                            (11, '16', '17', 'Wed', 'Normal Hours'),            /*Rafael Salgado*/
-                            (11, '10', '11', 'Fri', 'Normal Hours');            /*Rafael Salgado*/
-insert into ProfHours values(12,'9', '10', 'Mon', 'Normal Hours'),              /*Eduardo Lay*/
-                            (12, '13', '14', 'Tue', 'Normal Hours'),            /*Eduardo Lay*/
+                            (10, '8:00:00', '8:30:00', 'Thu', 'Normal Hours');           /*Caroline*/
+insert into ProfHours values(11, '9:00:00', '10:00:00', 'Mon', 'Normal Hours'),             /*Rafael Salgado*/
+                            (11, '9:00:00', '10:00:00', 'Wed', 'Normal Hours'),             /*Rafael Salgado*/
+                            (11, '16:00:00', '17:00:00', 'Mon', 'Normal Hours'),            /*Rafael Salgado*/
+                            (11, '16:00:00', '17:00:00', 'Wed', 'Normal Hours'),            /*Rafael Salgado*/
+                            (11, '10:00:00', '11:00:00', 'Fri', 'Normal Hours');            /*Rafael Salgado*/
+insert into ProfHours values(12,'9:00:00', '10:00:00', 'Mon', 'Normal Hours'),              /*Eduardo Lay*/
+                            (12, '13:00:00', '14:00:00', 'Tue', 'Normal Hours'),            /*Eduardo Lay*/
                             (12, '11:30:00', '12:30:00', 'Wed', 'Normal Hours'),      /*Eduardo Lay*/
-                            (12, '10', '11', 'Thu', 'Normal Hours'),            /*Eduardo Lay*/
-                            (12, '12', '12:30:00', 'Fri', 'Normal Hours');         /*Eduardo Lay*/
-insert into ProfHours values(13, '10', '11', 'Tue', 'Normal Hours'),            /*Nedim Vardar*/
+                            (12, '10:00:00', '11:00:00', 'Thu', 'Normal Hours'),            /*Eduardo Lay*/
+                            (12, '12:00:00', '12:30:00', 'Fri', 'Normal Hours');         /*Eduardo Lay*/
+insert into ProfHours values(13, '10:00:00', '11:00:00', 'Tue', 'Normal Hours'),            /*Nedim Vardar*/
                             (13, '14:30:00','15:30:00', 'Wed', 'Normal Hours'),       /*Nedim Vardar*/
-                            (13, '13', '15', 'Thu', 'Normal Hours');            /*Nedim Vardar*/
-insert into ProfHours values(14, '8', '8:30:00', 'Tue', 'Normal Hours'),           /*Jaime Yeckle*/
+                            (13, '13:00:00', '15:00:00', 'Thu', 'Normal Hours');            /*Nedim Vardar*/
+insert into ProfHours values(14, '8:00:00', '8:30:00', 'Tue', 'Normal Hours'),           /*Jaime Yeckle*/
                             (14, '10:10:00', '11:30:00', 'Tue', 'Normal Hours'),      /*Jaime Yeckle*/
-                            (14, '13', '15', 'Wed', 'Normal Hours'),            /*Jaime Yeckle*/
-                            (14, '8', '8:30:00', 'Thu', 'Normal Hours'),           /*Jaime Yeckle*/
-                            (14, '11', '11:40:00', 'Thu', 'Normal Hours');	        /*Jaime Yeckle*/
+                            (14, '13:00:00', '15:00:00', 'Wed', 'Normal Hours'),            /*Jaime Yeckle*/
+                            (14, '8:00:00', '8:30:00', 'Thu', 'Normal Hours'),           /*Jaime Yeckle*/
+                            (14, '11:00:00', '11:40:00', 'Thu', 'Normal Hours');	        /*Jaime Yeckle*/
 
 /* === Entering data to RoomHours === */
 /* = NOT Available Hours =*/
 
-insert into RoomHours values('roomID', '', '', 'day', 'description');
 
 /* Department F First Floor*/
 
-insert into RoomHours values('F102B', '8', '15', 'all', 'Class');
-insert into RoomHours values('F104', '8', '15', 'all', 'Class');
+insert into RoomHours values('F102B', '8:00:00', '15:00:00', 'all', 'Class');
+insert into RoomHours values('F104', '8:00:00', '15:00:00', 'all', 'Class');
 
 /* Department F Second Floor*/
 
@@ -172,7 +171,7 @@ insert into RoomHours values('F203', '8:30:00', '11:20:00', 'Mon', 'Class: ENGR 
                             ('F203', '8:30:00', '9:20:00', 'Tue', 'Class: MECN 4110, Prof: Omar Meza'),
                             ('F203', '9:30:00', '11:20:00', 'Tue', 'Class: LAB-MECN 4110, Prof: Omar Meza'),
                             ('F203', '10:30:00', '11:50:00', 'Tue', 'Class: MECN 4610, Prof: Amilcar Rincon'),
-                            ('F203', '12:00:00', '13:50', 'Tue', 'Class: LAB-ELEN 3420, Prof: Ruben Flores'),
+                            ('F203', '12:00:00', '13:50:00', 'Tue', 'Class: LAB-ELEN 3420, Prof: Ruben Flores'),
                             ('F203', '14:30:00', '15:20:00', 'Tue', 'Class: LAB-MECN 4100, Prof: Eduardo Lay'),
                             ('F203', '15:30:00', '16:20:00', 'Tue', 'Class: MECN 4100, Prof: Eduardo Lay'),
                             ('F203', '17:00:00', '17:50:00', 'Tue', 'Class: LAB-MECN 4100, Prof: Eduardo Lay'),
@@ -228,10 +227,10 @@ insert into RoomHours values('G141A', '8:00:00', '10:50:00', 'Tue', 'Class: INEN
 insert into RoomHours values('G142A', '13:00:00', '14:20:00', 'Mon', 'Class: LAB-MECN 3250, Prof: Eduardo Lay'),
                             ('G142A', '14:30:00', '15:50:00', 'Mon', 'Class: ENGR 2220, Prof: Eduardo Lay'),
                             ('G142A', '10:30:00', '11:50:00', 'Tue', 'Class: ENGR 2220, Prof: Omar Meza'),
-                            ('G142A', '13:00:00', '14:2050:00', 'Wed', 'Class: LAB-MECN 3250, Prof: Eduardo Lay'),
+                            ('G142A', '13:00:00', '14:20:00', 'Wed', 'Class: LAB-MECN 3250, Prof: Eduardo Lay'),
                             ('G142A', '14:30:00', '15:50:00', 'Wed', 'Class: ENGR 2220, Prof: Eduardo Lay'),
                             ('G142A', '10:30:00', '11:50:00', 'Thu', 'Class: ENGR 2220, Prof: Omar Meza'),
-                            ('G142A', '8:00:00', '11:00:00:00', 'Fri', 'Class, Prof: Omar Meza');
+                            ('G142A', '8:00:00', '11:00:00', 'Fri', 'Class, Prof: Omar Meza');
 insert into RoomHours values('G148', '8:00:00', '9:50:00', 'Mon', 'Class: ENGR 1100, Prof: Omar Meza'),
                             ('G148', '10:00:00', '11:20:00', 'Mon', 'Class: MECN 3005, Prof: Rafael Salgado'),
                             ('G148', '13:00:00', '14:20:00', 'Mon', 'Class: MECN 3600, Prof: Rafael Salgado'),

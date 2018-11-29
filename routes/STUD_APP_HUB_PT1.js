@@ -21,30 +21,27 @@ const userName = req.cookies.graph_user_name;  //records userName again to displ
 if(userName){
 
   //sets up the names of the variables used in hbs
-  var initial = "initial";
   var name = "professorName";
   var email = "professorEmail";
   var description = "Department";
   var parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
   //initializes the different variables of parms that will be used in the hbs
 
-  parms [initial] = new Object();
   parms [name] = new Object();
   parms [email] = new Object();
   parms [description] = new Object();
 
 
   //defines the name of the professor table as a variable
-  var professor = 'Professor';
 
   //defines the query i want to make
-  let query = `SELECT * FROM ${professor}`;
-
-  console.log(query)
-
-
+  let query = `SELECT * FROM `;
   //establishes connection to database
   dataB.getConnection(function(err, connection){
+
+
+
+
 
     //to make the query to the dataBase
     connection.query(query, function(error, results, fields){
@@ -70,15 +67,17 @@ if(userName){
 
       if (error) throw error;
 
-      parms[initial] = results[0]["profName"] ;
       parms[name] = results[0]["profName"];
       parms[email] = results[0]["profEmail"];
-      parms[description] = results[0]["description"];
       parms.layout = layName;
 
       //it reanders the webpage visual and styling elements
       res.render(layName, parms);
-    })
+    }
+
+    function
+
+    )
   })
 
   // Defines a variable in the object parms and defines it as the userName
