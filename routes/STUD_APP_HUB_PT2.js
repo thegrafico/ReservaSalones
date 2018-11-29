@@ -11,6 +11,12 @@ var layName = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to
 var titleName = 'Professor';  //sets up window
 const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
 
+/* === Variables which saves the value which the user chooses from the datepicker. === */
+// let year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
+// let day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
+// let month = $('.datepicker').pickadate('picker').get('highlight', 'mm');
+
+
 //if a value exists in the username variable
 if(userName){
   //sets up the names of the variables used in hbs
@@ -54,7 +60,7 @@ if(userName){
   //check for each table entry
   results.forEach(function (elements){
 
-  console.log(elements.length);
+  //console.log(elements.length);
 
           //check for each table element
   for (var i = 0; i <elements.length; i++ ){

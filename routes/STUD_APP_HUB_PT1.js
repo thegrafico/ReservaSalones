@@ -40,6 +40,9 @@ if(userName){
   //defines the query i want to make
   let query = `SELECT * FROM ${professor}`;
 
+  console.log(query)
+
+
   //establishes connection to database
   dataB.getConnection(function(err, connection){
 
@@ -58,12 +61,12 @@ if(userName){
       //console.log(results[0]["profName"]);
 
       //check for each table entry
-      results.forEach(function (elements){
-        //check for each table element
-        for (var i = 0; i <elements.length; i++ ){
-
-        }
-      })
+      // results.forEach(function (elements){
+      //   //check for each table element
+      //   for (var i = 0; i <elements.length; i++ ){
+      //
+      //   }
+      // })
 
       if (error) throw error;
 
