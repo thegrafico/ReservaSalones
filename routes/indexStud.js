@@ -52,25 +52,25 @@ router.get('/', async function(req, res) {
         if (error) throw error;                                      //checks for error
 
         console.log(dbRoleID);
-        // if (dbRoleID == 'A') res.redirect('/admin');         //if the role is admin on the db, route to admin
-        if (dbRoleID == 'S') res.redirect('/admin');            //if the role is admin on the db, route to scretary
-        // if (dbRoleID == 'D') res.redirect('/director');      //if the role is admin on the db, route to director
-        if (dbRoleID == 'P') res.redirect('/profHome');         //if the role is a Professor on the db, route to profHome
+        // if (dbRoleID == 'A') res.redirect('/admin');              //if the role is admin on the db, route to admin
+        if (dbRoleID == 'S') res.redirect('/admin');                 //if the role is admin on the db, route to scretary
+        // if (dbRoleID == 'D') res.redirect('/director');           //if the role is admin on the db, route to director
+        if (dbRoleID == 'P') res.redirect('/profHome');              //if the role is a Professor on the db, route to profHome
 
         else{
 
-          var emailCarrier = email.split("@");
-          console.log(emailCarrier[1]);
+          var emailCarrier = email.split("@");                                          //spliting the email into 2 string to get the email carrier
+          // console.log(emailCarrier[1]);
 
-          if (emailCarrier[1] == 'INTERBAYAMON.EDU'){
+          if (emailCarrier[1] == 'INTERBAYAMON.EDU'){                                   //cheking if the email is from @INTERBAYAMON
 
-            let query =`INSERT INTO ${user} (name, email)` +
-            ` SELECT * FROM (SELECT '${userName}', '${email}') as nUser`  +
-            ` WHERE NOT EXISTS (SELECT email FROM ${user} where email = '${email}')`;
+            let query =`INSERT INTO ${user} (name, email)` +                            //query to check if the email
+            ` SELECT * FROM (SELECT '${userName}', '${email}') as nUser`  +             //of the user is on the db
+            ` WHERE NOT EXISTS (SELECT email FROM ${user} where email = '${email}')`;   //if he is not on db, add his credential to the db
 
-            db.getConnection(function(err, connection) {
+            db.getConnection(function(err, connection) {                                //checks if there is a connection error with db
 
-              if (err) throw error;
+              if (err) throw error;                                                     //if there is a db error, display error
 
               connection.query(query, function (error, results, fields) {
 
@@ -90,16 +90,12 @@ router.get('/', async function(req, res) {
           });
         }
         else {
-          res.redirect('/');
+          res.redirect('/');            // if the email is not from @INTERBAYAMON it redirects to login
         }
         }
       });
     });
   }
-
-  // else{ //enter here si no nadie se ha autentificado
-  //   res.redirect('/');
-  // }
 });
 
 
