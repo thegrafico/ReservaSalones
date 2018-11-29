@@ -59,7 +59,7 @@ insert into Users values( 17, 'Javier Quintana Mendez', 'jquintana@bayamon.inter
 /*
 insert into Users (name, email) values('Name', 'email@interbayamon.edu');
 */
-:00:00
+
 /* === Entering data to Rooms === */
 
 /* Department F First Floor*/
