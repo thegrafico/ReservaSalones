@@ -29,8 +29,6 @@ function roleCheck(reqRoleID, email, userName){
         else{
           return false;
         }
-
-        }
       });
     });
   }
