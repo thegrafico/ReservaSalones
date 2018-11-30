@@ -33,3 +33,5 @@ function roleCheck(reqRoleID, email, userName){
     });
   }
 }
+
+exports.roleCheck = roleCheck;                                       //allow the function to be called in another JS file
