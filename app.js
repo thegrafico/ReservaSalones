@@ -48,7 +48,7 @@ app.use('/home', indexStud);
 app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
 app.use('/home/appointment', studAppHubPT1);
-app.use('/home/appointment/professor', studAppHubPT2);
+app.use('/home/appointment/professor/:id', studAppHubPT2);
 app.use('/profHome', indexProf);
 app.use('/profHome/Appointments', profAppointment);
 app.use('/admin', admin);
