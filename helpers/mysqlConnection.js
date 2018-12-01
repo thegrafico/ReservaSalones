@@ -13,11 +13,11 @@ config = {
       //establece el route basico donde se ouede accessar
       host     : 'localhost',  //THIS IS THE SAME FOR YOUR
       user     : 'root',      //THIS IS THE SAME FOR YOUR
-      password : 'radames121',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-      database : 'Inter Reservation'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+      password : '',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+      database : ''   //HERE GO THE DATABASE THAT WE ARE GONNA USED
     })
 };
 
 //parte de node js que deja que esta funcion
 //se pueda utilizar en otro codigo
-module.exports = config;;
+module.exports = config;

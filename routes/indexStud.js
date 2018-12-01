@@ -24,9 +24,6 @@ router.get('/', async function(req, res) {
   //here we can see the admin!
   // console.log(req.cookies.admini[0]);
 
-
-
-
   if(userName){
     let query =`select profEmail` +                              //checks if the user email
                 ` from ${pTable}` +                              //is on the database
@@ -35,7 +32,7 @@ router.get('/', async function(req, res) {
     db.getConnection(function(err, connection) {                     //connects to the database
 
 
-      if (err) throw error;                                          //checks for connection error
+      if (err) throw err;                                          //checks for connection error
 
 
       connection.query(query, function (error, results, fields) {    //does the database query
