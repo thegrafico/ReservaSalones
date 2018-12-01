@@ -4,6 +4,9 @@
   <head>
     <meta charset="utf-8">
 
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
     <!-- Materialize Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -36,16 +39,19 @@
           <div id="uno">
             <!-- <h3 id="ini"><a href="/home/appointment/professor">{{this.name}}</a></h3> -->
           </div>
-
           <div class="profInfo">
-            <p id="ini"><a href="/home/appointment/professor">{{this.name}}</a></p>
+            <form id="submit" action="" method="post">
+              <button type="button" name="button" value="{{this.userID}}">{{this.name}}</button>
+            </form>
             <p id="ini">{{this.email}}</p>
+            <!-- <p id="ini">{{this.userID}}</p> -->
             <p id="ini">Faculty Member</p>
           </div>
         </div>
       {{/each}}
     </div>
 
+    <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT1_Beha.js"></script>
 
   </body>
 </html>

@@ -34,9 +34,9 @@ if(userName){
   //defines the name of the professor table as a variable
 
   //defines the query i want to make
-  let query = `SELECT ${profName}, ${profEmail}
-               FROM Users, UserRoles
-               WHERE Users.userID = UserRoles.userID AND roleID = 'P'
+  let query = `SELECT ${profName}, ${profEmail}, ${profID}
+               FROM Users NATURAL JOIN UserRoles
+               WHERE roleID = 'P'
                ORDER BY name`;
   //establishes connection to database
   dataB.getConnection(function(err, connection){
@@ -67,8 +67,6 @@ if(userName){
       //   }
       // })
 
-      console.log(results);
-      console.log(results[0]["name"])
       if (error) throw error;
 
       // for(var i = 0; i < results.length; i++) {
@@ -108,5 +106,6 @@ switch (index){
 // router.get('/about', function (req, res) {
 //   res.send('About birds')
 // })
+
 
 module.exports = router

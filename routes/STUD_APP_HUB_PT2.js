@@ -39,43 +39,45 @@ if(userName){
   let query = `SELECT * FROM ${professor}`;
 
   //establishes connection to database
-  dataB.getConnection(function(err, connection){
+  // dataB.getConnection(function(err, connection){
+  //
+  // //to make the query to the dataBase
+  // connection.query(query, function(error, results, fields){
+  //
+  // //result of query is called results
+  // //it is an array
+  // //which the first index is given by
+  // //and the second is given by name
+  // // an example of how to call a similar array would be like
+  // // var array1 = {once: "once", twice: "twice"}
+  // // var array2 = [array1];
+  // // console.log(array2[0]["once"]);
+  // //example using the results array
+  // //console.log(results[0]["profName"]);
+  //
+  // //check for each table entry
+  // results.forEach(function (elements){
+  //
+  // //console.log(elements.length);
+  //
+  //         //check for each table element
+  // for (var i = 0; i <elements.length; i++ ){
+  //
+  //         }
+  //
+  //       })
+  //
+  // if (error) throw error;
+  //    //console.log(a);
+  //    parms[name] = results[0]["profName"];
+  //    parms[email] = results[0]["profEmail"];
+  //    //it reanders the webpage visual and styling elements
+  //    res.render(layName, parms);
+  //   })
+  // })
 
-  //to make the query to the dataBase
-  connection.query(query, function(error, results, fields){
 
-  //result of query is called results
-  //it is an array
-  //which the first index is given by
-  //and the second is given by name
-  // an example of how to call a similar array would be like
-  // var array1 = {once: "once", twice: "twice"}
-  // var array2 = [array1];
-  // console.log(array2[0]["once"]);
-  //example using the results array
-  //console.log(results[0]["profName"]);
-
-  //check for each table entry
-  results.forEach(function (elements){
-
-  //console.log(elements.length);
-
-          //check for each table element
-  for (var i = 0; i <elements.length; i++ ){
-
-          }
-
-        })
-
-  if (error) throw error;
-     //console.log(a);
-     parms[name] = results[0]["profName"];
-     parms[email] = results[0]["profEmail"];
-     //it reanders the webpage visual and styling elements
-     res.render(layName, parms);
-    })
-  })
-
+res.render(layName, parms);
     //devines a variable in the object parms and defines it as the userName
     parms.user = userName;
 
