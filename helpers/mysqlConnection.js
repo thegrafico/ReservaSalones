@@ -13,8 +13,8 @@ config = {
       //establece el route basico donde se ouede accessar
       host     : 'localhost',  //THIS IS THE SAME FOR YOUR
       user     : 'root',      //THIS IS THE SAME FOR YOUR
-      password : '',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-      database : ''   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+      password : 'radames121',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+      database : 'Inter Reservation'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
     })
 };
 
