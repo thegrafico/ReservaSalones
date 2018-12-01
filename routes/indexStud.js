@@ -39,6 +39,7 @@ router.get('/', async function(req, res) {
 
 
       connection.query(query, function (error, results, fields) {    //does the database query
+        console.log("This is results");
         console.log(results);
         var dbEmail = null;                                          //ini the database email to null
 

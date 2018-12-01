@@ -2,7 +2,6 @@ var express = require('express')
 var router = express.Router()
 //to interact with the databea and make queries
 var dataB = require("../helpers/mysqlConnection").mysql_pool;
-
 // middleware that is specific to this router
 // router.use(function timeLog (req, res, next) {
 //   console.log('Time: ', Date.now())
@@ -21,27 +20,29 @@ const userName = req.cookies.graph_user_name;  //records userName again to displ
 if(userName){
 
   //sets up the names of the variables used in hbs
-  var initial = "initial";
-  var name = "professorName";
-  var email = "professorEmail";
-  var description = "Department";
+  var profName = "name";
+  var profEmail = "email";
+  var profID = "userID";
   var parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
   //initializes the different variables of parms that will be used in the hbs
 
-  parms [initial] = new Object();
-  parms [name] = new Object();
-  parms [email] = new Object();
-  parms [description] = new Object();
+  parms [profName] = new Object();
+  parms [profEmail] = new Object();
 
 
   //defines the name of the professor table as a variable
-  var professor = 'Professor';
 
   //defines the query i want to make
-  let query = `SELECT * FROM ${professor}`;
-
+  let query = `SELECT ${profName}, ${profEmail}, ${profID}
+               FROM Users NATURAL JOIN UserRoles
+               WHERE roleID = 'P'
+               ORDER BY name;`;
   //establishes connection to database
   dataB.getConnection(function(err, connection){
+
+
+
+
 
     //to make the query to the dataBase
     connection.query(query, function(error, results, fields){
@@ -58,19 +59,21 @@ if(userName){
       //console.log(results[0]["profName"]);
 
       //check for each table entry
-      results.forEach(function (elements){
-        //check for each table element
-        for (var i = 0; i <elements.length; i++ ){
-
-        }
-      })
+      // results.forEach(function (elements){
+      //   //check for each table element
+      //   for (var i = 0; i <elements.length; i++ ){
+      //
+      //   }
+      // })
 
       if (error) throw error;
 
-      parms[initial] = results[0]["profName"] ;
-      parms[name] = results[0]["profName"];
-      parms[email] = results[0]["profEmail"];
-      parms[description] = results[0]["description"];
+      // for(var i = 0; i < results.length; i++) {
+      //   parms.profName = results[i]["name"];
+      //   parms.profEmail = results[i]["email"];
+      //   $(".row").append(" <div class='box0'> <div id='box' class='col s3 z-depth-3'> <div id='uno <h3 id='ini'><a href='/home/appointment/professor'> {{profName}} </a></h3> </div> <div class='profInfo> <p> {{profEmail}} </p> <p>Faculty Member</p> </div> </div> </div> ");
+      // }
+      parms.results = results;
       parms.layout = layName;
 
       //it reanders the webpage visual and styling elements
@@ -80,6 +83,7 @@ if(userName){
 
   // Defines a variable in the object parms and defines it as the userName
   parms.user = userName;
+  // parms.profName = profName;
 
 }
   else {

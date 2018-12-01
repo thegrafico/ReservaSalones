@@ -11,17 +11,21 @@ var layName = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to
 var titleName = 'Professor';  //sets up window
 const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
 
+/* === Variables which saves the value which the user chooses from the datepicker. === */
+// let year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
+// let day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
+// let month = $('.datepicker').pickadate('picker').get('highlight', 'mm');
+
+
 //if a value exists in the username variable
 if(userName){
   //sets up the names of the variables used in hbs
-  var initial = "initial";
   var name = "professorName";
   var email = "professorEmail";
   var description = "Department";
   var parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
   //initializes the different variables of parms that will be used in the hbs
 
-  parms [initial] = new Object();
   parms [name] = new Object();
   parms [email] = new Object();
   parms [description] = new Object();
@@ -34,6 +38,7 @@ if(userName){
   //defines the query i want to make
   let query = `SELECT * FROM ${professor}`;
 
+/*
   //establishes connection to database
   dataB.getConnection(function(err, connection){
 
@@ -54,7 +59,7 @@ if(userName){
   //check for each table entry
   results.forEach(function (elements){
 
-  console.log(elements.length);
+  //console.log(elements.length);
 
           //check for each table element
   for (var i = 0; i <elements.length; i++ ){
@@ -67,14 +72,16 @@ if(userName){
      //console.log(a);
      parms[name] = results[0]["profName"];
      parms[email] = results[0]["profEmail"];
-     parms[description] = results[0]["description"];
      //it reanders the webpage visual and styling elements
+
      res.render(layName, parms);
     })
   })
-
-    //devines a variab    console.log(elements);le in the object parms and defines it as the userName
+*/
+    //devines a variable in the object parms and defines it as the userName
     parms.user = userName;
+    res.render(layName, parms);
+
 
   } else {
     res.redirect('/');
