@@ -5,11 +5,16 @@ var dataB = require("../helpers/mysqlConnection").mysql_pool;
 
 // define the home page route
 //basically page response as in the layout, buttons, all html stuff, etc
-router.get('/', function (req, res) {
+router.get('/:id', function (req, res) {
 
 var layName = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to be
 var titleName = 'Professor';  //sets up window
 const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
+
+//RAUL changed
+var profEmail = req.params.id;
+console.log("Profesor Email: ", req.params);
+//----
 
 /* === Variables which saves the value which the user chooses from the datepicker. === */
 // let year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
