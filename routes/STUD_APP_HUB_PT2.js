@@ -17,6 +17,7 @@ console.log("Profesor Email: " + profEmail);
 
 
 // console.log(month + day + year);
+var parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
 
 //if a value exists in the username variable
 if(userName){
@@ -72,6 +73,7 @@ if(userName){
 
     //devines a variable in the object parms and defines it as the userName
     parms.user = userName;
+    res.render(layName, parms);
 
   } else {
     res.redirect('/');

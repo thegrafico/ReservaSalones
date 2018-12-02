@@ -21,6 +21,7 @@ var indexProf					= require('./routes/indexProf');					// Professor Home, this p
 var profAppointment 	= require('./routes/profAppointment');		//
 var admin							= require('./routes/admin');							// Admin Home, this pages displays any room reservation.
 var roleCheck					= require('./routes/roleCheck');					// Checks for the role of the user and redirects them to the correct page
+// var studPT2Beha 			= require('./public/behavior/STUD_APP_HUB_PT2_Beha');
 /* === Routes End Here === */
 
 /* === Port === */
