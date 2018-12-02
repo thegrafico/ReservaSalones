@@ -64,5 +64,3 @@ app.use('/roleCheck', roleCheck);
 app.listen(port, process.env.IP, function(){
 	console.log("Server Init on port " + port);
 });
-
-app.timeout = 120000;

@@ -58,7 +58,7 @@ if(userName){
   //console.log(results[0]["profName"]);
 
 
-  if (error) throw error;
+    if (error) throw error;
      //console.log(a);
      parms.results = results;
      parms.profName = results[0]["name"];
@@ -67,8 +67,8 @@ if(userName){
 
      //it reanders the webpage visual and styling elements
      res.render(layName, parms);
-    })
-  })
+   });
+ });
 
     //devines a variable in the object parms and defines it as the userName
     parms.user = userName;
@@ -86,6 +86,23 @@ if(userName){
     case '0':
   }
 }
+
+router.post('/:id', function (req, res) {
+
+    //get date
+    if(req.body.date != undefined){
+      var date = req.body.date;
+    }
+
+    //get id Professor
+    if(req.body.button != undefined){
+      var id = req.body.button;
+    }else{
+      id = "";
+    }
+
+  res.redirect("/home/appointment/" + id);
+});
 
 
 module.exports = router
