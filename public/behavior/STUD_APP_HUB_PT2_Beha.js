@@ -8,7 +8,7 @@ $(document).ready(function(){
 
       //where all options for datepicker are changed
       disableWeekends: true,
-      format: 'ddd, mmm dd,yyyy',
+      format: 'ddd, mmm, dd,yyyy',
       onSelect:function (dateText, inst)
        {
 
