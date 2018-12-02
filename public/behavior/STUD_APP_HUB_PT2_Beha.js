@@ -6,7 +6,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('.datepicker').datepicker({
     //where all options for datepicker are changed
-    disableWeekends: true,
+    disableWeekends: true,  
     onSelect:function (dateText, inst)
      {
 

@@ -40,20 +40,19 @@
       <div class="col s3 ">
         <!-- Grey navigation panel -->
         <!-- Professor Profile Starts -->
+
         <div class="profUser z-depth-3">
           <div class="Icon">
             <p id="Initial"> </p>
           </div>
           <div class="profInfo">
-            <p id="profName"> {{professorName}} </p>
-            <p>{{profDescription}} </p>
+            <p id="profName" > {{profName}} </p>
             <p class="profContact" >Professor of the Faculty</p>
             <p class="profContact" >Inter American University of Puerto Rico</p>
             <p class="profContact" >Contact Info:</p>
-            <a class="profContact"  href="#"> {{professorEmail}} </a>
+            <a class="profContact" > {{profEmail}} </a>
           </div>
         </div>
-
         <!-- Professor Profile Ends -->
 
       </div>
@@ -76,16 +75,17 @@
               </thead>
               <tbody>
 
+                {{#each results}}
                 <tr>
                   <td>
                     <label>
                       <input type="checkbox" class="check" /><span></span>
                     </label>
                   </td>
-                  <td>{{startTime}}</td>
-                  <td>{{endTime}}</td>
+                  <td>{{this.start}}</td>
+                  <td>{{this.end}}</td>
                 </tr>
-
+                {{/each}}
               </tbody>
             </table>
           </div>
@@ -105,7 +105,6 @@
 
     <!--============================== Javascript ================================-->
     <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT2_Beha.js"></script>
-    <!-- <script type="text/javascript" src="STUD_APP_HUB_PT2.js"></script>/ -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 

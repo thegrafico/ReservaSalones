@@ -57,11 +57,6 @@ router.get('/', function (req, res) {
 
         if (error) throw error;
 
-        // for(var i = 0; i < results.length; i++) {
-        //   parms.profName = results[i]["name"];
-        //   parms.profEmail = results[i]["email"];
-        //   $(".row").append(" <div class='box0'> <div id='box' class='col s3 z-depth-3'> <div id='uno <h3 id='ini'><a href='/home/appointment/professor'> {{profName}} </a></h3> </div> <div class='profInfo> <p> {{profEmail}} </p> <p>Faculty Member</p> </div> </div> </div> ");
-        // }
         parms.results = results;
         parms.profName = results[0]["name"];
         parms.profEmail = results[0]["email"];
