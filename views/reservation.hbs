@@ -66,51 +66,48 @@
   </div>
 </div>
 </div>
-<div class="Reservation">
-  <table>
-         <thead>
-           <tr>
-               <th>Room</th>
-               <th>Not Available</th>
-               <th>Start Hour</th>
-               <th>End Hour</th>
-               <th>Reserve?</th>
-           </tr>
-         </thead>
-         <tbody>
 
-           <tr>
-             <td>
-               {{Room}}
-             </td>
-             <td>
-               <ul class="collapsible">
-                 <li>
-                   <div class="collapsible-header"><i class="material-icons"></i>Classes</div>
-                   <div class="collapsible-body"><span>De 9:00am a 11:20am</span></div>
-                 </li>
-               </ul>
-             </td>
-             <td>
-                <input type="text" class="timepicker">
-               <!-- {{IniHour}} -->
-             </td>
-             <td>
-                <input type="text" class="timepicker">
-               <!-- {{EndHour}} -->
-             </td>
-             <td>
-               <label class="Check">
-                      <input type="checkbox" />
-                      <span></span>
-              </label>
-             </td>
-           </tr>
-
-         </tbody>
-       </table>
-
-
+  <div class="Reservation">
+    <table>
+     <thead>
+       <tr>
+         <th>Room</th>
+         <th>Not Available</th>
+         <th>Start Hour</th>
+         <th>End Hour</th>
+         <th>Reserve?</th>
+       </tr>
+     </thead>
+     <tbody>
+      {{#each results}}
+       <tr>
+         <td style="padding-left: 10px;">{{this.roomID}}</td>
+         <td>
+           <ul class="collapsible">
+             <li>
+               <div class="collapsible-header"><i class="material-icons"></i>Classes</div>
+               <div class="collapsible-body"><span>De 9:00am a 11:20am</span></div>
+             </li>
+           </ul>
+         </td>
+         <td>
+            <input type="text" class="timepicker">
+           <!-- {{IniHour}} -->
+         </td>
+         <td>
+           <input type="text" class="timepicker">
+           <!-- {{EndHour}} -->
+          </td>
+         <td>
+            <label class="Check">
+             <input type="checkbox" />
+              <span></span>
+            </label>
+          </td>
+       </tr>
+       {{/each}}
+    </tbody>
+  </table>
 </div>
 
     <!-- === Javascript === -->
