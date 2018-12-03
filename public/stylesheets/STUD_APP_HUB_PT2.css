@@ -103,3 +103,8 @@ nav li a {
 .row_two {
   margin-right: 10px;
 }
+
+.dateBoxWithBnt{
+  width: 100%;
+  display: flex;
+}

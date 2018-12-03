@@ -6,39 +6,40 @@ $(document).ready(function(){
   $('select').formSelect();
 });
 
-$(document).ready(function(){
-  $('.datepicker').datepicker({
-    //where all options for datepicker are changed
-    disableWeekends: true,
-    format: 'ddd, mmm dd,yyyy',
-    onSelect:function (dateText, inst)
-     {
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
 
-         var getKeys = function(obj){
-         var keys = [];
-         for(var key in obj){
-            keys.push(key);
+      //where all options for datepicker are changed
+      disableWeekends: true,
+      format: 'ddd, mmm dd,yyyy',
+      onSelect:function (dateText, inst)
+       {
+
+           var getKeys = function(obj){
+           var keys = [];
+           for(var key in obj){
+              keys.push(key);
+           }
+           return keys;
          }
-         return keys;
+         var day = dateText.getDay();
+         switch (day){
+           case 1: day = "Mon"
+                  break;
+           case 2: day = "Tue"
+                  break;
+           case 3: day = "Wed"
+                  break;
+           case 4: day = "Thu"
+                  break;
+           case 5: day = "Fri"
+                  break;
+           default: break;
+         }
+            console.log(day);
        }
-       var day = dateText.getDay();
-       switch (day){
-         case 1: day = "Mon"
-                break;
-         case 2: day = "Tue"
-                break;
-         case 3: day = "Wed"
-                break;
-         case 4: day = "Thu"
-                break;
-         case 5: day = "Fri"
-                break;
-         default: break;
-       }
-          console.log(day);
-     }
+    });
   });
-});
 // Date Picker Javascript Ends
 
 // This is for the checkbox

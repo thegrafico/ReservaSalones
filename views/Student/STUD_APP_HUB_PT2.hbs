@@ -54,13 +54,18 @@
           </div>
         </div>
         <!-- Professor Profile Ends -->
-
       </div>
+
 
       <div class="col s9 ">
         <!-- Teal page content -->
-        <div class="dateBox ">
-          <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+        <div class="dateBox">
+          <form  action="/home/appointment/{{profEmail}}" method="POST">
+            <div class="dateBoxWithBnt">
+              <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+              <button class="waves-effect waves-light btn" type="submit" name="button" value="{{profEmail}}">Search for available Date</button>
+            </div>
+          </form>
         </div>
 
         <div class="profHourBox z-depth-3">

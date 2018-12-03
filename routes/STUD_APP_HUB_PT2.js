@@ -17,7 +17,6 @@ console.log("Profesor Email: " + profEmail);
 
 
 // console.log(month + day + year);
-var parms = {title: titleName}  //object that will be sent to the hbs fie for the variables to be displayed
 
 //if a value exists in the username variable
 if(userName){
@@ -59,35 +58,49 @@ if(userName){
   //console.log(results[0]["profName"]);
 
 
-  if (error) throw error;
+    if (error) throw error;
      //console.log(a);
-     parms.results = results;
-     parms.profName = results[0]["name"];
+     parms.results   = results;
+     parms.profName  = results[0]["name"];
      parms.profEmail = results[0]["email"];
-     parms.layout = layName;
+     parms.layout    = layName;
 
      //it reanders the webpage visual and styling elements
      res.render(layName, parms);
-    })
-  })
+   });
+ });
 
     //devines a variable in the object parms and defines it as the userName
     parms.user = userName;
-    res.render(layName, parms);
 
   } else {
     res.redirect('/');
   }
 
-  //res.send('Birds home page')
 })
-  //converts index number to an equivalent table name
-  function getColumn (index, name, email, description){
-    return 0;
-  switch (index){
-    case '0':
-  }
-}
+
+var date;
+var id;
+
+router.post('/:id', function (req, res) {
+
+    //get date
+    if(req.body.date != undefined){
+      date = req.body.date;
+    }
+
+    //get id Professor
+    if(req.body.button != undefined){
+      id = req.body.button;
+    }else{
+      id = "";
+    }
+  console.log(date);
+
+  console.log(day);
+  res.redirect("/home/appointment/" + id);
+});
+
 
 
 module.exports = router
