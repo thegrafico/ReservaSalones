@@ -81,15 +81,17 @@
               <tbody>
 
                 {{#each results}}
-                <tr>
-                  <td>
-                    <label>
-                      <input type="checkbox" class="check" /><span></span>
-                    </label>
-                  </td>
-                  <td>{{this.start}}</td>
-                  <td>{{this.end}}</td>
-                </tr>
+                {{#if start}}
+                  <tr>
+                    <td>
+                      <label>
+                        <input type="checkbox" class="check" /><span></span>
+                      </label>
+                    </td>
+                    <td>{{this.start}}</td>
+                    <td>{{this.end}}</td>
+                  </tr>
+                {{/if}}
                 {{/each}}
               </tbody>
             </table>

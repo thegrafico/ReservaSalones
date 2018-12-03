@@ -42,8 +42,8 @@ $(document).ready(function(){
 // This is for the checkbox
 console.log();
 
-$(document).ready(function(){
-    $('.check').click(function() {
-        $('.check').not(this).prop('checked', false);
-    });
-});
+// $(document).ready(function(){
+//     $('.check').click(function() {
+//         $('.check').not(this).prop('checked', false);
+//     });
+// });
