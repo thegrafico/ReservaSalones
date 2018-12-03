@@ -63,7 +63,11 @@
           <form  action="/home/appointment/{{profEmail}}" method="POST">
             <div class="dateBoxWithBnt">
               <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+<<<<<<< HEAD
               <button class="waves-effect waves-light btn" type="submit" name="button" value="{{profEmail}}">Search for available Date</button>
+=======
+              <button class="waves-effect waves-light btn" type="submit" name="button" value="True" >Search for available Date</button>
+>>>>>>> 836b8d70e90a2dc5a37e69c086160e7a8bebb6ee
             </div>
           </form>
         </div>
@@ -79,34 +83,35 @@
                 </tr>
               </thead>
               <tbody>
-
-                {{#each results}}
-                <tr>
-                  <td>
-                    <label>
-                      <input type="checkbox" class="check" /><span></span>
-                    </label>
-                  </td>
-                  <td>{{this.start}}</td>
-                  <td>{{this.end}}</td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
+                <form class="" action="" method="post">
+                  {{#each results}}
+                  {{#if start}}
+                    <tr>
+                      <td>
+                        <label>
+                          <input type="checkbox" class="check" /><span></span>
+                        </label>
+                      </td>
+                      <td>{{this.start}}</td>
+                      <td>{{this.end}}</td>
+                    </tr>
+                  {{/if}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
           </div>
+
+
         </div>
+        <!-- Row Ends Here -->
 
-
-      </div>
-      <!-- Row Ends Here -->
-
-      <div class="row_two">
-        <button class="btn waves-effect waves-light z-depth-2" type="submit" name="action">
-          Submit
-        </button>
-      </div>
-
-
+        <div class="row_two">
+          <button class="btn waves-effect waves-light z-depth-2" type="submit" name="action">
+            Submit
+          </button>
+        </div>
+    </form>
 
     <!--============================== Javascript ================================-->
     <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT2_Beha.js"></script>
