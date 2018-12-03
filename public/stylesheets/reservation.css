@@ -1,0 +1,61 @@
+.s2{
+  margin: 1% 1% 1% 1%;
+}
+
+.Reservation{
+
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 480px;
+  margin: 2% 2% 1% 2%;
+  overflow-y: scroll;
+
+}
+
+.Check{
+  margin-left: 20%;
+}
+.nav-wrapper {
+    background-color: rgb(0,177,32);
+    background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
+}
+
+.btn{
+  background-color: rgb(6, 161, 23);
+}
+
+.dropdown-content li>span{
+  color: rgb(6, 161, 23);
+}
+
+.datepicker-date-display {
+  background-color: rgb(6, 161, 23);
+}
+
+.datepicker-cancel{
+  color: rgb(6, 161, 23);
+}
+
+.datepicker-done{
+  color: rgb(6, 161, 23);
+}
+
+.datepicker-table td.is-today{
+  color: rgb(6, 161, 23);
+}
+
+.datepicker-table td.is-selected{
+  background-color: rgb(6, 161, 23);
+}
+
+.timepicker-digital-display{
+  background-color:rgb(6, 161, 23);
+}
+
+.btn-flat{
+  color:rgb(6, 161, 23);
+}
+
+th, td{
+  text-align: center;
+  width: 20%;
+}

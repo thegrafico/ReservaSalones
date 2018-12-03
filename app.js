@@ -35,7 +35,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -48,7 +48,7 @@ app.use('/home', indexStud);
 app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
 app.use('/home/appointment', studAppHubPT1);
-app.use('/home/appointment/professor', studAppHubPT2);
+app.use('/home/appointment', studAppHubPT2);
 app.use('/profHome', indexProf);
 app.use('/profHome/Appointments', profAppointment);
 app.use('/admin', admin);
@@ -62,5 +62,3 @@ app.use('/admin', admin);
 app.listen(port, process.env.IP, function(){
 	console.log("Server Init on port " + port);
 });
-
-app.timeout = 120000;

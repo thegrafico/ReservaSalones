@@ -5,8 +5,6 @@ var router = express.Router();
 var authHelper = require('../helpers/auth');
 var db = require("../helpers/mysqlConnection").mysql_pool;
 
-
-
 /* GET home page. */
 router.get('/', async function(req, res) {
   var layName = './Student/indexStud';  //sets up the name of the layout to be displayed
@@ -24,9 +22,6 @@ router.get('/', async function(req, res) {
   //here we can see the admin!
   // console.log(req.cookies.admini[0]);
 
-
-
-
   if(userName){
     let query =`select roleID` +                                     //checks if the user role
                 ` from Users natural join UserRoles` +               //is on the database
@@ -34,11 +29,12 @@ router.get('/', async function(req, res) {
 
     db.getConnection(function(err, connection) {                     //connects to the database
 
-
-      if (err) throw error;                                          //checks for connection error
-
+      if (err) throw err;                                          //checks for connection error
 
       connection.query(query, function (error, results, fields) {    //does the database query
+
+        if (error) throw error;                                      //checks for error
+
         console.log(results);
         var dbRoleID = null;                                          //ini the database role to null
 
@@ -46,10 +42,7 @@ router.get('/', async function(req, res) {
         console.log(dbRoleID);
 
         if (results != "")                                           //checks if the result from the database is empty
-        dbRoleID = results[0].roleID;                                //iguala el roleID de la db a la variable de dbRoleID
-        //console.log(dbEmail);
-
-        if (error) throw error;                                      //checks for error
+          dbRoleID = results[0].roleID;                              //iguala el roleID de la db a la variable de dbRoleID
 
         console.log(dbRoleID);
         // if (dbRoleID == 'A') res.redirect('/admin');              //if the role is admin on the db, route to admin
@@ -58,7 +51,6 @@ router.get('/', async function(req, res) {
         if (dbRoleID == 'P') res.redirect('/profHome');              //if the role is a Professor on the db, route to profHome
 
         else{
-
           var emailCarrier = email.split("@");                                          //spliting the email into 2 string to get the email carrier
           // console.log(emailCarrier[1]);
 
@@ -85,14 +77,14 @@ router.get('/', async function(req, res) {
                   parms.debug = parms.signInUrl;
                 }
 
-            res.render(layName, parms);
+                res.render(layName, parms);
+              });
             });
-          });
-        }
-        else {
-          authHelper.clearCookies(res); //clears the user cookies
-          res.redirect('/');            // if the email is not from @INTERBAYAMON it redirects to login
-        }
+          }
+          else {
+            authHelper.clearCookies(res); //clears the user cookies
+            res.redirect('/');            // if the email is not from @INTERBAYAMON it redirects to login
+          }
         }
       });
     });

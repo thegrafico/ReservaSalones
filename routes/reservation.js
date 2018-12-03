@@ -2,10 +2,9 @@ var express = require('express'); //server
 var router = express.Router(); //router
 var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 
-
 /* GET users listing. */
 //shows the available bildings and hours available
-router.get('/', function(req, res, next) {
+router.get('/',  function(req, res, next) {
 
   var building = "Building";
   var layoutRender = 'reservation';//cambiamos esto para cambiar el view
@@ -21,39 +20,37 @@ router.get('/', function(req, res, next) {
   //if not, then it is undefined
   if(userName){
 
-    let query = `SELECT * FROM ${building} Natural Join Room`;
+    let query = `SELECT * FROM Rooms`;
+
     db.getConnection(function(err, connection) {
+
+      if(err) throw err;
+
       connection.query(query, function (error, results, fields) {
 
         //se encarga de darle la hora a cada salon
-        results.forEach(function(e){
+        // results.forEach(function(e){
           //le doy valores antes de enviarlo por parametro.
           //lo puse en comments porque causa un error al regresar un valor indefinido
           // console.log(e.roomID, getHour(e.hourAvailable));
           // e.hourAvailable =  getHour(e.hourAvailable);
           // console.log(e.roomID, e.hourAvailable);
-        });
+        // });
 
         //parameters that go to be sending
         parms.results = results;
         parms.user = userName;
+        // SHOW RESULTS
+        // results.forEach(function(e){
+        //   console.log("Result: ", e);
+        // })
 
         res.render('reservation', parms);
 
         //close the connection
-        if (error){
-          console.log(err);
-          res.sendStatus(500);
-          return;
-        }
-        connection.release();
+        if (error) throw error;
 
       });
-      if(err){
-        console.log(err);
-        res.sendStatus(500);
-        return;
-      }
     });
   }else{
     res.redirect('/');
@@ -90,11 +87,11 @@ router.post('/', function(req, res, next) {
       connection.query(query, function (error, results, fields) {
 
         //se encarga de darle la hora a cada salon
-        results.forEach(function(e){
-          //le doy valores antes de enviarlo por parametro.
-          e.hourAvailable =  getHour(e.hourAvailable);
-          // console.log(e.roomID, e.hourAvailable);
-        });
+        // results.forEach(function(e){
+        //   //le doy valores antes de enviarlo por parametro.
+        //   e.hourAvailable =  getHour(e.hourAvailable);
+        //   // console.log(e.roomID, e.hourAvailable);
+        // });
 
         parms.results = results;
         parms.user = userName;

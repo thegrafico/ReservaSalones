@@ -21,7 +21,7 @@ router.get('/', function (req, res) {	//requirements for the code
 		else{
 			res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
 		}
-		
+
 	});
 });
 
