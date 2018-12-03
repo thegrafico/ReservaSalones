@@ -175,7 +175,7 @@ router.post('/:id', function (req, res) {
             // var e;
             // for (int i = 0; i < time.length; i+2) {
             //   e = 1;
-            //   console.log(time[0][i] + ' ' + time[0][e+i]);
+            //   console.log(time[0][i] + ' ' + time[0][e+2]);
             // }
 
             // Query which inserts the appointment.
