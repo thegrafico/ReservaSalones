@@ -7,14 +7,14 @@ Code still can't handle two cases:
 //-----------------------------------
 var express = require('express')
 var router = express.Router()
-//to interact with the databea and make queries
+// Initial connection with database.
 var dataB = require("../helpers/mysqlConnection").mysql_pool;
 
-// define the home page route
-//basically page response as in the layout, buttons, all html stuff, etc
+// Define the home page route
+// Basically page response as in the layout, buttons, all html stuff, etc
 router.get('/:id', function (req, res) {
 
-  // ================= VARIABLES ==================
+  /* ================ VARIABLES ================ */
   var layName     = './Student/STUD_APP_HUB_PT2';       // Sets up the name of the layout to be
   var titleName   = 'Professor';  //sets up window
   const userName  = req.cookies.graph_user_name;        // Records user's Name.
@@ -23,14 +23,14 @@ router.get('/:id', function (req, res) {
   var parms       = {title: titleName};                 // Sets up the names of the variables used in hbs
 
 
-  //if a value exists in the username variable
+  // If a value exists in the username variable
   if(userName){
 
-    //object that will be sent to the hbs fie for the variables to be displayed
+    // Object that will be sent to the hbs fie for the variables to be displayed
     parms.user = userName;
 
-    //defines the query i want to make
-    let query = `SELECT name, email, start, end, Day
+    // Defines the query i want to make
+    let query = `SELECT name, email
                  FROM Users NATURAL JOIN ProfHours
                  WHERE email = '${profEmail}'`;
 
@@ -53,7 +53,7 @@ router.get('/:id', function (req, res) {
         // example using the results array
         // console.log(results[0]["profName"]);
 
-        // ==== Variables for frondEnd ====
+        /* ==== Variables for frondEnd ==== */
         parms.profName  = results[0]["name"];
         parms.profEmail = results[0]["email"];
         parms.layout    = layName;
@@ -61,7 +61,6 @@ router.get('/:id', function (req, res) {
         res.render(layName, parms);
       });
     });
-      //devines a variable in the object parms and defines it as the userName
   } else {
     res.redirect('/');
   }
@@ -72,28 +71,25 @@ router.get('/:id', function (req, res) {
 //POST REQUEST
 router.post('/:id', function (req, res) {
 
-  //===============VARIABLES====================
-  var titleName  = 'Professor';  //sets up window
-
+  /* ============= VARIABLES ================= */
   var layName     = './Student/STUD_APP_HUB_PT2';       // Sets up the name of the layout to be.
   var titleName   = 'Professor';                        // Sets up window.
   const userName  = req.cookies.graph_user_name;        // Records user's Name.
-  const userEmail = req.cookies.graph_user_email;       // Record user's Email.
-  var profEmail   = req.params.id;
-  var parms       = {title: titleName};                 // Sets u
+  const userEmail = req.cookies.graph_user_email;       // Records user's Email.
+  var profEmail   = req.params.id;                      // Records professor Email.
+  var parms       = {title: titleName};
 
   /* ======== VARAIBLES ======= */
 
-  var date;
-  var dateSearch;
-  var id;
-  var myID;
-  var profID;
-  var timeChoice;
-  var dateChoice;
-  var arr = [];
-  var time = [];
-
+  var date;                         // Stores datepicker where we retireve the day (Ex. Mon, Tue, Wed, etc.) This is used for the first query.
+  var dateSearch;                   // Stores datepicker value where we extract the day ^ for the query.
+  var id;                           // Stores the professor email chosen by student. Used to find the professor hours.
+  var myID;                         // Stores user's table "userID". This is the result of "query_1".
+  var profID;                       // Stores professor's table "userID". This is the result of "query_2". We also use this in the Insert query(query_3).
+  var timeChoice;                   // Stores user's choice of hours for appointment.
+  var dateChoice;                   // Stores datepicker value used for the Appointment request.
+  var arr = [];                     // Array used to store the day.
+  var time = [];                    // Array used to store the hours chosen by the user.
 
 
   if(req.body.button != undefined) {
@@ -115,7 +111,7 @@ router.post('/:id', function (req, res) {
 
     let day = arr[0][0].trim();
 
-    // //query for
+    // Query which returns all of the hours of a selected day.
     let query = `SELECT name, email, start, end, Day
                  FROM Users NATURAL JOIN ProfHours
                  WHERE email = '${profEmail}' AND day = '${day}'`;
@@ -148,10 +144,12 @@ router.post('/:id', function (req, res) {
       console.log(time[0]);
 
 
-
+      // Query which returns userID
       let query_1 = `SELECT userID
                      FROM Users
                      WHERE email = '${userEmail}'`;
+
+      // Query which returns profId (userID from Users Table)
       let query_2 = `SELECT userID
                       FROM Users
                       WHERE email = '${profEmail}'`;
@@ -171,8 +169,16 @@ router.post('/:id', function (req, res) {
             profID = results[0]['userID'];
             console.log(profID);
 
-            console.log("Values are: " + myID + " " + time[0][0] + " " + time[0][1] + " " + dateChoice + " " + profID);
+            console.log("Values are: " + myID + " " + time[0][2] + " " + time[0][3] + " " + dateChoice + " " + profID);
 
+            /*========== Trying to create the loop for multiple appointments ==========*/
+            // var e;
+            // for (int i = 0; i < time.length; i+2) {
+            //   e = 1;
+            //   console.log(time[0][i] + ' ' + time[0][e+i]);
+            // }
+
+            // Query which inserts the appointment.
             let query_3 = `INSERT INTO Appointment(userID, start, end, date, status, profID) VALUES('${myID}','${time[0][0]}','${time[0][1]}','${dateChoice}','Pending','${profID}');`;
 
             console.log(query_3);
