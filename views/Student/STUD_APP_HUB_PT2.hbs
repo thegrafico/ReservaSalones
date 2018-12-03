@@ -65,11 +65,9 @@
               <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
               <button class="waves-effect waves-light btn" type="submit" name="button" value="{{profEmail}}">Search for available Date</button>
             </div>
-          </form>
         </div>
 
         <div class="profHourBox z-depth-3">
-
             <table>
               <thead>
                 <tr>
@@ -79,13 +77,12 @@
                 </tr>
               </thead>
               <tbody>
-                <form class="" action="" method="post">
                   {{#each results}}
                   {{#if start}}
                     <tr>
                       <td>
                         <label>
-                          <input type="checkbox" class="check" /><span></span>
+                          <input name="hourChoice" type="checkbox" class="check" value="{{this.start}}, {{this.end}}" /><span></span>
                         </label>
                       </td>
                       <td>{{this.start}}</td>
@@ -97,13 +94,11 @@
               </table>
             </div>
           </div>
-
-
         </div>
         <!-- Row Ends Here -->
 
         <div class="row_two">
-          <button class="btn waves-effect waves-light z-depth-2" type="submit" name="action">
+          <button class="btn waves-effect waves-light z-depth-2" type="submit" name="btnSt" value="{{date}}">
             Submit
           </button>
         </div>

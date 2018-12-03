@@ -1,3 +1,10 @@
+//-----------------------------------
+/*
+Code still can't handle two cases:
+1. It crashes whenever the user tries to search for available without having entered any input
+2. It crashes whenever the user enters submit too many times without choosing anything
+*/
+//-----------------------------------
 var express = require('express')
 var router = express.Router()
 //to interact with the databea and make queries
@@ -7,12 +14,22 @@ var dataB = require("../helpers/mysqlConnection").mysql_pool;
 //basically page response as in the layout, buttons, all html stuff, etc
 router.get('/:id', function (req, res) {
 
+<<<<<<< HEAD
   //=======================VARIABLES================================
   var layName = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to be
   var titleName = 'Professor';  //sets up window
   const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
   var profEmail = req.params.id;
   var parms = {title: titleName};    //sets up the names of the variables used in hbs
+=======
+  // ================= VARIABLES ==================
+  var layName     = './Student/STUD_APP_HUB_PT2';       // Sets up the name of the layout to be
+  var titleName   = 'Professor';  //sets up window
+  const userName  = req.cookies.graph_user_name;        // Records user's Name.
+  const userEmail = req.cookies.graph_user_email;       // Record user's Email.
+  var profEmail   = req.params.id;
+  var parms       = {title: titleName};                 // Sets up the names of the variables used in hbs
+>>>>>>> db7cc10a7f6ccef2f565774fbda9116802e09f80
 
 
   //if a value exists in the username variable
@@ -67,17 +84,24 @@ router.post('/:id', function (req, res) {
   //===============VARIABLES====================
   var titleName  = 'Professor';  //sets up window
 
-  var layName    = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to be
-  var titleName  = 'Professor';  //sets up window
-  const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
-  var profEmail  = req.params.id;
-  var parms      = {title: titleName};    //sets u
+  var layName     = './Student/STUD_APP_HUB_PT2';       // Sets up the name of the layout to be.
+  var titleName   = 'Professor';                        // Sets up window.
+  const userName  = req.cookies.graph_user_name;        // Records user's Name.
+  const userEmail = req.cookies.graph_user_email;       // Record user's Email.
+  var profEmail   = req.params.id;
+  var parms       = {title: titleName};                 // Sets u
 
-  //===============VARAIBLES====================
+  /* ======== VARAIBLES ======= */
+
   var date;
   var dateSearch;
   var id;
+  var myID;
+  var profID;
+  var timeChoice;
+  var dateChoice;
   var arr = [];
+  var time = [];
 
   if(req.body.button != undefined) {
     dateSearch = req.body.button;
@@ -89,6 +113,8 @@ router.post('/:id', function (req, res) {
     //get date
     if(req.body.date != undefined) {
       date  = req.body.date;
+
+      parms.date = date;
 
       //fill up the array with date
       arr.push(date.split(","));
@@ -105,12 +131,7 @@ router.post('/:id', function (req, res) {
 
       if(err) throw err;
 
-      connection.query(query, function(error, results, fields){
-
-        //print data
-        results.forEach(function (e){
-          console.log(e);
-        });
+      connection.query(query, function(error, results, fields) {
 
         /*========= Variables for FrondEnd =========*/
 
@@ -123,8 +144,60 @@ router.post('/:id', function (req, res) {
         res.render(layName, parms);
       });
     });
-  } else {
-    console.log("It worked!");
+    } else {
+
+      dateChoice= req.body.btnSt;
+      console.log(dateChoice);
+      timeChoice = String(req.body.hourChoice);
+
+      console.log(timeChoice);
+      time.push(timeChoice.split(","));
+      console.log(time[0]);
+
+
+
+      let query_1 = `SELECT userID
+                     FROM Users
+                     WHERE email = '${userEmail}'`;
+      let query_2 = `SELECT userID
+                      FROM Users
+                      WHERE email = '${profEmail}'`;
+
+
+
+      dataB.getConnection(function(err, connection){
+        if(err) throw err;
+
+        connection.query(query_1, function(error, results, fields){
+
+          myID = results[0]['userID'];
+          console.log(myID);
+
+          connection.query(query_2, function(error, results, fields){
+
+            profID = results[0]['userID'];
+            console.log(profID);
+
+            console.log("Values are: " + myID + " " + time[0][0] + " " + time[0][1] + " " + dateChoice + " " + profID);
+
+            let query_3 = `INSERT INTO Appointment(userID, start, end, date, status, profID) VALUES('${myID}','${time[0][0]}','${time[0][1]}','${dateChoice}','Pending','${profID}');`;
+
+            console.log(query_3);
+
+            connection.query(query_3, function(error, results, fields){
+              console.log(results);
+
+              console.log("Values are: " + myID + " " + time[0][0] + " " + time[0][1] + " " + dateChoice + " " + profID);
+
+            });
+
+          });
+
+        });
+
+      });
+
+      res.redirect(`/home/appointment/${profEmail}`);
   }
 });
 
