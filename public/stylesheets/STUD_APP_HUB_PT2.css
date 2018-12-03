@@ -89,6 +89,22 @@ nav li a {
 }
 /* Professor Div Ends */
 
+.datepicker-table td.is-selected {
+  background-color: rgb(6, 161, 23);
+}
+
+.btn, .btn-large, .btn-small {
+  background-color: rgb(6, 161, 23);
+}
+
+[type="checkbox"]:checked+span:not(.lever):before {
+  border-right: 2px solid rgb(6, 161, 23);
+  border-bottom: 2px solid rgb(6, 161, 23);
+}
+
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color: #2bbbad;
+}
 
 .nav-wrapper {
   background: rgb(0,177,32);
