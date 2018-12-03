@@ -21,6 +21,7 @@ var indexProf					= require('./routes/indexProf');					// Professor Home, this p
 var profAppointment 	= require('./routes/profAppointment');		//
 var admin							= require('./routes/admin');							// Admin Home, this pages displays any room reservation.
 var roleCheck					= require('./routes/roleCheck');					// Checks for the role of the user and redirects them to the correct page
+
 /* === Routes End Here === */
 
 /* === Port === */
@@ -43,41 +44,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* === Flash Message === */
 app.use(flash());
 
-<<<<<<< HEAD
 app.use(require("express-session")({
 	secret: "2313516asdasdass5 is a cool guy",
 	resave: false,
 	saveUninitialized: false
 }));
 
-// this is a midleware tha run in every route. esto es para el admin
-// app.use(function(req, res, next){
-//   db.getConnection(function(err, connection) {
-//     if (err){
-//       console.log(err);
-//       res.sendStatus(500);
-//       return;
-//     }
-//     connection.query('SELECT * FROM  admin', function (error, results, fields) {
-//       if (error){
-//         console.log(err);
-//         res.sendStatus(500);
-//         return;
-//       }
-//       connection.release();
-//       res.locals.CurrentUser =  results;
-//       res.locals.error = req.flash("error"); //error mesage go red
-//       res.locals.success = req.flash("success"); //success message go green
-//       //move to the next function
-//       next();
-//     });
-//   });
-// });
-
-//AQUI ESTAN NUESTRAS RUTAS WEB, HASTA AHORA SOLO HAY 2 CREADAS
-=======
-/* === All of the Routes. === */
->>>>>>> Noahs_Branch
 app.use("/", loginRoute);
 app.use('/home', indexStud);
 app.use("/home/reservation", reservationRouter)
@@ -89,27 +61,14 @@ app.use('/profHome/Appointments', profAppointment);
 app.use('/admin', admin);
 app.use('/roleCheck', roleCheck);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Noahs_Branch
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));
 // });
 
-<<<<<<< HEAD
 
 // EXPORTAMOS TODAS LAS FUNCIONALIDADES PARA USARLA CUANDO INICIEMOS EL APP
 app.listen(3000, process.env.IP, function(){
 	console.log("Server is hosted in http://localhost:3000");
 });
 app.timeout = 120000;
-
-// module.exports = app;
-=======
-/* === Export all of the functionality. === */
-app.listen(port, process.env.IP, function(){
-	console.log("Server Init on port " + port);
-});
->>>>>>> Noahs_Branch

@@ -1,3 +1,6 @@
+// var express = require('express');
+// var dataB = require("../helpers/mysqlConnection").mysql_pool;
+
 // Date Picker Javascript Starts
 $(document).ready(function(){
   $('select').formSelect();
@@ -42,8 +45,8 @@ $(document).ready(function(){
 // This is for the checkbox
 console.log();
 
-$(document).ready(function(){
-    $('.check').click(function() {
-        $('.check').not(this).prop('checked', false);
-    });
-});
+// $(document).ready(function(){
+//     $('.check').click(function() {
+//         $('.check').not(this).prop('checked', false);
+//     });
+// });

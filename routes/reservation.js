@@ -5,13 +5,11 @@ var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 /* GET users listing. */
 //shows the available bildings and hours available
 router.get('/',  function(req, res, next) {
-
-<<<<<<< HEAD
     //cambiamos esto para cambiar el view
   var layoutRender = 'reservation'
 
   let parms = {layout: layoutRender, title: 'Reservation'};
-=======
+
   var building = "Building";
   var layoutRender = 'reservation';//cambiamos esto para cambiar el view
 
@@ -27,12 +25,8 @@ router.get('/',  function(req, res, next) {
   //if not, then it is undefined
   if(userName){
 
-<<<<<<< HEAD
-    let query = `SELECT * FROM Buildings Natural Join Room`;
-=======
     let query = `SELECT * FROM Rooms`;
 
->>>>>>> Noahs_Branch
     db.getConnection(function(err, connection) {
 
       if(err) throw err;
@@ -88,15 +82,9 @@ router.post('/', function(req, res, next) {
   console.log(req.body);
 
   if(stringRequest == "" || stringRequest == undefined){
-<<<<<<< HEAD
     query = `SELECT * FROM Buildings Natural Join Room`;
   }else{
     query = `SELECT * FROM Buildings NATURAL JOIN Room WHERE ${stringRequest}`;
-=======
-    query = `SELECT * FROM ${building} Natural Join Room`;
-  }else{
-    query = `SELECT * FROM ${building} NATURAL JOIN Room WHERE ${stringRequest}`;
->>>>>>> Noahs_Branch
   }
 
   if(userName){
