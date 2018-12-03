@@ -91,7 +91,7 @@ router.post('/:id', function (req, res) {
   var arr = [];                     // Array used to store the day.
   var time = [];                    // Array used to store the hours chosen by the user.
 
-
+//gets value of first button
   if(req.body.button != undefined) {
     dateSearch = req.body.button;
   }
@@ -136,12 +136,12 @@ router.post('/:id', function (req, res) {
     } else {
 
       dateChoice= req.body.btnSt;
-      console.log(dateChoice);
+      //console.log(dateChoice);
       timeChoice = String(req.body.hourChoice);
 
-      console.log(timeChoice);
+      //console.log(timeChoice);
       time.push(timeChoice.split(","));
-      console.log(time[0]);
+      //console.log(time[0]);
 
 
       // Query which returns userID
@@ -160,42 +160,37 @@ router.post('/:id', function (req, res) {
         if(err) throw err;
 
         connection.query(query_1, function(error, results, fields){
-
           myID = results[0]['userID'];
-          console.log(myID);
 
           connection.query(query_2, function(error, results, fields){
 
             profID = results[0]['userID'];
-            console.log(profID);
 
-            console.log("Values are: " + myID + " " + time[0][2] + " " + time[0][3] + " " + dateChoice + " " + profID);
+            //console.log("Values1 are: " + myID + " " + time[0][1] + " " + time[0][2] + " " + dateChoice + " " + profID);
 
             /*========== Trying to create the loop for multiple appointments ==========*/
-            // var e;
-            // for (int i = 0; i < time.length; i+2) {
-            //   e = 1;
-            //   console.log(time[0][i] + ' ' + time[0][e+2]);
-            // }
+            //Adds new appointments to the Database
+            for (var i = 0; i < time[0].length; i += 2) {
+              //console.log(i);
+              //console.log(time[0][i] + ' && ' + time[0][i+1]);
 
-            // Query which inserts the appointment.
-            let query_3 = `INSERT INTO Appointment(userID, start, end, date, status, profID) VALUES('${myID}','${time[0][0]}','${time[0][1]}','${dateChoice}','Pending','${profID}');`;
+              // Query which inserts the appointment.
+              let query_3 = `INSERT INTO Appointment(userID, start, end, date, status, profID) VALUES('${myID}','${time[0][i]}','${time[0][i+1]}','${dateChoice}','Pending','${profID}');`;
 
-            console.log(query_3);
+              connection.query(query_3, function(error, results, fields){
+                //console.log(results);
 
-            connection.query(query_3, function(error, results, fields){
-              console.log(results);
+                //console.log("Values2 are: " + myID + " " + time[0][0] + " " + time[0][1] + " " + dateChoice + " " + profID);
 
-              console.log("Values are: " + myID + " " + time[0][0] + " " + time[0][1] + " " + dateChoice + " " + profID);
+              });
+            }
 
-            });
+
 
           });
 
         });
-
       });
-
       res.redirect(`/home/appointment/${profEmail}`);
   }
 });

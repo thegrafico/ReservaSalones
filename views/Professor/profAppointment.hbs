@@ -33,23 +33,24 @@
 
      <div class="col s3">
        <div class="req_box z-depth-3">
-         {{#if Name}}
-         <div class="button">
+         <!-- {{#if Name}} -->
            <p>{{Name}}</p>
              <a class="waves-effect waves-light btn-small btnG">Decline</a>
        </div>
        <div class="button2">
              <a class="waves-effect waves-light btn-small btnR">Accept</a>
        </div>
-       {{/if}}
+       <!-- {{/if}} -->
        </div>
      </div>
 
      <div class="col s9">
 
        <!--=============== Date picker Start ===============-->
-       <div class="dateBox ">
-        <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+       <div>
+         <form  action="/profHome/Appointments" method="POST">
+             <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+             <button class="waves-effect waves-light btn" type = "submit" name = "button" value = "True">Cancel</button>
        </div>
        <!--=============== Date picker Start ===============-->
 
@@ -61,22 +62,30 @@
                          <th>Student Name</th>
                          <th>E-mail</th>
                          <th>Hour</th>
+                         <th>Cancel</th>
                      </tr>
                    </thead>
                    <tbody>
-
+                     <!-- {{#if name}} -->
                      <tr>
                        <td>
-                         {{Name}}
+                         name
+                         <!-- {{Name}} -->
                        </td>
                        <td>
-                         {{E-mail}}
+                         email
+                         <!-- {{E-mail}} -->
                        </td>
                        <td>
-                         {{Hour}}
+                         hour
+                         <!-- {{Hour}} -->
+                       </td>
+                       <td>
+                         <a class="waves-effect waves-light btn">Cancel</a>
+
                        </td>
                      </tr>
-
+                     <!-- {{/if}} -->
                    </tbody>
                  </table>
 

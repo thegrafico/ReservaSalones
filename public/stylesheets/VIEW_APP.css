@@ -13,7 +13,7 @@
   overflow-y: scroll;
   height: 590px;
   background-color: rgba(0, 0, 0, 0.1);
-  /* border: 2px black solid; // Como le gusta a Eliud, Francisco y Carlos */
+  /* border: 2px black solid; */
 
 }
 
@@ -38,6 +38,10 @@ padding-left: 0px
   background-color: rgb(6, 161, 23);
   float:right;
 }
+
+/* .btn{
+background-color: red;
+} */
 .datepicker-date-display {
   background-color: rgb(6, 161, 23);
 }
