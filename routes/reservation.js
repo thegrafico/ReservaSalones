@@ -3,51 +3,65 @@ var router = express.Router(); //router
 var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+//shows the available bildings and hours available
+router.get('/',  function(req, res, next) {
 
+<<<<<<< HEAD
     //cambiamos esto para cambiar el view
   var layoutRender = 'reservation'
 
   let parms = {layout: layoutRender, title: 'Reservation'};
+=======
+  var building = "Building";
+  var layoutRender = 'reservation';//cambiamos esto para cambiar el view
+
+  let parms = {layout: layoutRender, title: 'Reservation'};
+  //graba el username e email de los cookies que se grabaron en auth
+>>>>>>> Noahs_Branch
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
 
   // console.log("USER:", res);
 
-  //if there are username
+  //if there are username then enter,
+  //if not, then it is undefined
   if(userName){
 
+<<<<<<< HEAD
     let query = `SELECT * FROM Buildings Natural Join Room`;
+=======
+    let query = `SELECT * FROM Rooms`;
+
+>>>>>>> Noahs_Branch
     db.getConnection(function(err, connection) {
+
+      if(err) throw err;
+
       connection.query(query, function (error, results, fields) {
 
         //se encarga de darle la hora a cada salon
-        results.forEach(function(e){
+        // results.forEach(function(e){
           //le doy valores antes de enviarlo por parametro.
-          e.hourAvailable =  getHour(e.hourAvailable);
+          //lo puse en comments porque causa un error al regresar un valor indefinido
+          // console.log(e.roomID, getHour(e.hourAvailable));
+          // e.hourAvailable =  getHour(e.hourAvailable);
           // console.log(e.roomID, e.hourAvailable);
-        });
+        // });
 
         //parameters that go to be sending
         parms.results = results;
         parms.user = userName;
+        // SHOW RESULTS
+        // results.forEach(function(e){
+        //   console.log("Result: ", e);
+        // })
 
         res.render(layoutRender, parms);
 
         //close the connection
-        if (error){
-          console.log(err);
-          res.sendStatus(500);
-          return;
-        }
-        connection.release();
+        if (error) throw error;
 
       });
-      if(err){
-        console.log(err);
-        res.sendStatus(500);
-        return;
-      }
     });
   }else{
     res.redirect('/');
@@ -74,9 +88,15 @@ router.post('/', function(req, res, next) {
   console.log(req.body);
 
   if(stringRequest == "" || stringRequest == undefined){
+<<<<<<< HEAD
     query = `SELECT * FROM Buildings Natural Join Room`;
   }else{
     query = `SELECT * FROM Buildings NATURAL JOIN Room WHERE ${stringRequest}`;
+=======
+    query = `SELECT * FROM ${building} Natural Join Room`;
+  }else{
+    query = `SELECT * FROM ${building} NATURAL JOIN Room WHERE ${stringRequest}`;
+>>>>>>> Noahs_Branch
   }
 
   if(userName){
@@ -84,18 +104,18 @@ router.post('/', function(req, res, next) {
       connection.query(query, function (error, results, fields) {
 
         //se encarga de darle la hora a cada salon
-        results.forEach(function(e){
-          //le doy valores antes de enviarlo por parametro.
-          e.hourAvailable =  getHour(e.hourAvailable);
-          // console.log(e.roomID, e.hourAvailable);
-        });
+        // results.forEach(function(e){
+        //   //le doy valores antes de enviarlo por parametro.
+        //   e.hourAvailable =  getHour(e.hourAvailable);
+        //   // console.log(e.roomID, e.hourAvailable);
+        // });
 
         parms.results = results;
         parms.user = userName;
 
 
         stringRequest = undefined;
-        res.render('reservation', parms);
+        res.render(layoutRender, parms);
 
         //close the connection
         if (error){

@@ -1,80 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
 
-  <!--===============================================================================================-->
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/css/main.css">
-  <!--===============================================================================================-->
+    <!-- Materialize Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
 
-  <link rel="shortcut icon" type="image/png" href="/imgs/interb.jpg">
-  <link href="https://fonts.googleapis.com/css?family=Krub:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/reservation.css">
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <link rel="stylesheet" href="/stylesheets/index.css">
-
-  <title>{{title}}</title>
-</head>
-<body>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="/home" class="brand-logo">{{user}}</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        {{#if user}}
+    <title>Reservation</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
           <li><a href="/home">Home</a></li>
-          <li><a href="/authorize/signout">Sing Out</a></li>
-        {{/if}}
-      </ul>
+          <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+<div class="row">
+    <div class="col s2">
+    <div class="dropdown">
+      <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Department</a> -->
+
+      <select>
+            <option value="" disabled selected>Select Department</option>
+            <option value="1">Comp. Elec. Eng. Dpt</option>
+            <option value="2">Mech. Eng. Dpt.</option>
+            <option value="3">Ind. Eng. Dpt</option>
+            <option value="4">Inf. Dpt.</option>
+      </select>
+          <label>Materialize Select</label>
+      <!-- <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="#!">Comp. Elec. Eng. Dpt</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a href="#!">Mech. Eng. Dpt.</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a href="#!">Ind. Eng. Dpt</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a href="#!">Inf. Dpt.</a></li>
+      </ul> -->
+
     </div>
-  </nav>
-
-  <div class="flashContainer">
-      {{#if error }}
-          <div class="alert-danger" role="alert">
-              {{error}}
-          </div>
-      {{/if}}
-      {{#if success}}
-          <div class="alert-success" role="alert">
-              {{ success}}
-          </div>
-      {{/if}}
   </div>
-
-  <!-- Form FOR SEARCH FOR BUILDING -->
-  <div class="input-field col s12">
-    <form id="formBox" action="/home/reservation" method="POST">
-
-      <div id="selectBox">
-        <select id="ediOption" multiple name="buildingOption">
-          <option name= "edifAll" value="" disabled hidden>Select Building!</option>
-          <option name= "edifG"   value="G">Edif G</option>
-          <option name= "edifF"   value="F">Edif F</option>
-          <option name= "edifC"   value="C">Edif C</option>
-        </select>
-      </div>
-
-      <div class="dateBox">
-        <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
-      </div>
-      <button type="submit" class="btn waves-effect waves-light sub" name="button">Submit</button>
-    </form>
-  </div>
+<<<<<<< HEAD
   <!-- FORM FOR MAKE RESERVATION -->
   <form id="formReservation" action="/home/reservation/" onsubmit="reservationbtn()" method="POST">
 
@@ -128,18 +107,68 @@
     		</div>
 
       </div>
+=======
+  <div class="col s2">
+    <div class="Date">
+      <input type="text" class="datepicker" placeholder="mm/dd/yyyy">
+>>>>>>> Noahs_Branch
     </div>
+  </div>
+  <div class="col s2">
+  <div class="submit">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+     <i class="material-icons right">Next</i>
+   </button>
+  </div>
+</div>
+</div>
 
-    <button type="submit" id="MakeReservation" class="btn waves-effect waves-light sub sub2" name="button">
-      Make Reservation!
-    </button>
+  <div class="Reservation">
+    <table>
+     <thead>
+       <tr>
+         <th>Room</th>
+         <th>Not Available</th>
+         <th>Start Hour</th>
+         <th>End Hour</th>
+         <th>Reserve?</th>
+       </tr>
+     </thead>
+     <tbody>
+      {{#each results}}
+       <tr>
+         <td >{{this.roomID}}</td>
+         <td>
+           <ul class="collapsible">
+             <li>
+               <div class="collapsible-header"><i class="material-icons"></i>Classes</div>
+               <div class="collapsible-body"><span>De 9:00am a 11:20am</span></div>
+             </li>
+           </ul>
+         </td>
+         <td>
+            <input type="text" class="timepicker">
+           <!-- {{IniHour}} -->
+         </td>
+         <td>
+           <input type="text" class="timepicker">
+           <!-- {{EndHour}} -->
+          </td>
+         <td>
+            <label class="Check">
+             <input type="checkbox" />
+              <span></span>
+            </label>
+          </td>
+       </tr>
+       {{/each}}
+    </tbody>
+  </table>
+</div>
 
-  </form>
-  <!--===============================================================================================-->
-<!--===============================================================================================-->
-	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-  <script src="/javascripts/mainJS.js"></script>
-<!--===============================================================================================-->
+    <!-- === Javascript === -->
+    <script type="text/javascript" src="/behavior/Reservation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-</body>
+  </body>
 </html>

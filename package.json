@@ -19,17 +19,25 @@
     "morgan": "~1.9.0",
     "mysql": "^2.16.0",
     "node": "^10.13.0",
-    "nodemon": "^1.18.5",
+    "nodemon": "^1.18.7",
     "simple-oauth2": "^2.2.1"
   },
+<<<<<<< HEAD
   "description": "Web application to make reservation & appointments with professors",
+=======
+  "description": "Este repositorio es para la clase de Base de datos. Como ya saben, el proyecto se encarga de reservar salones para estudiantes con el email de office 365.",
+>>>>>>> Noahs_Branch
   "main": "app.js",
   "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thegrafico/ReservaSalones.git"
   },
+<<<<<<< HEAD
   "author": "Raul, Noah, Carlos, Kemuel, Francisco, Eliud",
+=======
+  "author": "",
+>>>>>>> Noahs_Branch
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thegrafico/ReservaSalones/issues"

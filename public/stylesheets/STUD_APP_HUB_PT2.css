@@ -1,0 +1,110 @@
+/* ============ TASK ============ */
+/*== 1. Fix profContact class   ==*/
+/*== 2. Create Inter Background ==*/
+/*== 3. Make page responsive    ==*/
+/*== 4.  ==*/
+/*== 5.  ==*/
+/*== 6.  ==*/
+/*== 7.  ==*/
+/*== 8.  ==*/
+/*== 9.  ==*/
+/*================================*/
+
+
+
+/* Professor Div Starts */
+.row {
+  margin-top: 30px;
+}
+
+.profUser {
+    height: 650px;
+    padding: 10px 5px 5px 5px;
+    margin-top: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.datepicker-date-display {
+  background-color: rgb(6, 161, 23);
+}
+
+.is-today {
+  color: rgb(6, 161, 23)
+}
+
+.btn-flat {
+  color: rgb(6, 161, 23);
+}
+
+.brand-logo {
+  margin-left: 10px;
+}
+
+nav li a {
+  font-size: 1.5em;
+}
+
+.profContact {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+.profHourBox {
+    height: 590px;
+    padding: 0px 5px 5px 5px;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+}
+
+.Icon {
+  margin: 10px 0px 0px 0px;
+  padding-top: 18%;
+  height: 300px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url(https://yt3.ggpht.com/a-/AN66SAw6n5ThiDDTRs-mZiVjY_aXfQUjP0thuVXENQ=s900-mo-c-c0xffffffff-rj-k-no);
+  background-size: cover;
+  /* background-color: rgb(6, 161, 23); */
+  border-radius: 50%;
+}
+
+.profInfo {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 40px;
+}
+
+#profName {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#Initial {
+  margin: 0px 0px 0px 0px;
+  height: 250px;
+  text-align: center;
+  font-size: 80px;
+}
+/* Professor Div Ends */
+
+
+.nav-wrapper {
+  background: rgb(0,177,32);
+  background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
+}
+
+.btn {
+  float: right;
+  background-color: rgb(6, 161, 23);
+}
+
+.row_two {
+  margin-right: 10px;
+}
+
+.dateBoxWithBnt{
+  width: 100%;
+  display: flex;
+}

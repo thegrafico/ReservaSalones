@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="
+" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Materialize Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/STUD_APP_HUB_PT1.css">
+
+    <title></title>
+  </head>
+  <body>
+
+    <!-- NavBar Starts Here -->
+    <nav>
+      <div class="nav-wrapper z-depth-2">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+            <li><a href="/home">Home</a></li>
+            <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+    <!-- NavBar Ends -->
+
+    <!-- First Row Begins -->
+    <div class="row">
+      <!-- First Box Start-->
+      {{#each results}}
+        <div id="box" class="col s3 z-depth-3">
+          <div id="uno"> </div>
+          <div class="profInfo">
+            <a href="/home/appointment/{{this.email}}" id="ini">{{this.email}}</a>
+            <!-- <p id="ini">{{this.userID}}</p> -->
+            <p id="ini">Faculty Member</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT1_Beha.js"></script>
+
+  </body>
+</html>
