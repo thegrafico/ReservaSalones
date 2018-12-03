@@ -75,46 +75,59 @@ router.post('/:id', function (req, res) {
 
   //===============VARAIBLES====================
   var date;
+  var dateSearch;
   var id;
   var arr = [];
 
-  //get date
-  if(req.body.date != undefined)
-    date  = req.body.date;
 
-  //fill up the array with date
-  arr.push(date.split(","));
+
+  if(req.body.button != undefined) {
+    dateSearch = req.body.button;
+  }
 
   //just get the day
-  let day = arr[0][0].trim();
+  if (dateSearch != undefined) {
 
-  // //query for
-  let query = `SELECT name, email, start, end, Day
-               FROM Users NATURAL JOIN ProfHours
-               WHERE email = '${profEmail}' AND day = '${day}'`;
+    //get date
+    if(req.body.date != undefined) {
+      date  = req.body.date;
 
-  dataB.getConnection(function(err, connection){
+      //fill up the array with date
+      arr.push(date.split(","));
+    }
 
-    if(err) throw err;
+    let day = arr[0][0].trim();
+    
+    // //query for
+    let query = `SELECT name, email, start, end, Day
+                 FROM Users NATURAL JOIN ProfHours
+                 WHERE email = '${profEmail}' AND day = '${day}'`;
 
-    connection.query(query, function(error, results, fields){
+    dataB.getConnection(function(err, connection){
 
-      //print data
-      results.forEach(function (e){
-        console.log(e);
+      if(err) throw err;
+
+      connection.query(query, function(error, results, fields){
+
+        //print data
+        results.forEach(function (e){
+          console.log(e);
+        });
+
+        /*========= Variables for FrondEnd =========*/
+
+        parms.results   = results;
+        parms.user      = userName;
+        parms.profName  = results[0]["name"];
+        parms.profEmail = results[0]["email"];
+        parms.layout    = layName;
+
+        res.render(layName, parms);
       });
-
-      /*========= Variables for FrondEnd =========*/
-
-      parms.results   = results;
-      parms.user      = userName;
-      parms.profName  = results[0]["name"];
-      parms.profEmail = results[0]["email"];
-      parms.layout    = layName;
-
-      res.render(layName, parms);
     });
-  });
+  } else {
+    console.log("It worked!");
+  }
 });
 
 
