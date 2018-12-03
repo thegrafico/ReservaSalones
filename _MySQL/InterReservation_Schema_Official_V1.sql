@@ -109,49 +109,153 @@ insert into Rooms values('G247B', 25, '1');
 /* === Entering data to ProfHours === */
 /* = Available Hours = */
 
-insert into ProfHours (userID, start, end, day, description) values(2, '11:00:00', '12:00:00', 'Tue', 'Normal Hours'),             /*Wilson*/
-                                                                   (2, '13:00:00', '15:00:00', 'Tue', 'Normal Hours'),             /*Wilson*/
+insert into ProfHours (userID, start, end, day, description) values(2, null, null, 'Mon', 'Normal Hours'),
+                                                                   (2, null, null, 'Wed', 'Normal Hours'),
+                                                                   (2, null, null, 'Fri', 'Normal Hours'),
+                                                                   (2, '11:00:00', '11:30:00', 'Tue', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '11:30:00', '12:00:00', 'Tue', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '13:00:00', '13:30:00', 'Tue', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '13:30:00', '14:00:00', 'Tue', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '14:00:00', '14:30:00', 'Tue', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '14:30:00', '15:00:00', 'Tue', 'Normal Hours'),             /*Wilson*/
                                                                    (2, '11:00:00', '12:00:00', 'Thu', 'Normal Hours'),             /*Wilson*/
-                                                                   (2, '1:00:00', '15:00:00', 'Thu', 'Normal Hours');             /*Wilson*/
-insert into ProfHours (userID, start, end, day, description) values(3, '10:00:00', '12:00:00', 'Mon', 'Normal Hours'),             /*Omar Meza*/
-                                                                   (3, '10:00:00', '12:00:00', 'Wed', 'Normal Hours');             /*Omar Meza*/
-insert into ProfHours (userID, start, end, day, description) values(4, '10:00:00', '13:00:00', 'Tue', 'Normal Hours'),             /*Heriberto*/
-                                                                   (4, '11:00:00', '14:00:00', 'Wed', 'Normal Hours');             /*Heriberto*/
-insert into ProfHours (userID, start, end, day, description) values(5, '14:00:00', '15:00:00', 'Mon', 'Normal Hours');             /*Muniz*/
-insert into ProfHours (userID, start, end, day, description) values(5, '10:00:00', '11:30:00', 'Tue', 'Normal Hours'),          /*Muniz*/
-                                                                   (6, '10:00:00', '11:30:00', 'Thu', 'Normal Hours');          /*Otoniel Diaz*/
-insert into ProfHours (userID, start, end, day, description) values(7, '10:00:00', '11:00:00', 'Wed', 'Normal Hours');             /*Francisco Parra*/
-insert into ProfHours (userID, start, end, day, description) values(8, '13:50:00', '14:50:00', 'Mon', 'Normal Hours'),       /* Ruben Flores*/
-                                                                   (8, '13:50:00', '14:50:00', 'Tue', 'Normal Hours'),       /* Ruben Flores*/
-                                                                   (8, '10:30:00', '11:30:00', 'Tue', 'Normal Hours'),       /* Ruben Flores*/
-                                                                   (8, '10:30:00', '11:30:00', 'Wed', 'Normal Hours'),       /* Ruben Flores*/
-                                                                   (8, '10:30:00', '11:30:00', 'Thu', 'Normal Hours');       /* Ruben Flores*/
-insert into ProfHours (userID, start, end, day, description) values(9, '9:00:00', '10:30:00', 'Tue', 'Normal Hours'),           /*Amilcar*/
-                                                                   (9, '9:00:00', '10:30:00', 'Thu', 'Normal Hours');           /*Amilcar*/
-insert into ProfHours (userID, start, end, day, description) values(10, '8:00:00', '10:30:00', 'Mon', 'Normal Hours'),          /*Caroline*/
-                                                                   (10, '8:00:00', '8:30:00',  'Tue', 'Normal Hours'),          /*Caroline*/
-                                                                   (10, '13:50:00','14:50:00','Tue', 'Normal Hours'),        /*Caroline*/
-                                                                   (10, '8:00:00', '8:30:00',  'Wed', 'Normal Hours'),          /*Caroline*/
-                                                                   (10, '13:50:00','14:50:00','Wed', 'Normal Hours'),        /*Caroline*/
-                                                                   (10, '8:00:00', '8:30:00', 'Thu', 'Normal Hours');           /*Caroline*/
-insert into ProfHours (userID, start, end, day, description) values(11, '9:00:00', '10:00:00', 'Mon', 'Normal Hours'),             /*Rafael Salgado*/
-                                                                   (11, '9:00:00', '10:00:00', 'Wed', 'Normal Hours'),             /*Rafael Salgado*/
-                                                                   (11, '16:00:00', '17:00:00', 'Mon', 'Normal Hours'),            /*Rafael Salgado*/
-                                                                   (11, '16:00:00', '17:00:00', 'Wed', 'Normal Hours'),            /*Rafael Salgado*/
-                                                                   (11, '10:00:00', '11:00:00', 'Fri', 'Normal Hours');            /*Rafael Salgado*/
-insert into ProfHours (userID, start, end, day, description) values(12,'9:00:00', '10:00:00', 'Mon', 'Normal Hours'),              /*Eduardo Lay*/
-                                                                   (12, '13:00:00', '14:00:00', 'Tue', 'Normal Hours'),            /*Eduardo Lay*/
-                                                                   (12, '11:30:00', '12:30:00', 'Wed', 'Normal Hours'),      /*Eduardo Lay*/
+                                                                   (2, '11:00:00', '11:30:00', 'Thu', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '11:30:00', '12:00:00', 'Thu', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '13:00:00', '15:00:00', 'Thu', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '13:00:00', '13:30:00', 'Thu', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '13:30:00', '14:00:00', 'Thu', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '14:00:00', '14:30:00', 'Thu', 'Normal Hours'),             /*Wilson*/
+                                                                   (2, '14:30:00', '15:00:00', 'Thu', 'Normal Hours');             /*Wilson*/
+
+
+insert into ProfHours (userID, start, end, day, description) values(3, null, null, 'Tue', 'Normal Hours'),
+                                                                   (3, null, null, 'Thu', 'Normal Hours'),
+                                                                   (3, null, null, 'Fri', 'Normal Hours'),
+                                                                   (3, '10:00:00', '10:30:00', 'Mon', 'Normal Hours'),             /*Omar Meza*/
+                                                                   (3, '10:30:00', '11:00:00', 'Mon', 'Normal Hours'),             /*Omar Meza*/
+                                                                   (3, '11:00:00', '11:30:00', 'Mon', 'Normal Hours'),             /*Omar Meza*/
+                                                                   (3, '11:30:00', '12:00:00', 'Mon', 'Normal Hours'),             /*Omar Meza*/
+                                                                   (3, '10:00:00', '10:30:00', 'Wed', 'Normal Hours'),             /*Omar Meza*/
+                                                                   (3, '10:30:00', '11:00:00', 'Wed', 'Normal Hours'),             /*Omar Meza*/
+                                                                   (3, '11:00:00', '11:30:00', 'Wed', 'Normal Hours'),             /*Omar Meza*/
+                                                                   (3, '11:30:00', '12:00:00', 'Wed', 'Normal Hours');             /*Omar Meza*/
+
+insert into ProfHours (userID, start, end, day, description) values(4, null, null, 'Mon', 'Normal Hours'),
+                                                                   (4, null, null, 'Tue', 'Normal Hours'),
+                                                                   (4, null, null, 'Fri', 'Normal Hours'),
+                                                                   (4, '10:00:00', '10:30:00', 'Tue', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '10:30:00', '11:00:00', 'Tue', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '11:00:00', '11:30:00', 'Tue', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '11:30:00', '12:00:00', 'Tue', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '12:00:00', '12:30:00', 'Tue', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '12:30:00', '13:00:00', 'Tue', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '11:00:00', '11:30:00', 'Wed', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '11:30:00', '12:00:00', 'Wed', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '12:00:00', '12:30:00', 'Wed', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '12:30:00', '13:00:00', 'Wed', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '13:00:00', '13:30:00', 'Wed', 'Normal Hours'),             /*Heriberto*/
+                                                                   (4, '13:30:00', '14:00:00', 'Wed', 'Normal Hours');             /*Heriberto*/
+
+insert into ProfHours (userID, start, end, day, description) values(5, null, null, 'Wed', 'Normal Hours'),
+                                                                   (5, null, null, 'Fri', 'Normal Hours'),
+                                                                   (5, null, null, 'Thu', 'Normal Hours'),
+                                                                   (5, '14:00:00', '14:30:00', 'Mon', 'Normal Hours'),             /*Muniz*/
+                                                                   (5, '14:30:00', '15:00:00', 'Mon', 'Normal Hours'),             /*Muniz*/
+                                                                   (5, '10:00:00', '10:30:00', 'Tue', 'Normal Hours'),             /*Muniz*/
+                                                                   (5, '10:30:00', '11:00:00', 'Tue', 'Normal Hours'),             /*Muniz*/
+                                                                   (5, '11:00:00', '11:30:00', 'Tue', 'Normal Hours');             /*Muniz*/
+
+insert into ProfHours (userID, start, end, day, description) values(6, null, null, 'Mon', 'Normal Hours'),
+                                                                   (6, null, null, 'Tue', 'Normal Hours'),
+                                                                   (6, null, null, 'Wed', 'Normal Hours'),
+                                                                   (6, null, null, 'Fri', 'Normal Hours'),
+                                                                   (6, '10:00:00', '10:30:00', 'Thu', 'Normal Hours'),             /*Otoniel Diaz*/
+                                                                   (6, '10:30:00', '11:00:00', 'Thu', 'Normal Hours'),             /*Otoniel Diaz*/
+                                                                   (6, '11:00:00', '11:30:00', 'Thu', 'Normal Hours');             /*Otoniel Diaz*/
+
+insert into ProfHours (userID, start, end, day, description) values(7, null, null, 'Mon', 'Normal Hours'),
+                                                                   (7, null, null, 'Tue', 'Normal Hours'),
+                                                                   (7, null, null, 'Thu', 'Normal Hours'),
+                                                                   (7, null, null, 'Fri', 'Normal Hours'),
+                                                                   (7, '10:00:00', '10:30:00', 'Wed', 'Normal Hours'),             /*Francisco Parra*/
+                                                                   (7, '10:30:00', '11:00:00', 'Wed', 'Normal Hours');
+
+insert into ProfHours (userID, start, end, day, description) values(8, null, null, 'Fri', 'Normal Hours'),
+                                                                   (8, '13:50:00', '14:20:00', 'Mon', 'Normal Hours'),             /* Ruben Flores*/
+                                                                   (8, '14:20:00', '14:50:00', 'Mon', 'Normal Hours'),
+                                                                   (8, '13:50:00', '14:20:00', 'Tue', 'Normal Hours'),             /* Ruben Flores*/
+                                                                   (8, '14:20:00', '14:50:00', 'Tue', 'Normal Hours'),
+                                                                   (8, '10:30:00', '11:00:00', 'Tue', 'Normal Hours'),             /* Ruben Flores*/
+                                                                   (8, '11:00:00', '11:30:00', 'Tue', 'Normal Hours'),
+                                                                   (8, '10:30:00', '11:00:00', 'Wed', 'Normal Hours'),             /* Ruben Flores*/
+                                                                   (8, '11:00:00', '11:30:00', 'Wed', 'Normal Hours'),
+                                                                   (8, '10:30:00', '11:00:00', 'Thu', 'Normal Hours'),
+                                                                   (8, '11:00:00', '11:30:00', 'Thu', 'Normal Hours');             /* Ruben Flores*/
+
+insert into ProfHours (userID, start, end, day, description) values(9, null, null, 'Mon', 'Normal Hours'),
+                                                                   (9, null, null, 'Wed', 'Normal Hours'),
+                                                                   (9, null, null, 'Fri', 'Normal Hours'),
+                                                                   (9, '9:00:00', '9:30:00', 'Tue', 'Normal Hours'),                /*Amilcar*/
+                                                                   (9, '10:00:00', '10:30:00', 'Tue', 'Normal Hours'),              /*Amilcar*/
+                                                                   (9, '9:00:00', '9:30:00', 'Thu', 'Normal Hours'),                /*Amilcar*/
+                                                                   (9, '10:00:00', '10:30:00', 'Thu', 'Normal Hours');              /*Amilcar*/
+
+insert into ProfHours (userID, start, end, day, description) values(10, null, null, 'Fri', 'Normal Hours'),
+                                                                   (10, '8:00:00', '8:30:00', 'Mon', 'Normal Hours'),              /*Caroline*/
+                                                                   (10, '9:00:00', '9:30:00', 'Mon', 'Normal Hours'),              /*Caroline*/
+                                                                   (10, '10:00:00', '10:30:00', 'Mon', 'Normal Hours'),            /*Caroline*/
+                                                                   (10, '8:00:00', '8:30:00',  'Tue', 'Normal Hours'),             /*Caroline*/
+                                                                   (10, '13:50:00','14:20:00','Tue', 'Normal Hours'),              /*Caroline*/
+                                                                   (10, '14:20:00','14:50:00','Tue', 'Normal Hours'),              /*Caroline*/
+                                                                   (10, '8:00:00', '8:30:00',  'Wed', 'Normal Hours'),             /*Caroline*/
+                                                                   (10, '13:50:00','14:20:00','Wed', 'Normal Hours'),              /*Caroline*/
+                                                                   (10, '14:20:00','14:50:00','Wed', 'Normal Hours'),              /*Caroline*/
+                                                                   (10, '8:00:00', '8:30:00', 'Thu', 'Normal Hours');              /*Caroline*/
+
+
+insert into ProfHours (userID, start, end, day, description) values(11, null, null, 'Tue', 'Normal Hours'),
+                                                                   (11, null, null, 'Thu', 'Normal Hours'),
+                                                                   (11, '9:00:00', '9:30:00', 'Mon', 'Normal Hours'),              /*Rafael Salgado*/
+                                                                   (11, '9:30:00', '10:00:00', 'Mon', 'Normal Hours'),             /*Rafael Salgado*/
+                                                                   (11, '9:00:00', '9:30:00', 'Wed', 'Normal Hours'),              /*Rafael Salgado*/
+                                                                   (11, '9:30:00', '10:00:00', 'Wed', 'Normal Hours'),             /*Rafael Salgado*/
+                                                                   (11, '16:00:00', '16:30:00', 'Mon', 'Normal Hours'),            /*Rafael Salgado*/
+                                                                   (11, '16:30:00', '17:00:00', 'Mon', 'Normal Hours'),            /*Rafael Salgado*/
+                                                                   (11, '16:00:00', '16:30:00', 'Wed', 'Normal Hours'),            /*Rafael Salgado*/
+                                                                   (11, '16:30:00', '17:00:00', 'Wed', 'Normal Hours'),            /*Rafael Salgado*/
+                                                                   (11, '10:00:00', '10:30:00', 'Fri', 'Normal Hours'),            /*Rafael Salgado*/
+                                                                   (11, '10:30:00', '11:00:00', 'Fri', 'Normal Hours');            /*Rafael Salgado*/
+
+insert into ProfHours (userID, start, end, day, description) values(12,'9:00:00', '9:30:00', 'Mon', 'Normal Hours'),               /*Eduardo Lay*/
+                                                                   (12,'9:30:00', '10:00:00', 'Mon', 'Normal Hours'),              /*Eduardo Lay*/
+                                                                   (12, '13:00:00', '13:30:00', 'Tue', 'Normal Hours'),            /*Eduardo Lay*/
+                                                                   (12, '13:30:00', '14:00:00', 'Tue', 'Normal Hours'),            /*Eduardo Lay*/
+                                                                   (12, '11:30:00', '12:00:00', 'Wed', 'Normal Hours'),            /*Eduardo Lay*/
+                                                                   (12, '12:00:00', '12:30:00', 'Wed', 'Normal Hours'),            /*Eduardo Lay*/
                                                                    (12, '10:00:00', '11:00:00', 'Thu', 'Normal Hours'),            /*Eduardo Lay*/
-                                                                   (12, '12:00:00', '12:30:00', 'Fri', 'Normal Hours');         /*Eduardo Lay*/
-insert into ProfHours (userID, start, end, day, description) values(13, '10:00:00', '11:00:00', 'Tue', 'Normal Hours'),            /*Nedim Vardar*/
-                                                                   (13, '14:30:00','15:30:00', 'Wed', 'Normal Hours'),       /*Nedim Vardar*/
-                                                                   (13, '13:00:00', '15:00:00', 'Thu', 'Normal Hours');            /*Nedim Vardar*/
-insert into ProfHours (userID, start, end, day, description) values(14, '8:00:00', '8:30:00', 'Tue', 'Normal Hours'),           /*Jaime Yeckle*/
-                                                                   (14, '10:10:00', '11:30:00', 'Tue', 'Normal Hours'),      /*Jaime Yeckle*/
-                                                                   (14, '13:00:00', '15:00:00', 'Wed', 'Normal Hours'),            /*Jaime Yeckle*/
-                                                                   (14, '8:00:00', '8:30:00', 'Thu', 'Normal Hours'),           /*Jaime Yeckle*/
-                                                                   (14, '11:00:00', '11:40:00', 'Thu', 'Normal Hours');	        /*Jaime Yeckle*/
+                                                                   (12, '10:00:00', '10:30:00', 'Thu', 'Normal Hours'),            /*Eduardo Lay*/
+                                                                   (12, '12:00:00', '12:30:00', 'Fri', 'Normal Hours');            /*Eduardo Lay*/
+
+insert into ProfHours (userID, start, end, day, description) values(13, null, null, 'Mon', 'Normal Hours'),
+                                                                   (13, null, null, 'Fri', 'Normal Hours'),
+                                                                   (13, '10:00:00', '10:30:00', 'Tue', 'Normal Hours'),            /*Nedim Vardar*/
+                                                                   (13, '10:30:00', '11:00:00', 'Tue', 'Normal Hours'),            /*Nedim Vardar*/
+                                                                   (13, '14:30:00','15:00:00', 'Wed', 'Normal Hours'),             /*Nedim Vardar*/
+                                                                   (13, '15:00:00','15:30:00', 'Wed', 'Normal Hours'),             /*Nedim Vardar*/
+                                                                   (13, '13:00:00', '13:30:00', 'Thu', 'Normal Hours'),            /*Nedim Vardar*/
+                                                                   (13, '14:00:00', '14:30:00', 'Thu', 'Normal Hours'),            /*Nedim Vardar*/
+                                                                   (13, '14:30:00', '15:00:00', 'Thu', 'Normal Hours');            /*Nedim Vardar*/
+
+insert into ProfHours (userID, start, end, day, description) values(14, null, null, 'Mon', 'Normal Hours'),
+                                                                   (14, null, null, 'Fri', 'Normal Hours'),
+                                                                   (14, '8:00:00', '8:30:00', 'Tue', 'Normal Hours'),              /*Jaime Yeckle*/
+                                                                   (14, '10:10:00', '10:40:00', 'Tue', 'Normal Hours'),            /*Jaime Yeckle*/
+                                                                   (14, '11:10:00', '11:30:00', 'Tue', 'Normal Hours'),            /*Jaime Yeckle*/
+                                                                   (14, '13:00:00', '13:30:00', 'Wed', 'Normal Hours'),            /*Jaime Yeckle*/
+                                                                   (14, '14:00:00', '14:30:00', 'Wed', 'Normal Hours'),            /*Jaime Yeckle*/
+                                                                   (14, '14:30:00', '15:00:00', 'Wed', 'Normal Hours'),            /*Jaime Yeckle*/
+                                                                   (14, '8:00:00', '8:30:00', 'Thu', 'Normal Hours'),              /*Jaime Yeckle*/
+                                                                   (14, '11:00:00', '11:40:00', 'Thu', 'Normal Hours');	           /*Jaime Yeckle*/
 
 /* === Entering data to RoomHours === */
 /* = NOT Available Hours =*/
