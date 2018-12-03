@@ -14,14 +14,6 @@ var dataB = require("../helpers/mysqlConnection").mysql_pool;
 //basically page response as in the layout, buttons, all html stuff, etc
 router.get('/:id', function (req, res) {
 
-<<<<<<< HEAD
-  //=======================VARIABLES================================
-  var layName = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to be
-  var titleName = 'Professor';  //sets up window
-  const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
-  var profEmail = req.params.id;
-  var parms = {title: titleName};    //sets up the names of the variables used in hbs
-=======
   // ================= VARIABLES ==================
   var layName     = './Student/STUD_APP_HUB_PT2';       // Sets up the name of the layout to be
   var titleName   = 'Professor';  //sets up window
@@ -29,7 +21,6 @@ router.get('/:id', function (req, res) {
   const userEmail = req.cookies.graph_user_email;       // Record user's Email.
   var profEmail   = req.params.id;
   var parms       = {title: titleName};                 // Sets up the names of the variables used in hbs
->>>>>>> db7cc10a7f6ccef2f565774fbda9116802e09f80
 
 
   //if a value exists in the username variable
