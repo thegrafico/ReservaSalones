@@ -1,4 +1,4 @@
-# Reservacion de salones & citas con profesores
+# Room Reservation & Appoitment with profesors INTER-BC
 
 This is a project of the database class. It is in charge of reserving rooms of the buildings of the university and being able to make appointments with the professors. There are 3 types of users: students, professors, and those in charge of managing classrooms.
 
