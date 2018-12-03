@@ -1,28 +1,28 @@
 var express = require('express')	//requirements for the code
 var router = express.Router()		//requirements for the code
-var roleCheck = require('../helpers/roleCheck'); //path for the roleCheck
-
-
-
+var roleCheckHelper = require('../helpers/roleCheck'); //path for the roleCheck
 
 router.get('/', function (req, res) {	//requirements for the code
 
 	const userName = req.cookies.graph_user_name;
 	const email = req.cookies.graph_user_email;
 
-	if(roleCheck.roleCheck('P', email, userName) == true){
+	roleCheckHelper.roleCheck('P', email, userName, function(pass){					//checks if the roleID matches the dbRoleID
 
-  	var layout = './Professor/indexProf';
-  	let parms = { title: 'profHome', active: { home: true }, urlReservation: '/reservation', urlProfApp: '/Appointments'};
+		if(pass == true){																											//if the roleID's matches run the indexProf
 
-	//res.send('Testing Professor Home');
-	parms.user = userName;
-	res.render(layout, parms);
-	}
+			var layout = './Professor/indexProf';
+		  let parms = { title: 'profHome', active: { home: true }, urlReservation: '/reservation', urlProfApp: '/Appointments'};
 
-	else{
-		res.redirect('/home');
-	}
-})
+		 	parms.user = userName;
+			res.render(layout, parms);
+		}
+
+		else{
+			res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
+		}
+		
+	});
+});
 
 module.exports = router;			//requirements for the code
