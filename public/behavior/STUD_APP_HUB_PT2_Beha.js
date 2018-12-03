@@ -1,3 +1,6 @@
+// var express = require('express');
+// var dataB = require("../helpers/mysqlConnection").mysql_pool;
+
 // Date Picker Javascript Starts
 $(document).ready(function(){
   $('select').formSelect();
@@ -5,9 +8,11 @@ $(document).ready(function(){
 
   $(document).ready(function(){
     $('.datepicker').datepicker({
-
       //where all options for datepicker are changed
       disableWeekends: true,
+      yearRange: 0,
+      minDate: 0,
+      autoClose: true,
       format: 'ddd, mmm, dd,yyyy',
       onSelect:function (dateText, inst)
        {

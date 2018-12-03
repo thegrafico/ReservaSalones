@@ -8,11 +8,11 @@ var dataB = require("../helpers/mysqlConnection").mysql_pool;
 router.get('/:id', function (req, res) {
 
   // ================= VARIABLES ==================
-  var layName = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to be
-  var titleName = 'Professor';  //sets up window
-  const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
-  var profEmail = req.params.id;
-  var parms = {title: titleName};    //sets up the names of the variables used in hbs
+  var layName     = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to be
+  var titleName   = 'Professor';  //sets up window
+  const userName  = req.cookies.graph_user_name;  //records userName again to display in the tab
+  var profEmail   = req.params.id;
+  var parms       = {title: titleName};    //sets up the names of the variables used in hbs
 
 
   //if a value exists in the username variable
@@ -20,6 +20,7 @@ router.get('/:id', function (req, res) {
 
     //object that will be sent to the hbs fie for the variables to be displayed
     parms.user = userName;
+
     //defines the query i want to make
     let query = `SELECT name, email, start, end, Day
                  FROM Users NATURAL JOIN ProfHours
@@ -64,13 +65,13 @@ router.get('/:id', function (req, res) {
 router.post('/:id', function (req, res) {
 
   //===============VARIABLES====================
-  var titleName = 'Professor';  //sets up window
+  var titleName  = 'Professor';  //sets up window
 
-  var layName = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to be
-  var titleName = 'Professor';  //sets up window
+  var layName    = './Student/STUD_APP_HUB_PT2';  //sets up the name of the layout to be
+  var titleName  = 'Professor';  //sets up window
   const userName = req.cookies.graph_user_name;  //records userName again to display in the tab
-  var profEmail = req.params.id;
-  var parms = {title: titleName};    //sets u
+  var profEmail  = req.params.id;
+  var parms      = {title: titleName};    //sets u
 
   //===============VARAIBLES====================
   var date;
@@ -80,8 +81,6 @@ router.post('/:id', function (req, res) {
   //get date
   if(req.body.date != undefined)
     date  = req.body.date;
-
-    console.log("ProfName = " + req.params.profName);
 
   //fill up the array with date
   arr.push(date.split(","));
@@ -100,10 +99,15 @@ router.post('/:id', function (req, res) {
 
     connection.query(query, function(error, results, fields){
 
+      //print data
+      results.forEach(function (e){
+        console.log(e);
+      });
+
       /*========= Variables for FrondEnd =========*/
 
       parms.results   = results;
-      parms.user = userName;
+      parms.user      = userName;
       parms.profName  = results[0]["name"];
       parms.profEmail = results[0]["email"];
       parms.layout    = layName;
