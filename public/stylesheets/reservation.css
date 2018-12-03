@@ -54,3 +54,8 @@
 .btn-flat{
   color:rgb(6, 161, 23);
 }
+
+th, td{
+  text-align: center;
+  width: 20%;
+}
