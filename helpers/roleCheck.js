@@ -1,7 +1,7 @@
 // Checks the role of the graph_refresh_token
 var db = require("../helpers/mysqlConnection").mysql_pool;
 
-function roleCheck(reqRoleID, email, userName){
+function roleCheck(reqRoleID, email, userName, callback){            //creates the function
 
   if(userName){
     let query =`select roleID` +                                     //checks if the user role
@@ -25,9 +25,9 @@ function roleCheck(reqRoleID, email, userName){
 
         console.log(dbRoleID);
 
-        if (dbRoleID == reqRoleID) return true;
+        if (dbRoleID == reqRoleID)  callback(true);                  //if the user roleID matches the dbRoleID sends true to the function
         else{
-          return false;
+          callback(false);                                           //if the user roleID dosen't matches the dbRoleID sends false to the function
         }
       });
     });
