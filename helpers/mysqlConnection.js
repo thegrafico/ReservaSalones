@@ -16,7 +16,7 @@ config = {
       user     : 'root',      //THIS IS THE SAME FOR YOUR
       password : pass,        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
       database : 'DB_project_Reservation_Appoitment'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
-    })
+  })
 };
 
 //parte de node js que deja que esta funcion

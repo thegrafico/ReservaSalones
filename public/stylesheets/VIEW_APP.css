@@ -2,45 +2,88 @@
 
 
 /* ========== Calendar CSS Ends =========== */
-
-  .nav-wrapper {
-    background-color: rgb(0,177,32);
-    background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
+.nav-wrapper{
+  background-color: rgb(0,177,32);
+  background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);}
+.s3{
+  /* border: 2px black solid; */
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 580px;
+  overflow-y: scroll;
+  width: 200px
 }
 
-.req_box {
+.date{
+  float: left;
+  margin-left: 2%;
+}
+.button{
+  float: right;
+    margin-left: 1%;
+    background-color: red;
+}
+
+.button2{
+  float: right;
+  background-color: green;
+}
+.button3{
+  float:right;
+  margin-right: 5%;
+  margin-top: .5%;
+}
+
+.s9{
+  /* border: 2px black solid; */
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 580px;
+  overflow-y: scroll;
+}
+
+
+
+  /* .nav-wrapper {
+    background-color: rgb(0,177,32);
+    background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
+} */
+
+/* .req_box {
   margin-top: 10px;
   overflow-y: scroll;
   height: 590px;
-  background-color: rgba(0, 0, 0, 0.1);
-  /* border: 2px black solid; // Como le gusta a Eliud, Francisco y Carlos */
+  background-color: rgba(0, 0, 0, 0.1); */
+  /* border: 2px black solid; */
 
 }
 
-.cal_box{
+/* .cal_box{
   margin-top: 10px;
   overflow-y: scroll;
   height: 535px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1); */
   /* border: 2px black solid; */
 }
-.s3{
+/* .s3{
 padding-left: 0px
-}
+} */
 
-.btnG {
+/* .btnG {
   background-color: red;
   float: right;
   margin-left: 5px;
   margin-right: 5px;
-}
-.btnR {
+} */
+/* .btnR {
   background-color: rgb(6, 161, 23);
   float:right;
-}
-.datepicker-date-display {
+} */
+
+/* .btn{
+background-color: red;
+} */
+/* .datepicker-date-display {
   background-color: rgb(6, 161, 23);
-}
+} */
 
 
 
