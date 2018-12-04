@@ -30,6 +30,7 @@
     </nav>
 
     <div class="row">
+      <form  action="/profHome/Appointments" method="POST">
 
      <div class="col s3">
        <table>
@@ -42,10 +43,10 @@
          <p><strong>Time:</strong> {{this.start}} - {{this.end}}</p>
          <p><strong>Date:</strong> {{this.date}}</p>
              <div class="button">
-              <button class="waves-effect waves-light btn" type="submit" name="Dbutton" value="True" >Decline</button>
+                <button class="waves-effect waves-light btn" type="submit" name="Dbutton" value={{this.appID}} >Decline</button>
              </div>
              <div class="button2">
-               <button class="waves-effect waves-light btn" type="submit" name="Abutton" value="True" >Accept</button>
+               <button class="waves-effect waves-light btn" type="submit" name="Abutton" value="{{this.appID}}" >Accept</button>
 
              </div>
         </td>
@@ -59,7 +60,6 @@
 
        <!--=============== Date picker Start ===============-->
        <div>
-         <form  action="/profHome/Appointments" method="POST">
              <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
        </div>
        <!--=============== Date picker Start ===============-->
@@ -93,7 +93,7 @@
                End
              </td>
              <td>
-               <a class="waves-effect waves-light btn">Cancel</a>
+               <button class="waves-effect waves-light btn" type = "submit" name = "Cbutton" value = "True">Cancel</button>
              </td>
            </tr>
          </tbody>
