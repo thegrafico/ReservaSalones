@@ -187,7 +187,7 @@ router.post('/:id', function (req, res) {
         });
 
       });
-
+      req.flash("success", "Your Appoitment was sucessfully Send");
       res.redirect(`/home/appointment/${profEmail}`);
   }
 });

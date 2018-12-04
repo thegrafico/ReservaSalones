@@ -42,6 +42,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* === Flash Message === */
 app.use(flash());
 
+app.use(require("express-session")({
+	secret: "Thegrafico is a cool guy",
+	resave: false,
+	saveUninitialized: false
+
+}));
+
+app.use(function(req, res, next){
+
+	//have messaje in every temple
+	res.locals.flashError = req.flash("error"); //error mesage go red
+	res.locals.flashSuccess = req.flash("success"); //success message go green
+
+	//move to the next function
+	next();
+});
+
 /* === All of the Routes. === */
 app.use("/", loginRoute);
 app.use('/home', indexStud);

@@ -34,6 +34,23 @@
     </nav>
     <!-- NavBar Ends -->
 
+    <div class="container">
+    	<!--check if error and display a message-->
+    	{{#if(flashError && flashError > 0 ) }}
+    		<div class="alert alert-danger" role="alert">
+    			{{flashError}}
+    		</div>
+    	{{/if}}
+    	<!--check if success and display a message-->
+    	{{#if(flashSuccess && flahsSuccess.length > 0 )}}
+    		<div class="alert alert-success" role="alert">
+    			{{flashSuccess}}
+    		</div>
+      {{/if}}
+
+	 </div>
+
+
     <!-- Row Starts Here -->
 
     <div class="row">
