@@ -32,19 +32,27 @@
     <div class="row">
 
      <div class="col s3">
-       <p>
-               Name
-             </p>
+       <table>
+         <tbody>
+            {{#each appPending}}
+           <tr>
+       <td>
+         <p>{{this.name}}</p>
+         <p>{{this.email}}</p>
+         <p><strong>Time:</strong> {{this.start}} - {{this.end}}</p>
+         <p><strong>Date:</strong> {{this.date}}</p>
              <div class="button">
-               <a class="waves-effect waves-light btn">Decline</a>
-
+              <button class="waves-effect waves-light btn" type="submit" name="Dbutton" value="True" >Decline</button>
              </div>
              <div class="button2">
-               <a class="waves-effect waves-light btn">Accept</a>
-
+               <button class="waves-effect waves-light btn" type="submit" name="Abutton" value="True" >Accept</button>
 
              </div>
-
+        </td>
+      </tr>
+        {{/each}}
+      </tbody>
+      </table>
      </div>
 
      <div class="col s9">
@@ -95,6 +103,7 @@
 
            </div>
          </div>
+       </form>
            <!-- Javascript -->
            <script type="text/javascript" src="/behavior/VIEW_APP.js"></script>
          </body>
