@@ -123,7 +123,7 @@ router.post('/', function (req, res) {
       console.log(results);
 
       let query_D3 = `INSERT
-                      INTO AppDecline (appID, userID, start, end, date, status, profID) values (${results[0]["appID"]}, ${results[0]["userID"]},${results[0]["start"]}, ${results[0]["end"]}, ${results[0]["date"]}, ${results[0]["status"]}, ${results[0]["profID"]})`
+                      INTO AppDecline (appID, userID, start, end, date, status, profID, description) values ('${results[0]["appID"]}', '${results[0]["userID"]}','${results[0]["start"]}', '${results[0]["end"]}', '${results[0]["date"]}', '${results[0]["status"]}', '${results[0]["profID"]}', 'null')`
       console.log(query_D3);
 
       // connection.query(query_D3,  function (err, results){
