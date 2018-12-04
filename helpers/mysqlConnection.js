@@ -11,10 +11,10 @@ config = {
       connectionLimit : 15,
 
       //establece el route basico donde se ouede accessar
-      host     : 'localhost',  //THIS IS THE SAME FOR YOUR
-      user     : 'root',      //THIS IS THE SAME FOR YOUR
-      password : 'Monmonkey78',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-      database : 'InterReservations'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+      host     : 'localhost',          //THIS IS THE SAME FOR YOUR
+      user     : 'root',               //THIS IS THE SAME FOR YOUR
+      password : 'radames121',         //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+      database : 'Inter Reservation'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
     })
 };
 
