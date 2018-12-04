@@ -3,6 +3,7 @@
 Code still can't handle two cases:
 1. It crashes whenever the user tries to search for available without having entered any input
 2. It crashes whenever the user enters submit too many times without choosing anything
+3. Also, does not check if appointment is taken to make the request
 */
 //-----------------------------------
 var express = require('express')

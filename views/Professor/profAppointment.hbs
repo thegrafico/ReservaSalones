@@ -32,16 +32,19 @@
     <div class="row">
 
      <div class="col s3">
-       <div class="req_box z-depth-3">
-         <!-- {{#if Name}} -->
-           <p>{{Name}}</p>
-             <a class="waves-effect waves-light btn-small btnG">Decline</a>
-       </div>
-       <div class="button2">
-             <a class="waves-effect waves-light btn-small btnR">Accept</a>
-       </div>
-       <!-- {{/if}} -->
-       </div>
+       <p>
+               Name
+             </p>
+             <div class="button">
+               <a class="waves-effect waves-light btn">Decline</a>
+
+             </div>
+             <div class="button2">
+               <a class="waves-effect waves-light btn">Accept</a>
+
+
+             </div>
+
      </div>
 
      <div class="col s9">
@@ -50,48 +53,48 @@
        <div>
          <form  action="/profHome/Appointments" method="POST">
              <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
-             <button class="waves-effect waves-light btn" type = "submit" name = "button" value = "True">Cancel</button>
        </div>
        <!--=============== Date picker Start ===============-->
+       <div class="button3">
+         <button class="waves-effect waves-light btn" type = "submit" name = "button" value = "True">Search for possible appointments</button>
+       </div>
 
 
-              <div class="cal_box z-depth-3">
                 <table>
-                   <thead>
-                     <tr>
-                         <th>Student Name</th>
-                         <th>E-mail</th>
-                         <th>Hour</th>
-                         <th>Cancel</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                     <!-- {{#if name}} -->
-                     <tr>
-                       <td>
-                         name
-                         <!-- {{Name}} -->
-                       </td>
-                       <td>
-                         email
-                         <!-- {{E-mail}} -->
-                       </td>
-                       <td>
-                         hour
-                         <!-- {{Hour}} -->
-                       </td>
-                       <td>
-                         <a class="waves-effect waves-light btn">Cancel</a>
+              <thead>
+           <tr>
+               <th>Student Name</th>
+               <th>Student Email</th>
+               <th>Start Hour</th>
+               <th>End Hour</th>
+               <th>Cancel?</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>
+               Name
+             </td>
+             <td>
+               Email
+             </td>
+             <td>
+               Start
+             </td>
+             <td>
+               End
+             </td>
+             <td>
+               <a class="waves-effect waves-light btn">Cancel</a>
+             </td>
+           </tr>
+         </tbody>
 
-                       </td>
-                     </tr>
-                     <!-- {{/if}} -->
-                   </tbody>
-                 </table>
+            </table>
 
-              </div>
 
            </div>
+         </div>
            <!-- Javascript -->
            <script type="text/javascript" src="/behavior/VIEW_APP.js"></script>
          </body>
