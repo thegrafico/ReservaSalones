@@ -78,24 +78,29 @@
                <th>Cancel?</th>
            </tr>
          </thead>
+
          <tbody>
+
+           {{#each appAccept}}
            <tr>
              <td>
-               Name
+               {{this.name}}
              </td>
              <td>
-               Email
+               {{this.email}}
              </td>
              <td>
-               Start
+               {{this.start}}
              </td>
              <td>
-               End
+               {{this.end}}
              </td>
              <td>
-               <button class="waves-effect waves-light btn" type = "submit" name = "Cbutton" value = "True">Cancel</button>
+               <button class="waves-effect waves-light btn" type = "submit" name = "Cbutton" value = "{{this.appID}}:{{../date}}">Cancel</button>
              </td>
            </tr>
+           {{/each}}
+
          </tbody>
 
             </table>
