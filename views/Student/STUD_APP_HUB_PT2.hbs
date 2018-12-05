@@ -30,24 +30,6 @@
         </ul>
       </div>
     </nav>
-    <!-- NavBar Ends -->
-
-    <div class="container">
-    	<!--check if error and display a message-->
-    	{{#if(flashError && flashError > 0 ) }}
-    		<div class="alert alert-danger" role="alert">
-    			{{flashError}}
-    		</div>
-    	{{/if}}
-    	<!--check if success and display a message-->
-    	{{#if(flashSuccess && flahsSuccess.length > 0 )}}
-    		<div class="alert alert-success" role="alert">
-    			{{flashSuccess}}
-    		</div>
-      {{/if}}
-
-	 </div>
-
 
     <!-- Row Starts Here -->
 
@@ -78,11 +60,7 @@
           <form  action="/home/appointment/{{profEmail}}" method="POST">
             <div class="dateBoxWithBnt">
               <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
-<<<<<<< HEAD
-              <button class="waves-effect waves-light btn" type="submit" name="button" value="{{profEmail}}">Search for available Date</button>
-=======
               <button class="waves-effect waves-light btn" type="submit" name="button" value="True" >Search for available Date</button>
->>>>>>> 2bad63f077a5c488bbbb61f9c850591e51071348
             </div>
         </div>
 

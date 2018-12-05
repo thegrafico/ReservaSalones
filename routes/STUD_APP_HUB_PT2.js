@@ -15,11 +15,7 @@ var dataB = require("../helpers/mysqlConnection").mysql_pool;
 // Basically page response as in the layout, buttons, all html stuff, etc
 router.get('/:id', function (req, res) {
 
-<<<<<<< HEAD
-  // ================= VARIABLES ==================
-=======
   /* ================ VARIABLES ================ */
->>>>>>> 2bad63f077a5c488bbbb61f9c850591e51071348
   var layName     = './Student/STUD_APP_HUB_PT2';       // Sets up the name of the layout to be
   var titleName   = 'Professor';  //sets up window
   const userName  = req.cookies.graph_user_name;        // Records user's Name.
@@ -34,13 +30,8 @@ router.get('/:id', function (req, res) {
     // Object that will be sent to the hbs fie for the variables to be displayed
     parms.user = userName;
 
-<<<<<<< HEAD
-    //defines the query i want to make
-    let query = `SELECT name, email, start, end, Day
-=======
     // Defines the query i want to make
     let query = `SELECT name, email
->>>>>>> 2bad63f077a5c488bbbb61f9c850591e51071348
                  FROM Users NATURAL JOIN ProfHours
                  WHERE email = '${profEmail}'`;
 
@@ -91,18 +82,6 @@ router.post('/:id', function (req, res) {
 
   /* ======== VARAIBLES ======= */
 
-<<<<<<< HEAD
-  var date;
-  var dateSearch;
-  var id;
-  var myID;
-  var profID;
-  var timeChoice;
-  var dateChoice;
-  var arr = [];
-  var time = [];
-
-=======
   var date;                         // Stores datepicker where we retireve the day (Ex. Mon, Tue, Wed, etc.) This is used for the first query.
   var dateSearch;                   // Stores datepicker value where we extract the day ^ for the query.
   var id;                           // Stores the professor email chosen by student. Used to find the professor hours.
@@ -114,7 +93,6 @@ router.post('/:id', function (req, res) {
   var time = [];                    // Array used to store the hours chosen by the user.
 
 //gets value of first button
->>>>>>> 2bad63f077a5c488bbbb61f9c850591e51071348
   if(req.body.button != undefined) {
     dateSearch = req.body.button;
   }
@@ -214,11 +192,8 @@ router.post('/:id', function (req, res) {
 
         });
       });
-<<<<<<< HEAD
       req.flash("success", "Your Appoitment was sucessfully Send");
-=======
->>>>>>> 2bad63f077a5c488bbbb61f9c850591e51071348
-      res.redirect(`/home/appointment/${profEmail}`);
+    res.redirect(`/home/appointment/${profEmail}`);
   }
 });
 
