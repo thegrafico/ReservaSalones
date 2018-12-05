@@ -20,27 +20,12 @@ router.get('/',  function(req, res, next) {
   //if not, then it is undefined
   if(userName){
 
-    let query = `SELECT * FROM Rooms NATURAL JOIN RoomHours`;
-    let allID = [];
+    getRooms(function(results){
 
-    db.getConnection(function(err, connection) {
-
-      if(err) throw err;
-
-      connection.query(query, function (error, results, fields) {
-        if (error) throw error;
-
-        results.forEach(function (e){
-          allID.push(e.roomID);
-        });
-
-        allID = removeDuplicateUsingFilter(allID);
-        // console.log("ID: ", allID);
-        parms.id = allID;
-
-        res.render('reservation', parms);
-      });
+      parms.id = results;
+      res.render('reservation', parms);
     });
+
   }else{
     res.redirect('/');
   }
@@ -56,7 +41,6 @@ router.post('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
   parms.user = userName;
-  let allID = [];
   let arrDate = [];
   //know the data
   console.log(req.body);
@@ -71,30 +55,27 @@ router.post('/', function(req, res, next) {
   console.log(day);
   let query = `SELECT * FROM Rooms NATURAL JOIN RoomHours WHERE roomID = '${rID}'`;
 
+
   if(userName){
-    db.getConnection(function(err, connection) {
+    getRooms(function(roomIDs){
+      db.getConnection(function(err, connection) {
 
-      //error
-      if(err) throw err;
+        //error
+        if(err) throw err;
 
-      connection.query(query, function (error, results, fields) {
+        connection.query(query, function (error, results, fields) {
 
-        //Error
-        if (error) throw error;
+          //Error
+          if (error) throw error;
 
-        results.forEach(function (e){
-          allID.push(e.roomID);
+          parms.id = roomIDs;
+
+          parms.results = results;
+
+          console.log(results);
+          //render the html
+          res.render(layoutRender, parms);
         });
-
-        allID = removeDuplicateUsingFilter(allID);
-        // console.log("ID: ", allID);
-        parms.id = allID;
-
-        parms.results = results;
-
-        console.log(results);
-        //render the html
-        res.render(layoutRender, parms);
       });
     });
   }else{
@@ -102,11 +83,22 @@ router.post('/', function(req, res, next) {
   }
 });
 
-function removeDuplicateUsingFilter(arr){
-    let unique_array = arr.filter(function(elem, index, self) {
-        return index == self.indexOf(elem);
+
+
+function getRooms(callback){
+
+  let query = `SELECT roomID FROM Rooms`;
+
+  db.getConnection(function(err, connection) {
+
+    if(err) throw err;
+
+    connection.query(query, function (error, results, fields) {
+      if (error) throw error;
+
+      callback(results);
     });
-    return unique_array
+  });
 }
 
 module.exports = router;
