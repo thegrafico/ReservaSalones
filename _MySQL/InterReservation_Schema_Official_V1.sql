@@ -23,8 +23,8 @@ create table ProfHours(profHoursID mediumInt NOT NULL auto_increment, userID med
 create table Reservation(resID mediumInt NOT NULL auto_increment, userID mediumInt, start time, end time, date varchar(30), status varchar(10), roomID varchar(10), description varchar(255), Primary Key(resID));
 create table Appointment(appID mediumInt NOT NULL auto_increment, userID mediumInt, start time, end time, date varchar(30), status varchar(10), profID varchar(10), description varchar(255), Primary Key(appID));
 create table RoomHours(roomHoursID mediumInt NOT NULL auto_increment, roomID varchar(10), start time, end time, day varchar(10), description varchar(255), primary key(roomHoursID));                                          /*Hours Not Available*/
-create table ResDecline(resID mediumInt NOT NULL, userID mediumInt, start time, end time, date date, status varchar(10), roomID varchar(10), description varchar(255), Primary Key(resID));
-create table AppDecline(appID mediumInt NOT NULL, userID mediumInt, start time, end time, date date, status varchar(10), profID varchar(10), description varchar(255), Primary Key(appID));
+create table ResDecline(resID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30), status varchar(10), roomID varchar(10), description varchar(255), Primary Key(resID));
+create table AppDecline(appID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30), status varchar(10), profID varchar(10), description varchar(255), Primary Key(appID));
 create table UserRoles(userID mediumInt, roleID varchar(10), Primary key(userID, roleID));
 create table DeptManagers(userID mediumInt, deptID tinyInt, Primary Key(userID, deptID));
 

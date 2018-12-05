@@ -6,6 +6,7 @@ Code still can't handle two cases:
 3. Also, does not check if appointment is taken to make the request
 */
 //-----------------------------------
+
 var express = require('express')
 var router = express.Router()
 // Initial connection with database.
@@ -181,7 +182,7 @@ router.post('/:id', function (req, res) {
               connection.query(query_3, function(error, results, fields){
                 //console.log(results);
 
-                //console.log("Values2 are: " + myID + " " + time[0][0] + " " + time[0][1] + " " + dateChoice + " " + profID);
+                console.log("Values2 are: " + myID + " " + time[0][0] + " " + time[0][1] + " " + dateChoice + " " + profID);
 
               });
             }
