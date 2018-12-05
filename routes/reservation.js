@@ -127,7 +127,7 @@ console.log("test2");
 
 function getRooms(callback){
 
-  let query = `SELECT roomID
+  let query = `SELECT distinct(roomID)
                FROM Rooms`;
 
   db.getConnection(function(err, connection) {
@@ -144,7 +144,7 @@ function getRooms(callback){
 
 function getRooms2(email, callback){
 
-  let query = `SELECT roomID
+  let query = `SELECT distinct(roomID)
                FROM Rooms`;
 
   db.getConnection(function(err, connection) {
