@@ -33,16 +33,16 @@
       <div class="row chooseDate z-depth-2">
       <!-- =================== Form Starts ==================== -->
           <div class="col s4">
-            <select>
+            <select name="searchRoom[id]">
               <option value="" disabled selected>Select Room</option>
               {{#each id}}
-              <option  name="room[id]">{{this}}</option>
+              <option>{{this.roomID}}</option>
               {{/each}}
             </select>
           </div>
 
           <div class="col s4">
-            <input type="text" class="datepicker" name="date" placeholder="Choose The Date">
+            <input type="text" class="datepicker" name="searchRoom[date]" placeholder="Choose The Date">
           </div>
 
           <div class="col s4">
@@ -80,7 +80,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each id}}
+            {{#each results}}
             <tr>
               <td class="td" >{{this.description}}</td>
               <td class="td" >{{this.start}}</td>
