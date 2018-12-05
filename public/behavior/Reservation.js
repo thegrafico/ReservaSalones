@@ -65,19 +65,6 @@ $(document).ready(function(){
     });
 
 
-    // document.addEventListener('DOMContentLoaded', function() {
-    //    var elems = document.querySelectorAll('.collapsible');
-    //    var instances = M.Collapsible.init(elems, options);
-    //  });
-
-$(document).ready(function(){
-  $('.timepicker').timepicker(
-  {
-    defaultTime:12,
-  }
-  );
-});
-
 $(document).ready(function(){
  $('.collapsible').collapsible();
 });
