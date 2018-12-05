@@ -1,7 +1,7 @@
 /*
 1. does not charge the accept and decline appointments when a button is pressed
-2.accept and decline does not work
-3.CANCEL DOES NOT work
+2. accept and decline does not work
+3. CANCEL DOES NOT work
 4. Search for appointments does not work
 5.Falta el Cancel
 */
@@ -34,7 +34,7 @@ router.get('/', function (req, res) {	//requirements for the code
         // console.log ("It is not undefined1.");
         userID = results[0]["userID"];
       }
-      let query_2 = `SELECT name, email, start, end, date, appID
+      let query_2 = `SELECT name, email, start, end, date
                      FROM Users NATURAL JOIN Appointment
                      WHERE profID = '${userID}' AND status = 'Pending'`;
 

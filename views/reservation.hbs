@@ -28,87 +28,71 @@
         </ul>
       </div>
     </nav>
-<div class="row">
-    <div class="col s2">
-    <div class="dropdown">
-      <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Department</a> -->
 
-      <select>
-            <option value="" disabled selected>Select Department</option>
-            <option value="1">Comp. Elec. Eng. Dpt</option>
-            <option value="2">Mech. Eng. Dpt.</option>
-            <option value="3">Ind. Eng. Dpt</option>
-            <option value="4">Inf. Dpt.</option>
-      </select>
-          <label>Materialize Select</label>
-      <!-- <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#!">Comp. Elec. Eng. Dpt</a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#!">Mech. Eng. Dpt.</a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#!">Ind. Eng. Dpt</a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#!">Inf. Dpt.</a></li>
-      </ul> -->
+    <form action="/home/reservation" method="post">
+      <div class="row chooseDate z-depth-2">
+      <!-- =================== Form Starts ==================== -->
+          <div class="col s4">
+            <select>
+              <option value="" disabled selected>Select Room</option>
+              {{#each id}}
+              <option  name="room[id]">{{this}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="col s4">
+            <input type="text" class="datepicker" name="date" placeholder="Choose The Date">
+          </div>
+
+          <div class="col s4">
+            <button class="btn" type="submit" name="checkAvailable">Check Availability</button>
+          </div>
+        </div>
+
+        <div class="row reservationOPT z-depth-2">
+          <div class="col s4">
+            <input type="text" class="timepicker" name="start" placeholder="Choose Start Time">
+          </div>
+
+          <div class="col s4">
+            <input type="text" class="timepicker" name="end" placeholder="Choose End Time">
+          </div>
+
+          <div class="col s4">
+            <button class="btn" type="submit" name="SubmitReservation">Submit Reservation</button>
+          </div>
+        </div>
+     </form>
+    <!-- =================== Form Ends ==================== -->
+
+    <div class="row notAvailable z-depth-2">
+
+      <div class="col s12">
+        <p>These are the hours <b>NOT</b> available.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Starts</th>
+              <th>Ends</th>
+              <th>Day</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each id}}
+            <tr>
+              <td class="td" >{{this.description}}</td>
+              <td class="td" >{{this.start}}</td>
+              <td class="td" >{{this.end}}</td>
+              <td class="td" >{{this.day}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
 
     </div>
-  </div>
-  <div class="col s2">
-    <div class="Date">
-      <input type="text" class="datepicker" placeholder="mm/dd/yyyy">
-    </div>
-  </div>
-  <div class="col s2">
-  <div class="submit">
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-     <i class="material-icons right">Next</i>
-   </button>
-  </div>
-</div>
-</div>
-
-  <div class="Reservation">
-    <table>
-     <thead>
-       <tr>
-         <th>Room</th>
-         <th>Not Available</th>
-         <th>Start Hour</th>
-         <th>End Hour</th>
-         <th>Reserve?</th>
-       </tr>
-     </thead>
-     <tbody>
-      {{#each results}}
-       <tr>
-         <td >{{this.roomID}}</td>
-         <td>
-           <ul class="collapsible">
-             <li>
-               <div class="collapsible-header"><i class="material-icons"></i>Classes</div>
-               <div class="collapsible-body"><span>De 9:00am a 11:20am</span></div>
-             </li>
-           </ul>
-         </td>
-         <td>
-            <input type="text" class="timepicker">
-           <!-- {{IniHour}} -->
-         </td>
-         <td>
-           <input type="text" class="timepicker">
-           <!-- {{EndHour}} -->
-          </td>
-         <td>
-            <label class="Check">
-             <input type="checkbox" />
-              <span></span>
-            </label>
-          </td>
-       </tr>
-       {{/each}}
-    </tbody>
-  </table>
-</div>
 
     <!-- === Javascript === -->
     <script type="text/javascript" src="/behavior/Reservation.js"></script>
