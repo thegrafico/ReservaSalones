@@ -48,7 +48,7 @@ router.post('/', function(req, res, next) {
   */
   let rID    = req.body.searchRoom.id;
   let rDate  = req.body.searchRoom.date;      //full date
-  var rDate2;                                 //half date
+  var day    = "";                                 //half date
   let rStart = req.body.searchRoom.start;
   let rEnd   = req.body.searchRoom.end;
 
@@ -56,12 +56,13 @@ router.post('/', function(req, res, next) {
   // console.log("End: ",rEnd);
 
   if (rDate != ""){
-    rDate = rDate.split(',',);                                  //date desconstructor
-    rDate2 = rDate[1].concat(",",rDate[2], ",", rDate[3]);      //date constructor
+    day = rDate.split(',');                                  //date desconstructor
     // console.log(rDate2);
   }
 
   console.log("rDate: ",rDate);
+  console.log("day: ",day);
+  console
   let query = `SELECT *
                FROM Rooms NATURAL JOIN RoomHours
                WHERE roomID = '${rID}'`;
@@ -87,13 +88,13 @@ console.log("test2");
 
           let query_2 = `insert into Reservation (userID, start, end, date, roomID, status)
                        SELECT *
-                       FROM (Select ${userID}, '${rStart}','${rEnd}', '${rDate2}', '${rID}', 'Pending' ) as NRoomHours
+                       FROM (Select ${userID}, '${rStart}','${rEnd}', '${rDate}', '${rID}', 'Pending' ) as NRoomHours
                        WHERE not exists (Select *
                        from (select roomID, start, end, day date, description
                        from RoomHours union all Select roomID, start, end, date, description from Reservation where status = 'Accepted') AllReservation
-                       where end >= '${rStart}' and start <= '${rEnd}' and roomID = '${rID}' and (date = '${rDate[0]}' or date = '${rDate2}'));`;
+                       where end >= '${rStart}' and start <= '${rEnd}' and roomID = '${rID}' and (date = '${day[0]}' or date = '${rDate}'));`;
 
-          if (rStart != "" && rEnd != "" && rID != "" && rDate[0] != "" && rDate2 != ""){
+          if (rStart != "" && rEnd != "" && rID != "" && day[0] != "" && rDate != ""){
             db.getConnection(function(err, connection) {
               connection.query(query_2, function (error, results_2, fields) {
 
