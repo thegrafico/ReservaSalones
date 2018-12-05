@@ -41,27 +41,37 @@ router.post('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
   parms.user = userName;
-  let arrDate = [];
   //know the data
   console.log(req.body);
   /*
     Remember error handle
   */
-  let rID = req.body.searchRoom.id;
-  let rDate = req.body.searchRoom.date;
+  let rID    = req.body.searchRoom.id;
+  let rDate  = req.body.searchRoom.date;      //full date
+  var rDate2;                                 //half date
+  let rStart = req.body.searchRoom.start;
+  let rEnd   = req.body.searchRoom.end;
 
-  arrDate = rDate.split(',');
-  let day = arrDate[0];
-  console.log(day);
+  // console.log("Start: ",rStart);
+  // console.log("End: ",rEnd);
+
+  if (rDate != ""){
+    rDate = rDate.split(',',);                                  //date desconstructor
+    rDate2 = rDate[1].concat(",",rDate[2], ",", rDate[3]);      //date constructor
+    // console.log(rDate2);
+  }
+
+  console.log("rDate: ",rDate);
   let query = `SELECT *
                FROM Rooms NATURAL JOIN RoomHours
                WHERE roomID = '${rID}'`;
 
-
-  if(userName){
-    getRooms(function(roomIDs){
+console.log("test");
+  // if(userName){
+    getRooms2(email ,function(roomIDs, userID){
+console.log("test3");
       db.getConnection(function(err, connection) {
-
+console.log("test2");
         //error
         if(err) throw err;
 
@@ -73,16 +83,44 @@ router.post('/', function(req, res, next) {
           parms.id = roomIDs;
 
           parms.results = results;
+          // console.log("UserID: ",userID);
 
-          console.log(results);
+          let query_2 = `insert into Reservation (userID, start, end, date, roomID, status)
+                       SELECT *
+                       FROM (Select ${userID}, '${rStart}','${rEnd}', '${rDate}', '${rID}', 'Pending' ) as NRoomHours
+                       WHERE not exists (Select *
+                       from (select roomID, start, end, day date, description
+                       from RoomHours union all Select roomID, start, end, date, description from Reservation where status = 'Accepted') AllReservation
+                       where end >= '${rStart}' and start <= '${rEnd}' and roomID = '${rID}' and (date = '${rDate[0]}' or date = '${rDate2}'));`;
+
+          if (rStart != "" && rEnd != "" && rID != "" && rDate[0] != "" && rDate2 != ""){
+            db.getConnection(function(err, connection) {
+              connection.query(query_2, function (error, results_2, fields) {
+
+                if (error) throw error;
+                if (results_2.insertId > 0){
+                  // console.log(results);
+                  console.log("SUUUUUUUUU");
+                }
+                else {
+                  console.log("Can not make reservation, Date is not available");
+                }
+
+              });
+            });
+          }
+          else{
+            console.log("One of the Variables is blank");
+          }
+          // console.log(results);
           //render the html
           res.render(layoutRender, parms);
         });
       });
     });
-  }else{
-    res.redirect('/');
-  }
+  // }else{
+  //   res.redirect('/');
+  // }
 });
 
 
@@ -100,6 +138,39 @@ function getRooms(callback){
       if (error) throw error;
 
       callback(results);
+    });
+  });
+}
+
+function getRooms2(email, callback){
+
+  let query = `SELECT roomID
+               FROM Rooms`;
+
+  db.getConnection(function(err, connection) {
+
+    if(err) throw err;
+
+    connection.query(query, function (error, results, fields) {
+      if (error) throw error;
+
+      let query_2 =`select userID` +                                   //checks if the user role
+                  ` from Users` +                                      //is on the database
+                  ` where email = '${email}'`;                         //database query using his email
+
+      db.getConnection(function(err, connection) {
+
+        if(err) throw err;
+
+        connection.query(query_2, function (error, results_2, fields) {
+          if (error) throw error;
+
+          userID = results_2[0].userID;
+          // console.log("UserID-query: ",userID);
+
+          callback(results, userID);
+        });
+      });
     });
   });
 }
