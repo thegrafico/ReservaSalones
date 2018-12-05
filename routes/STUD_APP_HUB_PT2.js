@@ -64,7 +64,7 @@ router.get('/:id', function (req, res) {
       });
     });
   } else {
-    res.redirect('/');
+    res.redirect('/home');
   }
 
   //res.send('Birds home page')

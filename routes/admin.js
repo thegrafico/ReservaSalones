@@ -9,38 +9,47 @@ router.get('/', function(req, res, next) {
   var layName = './Admin/admin';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
-  const title = 'admin';
-  var parms = {title: title, user: userName } ;
 
-  var userID;
+  roleCheckHelper.roleCheck('S', userEmail, userName, function(pass){					//checks if the roleID matches the dbRoleID
+    if(pass==true){
+      const title = 'admin';
+      var parms = {title: title, user: userName } ;
 
-  let query_1 = `SELECT userID
-                 FROM Users
-                 WHERE email = '${userEmail}'`;
-  dataB.getConnection(function (err, connection){
+      var userID;
 
-    connection.query(query_1, function(err, results){
+      let query_1 = `SELECT userID
+                     FROM Users
+                     WHERE email = '${userEmail}'`;
+      dataB.getConnection(function (err, connection){
 
-      if (results[0] == undefined){
-        // console.log("It is undefined1.");
-      }
-      else if (results[0] != undefined){
-        // console.log ("It is not undefined1.");
-        userID = results[0]["userID"];
-      }
-      let query_2 = `select *
-                     from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
-                     natural join
-                     (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
+        connection.query(query_1, function(err, results){
 
-      connection.query(query_2, function(err, results){
+          if (results[0] == undefined){
+            // console.log("It is undefined1.");
+          }
+          else if (results[0] != undefined){
+            // console.log ("It is not undefined1.");
+            userID = results[0]["userID"];
+          }
+          let query_2 = `select *
+                         from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                         natural join
+                         (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
 
-        parms.appPending = results;
+          connection.query(query_2, function(err, results){
 
-        res.render(layName, parms);
-      })
-     })
-   })
+            parms.appPending = results;
+
+            res.render(layName, parms);
+          })
+         })
+       })
+     }
+     else{
+ 			res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
+ 		}
+
+ 	});
 })
     // else{
 		// 	res.redirect('/home');																							//if the roleID's don't match redirects to indexStud

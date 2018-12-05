@@ -89,6 +89,11 @@ router.get('/', async function(req, res) {
       });
     });
   }
+  else {
+    // authHelper.clearCookies(res); //clears the user cookies
+    res.redirect('/');            // if the email is not from @INTERBAYAMON it redirects to login
+  }
+
 });
 
 

@@ -9,52 +9,62 @@
 var express = require('express')	//requirements for the code
 var router = express.Router()		//requirements for the code
 var dataB = require("../helpers/mysqlConnection").mysql_pool;
+var roleCheckHelper = require('../helpers/roleCheck'); //path for the roleCheck
 
 
 router.get('/', function (req, res) {	//requirements for the code
   var layName = './Professor/profAppointment';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
-  const title = 'profAppointment';
-  var parms = {title: title, user: userName } ;
 
-  var userID;
+  roleCheckHelper.roleCheck('P', userEmail, userName, function(pass){					//checks if the roleID matches the dbRoleID
+    if(pass==true){
+      const title = 'profAppointment';
+      var parms = {title: title, user: userName } ;
 
-  let query_1 = `SELECT userID
-                 FROM Users
-                 WHERE email = '${userEmail}'`;
-  dataB.getConnection(function (err, connection){
+      var userID;
 
-    connection.query(query_1, function(err, results){
+      let query_1 = `SELECT userID
+                     FROM Users
+                     WHERE email = '${userEmail}'`;
+      dataB.getConnection(function (err, connection){
 
-      if (results[0] == undefined){
-        // console.log("It is undefined1.");
-      }
-      else if (results[0] != undefined){
-        // console.log ("It is not undefined1.");
-        userID = results[0]["userID"];
-      }
-      let query_2 = `SELECT name, email, start, end, date
-                     FROM Users NATURAL JOIN Appointment
-                     WHERE profID = '${userID}' AND status = 'Pending'`;
+        connection.query(query_1, function(err, results){
 
-      connection.query(query_2, function(err, results){
+          if (results[0] == undefined){
+            // console.log("It is undefined1.");
+          }
+          else if (results[0] != undefined){
+            // console.log ("It is not undefined1.");
+            userID = results[0]["userID"];
+          }
+          let query_2 = `SELECT name, email, start, end, date
+                         FROM Users NATURAL JOIN Appointment
+                         WHERE profID = '${userID}' AND status = 'Pending'`;
 
-        // if (results[0] == undefined){
-        //   console.log("It is undefined2.");
-        // }
-        // else if (results[0] != undefined){
-        //   console.log ("It is not undefined2.");
-        // }
-        parms.appPending = results;
+          connection.query(query_2, function(err, results){
 
-        res.render(layName, parms);
+            // if (results[0] == undefined){
+            //   console.log("It is undefined2.");
+            // }
+            // else if (results[0] != undefined){
+            //   console.log ("It is not undefined2.");
+            // }
+            parms.appPending = results;
+
+            res.render(layName, parms);
+            })
+
+
         })
 
+      })
+    }
+    else{
+			res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
+		}
 
-    })
-
-  })
+	});
 })
 
 router.post('/', function (req, res) {
