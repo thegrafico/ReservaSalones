@@ -87,7 +87,7 @@ console.log("test2");
 
           let query_2 = `insert into Reservation (userID, start, end, date, roomID, status)
                        SELECT *
-                       FROM (Select ${userID}, '${rStart}','${rEnd}', '${rDate}', '${rID}', 'Pending' ) as NRoomHours
+                       FROM (Select ${userID}, '${rStart}','${rEnd}', '${rDate2}', '${rID}', 'Pending' ) as NRoomHours
                        WHERE not exists (Select *
                        from (select roomID, start, end, day date, description
                        from RoomHours union all Select roomID, start, end, date, description from Reservation where status = 'Accepted') AllReservation
@@ -99,7 +99,7 @@ console.log("test2");
 
                 if (error) throw error;
                 if (results_2.insertId > 0){
-                  // console.log(results);
+                  // console.log(query_2);
                   console.log("SUUUUUUUUU");
                 }
                 else {
