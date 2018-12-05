@@ -53,7 +53,9 @@ router.post('/', function(req, res, next) {
   arrDate = rDate.split(',');
   let day = arrDate[0];
   console.log(day);
-  let query = `SELECT * FROM Rooms NATURAL JOIN RoomHours WHERE roomID = '${rID}'`;
+  let query = `SELECT *
+               FROM Rooms NATURAL JOIN RoomHours
+               WHERE roomID = '${rID}'`;
 
 
   if(userName){
@@ -87,7 +89,8 @@ router.post('/', function(req, res, next) {
 
 function getRooms(callback){
 
-  let query = `SELECT roomID FROM Rooms`;
+  let query = `SELECT roomID
+               FROM Rooms`;
 
   db.getConnection(function(err, connection) {
 
