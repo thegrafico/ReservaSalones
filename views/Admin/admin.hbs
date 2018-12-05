@@ -19,7 +19,7 @@
 
     <nav>
       <div class="nav-wrapper z-depth-2">
-        <a href="/profHome" class="brand-logo">{{user}}</a>
+        <a href="/admin" class="brand-logo">{{user}}</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           {{#if user}}
             <li><a href="/profHome">Home</a></li>
@@ -30,12 +30,12 @@
     </nav>
 
   <div class="row z-depth-2">
-   <form  action="/profHome/Appointments" method="POST">
+   <form  action="/admin" method="POST">
 
    <div class="col s3">
     <table>
       <tbody>
-          <!-- {#each appPending}} -->
+          {{#each appPending}}
        <tr>
          <td>
            <p>{{this.name}}</p>
@@ -43,14 +43,14 @@
            <p><strong>Time:</strong> {{this.start}} - {{this.end}}</p>
            <p><strong>Date:</strong> {{this.date}}</p>
            <div class="button">
-              <button class="btn waves-effect waves-light button " type="submit" name="Dbutton" value={{this.appID}} >Decline</button>
+              <button class="btn waves-effect waves-light button " type="submit" name="Dbutton" value={{this.resID}} >Decline</button>
            </div>
            <div class="button2">
-             <button class="waves-effect waves-light btn button2" type="submit" name="Abutton" value="{{this.appID}}" >Accept</button>
+             <button class="waves-effect waves-light btn button2" type="submit" name="Abutton" value="{{this.resID}}" >Accept</button>
            </div>
           </td>
         </tr>
-        <!-- {/each}} -->
+        {{/each}}
       </tbody>
       </table>
      </div>
@@ -80,7 +80,7 @@
          </thead>
 
          <tbody>
-           <!-- {#each appAccept}} -->
+           {{#each appAccept}}
            <tr>
              <td>{{this.name}}</td>
              <td>{{this.email}}</td>
@@ -88,10 +88,10 @@
              <td>{{this.end}}</td>
 
              <td>
-               <button class="waves-effect waves-light btn button" type = "submit" name = "Cbutton" value = "{this.appID}}:{../date}}">Cancel</button>
+               <button class="waves-effect waves-light btn button" type = "submit" name = "Cbutton" value = "{{this.resID}}:{{../date}}">Cancel</button>
              </td>
             </tr>
-           <!-- {/each}} -->
+           {{/each}}
          </tbody>
         </table>
       </div>
