@@ -72,6 +72,7 @@ $(document).ready(function(){
     $(document).ready(function(){
       $('.timepicker').timepicker(
       {
+        twelveHour:false,
         defaultTime:12,
       }
       );
