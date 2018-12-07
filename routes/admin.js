@@ -10,8 +10,8 @@ router.get('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
 
-  roleCheckHelper.roleCheck('S', userEmail, userName, function(pass){					//checks if the roleID matches the dbRoleID
-    if(pass==true){
+  // roleCheckHelper.roleCheck('S', userEmail, userName, function(pass){					//checks if the roleID matches the dbRoleID
+    if(userName){
       const title = 'admin';
       var parms = {title: title, user: userName } ;
 
@@ -45,11 +45,11 @@ router.get('/', function(req, res, next) {
          })
        })
      }
-     else{
- 			res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
- 		}
+    //  else{
+ 		// 	res.redirect('/');																							//if the roleID's don't match redirects to indexStud
+ 		// }
 
- 	});
+ 	// });
 })
     // else{
 		// 	res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
