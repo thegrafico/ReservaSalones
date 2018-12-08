@@ -12,7 +12,7 @@ router.get('/', function (req, res) {	//requirements for the code
 		if(pass == true){																											//if the roleID's matches run the indexProf
 
 			var layout = './Admin/indexAdmin';
-		  let parms = { title: 'adminHome', active: { home: true }};
+		  let parms = { title: 'adminHome', active: { home: true }, urlAddRoomHours: '/adminHome/add-rooms', urlEditRoomHours: '/adminHome/edit-rooms'};
 
 		 	parms.user = userName;
 			res.render(layout, parms);
