@@ -21,6 +21,8 @@ var indexProf					= require('./routes/indexProf');					// Professor Home, this p
 var profAppointment 	= require('./routes/profAppointment');		//
 // var admin							= require('./routes/admin');							// Admin Home, this pages displays any room reservation.
 var indexAdmin			  = require('./routes/indexAdmin');
+var addRoomHours			= require('./routes/addRoomHours');
+var editRoomHours			= require('./routes/editRoomHours');
 /* === Routes End Here === */
 
 /* === Port === */
@@ -54,6 +56,8 @@ app.use('/profHome', indexProf);
 app.use('/profHome/Appointments', profAppointment);
 // app.use('/admin', admin);
 app.use('/adminHome', indexAdmin);
+app.use('/adminHome/add-rooms', addRoomHours);
+app.use('/adminHome/edit-rooms', editRoomHours);
 
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
 // app.use(function(req, res, next) {
