@@ -19,7 +19,8 @@ var studAppHubPT1			= require('./routes/STUD_APP_HUB_PT1');		// Student Appointm
 var studAppHubPT2 		= require('./routes/STUD_APP_HUB_PT2');		// Student Appointment Hub Pt 2, Shows Professor choosen hours.
 var indexProf					= require('./routes/indexProf');					// Professor Home, this page displays students request and appoints already accepted.
 var profAppointment 	= require('./routes/profAppointment');		//
-var admin							= require('./routes/admin');							// Admin Home, this pages displays any room reservation.
+// var admin							= require('./routes/admin');							// Admin Home, this pages displays any room reservation.
+var indexAdmin			  = require('./routes/indexAdmin');
 /* === Routes End Here === */
 
 /* === Port === */
@@ -35,7 +36,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -48,10 +49,11 @@ app.use('/home', indexStud);
 app.use("/home/reservation", reservationRouter)
 app.use('/authorize', authorize);
 app.use('/home/appointment', studAppHubPT1);
-app.use('/home/appointment/professor', studAppHubPT2);
+app.use('/home/appointment', studAppHubPT2);
 app.use('/profHome', indexProf);
 app.use('/profHome/Appointments', profAppointment);
-app.use('/admin', admin);
+// app.use('/admin', admin);
+app.use('/adminHome', indexAdmin);
 
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
 // app.use(function(req, res, next) {
@@ -62,5 +64,3 @@ app.use('/admin', admin);
 app.listen(port, process.env.IP, function(){
 	console.log("Server Init on port " + port);
 });
-
-app.timeout = 120000;

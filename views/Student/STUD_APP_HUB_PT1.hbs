@@ -4,6 +4,9 @@
   <head>
     <meta charset="utf-8">
 
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
     <!-- Materialize Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -31,19 +34,20 @@
     <!-- First Row Begins -->
     <div class="row">
       <!-- First Box Start-->
-      <div class="box0">
+      {{#each results}}
         <div id="box" class="col s3 z-depth-3">
-          <div id="uno">
-            <h3 id="ini"><a href="/home/appointment/professor">{{initial}}</a></h3>
-          </div>
-
+          <div id="uno"> </div>
           <div class="profInfo">
-            <!-- <p>{{professorName}}</p> -->
-            <p>{{professorEmail}}</p>
-            <p>{{Department}}</p>
+            <a href="/home/appointment/{{this.email}}" id="ini">{{this.name}}</a>
+            <a href="/home/appointment/{{this.email}}" id="ini">{{this.email}}</a>
+            <!-- <p id="ini">{{this.userID}}</p> -->
+            <p id="ini">Faculty Member</p>
           </div>
+        </div>
+      {{/each}}
+    </div>
 
-      </div>
+    <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT1_Beha.js"></script>
 
   </body>
 </html>

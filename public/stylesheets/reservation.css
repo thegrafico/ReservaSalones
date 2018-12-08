@@ -1,0 +1,101 @@
+.nav-wrapper {
+    background-color: rgb(0,177,32);
+    background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
+}
+
+
+
+.btn {
+  float: right;
+  margin-top: 2%;
+  width: 15em;
+  background-color: rgb(6, 161, 23);
+}
+
+.dropdown-content li>span{
+  color: rgb(6, 161, 23);
+}
+
+nav li a {
+  font-size: 1.5em;
+}
+
+.datepicker-date-display {
+  background-color: rgb(6, 161, 23);
+}
+
+.datepicker-cancel{
+  color: rgb(6, 161, 23);
+}
+
+.datepicker-done{
+  color: rgb(6, 161, 23);
+}
+
+.datepicker-table td.is-today{
+  color: rgb(6, 161, 23);
+}
+
+.datepicker-table td.is-selected{
+  background-color: rgb(6, 161, 23);
+}
+
+.timepicker-digital-display{
+  background-color:rgb(6, 161, 23);
+}
+
+.btn-flat{
+  color:rgb(6, 161, 23);
+}
+
+.chooseDate {
+  margin-top: 0.5%;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+.reservationOPT {
+  margin-top: 0.5%;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.notAvailable {
+  margin-left: 10%;
+  margin-right: 10%;
+  overflow-y: scroll;
+  margin-top: 0.5%;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 45em;
+  border-radius: .5%;
+}
+
+thead tr {
+  border-bottom: 2px solid black;
+}
+
+th {
+  font-size: 1.3em;
+  text-align: left;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+p b {
+  color: red;
+}
+
+.td {
+  text-align: left;
+  width: 35%;
+  margin-right: auto;
+  margin-left: auto;
+}
