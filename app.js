@@ -19,7 +19,8 @@ var studAppHubPT1			= require('./routes/STUD_APP_HUB_PT1');		// Student Appointm
 var studAppHubPT2 		= require('./routes/STUD_APP_HUB_PT2');		// Student Appointment Hub Pt 2, Shows Professor choosen hours.
 var indexProf					= require('./routes/indexProf');					// Professor Home, this page displays students request and appoints already accepted.
 var profAppointment 	= require('./routes/profAppointment');		//
-var admin							= require('./routes/admin');							// Admin Home, this pages displays any room reservation.
+// var admin							= require('./routes/admin');							// Admin Home, this pages displays any room reservation.
+var indexAdmin			  = require('./routes/indexAdmin');
 /* === Routes End Here === */
 
 /* === Port === */
@@ -51,7 +52,8 @@ app.use('/home/appointment', studAppHubPT1);
 app.use('/home/appointment', studAppHubPT2);
 app.use('/profHome', indexProf);
 app.use('/profHome/Appointments', profAppointment);
-app.use('/admin', admin);
+// app.use('/admin', admin);
+app.use('/adminHome', indexAdmin);
 
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
 // app.use(function(req, res, next) {
