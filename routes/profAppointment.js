@@ -213,6 +213,7 @@ router.post('/', function (req, res) {
 
       dataB.getConnection (function (err, connection){
       connection.query(query_S, function (err, results){
+;
 
         console.log(results);
 
