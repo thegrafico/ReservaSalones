@@ -11,13 +11,13 @@ config = {
       connectionLimit : 15,
 
       //establece el route basico donde se ouede accessar
-      host     : 'localhost',  //THIS IS THE SAME FOR YOUR
-      user     : 'root',      //THIS IS THE SAME FOR YOUR
-      password : 'Monmonkey78',        //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+      host     : 'localhost',          //THIS IS THE SAME FOR YOUR
+      user     : 'root',               //THIS IS THE SAME FOR YOUR
+      password : 'Monmonkey78',         //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
       database : 'InterReservations'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
     })
 };
 
 //parte de node js que deja que esta funcion
 //se pueda utilizar en otro codigo
-module.exports = config;;
+module.exports = config;

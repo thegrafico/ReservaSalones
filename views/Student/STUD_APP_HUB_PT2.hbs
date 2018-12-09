@@ -5,11 +5,9 @@
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT1_Beha.js"></script>
     <!-- Materialize Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
     <!-- Font Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -40,32 +38,34 @@
       <div class="col s3 ">
         <!-- Grey navigation panel -->
         <!-- Professor Profile Starts -->
+
         <div class="profUser z-depth-3">
           <div class="Icon">
             <p id="Initial"> </p>
           </div>
           <div class="profInfo">
-            <p id="profName"> {{professorName}} </p>
-            <p>{{profDescription}} </p>
+            <p id="profName" > {{profName}} </p>
             <p class="profContact" >Professor of the Faculty</p>
             <p class="profContact" >Inter American University of Puerto Rico</p>
             <p class="profContact" >Contact Info:</p>
-            <a class="profContact"  href="#"> {{professorEmail}} </a>
+            <a class="profContact" > {{profEmail}} </a>
           </div>
         </div>
-
         <!-- Professor Profile Ends -->
-
       </div>
+
 
       <div class="col s9 ">
         <!-- Teal page content -->
-        <div class="dateBox ">
-          <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+        <div class="dateBox">
+          <form  action="/home/appointment/{{profEmail}}" method="POST">
+            <div class="dateBoxWithBnt">
+              <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+              <button class="waves-effect waves-light btn" type="submit" name="button" value="True" >Search for available Date</button>
+            </div>
         </div>
 
         <div class="profHourBox z-depth-3">
-
             <table>
               <thead>
                 <tr>
@@ -75,33 +75,32 @@
                 </tr>
               </thead>
               <tbody>
-
-                <tr>
-                  <td>
-                    <label>
-                      <input type="checkbox" class="check" /><span></span>
-                    </label>
-                  </td>
-                  <td>{{startTime}}</td>
-                  <td>{{endTime}}</td>
-                </tr>
-
-              </tbody>
-            </table>
+                  {{#each results}}
+                  {{#if start}}
+                    <tr>
+                      <td>
+                        <label>
+                          <input name="hourChoice" type="checkbox" class="check" value="{{this.start}}, {{this.end}}" /><span></span>
+                        </label>
+                      </td>
+                      <td>{{this.start}}</td>
+                      <td>{{this.end}}</td>
+                    </tr>
+                  {{/if}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+        <!-- Row Ends Here -->
 
-
-      </div>
-      <!-- Row Ends Here -->
-
-      <div class="row_two">
-        <button class="btn waves-effect waves-light z-depth-2" type="submit" name="action">
-          Submit
-        </button>
-      </div>
-
-
+        <div class="row_two">
+          <button class="btn waves-effect waves-light z-depth-2" type="submit" name="btnSt" value="{{date}}">
+            Submit
+          </button>
+        </div>
+    </form>
 
     <!--============================== Javascript ================================-->
     <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT2_Beha.js"></script>

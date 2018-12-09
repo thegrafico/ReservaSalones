@@ -5,13 +5,11 @@ var router = express.Router();
 var authHelper = require('../helpers/auth');
 var db = require("../helpers/mysqlConnection").mysql_pool;
 
-
-
 /* GET home page. */
 router.get('/', async function(req, res) {
   var layName = './Student/indexStud';  //sets up the name of the layout to be displayed
   var user = 'Users';                   //variable to edit the users table of your database
-  var pTable = 'Professor';             //variable to edit the professor table of your database
+  // var pTable = 'Professor';             //variable to edit the professor table of your database
   const accessToken = await authHelper.getAccessToken(req.cookies, res);
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
@@ -24,69 +22,78 @@ router.get('/', async function(req, res) {
   //here we can see the admin!
   // console.log(req.cookies.admini[0]);
 
-
-
-
   if(userName){
-    let query =`select profEmail` +                              //checks if the user email
-                ` from ${pTable}` +                              //is on the database
-                ` where profEmail = '${email}'`;                 //database query
+    let query =`select roleID` +                                     //checks if the user role
+                ` from Users natural join UserRoles` +               //is on the database
+                ` where email = '${email}'`;                         //database query using his email
 
     db.getConnection(function(err, connection) {                     //connects to the database
 
-
-      if (err) throw error;                                          //checks for connection error
-
+      if (err) throw err;                                          //checks for connection error
 
       connection.query(query, function (error, results, fields) {    //does the database query
-        console.log("This is results");
-        console.log(results);
-        var dbEmail = null;                                          //ini the database email to null
-
-        //console.log(results[0].profEmail);
-        console.log(dbEmail);
-
-        if (results != "")                                           //checks if the result from the database is empty
-        dbEmail = results[0].profEmail;                          //iguala el email del usuario a la variable de dbEmail
-        //console.log(dbEmail);
 
         if (error) throw error;                                      //checks for error
-        if (dbEmail == email) res.redirect('/professor-home');            //if the email was on the db route to professor
-        //res.redirect('/professor');
+
+        console.log(results);
+        var dbRoleID = null;                                          //ini the database role to null
+
+        //console.log(results[0].profEmail);
+        console.log(dbRoleID);
+
+        if (results != "")                                           //checks if the result from the database is empty
+          dbRoleID = results[0].roleID;                              //iguala el roleID de la db a la variable de dbRoleID
+
+        console.log(dbRoleID);
+        if (dbRoleID == 'A') res.redirect('/superAdminHome');        //if the role is admin on the db, route to admin
+        if (dbRoleID == 'S') res.redirect('/adminHome');             //if the role is admin on the db, route to scretary
+        // if (dbRoleID == 'D') res.redirect('/director');           //if the role is admin on the db, route to director
+        if (dbRoleID == 'P') res.redirect('/profHome');              //if the role is a Professor on the db, route to profHome
 
         else{
-         let query =`INSERT INTO ${user} (emailID, name, privilege)` +
-         ` SELECT * FROM (SELECT '${email}', '${userName}', ${0}) as nUser`  +
-         ` WHERE NOT EXISTS (SELECT emailID FROM ${user} where emailID = '${email}')`;
+          var emailCarrier = email.split("@");                                          //spliting the email into 2 string to get the email carrier
+          // console.log(emailCarrier[1]);
 
-         db.getConnection(function(err, connection) {
+          if (emailCarrier[1] == 'INTERBAYAMON.EDU'){                                   //cheking if the email is from @INTERBAYAMON
 
-         if (err) throw error;
+            let query =`INSERT INTO ${user} (name, email)` +                            //query to check if the email
+            ` SELECT * FROM (SELECT '${userName}', '${email}') as nUser`  +             //of the user is on the db
+            ` WHERE NOT EXISTS (SELECT email FROM ${user} where email = '${email}')`;   //if he is not on db, add his credential to the db
 
-          connection.query(query, function (error, results, fields) {
+            db.getConnection(function(err, connection) {                                //checks if there is a connection error with db
 
-            if (error) throw error;
+              if (err) throw error;                                                     //if there is a db error, display error
 
-            if (accessToken && userName) {
-              parms.user = userName;
-              parms.debug = `User: ${userName}\nEmail: ${email}\nAccess Token: ${accessToken}`;
-            }
-            else {
-              parms.signInUrl = authHelper.getAuthUrl();
-              parms.debug = parms.signInUrl;
-            }
+              connection.query(query, function (error, results, fields) {               //query that adds the email if it's not on the db
 
-            res.render(layName, parms);
+                if (error) throw error;                                                 //checks if there was an error if the query
+
+                if (accessToken && userName) {
+                  parms.user = userName;
+                  parms.debug = `User: ${userName}\nEmail: ${email}\nAccess Token: ${accessToken}`;
+                }
+                else {
+                  parms.signInUrl = authHelper.getAuthUrl();
+                  parms.debug = parms.signInUrl;
+                }
+
+                res.render(layName, parms);
+              });
             });
-          });
+          }
+          else {
+            authHelper.clearCookies(res); //clears the user cookies
+            res.redirect('/');            // if the email is not from @INTERBAYAMON it redirects to login
+          }
         }
       });
     });
   }
-
-  else{ //enter here si no nadie se ha autentificado
-    res.redirect('/');
+  else {
+    // authHelper.clearCookies(res); //clears the user cookies
+    res.redirect('/');            // if the email is not from @INTERBAYAMON it redirects to login
   }
+
 });
 
 

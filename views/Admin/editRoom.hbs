@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Materialize Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <link rel="stylesheet" href="/stylesheets/editRoom.css">
+
+
+
+    <title>Manage Room</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+
+    <form action="/adminHome/addEdit/editRoom" method="post">
+      <div class="row chooseDate z-depth-2">
+      <!-- =================== Form Starts ==================== -->
+          <div class="col s6">
+            <select name="optionID">
+              <option value="" disabled selected>Select Room</option>
+              {{#each id}}
+              <option>{{this.roomID}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="col s6">
+            <button class="btn" type="submit" name="optionID">Check Room Hours</button>
+          </div>
+        </div>
+     </form>
+    <!-- =================== Form Ends ==================== -->
+
+    <div class="row notAvailable z-depth-2">
+
+      <div class="col s12">
+        <table>
+          <thead>
+            <tr>
+              <th>Room</th>
+              <th>Description</th>
+              <th>Starts</th>
+              <th>Ends</th>
+              <th>Day</th>
+              <th>Decision</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each results}}
+            <tr>
+              <td>
+                {{this.roomID}}
+              </td>
+              <td class="td" >
+                <input value={{this.description}} id="first_name2" type="text" class="validate">
+                <label class="active" for="first_name2">
+                  Description
+                </label>
+              </td>
+              <td class="td" >
+                <input value={{this.start}} id="first_name2" type="text" class="validate">
+                <label class="active" for="first_name2">
+                  Start
+                </label>
+              </td>
+              <td class="td" >
+                <input value={{this.end}} id="first_name2" type="text" class="validate">
+                <label class="active" for="first_name2">
+                  End
+                </label>
+              </td>
+              <td class="td" >
+                <select name="optionID">
+                  <option value="" disabled selected>{{this.day}}</option>
+                  <option>
+                    Mon
+                  </option>
+                  <option>
+                    Tue
+                  </option>
+                  <option>
+                    Wed
+                  </option>
+                  <option>
+                    Thu
+                  </option>
+                  <option>
+                    Fri
+                  </option>
+                  <option>
+                    all
+                  </option>
+                </select>
+              </td>
+              <td class="td">
+                <button class="waves-effect waves-light btn Btn">
+                  Delete
+                </button>
+                <button class="waves-effect waves-light btn Btn2">
+                  Edit
+                </button>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- === Javascript === -->
+    <script type="text/javascript" src="/behavior/editRoomBeha.js"></script>
+    <script type="text/javascript" src="/behavior/Reservation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Materialize Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="/stylesheets/VIEW_APP.css">
+
+    <title>Reservations</title>
+  </head>
+  <body>
+
+    <nav>
+      <div class="nav-wrapper z-depth-2">
+        <a href="/admin" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+            <li><a href="/profHome">Home</a></li>
+            <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+
+  <div class="row z-depth-2">
+   <form  action="/adminHome/Reservations" method="POST">
+
+   <div class="col s3">
+    <table>
+      <tbody>
+          {{#each appPending}}
+       <tr>
+         <td>
+           <p>{{this.name}}</p>
+           <p>{{this.email}}</p>
+           <p><strong>Time:</strong> {{this.start}} - {{this.end}}</p>
+           <p><strong>Date:</strong> {{this.date}}</p>
+           <div class="button">
+              <button class="btn waves-effect waves-light button " type="submit" name="Dbutton" value={{this.resID}} >Decline</button>
+           </div>
+           <div class="button2">
+             <button class="waves-effect waves-light btn button2" type="submit" name="Abutton" value="{{this.resID}}" >Accept</button>
+           </div>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+      </table>
+     </div>
+
+     <div class="col s9">
+
+       <!--=============== Date picker Start ===============-->
+       <div class="row">
+         <div class="col s6">
+           <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+         </div>
+         <div class="col s6">
+           <button class="waves-effect waves-light btn button3" type = "submit" name = "button" value = "True">Search for possible appointments</button>
+         </div>
+       </div>
+       <!--=============== Date picker Start ===============-->
+
+       <table>
+         <thead>
+           <tr>
+             <th>Student Name</th>
+             <th>Student Email</th>
+             <th>Start Hour</th>
+             <th>End Hour</th>
+             <th>Cancel?</th>
+           </tr>
+         </thead>
+
+         <tbody>
+           {{#each appAccept}}
+           <tr>
+             <td>{{this.name}}</td>
+             <td>{{this.email}}</td>
+             <td>{{this.start}}</td>
+             <td>{{this.end}}</td>
+
+             <td>
+               <button class="waves-effect waves-light btn button" type = "submit" name = "Cbutton" value = "{{this.resID}}:{{../date}}">Cancel</button>
+             </td>
+            </tr>
+           {{/each}}
+         </tbody>
+        </table>
+      </div>
+    </div>
+   </form>
+   <!-- Javascript -->
+   <script type="text/javascript" src="/behavior/VIEW_APP.js"></script>
+  </body>
+</html>

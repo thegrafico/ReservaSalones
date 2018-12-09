@@ -1,3 +1,6 @@
+// var express = require('express');
+// var dataB = require("../helpers/mysqlConnection").mysql_pool;
+
 // Date Picker Javascript Starts
 $(document).ready(function(){
   $('select').formSelect();
@@ -7,6 +10,10 @@ $(document).ready(function(){
   $('.datepicker').datepicker({
     //where all options for datepicker are changed
     disableWeekends: true,
+    yearRange: 0,
+    minDate: 0,
+    autoClose: true,
+    format: 'ddd, mmm, dd,yyyy',
     onSelect:function (dateText, inst)
      {
 
@@ -38,9 +45,10 @@ $(document).ready(function(){
 // Date Picker Javascript Ends
 
 // This is for the checkbox
+console.log();
 
-$(document).ready(function(){
-    $('.check').click(function() {
-        $('.check').not(this).prop('checked', false);
-    });
-});
+// $(document).ready(function(){
+//     $('.check').click(function() {
+//         $('.check').not(this).prop('checked', false);
+//     });
+// });

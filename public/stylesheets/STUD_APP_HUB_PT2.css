@@ -1,17 +1,3 @@
-/* ============ TASK ============ */
-/*== 1. Fix profContact class   ==*/
-/*== 2. Create Inter Background ==*/
-/*== 3. Make page responsive    ==*/
-/*== 4.  ==*/
-/*== 5.  ==*/
-/*== 6.  ==*/
-/*== 7.  ==*/
-/*== 8.  ==*/
-/*== 9.  ==*/
-/*================================*/
-
-
-
 /* Professor Div Starts */
 .row {
   margin-top: 30px;
@@ -29,7 +15,7 @@
 }
 
 .is-today {
-  color: rgb(6, 161, 23)
+  color: rgb(6, 161, 23);
 }
 
 .btn-flat {
@@ -89,6 +75,22 @@ nav li a {
 }
 /* Professor Div Ends */
 
+.datepicker-table td.is-selected {
+  background-color: rgb(6, 161, 23);
+}
+
+.btn, .btn-large, .btn-small {
+  background-color: rgb(6, 161, 23);
+}
+
+[type="checkbox"]:checked+span:not(.lever):before {
+  border-right: 2px solid rgb(6, 161, 23);
+  border-bottom: 2px solid rgb(6, 161, 23);
+}
+
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color: #2bbbad;
+}
 
 .nav-wrapper {
   background: rgb(0,177,32);
@@ -102,4 +104,9 @@ nav li a {
 
 .row_two {
   margin-right: 10px;
+}
+
+.dateBoxWithBnt{
+  width: 100%;
+  display: flex;
 }
