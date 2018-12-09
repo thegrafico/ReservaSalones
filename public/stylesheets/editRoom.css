@@ -101,14 +101,14 @@ p b {
 }
 .Btn{
 
-background-color: red;
+background-color: rgba(255, 0, 0, 0.75);
 width: 10em;
 margin-top: 1px;
 
 }
 
 .Btn2{
-  background-color: rgb(242, 255, 0);
+  background-color: rgb(255, 252, 62);
   color: black;
   width:10em;
   margin-top: 10px;
