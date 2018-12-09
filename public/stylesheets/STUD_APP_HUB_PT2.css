@@ -1,17 +1,3 @@
-/* ============ TASK ============ */
-/*== 1. Fix profContact class   ==*/
-/*== 2. Create Inter Background ==*/
-/*== 3. Make page responsive    ==*/
-/*== 4.  ==*/
-/*== 5.  ==*/
-/*== 6.  ==*/
-/*== 7.  ==*/
-/*== 8.  ==*/
-/*== 9.  ==*/
-/*================================*/
-
-
-
 /* Professor Div Starts */
 .row {
   margin-top: 30px;
@@ -29,7 +15,7 @@
 }
 
 .is-today {
-  color: rgb(6, 161, 23)
+  color: rgb(6, 161, 23);
 }
 
 .btn-flat {

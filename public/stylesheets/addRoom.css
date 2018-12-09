@@ -1,10 +1,36 @@
 .s12{
-
-  height: 550px;
-
-
+  height: 800px;
 }
  .btn{
    margin-top: 0px;
    float: right;
  }
+
+ nav li a {
+   font-size: 1.5em;
+ }
+
+ .nav-wrapper {
+   background: rgb(0,177,32);
+   background: radial-gradient(circle, rgba(0,177,32,1) 86%, rgba(195,191,34,1) 100%);
+ }
+
+.row {
+  font-size: 1.5em;
+  width: 95%;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 2.5%;
+}
+
+.timepicker-digital-display{
+  background-color:rgb(6, 161, 23);
+}
+
+.submit {
+  margin-right: 2.5%;
+  background-color: rgb(6, 161, 23);
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+  color: rgb(6, 161, 23);
+}

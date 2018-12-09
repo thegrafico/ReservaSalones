@@ -37,32 +37,20 @@ $(document).ready(function(){
   });
 });
 
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var elems = document.querySelectorAll('select');
-  //   var instances = M.FormSelect.init(elems, options);
-  // });
 
-  // Or with jQuery
+$(document).ready(function(){
+  $('select').formSelect();
+});
 
-  $(document).ready(function(){
-    $('select').formSelect();
-  });
 
-  // document.addEventListener('DOMContentLoaded', function() {
-  //     var elems = document.querySelectorAll('.timepicker');
-  //     var instances = M.Timepicker.init(elems, options);
-  //   });
-
-    // Or with jQuery
-
-    $(document).ready(function(){
-      $('.timepicker').timepicker(
-      {
-        twelveHour:false,
-        defaultTime:12,
-      }
-      );
-    });
+$(document).ready(function(){
+  $('.timepicker').timepicker(
+  {
+    twelveHour:false,
+    defaultTime:12,
+  }
+  );
+});
 
 
 $(document).ready(function(){
