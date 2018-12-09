@@ -443,6 +443,8 @@ insert into Department values( 1, 'Electrical and Computer Engineering'),
 /* === Entering data to DeptManagers === */
 
 insert into DeptManagers values( 1, 1);
+insert into DeptManagers values( 1, 2);
+insert into DeptManagers values( 1, 3);
 insert into DeptManagers values( 5, 1);
 insert into DeptManagers values( 15, 3);
 insert into DeptManagers values( 16, 2);

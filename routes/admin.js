@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
           }
           let query_2 = `SELECT name, email, start, end, date
                          FROM Users NATURAL JOIN Reservation
-                         WHERE profID = '${userID}' AND status = 'Pending'`;
+                         WHERE userID = '${}' AND status = 'Pending'`;
 
           connection.query(query_2, function(err, results){
 

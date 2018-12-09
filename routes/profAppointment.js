@@ -70,7 +70,7 @@ router.post('/', function (req, res) {
 
   // checks which button has been clicked and excecutes different queries
   // depending on the functionality. If the button is not clicked, it resturns undefined
-   if (acceptID != undefined){
+   if (acceptID != undefined) {
 
      //query changes the status of the appointment to Accept
     let query_A = `UPDATE Appointment
