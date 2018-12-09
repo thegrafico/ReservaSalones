@@ -1,3 +1,4 @@
+
 $('.dropdown-trigger').dropdown();
 
 $(document).ready(function(){
@@ -45,10 +46,11 @@ $(document).ready(function(){
   $('.timepicker').timepicker(
   {
     defaultTime:12,
+    twelveHour: false
   }
   );
 });
 
 $(document).ready(function(){
  $('.collapsible').collapsible();
-});
+})

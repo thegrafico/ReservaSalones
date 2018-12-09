@@ -1,19 +1,11 @@
-/*
-1. does not charge the accept and decline appointments when a button is pressed
-2. accept and decline does not work
-3. CANCEL DOES NOT work
-4. Search for appointments does not work
-5.Falta el Cancel
-*/
-
 var express = require('express')	//requirements for the code
 var router = express.Router()		//requirements for the code
 var dataB = require("../helpers/mysqlConnection").mysql_pool;
 
 
-router.get('/', function (req, res) {	//requirements for the code
-  var layName = './Professor/profAppointment';  //sets up the name of the layout to be displayed
-  const userName = req.cookies.graph_user_name; //gets the username from the email
+router.get('/', function (req, res) {	              // Requirements for the code.
+  var layName = './Professor/profAppointment';      // Sets up the name of the layout to be displayed.
+  const userName = req.cookies.graph_user_name;     // Gets the username from the email.
   const userEmail = req.cookies.graph_user_email;
   const title = 'profAppointment';
   var parms = {title: title, user: userName } ;
@@ -49,13 +41,10 @@ router.get('/', function (req, res) {	//requirements for the code
         parms.appPending = results;
 
         res.render(layName, parms);
-        })
-
-
+      })
     })
-
   })
-})
+});
 
 router.post('/', function (req, res) {
   //-----Basic Variables-------------------
@@ -79,8 +68,8 @@ router.post('/', function (req, res) {
                  FROM Users
                  WHERE email = '${userEmail}'`;
 
-  //checks which button has been clicked and excecutes different queries
-  //depending on the functionality. If the button is not clicked, it resturns undefined
+  // checks which button has been clicked and excecutes different queries
+  // depending on the functionality. If the button is not clicked, it resturns undefined
    if (acceptID != undefined){
 
      //query changes the status of the appointment to Accept
