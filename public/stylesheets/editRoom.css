@@ -98,3 +98,25 @@ p b {
   width: 35%;
   margin-right: auto;
   margin-left: auto;
+}
+.Btn{
+
+background-color: red;
+width: 10em;
+margin-top: 1px;
+
+}
+
+.Btn2{
+  background-color: rgb(242, 255, 0);
+  color: black;
+  width:10em;
+  margin-top: 10px;
+}
+
+.td{
+  width: 20%;
+}
+.Column-VerticalLine {
+    border-right: thin solid #A9A9A9;
+}
