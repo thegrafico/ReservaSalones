@@ -63,7 +63,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function (req, res) {
   //-----Basic Variables-------------------
-  var layName = './Admin/admin';  //sets up the name of the layout to be displayed
+  var layName = './Admin/reservationAdmin';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
   const title = 'admin';
@@ -93,7 +93,7 @@ router.post('/', function (req, res) {
                    SET status ='Accepted'
                    WHERE resID = '${acceptID}'`;
 
-
+                   console.log ("Inside Here");
     //query that Updates the status of the appointment from
     dataB.getConnection (function (err, connection){
       connection.query(query_A, function (err, results){
@@ -107,7 +107,6 @@ router.post('/', function (req, res) {
                 // console.log ("It is not undefined.");
                 userID = results[0]["userID"];
               }
-
               let query_2 = `select *
                              from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
                              natural join
@@ -222,6 +221,8 @@ router.post('/', function (req, res) {
 
         })
       })
+    }else{
+      res.render(layName, parms);
     }
   }
 })
