@@ -37,21 +37,23 @@ router.get('/', function (req, res){
           queryRoomIDPT1 += ' OR ';
 
           queryRoomIDPT1 += 'deptID = ' + results[i].deptID;
-
-          console.log (queryRoomIDPT1);
         }
 
 
-        let selectRoomID = `SELECT roomID
-                            FROM Rooms
-                            WHERE `
+        let selectRoomID = `SELECT DISTINCT roomID
+                            FROM Rooms `
+                            + queryRoomIDPT1;
 
-        console.log("DeptID:" + results[1].deptID);
-        res.render(layName, parms);
+        connection.query (selectRoomID, function (err, results, fields){
 
+          console.log(results);
+          parms.id = results;
+
+          res.render(layName, parms);
+        })
     }else{
       res.render(layName, parms);
-    }
+      }
     })
   })
 
@@ -60,6 +62,15 @@ router.get('/', function (req, res){
     }
 
     })
+
+});
+
+router.post ('/', function (req, res){
+
+  var layName = './Admin/editRoom'
+
+
+
 
 });
 
