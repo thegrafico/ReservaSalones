@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/stylesheets/addRoom.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <title>Add Room</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row notAvailable z-depth-2">
+
+      <div class="col s12">
+        <table>
+          <thead>
+            <tr>
+              <th>Room ID</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Day</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+
+              <td class="td" >
+                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                    <label for="first_name">
+
+                    </label>
+                </td>
+
+              <td class="td" >
+                <input type="text" class="timepicker">
+
+
+
+                  </td>
+
+              <td class="td" >
+                <input type="text" class="timepicker">
+
+
+
+              </td>
+
+              <td class="td" >
+                <div class="dropdown">
+
+                  <select>
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="1">Comp. Elec. Eng. Dpt</option>
+                    <option value="2">Mech. Eng. Dpt.</option>
+                    <option value="3">Ind. Eng. Dpt</option>
+                    <option value="4">Inf. Dpt.</option>
+                  </select>
+
+                </div>
+
+              </td>
+
+              <td class="td">
+                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                    <label for="first_name">
+
+                    </label>
+
+
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <a class="waves-effect waves-light btn">button</a>
+
+
+  </body>
+  <script src="addRoomBeha.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</html>

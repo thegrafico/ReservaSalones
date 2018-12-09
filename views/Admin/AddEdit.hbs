@@ -8,17 +8,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- CSS Style Sheet -->
-    <link rel="stylesheet" href="/stylesheets/indexAdmin.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
 
 
     <title>Home</title>
   </head>
-  <body>
+  <bod
 
     <!-- NavBar Starts Here -->
     <nav>
       <div class="nav-wrapper z-depth-2">
-        <a href="/profHome" class="brand-logo">{{user}}</a>
+        <a href="/home" class="brand-logo">{{user}}</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           {{#if user}}
             <li><a href="/home">Home</a></li>
@@ -36,16 +36,16 @@
         <div class="info-box z-depth-2">
           <div class="img-box" style="background-image: url('/imgs/reservation.jpg')"></div>
           <div class="textStyle">
-            <a href="adminHome{{urlReservation}}">View Reservations</a>
+            <a href="AddEdit{{urlAdd}}">Add Room</a>
           </div>
         </div>
       </div>
 
       <div class="col s6">
         <div class="info-box   z-depth-2">
-          <div class="img-box" style="background-image: url('http://meadowlark.epsb.ca/media/elementaryjuniorhighschools/meadowlark/images/Clock-300x300.png')"></div>
+          <div class="img-box" style="background-image: url('/imgs/teacherApp.png')"></div>
           <div class="textStyle">
-            <a href="adminHome{{urlManageRoomHours}}">Manage Room Hours</a>
+            <a href="AddEdit{{urlEdit}}">Edit Room</a>
           </div>
         </div>
       </div>

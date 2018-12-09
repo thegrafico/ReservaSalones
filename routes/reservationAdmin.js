@@ -1,3 +1,6 @@
+//Things that need to be corrected:
+// 1.Does not check for a specific secretary department id to display the different reservations
+
 var express = require('express'); //server
 var router = express.Router(); //router
 var roleCheckHelper = require('../helpers/roleCheck'); //path for the roleCheck
@@ -6,7 +9,7 @@ var dataB = require("../helpers/mysqlConnection").mysql_pool;
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-  var layName = './Admin/admin';  //sets up the name of the layout to be displayed
+  var layName = './Admin/reservationAdmin';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
 

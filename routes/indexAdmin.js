@@ -9,20 +9,20 @@ router.get('/', function (req, res) {	//requirements for the code
 
 	roleCheckHelper.roleCheck('S', email, userName, function(pass){					//checks if the roleID matches the dbRoleID
 
-		if(pass == true){																											//if the roleID's matches run the indexProf
+		if(pass == true){							//if the roleID's matches run the indexProf
 
 			var layout = './Admin/indexAdmin';
-		  let parms = { title: 'adminHome', active: { home: true }};
+		  let parms = { title: 'adminHome', active: { home: true }, urlReservation: '/Reservations', urlManageRoomHours: '/addEdit'};
 
 		 	parms.user = userName;
 			res.render(layout, parms);
 		}
 
 		else{
-			res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
+			res.redirect('/home');			//if the roleID's don't match redirects to indexStud
 		}
 
 	});
 });
 
-module.exports = router;			//requirements for the code
+module.exports = router;					//requirements for the code
