@@ -20,9 +20,7 @@ nav li a {
   font-size: 1.5em;
 }
 
-.datepicker-date-display {
-  background-color: rgb(6, 161, 23);
-}
+
 
 .datepicker-cancel{
   color: rgb(6, 161, 23);
@@ -98,4 +96,7 @@ p b {
   width: 35%;
   margin-right: auto;
   margin-left: auto;
+}
+.datepicker-date-display {
+  background-color: rgb(6, 161, 23);
 }
