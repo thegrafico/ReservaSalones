@@ -71,7 +71,11 @@ router.get('/', function (req, res) {
     // parms.profName = profName;
   }
   else {
+<<<<<<< HEAD
     res.redirect('/');
+=======
+    res.redirect('/home');
+>>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
   }
 })
 

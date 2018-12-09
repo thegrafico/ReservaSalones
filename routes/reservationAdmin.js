@@ -1,25 +1,21 @@
-/*
-1. does not charge the accept and decline appointments when a button is pressed
-2. accept and decline does not work
-3. CANCEL DOES NOT work
-4. Search for appointments does not work
-5.Falta el Cancel
-*/
+//Things that need to be corrected:
+// 1.Does not check for a specific secretary department id to display the different reservations
 
-var express = require('express')	//requirements for the code
-var router = express.Router()		//requirements for the code
-var dataB = require("../helpers/mysqlConnection").mysql_pool;
+var express = require('express'); //server
+var router = express.Router(); //router
 var roleCheckHelper = require('../helpers/roleCheck'); //path for the roleCheck
+var dataB = require("../helpers/mysqlConnection").mysql_pool;
 
+/* GET users listing. */
+router.get('/', function(req, res, next) {
 
-router.get('/', function (req, res) {	//requirements for the code
-  var layName = './Professor/profAppointment';  //sets up the name of the layout to be displayed
+  var layName = './Admin/reservationAdmin';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
 
-  roleCheckHelper.roleCheck('P', userEmail, userName, function(pass){					//checks if the roleID matches the dbRoleID
-    if(pass==true){
-      const title = 'profAppointment';
+  // roleCheckHelper.roleCheck('S', userEmail, userName, function(pass){					//checks if the roleID matches the dbRoleID
+    if(userName){
+      const title = 'admin';
       var parms = {title: title, user: userName } ;
 
       var userID;
@@ -38,41 +34,39 @@ router.get('/', function (req, res) {	//requirements for the code
             // console.log ("It is not undefined1.");
             userID = results[0]["userID"];
           }
-          let query_2 = `SELECT name, email, start, end, date
-                         FROM Users NATURAL JOIN Appointment
-                         WHERE profID = '${userID}' AND status = 'Pending'`;
+          let query_2 = `select *
+                         from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                         natural join
+                         (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
 
           connection.query(query_2, function(err, results){
 
-            // if (results[0] == undefined){
-            //   console.log("It is undefined2.");
-            // }
-            // else if (results[0] != undefined){
-            //   console.log ("It is not undefined2.");
-            // }
             parms.appPending = results;
 
             res.render(layName, parms);
-            })
+          })
+         })
+       })
+     }
+    //  else{
+ 		// 	res.redirect('/');																							//if the roleID's don't match redirects to indexStud
+ 		// }
 
-
-        })
-
-      })
-    }
-    else{
-			res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
-		}
-
-	});
+ 	// });
 })
+    // else{
+		// 	res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
+		// }
+
+//   });
+// });
 
 router.post('/', function (req, res) {
   //-----Basic Variables-------------------
-  var layName = './Professor/profAppointment';  //sets up the name of the layout to be displayed
+  var layName = './Admin/admin';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
-  const title = 'profAppointment';
+  const title = 'admin';
   var parms = {title: title, user: userName } ;
 
   //----------Variables for functionaily---------------------
@@ -89,14 +83,16 @@ router.post('/', function (req, res) {
                  FROM Users
                  WHERE email = '${userEmail}'`;
 
+
   //checks which button has been clicked and excecutes different queries
-  //depending on the functionality. If the button is not clicked, it resturns undefined
+  //depending on the functionality. If the button is not clicked, it returns undefined
    if (acceptID != undefined){
 
      //query changes the status of the appointment to Accept
-    let query_A = `UPDATE Appointment
-                   SET status ='Accept'
-                   WHERE appID = '${acceptID}'`;
+    let query_A = `UPDATE Reservation
+                   SET status ='Accepted'
+                   WHERE resID = '${acceptID}'`;
+
 
     //query that Updates the status of the appointment from
     dataB.getConnection (function (err, connection){
@@ -104,8 +100,6 @@ router.post('/', function (req, res) {
 
             connection.query(query_1, function (err, results){
 
-              console.log ("In last query for table");
-              //console.log(results);Appointments
               if (results[0] == undefined){
                 // console.log("It is undefined.");
               }
@@ -114,12 +108,12 @@ router.post('/', function (req, res) {
                 userID = results[0]["userID"];
               }
 
-              let query_2 = `SELECT name, email, start, end, date, appID
-                             FROM Users NATURAL JOIN Appointment
-                             WHERE profID = '${userID}' AND status = 'Pending'`;
+              let query_2 = `select *
+                             from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                             natural join
+                             (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
 
               connection.query(query_2, function (err, results){
-        console.log("In appPending");
                 parms.appPending = results;
                 res.render(layName, parms);
               })
@@ -129,21 +123,19 @@ router.post('/', function (req, res) {
     })
 
   }else if (declineID != undefined || cancelID != undefined ){
-    console.log("Declined!");
-
     if (cancelID != undefined)
     {
-          arr.push(cancelID.split(":"));
+      arr.push(cancelID.split(":"));
       declineID = arr[0][0];
       date = arr [0][1];
       parms.date = date;
     }
-    let query_D = `UPDATE Appointment
+    let query_D = `UPDATE Reservation
                    SET status ='Decline'
-                   WHERE appID = '${declineID}'`;
+                   WHERE resID = '${declineID}'`;
     let query_D2 = `SELECT *
-                   FROM Appointment
-                   Where appID = '${declineID}'`;
+                   FROM Reservation
+                   Where resID = '${declineID}'`;
 
 
     dataB.getConnection (function (err, connection){
@@ -156,27 +148,19 @@ router.post('/', function (req, res) {
     connection.query(query_D2,  function (err, results){
 
       let query_D3 = `INSERT
-                      INTO AppDecline (appID, userID, start, end, date, status, profID, description) values ('${results[0]["appID"]}', '${results[0]["userID"]}','${results[0]["start"]}', '${results[0]["end"]}', '${results[0]["date"]}', '${results[0]["status"]}', '${results[0]["profID"]}', 'null')`;
+                      INTO ResDecline (resID, userID, start, end, date, status, roomID, description) values ('${results[0]["resID"]}', '${results[0]["userID"]}','${results[0]["start"]}', '${results[0]["end"]}', '${results[0]["date"]}', '${results[0]["status"]}', '${results[0]["roomID"]}', 'null')`;
 
 
       connection.query(query_D3,  function (err, results){
       })
-      let query_D4 = `SELECT name, email, start, end, appID
-                     FROM Appointment NATURAL JOIN Users
-                     WHERE date = '${date}' and status = 'Accept';`
-
-      console.log("here2");
+      let query_D4 = `select *
+                     from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                     natural join
+                     (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Accepted' and date = '${date}') PReservation`;
 
       connection.query(query_D4, function (err, results){
-
-        console.log(results);
-
       parms.appAccept = results;
-      console.log(parms.appAccept);
-
           connection.query(query_1, function (err, results){
-
-            console.log ("In last query for table");
             //console.log(results);Appointments
             if (results[0] == undefined){
               // console.log("It is undefined.");
@@ -186,12 +170,12 @@ router.post('/', function (req, res) {
               userID = results[0]["userID"];
             }
 
-            let query_2 = `SELECT name, email, start, end, date, appID
-                           FROM Users NATURAL JOIN Appointment
-                           WHERE profID = '${userID}' AND status = 'Pending'`;
+            let query_2 = `select *
+                           from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                           natural join
+                           (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
 
             connection.query(query_2, function (err, results){
-      console.log("In appPending");
               parms.appPending = results;
               res.render(layName, parms);
             })
@@ -204,23 +188,18 @@ router.post('/', function (req, res) {
     if (date != ""){
 
       parms.date = date;
-      console.log("In searchFlag");
-      console.log(date);
-
-      let query_S = `SELECT name, email, start, end, appID
-                     FROM Appointment NATURAL JOIN Users
-                     WHERE date = '${date}' and status = 'Accept';`
+      let query_S = `select *
+                     from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                     natural join
+                     (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Accepted' and date = '${date}') PReservation;`
 
       dataB.getConnection (function (err, connection){
       connection.query(query_S, function (err, results){
-
-        console.log(results);
 
       parms.appAccept = results;
 
           connection.query(query_1, function (err, results){
 
-            console.log ("In last query for table");
             //console.log(results);Appointments
             if (results[0] == undefined){
               // console.log("It is undefined.");
@@ -230,16 +209,12 @@ router.post('/', function (req, res) {
               userID = results[0]["userID"];
             }
 
-            let query_2 = `SELECT name, email, start, end, date, appID
-                           FROM Users NATURAL JOIN Appointment
-                           WHERE profID = '${userID}' AND status = 'Pending'`;
+            let query_2 = `select *
+                           from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                           natural join
+                           (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
 
             connection.query(query_2, function (err, results){
-<<<<<<< HEAD
-              console.log("In appPending");
-=======
-      console.log("In appPending");
->>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
               parms.appPending = results;
               res.render(layName, parms);
             })
@@ -248,9 +223,7 @@ router.post('/', function (req, res) {
         })
       })
     }
-}
-
-
-
+  }
 })
-module.exports = router;			//requirements for the code
+
+module.exports = router;

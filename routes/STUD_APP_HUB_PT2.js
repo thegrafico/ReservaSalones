@@ -64,7 +64,11 @@ router.get('/:id', function (req, res) {
       });
     });
   } else {
+<<<<<<< HEAD
     res.redirect('/');
+=======
+    res.redirect('/home');
+>>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
   }
 
   //res.send('Birds home page')
