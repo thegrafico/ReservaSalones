@@ -62,6 +62,7 @@ router.get('/:id', function (req, res) {
 
         res.render(layName, parms);
       });
+      connection.release();
     });
   } else {
     res.redirect('/home');
@@ -135,6 +136,7 @@ router.post('/:id', function (req, res) {
 
         res.render(layName, parms);
       });
+      connection.release();
     });
     } else {
 
@@ -187,14 +189,11 @@ router.post('/:id', function (req, res) {
 
               });
             }
-
-
-
           });
-
         });
+        connection.release();
       });
-      res.redirect(`/home/appointment/${profEmail}`);
+      res.redirect('/home/appointment/${profEmail}');
   }
 });
 
