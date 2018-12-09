@@ -41,35 +41,11 @@ router.post('/', function(req, res, next) {
   const userName = req.cookies.graph_user_name;
   const email = req.cookies.graph_user_email;
   parms.user = userName;
-<<<<<<< HEAD
-  let arrDate = [];
-=======
->>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
   //know the data
   console.log(req.body);
   /*
     Remember error handle
   */
-<<<<<<< HEAD
-  let rID = req.body.searchRoom.id;
-  let rDate = req.body.searchRoom.date;
-
-  arrDate = rDate.split(',');
-  let day = arrDate[0];
-  console.log(day);
-  let query = `SELECT *
-               FROM Rooms NATURAL JOIN RoomHours
-               WHERE roomID = '${rID}'`;
-
-  if(userName){
-    getRooms(function(roomIDs){
-      db.getConnection(function(err, connection) {
-
-        //error
-        if(err) throw err;
-
-        connection.query(query, function (error, results, fields) {
-=======
   let rID    = req.body.searchRoom.id;
   let rDate  = req.body.searchRoom.date;      //full date
   var day    = "";                                 //half date
@@ -148,33 +124,8 @@ console.log("test2");
   // }
 });
 
->>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
-
-          //Error
-          if (error) throw error;
-
-<<<<<<< HEAD
-          parms.id = roomIDs;
-
-          parms.results = results;
-
-          console.log(results);
-          //render the html
-          res.render(layoutRender, parms);
-        });
-      });
-    });
-  }else{
-    res.redirect('/');
-  }
-});
 
 
-
-function getRooms(callback){
-
-  let query = `SELECT roomID
-=======
 function getRooms(callback){
 
   let query = `SELECT distinct(roomID)
@@ -195,7 +146,6 @@ function getRooms(callback){
 function getRooms2(email, callback){
 
   let query = `SELECT distinct(roomID)
->>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
                FROM Rooms`;
 
   db.getConnection(function(err, connection) {
@@ -205,9 +155,6 @@ function getRooms2(email, callback){
     connection.query(query, function (error, results, fields) {
       if (error) throw error;
 
-<<<<<<< HEAD
-      callback(results);
-=======
       let query_2 =`select userID` +                                   //checks if the user role
                   ` from Users` +                                      //is on the database
                   ` where email = '${email}'`;                         //database query using his email
@@ -225,7 +172,6 @@ function getRooms2(email, callback){
           callback(results, userID);
         });
       });
->>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
     });
   });
 }

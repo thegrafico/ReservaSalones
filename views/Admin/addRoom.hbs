@@ -2,12 +2,15 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+
+    <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+    <!-- Materialize Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="/stylesheets/addRoom.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+    <link rel="stylesheet" href="/stylesheets/addRoom.css">
 
     <title>Add Room</title>
   </head>
@@ -41,50 +44,302 @@
 
             <tr>
 
-              <td class="td" >
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                    <label for="first_name">
-
-                    </label>
-                </td>
-
-              <td class="td" >
-                <input type="text" class="timepicker">
-
-
-
-                  </td>
-
-              <td class="td" >
-                <input type="text" class="timepicker">
-
-
-
+              <td class="room" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Room</option>
+                  <!-- {#each id}} -->
+                  <option>{{this.name}}</option>
+                  <!-- {/each}} -->
+                </select>
               </td>
 
-              <td class="td" >
-                <div class="dropdown">
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
 
-                  <select>
-                    <option value="" disabled selected>Select Department</option>
-                    <option value="1">Comp. Elec. Eng. Dpt</option>
-                    <option value="2">Mech. Eng. Dpt.</option>
-                    <option value="3">Ind. Eng. Dpt</option>
-                    <option value="4">Inf. Dpt.</option>
-                  </select>
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
 
-                </div>
-
+              <td class="day" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="">All</option>
+                  <option value="">Mon</option>
+                  <option value="">Tue</option>
+                  <option value="">Wed</option>
+                  <option value="">Thu</option>
+                  <option value="">Fri</option>
+                </select>
               </td>
 
               <td class="td">
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                    <label for="first_name">
-
-                    </label>
-
-
+                <input placeholder="Description" id="first_name" type="text" class="validate">
               </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="room" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Room</option>
+                  <!-- {#each id}} -->
+                  <option>{{this.name}}</option>
+                  <!-- {/each}} -->
+                </select>
+              </td>
+
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
+
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
+
+              <td class="day" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="">All</option>
+                  <option value="">Mon</option>
+                  <option value="">Tue</option>
+                  <option value="">Wed</option>
+                  <option value="">Thu</option>
+                  <option value="">Fri</option>
+                </select>
+              </td>
+
+              <td class="td">
+                <input placeholder="Description" id="first_name" type="text" class="validate">
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td class="room" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Room</option>
+                  <!-- {#each id}} -->
+                  <option>{{this.name}}</option>
+                  <!-- {/each}} -->
+                </select>
+              </td>
+
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
+
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
+
+              <td class="day" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="">All</option>
+                  <option value="">Mon</option>
+                  <option value="">Tue</option>
+                  <option value="">Wed</option>
+                  <option value="">Thu</option>
+                  <option value="">Fri</option>
+                </select>
+              </td>
+
+              <td class="td">
+                <input placeholder="Description" id="first_name" type="text" class="validate">
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="room" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Room</option>
+                  <!-- {#each id}} -->
+                  <option>{{this.name}}</option>
+                  <!-- {/each}} -->
+                </select>
+              </td>
+
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
+
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
+
+              <td class="day" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="">All</option>
+                  <option value="">Mon</option>
+                  <option value="">Tue</option>
+                  <option value="">Wed</option>
+                  <option value="">Thu</option>
+                  <option value="">Fri</option>
+                </select>
+              </td>
+
+              <td class="td">
+                <input placeholder="Description" id="first_name" type="text" class="validate">
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="room" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Room</option>
+                  <!-- {#each id}} -->
+                  <option>{{this.name}}</option>
+                  <!-- {/each}} -->
+                </select>
+              </td>
+
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
+
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
+
+              <td class="day" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="">All</option>
+                  <option value="">Mon</option>
+                  <option value="">Tue</option>
+                  <option value="">Wed</option>
+                  <option value="">Thu</option>
+                  <option value="">Fri</option>
+                </select>
+              </td>
+
+              <td class="td">
+                <input placeholder="Description" id="first_name" type="text" class="validate">
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="room" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Room</option>
+                  <!-- {#each id}} -->
+                  <option>{{this.name}}</option>
+                  <!-- {/each}} -->
+                </select>
+              </td>
+
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
+
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
+
+              <td class="day" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="">All</option>
+                  <option value="">Mon</option>
+                  <option value="">Tue</option>
+                  <option value="">Wed</option>
+                  <option value="">Thu</option>
+                  <option value="">Fri</option>
+                </select>
+              </td>
+
+              <td class="td">
+                <input placeholder="Description" id="first_name" type="text" class="validate">
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td class="room" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Room</option>
+                  <!-- {#each id}} -->
+                  <option>{{this.name}}</option>
+                  <!-- {/each}} -->
+                </select>
+              </td>
+
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
+
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
+
+              <td class="day" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="">All</option>
+                  <option value="">Mon</option>
+                  <option value="">Tue</option>
+                  <option value="">Wed</option>
+                  <option value="">Thu</option>
+                  <option value="">Fri</option>
+                </select>
+              </td>
+
+              <td class="td">
+                <input placeholder="Description" id="first_name" type="text" class="validate">
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td class="room" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Room</option>
+                  <!-- {#each id}} -->
+                  <option>{{this.name}}</option>
+                  <!-- {/each}} -->
+                </select>
+              </td>
+
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
+
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
+
+              <td class="day" >
+                <select name="searchRoom[id]">
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="">All</option>
+                  <option value="">Mon</option>
+                  <option value="">Tue</option>
+                  <option value="">Wed</option>
+                  <option value="">Thu</option>
+                  <option value="">Fri</option>
+                </select>
+              </td>
+
+              <td class="td">
+                <input placeholder="Description" id="first_name" type="text" class="validate">
+              </td>
+
             </tr>
 
           </tbody>
@@ -92,12 +347,11 @@
       </div>
 
     </div>
-    <a class="waves-effect waves-light btn">button</a>
 
+    <button type="button" class="submit waves-effect waves-light btn" name="button">Submit</button>
 
   </body>
-  <script src="addRoomBeha.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+  <script src="/behavior/addRoomBeha.js"></script>
 
 </html>

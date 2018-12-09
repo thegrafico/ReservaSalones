@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
 $('.dropdown-trigger').dropdown();
 
 $(document).ready(function(){
@@ -41,53 +37,22 @@ $(document).ready(function(){
   });
 });
 
-<<<<<<< HEAD
+
 $(document).ready(function(){
   $('select').formSelect();
 });
 
+
 $(document).ready(function(){
   $('.timepicker').timepicker(
   {
+    twelveHour:false,
     defaultTime:12,
-    twelveHour: false
   }
   );
 });
 
-$(document).ready(function(){
- $('.collapsible').collapsible();
-})
-=======
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var elems = document.querySelectorAll('select');
-  //   var instances = M.FormSelect.init(elems, options);
-  // });
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('select').formSelect();
-  });
-
-  // document.addEventListener('DOMContentLoaded', function() {
-  //     var elems = document.querySelectorAll('.timepicker');
-  //     var instances = M.Timepicker.init(elems, options);
-  //   });
-
-    // Or with jQuery
-
-    $(document).ready(function(){
-      $('.timepicker').timepicker(
-      {
-        twelveHour:false,
-        defaultTime:12,
-      }
-      );
-    });
-
 
 $(document).ready(function(){
  $('.collapsible').collapsible();
 });
->>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048

@@ -235,11 +235,7 @@ router.post('/', function (req, res) {
                            WHERE profID = '${userID}' AND status = 'Pending'`;
 
             connection.query(query_2, function (err, results){
-<<<<<<< HEAD
-              console.log("In appPending");
-=======
       console.log("In appPending");
->>>>>>> a6c346f6a71ea6cecb50e585ff117ffce7258048
               parms.appPending = results;
               res.render(layName, parms);
             })
