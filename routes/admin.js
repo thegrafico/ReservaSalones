@@ -6,6 +6,7 @@ var roleCheckHelper = require('../helpers/roleCheck'); //path for the roleCheck
 router.get('/', function(req, res, next) {
 
   const userName = req.cookies.graph_user_name; //gets the username from the email
+<<<<<<< HEAD
   const email = req.cookies.graph_user_email;
   const title = 'Admin';
 
@@ -21,6 +22,20 @@ router.get('/', function(req, res, next) {
                      FROM Users
                      WHERE email = '${userEmail}'`;
 
+=======
+  const userEmail = req.cookies.graph_user_email;
+
+  // roleCheckHelper.roleCheck('S', userEmail, userName, function(pass){					//checks if the roleID matches the dbRoleID
+    if(userName){
+      const title = 'admin';
+      var parms = {title: title, user: userName } ;
+
+      var userID;
+
+      let query_1 = `SELECT userID
+                     FROM Users
+                     WHERE email = '${userEmail}'`;
+>>>>>>> a2e90dee9b0ebc688242e1b68c0fe692ce4765cf
       dataB.getConnection(function (err, connection){
 
         connection.query(query_1, function(err, results){
@@ -32,6 +47,7 @@ router.get('/', function(req, res, next) {
             // console.log ("It is not undefined1.");
             userID = results[0]["userID"];
           }
+<<<<<<< HEAD
           let query_2 = `SELECT name, email, start, end, date
                          FROM Users NATURAL JOIN Reservation
                          WHERE userID = '${}' AND status = 'Pending'`;
@@ -44,10 +60,20 @@ router.get('/', function(req, res, next) {
             // else if (results[0] != undefined){
             //   console.log ("It is not undefined2.");
             // }
+=======
+          let query_2 = `select *
+                         from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                         natural join
+                         (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
+
+          connection.query(query_2, function(err, results){
+
+>>>>>>> a2e90dee9b0ebc688242e1b68c0fe692ce4765cf
             parms.appPending = results;
 
             res.render(layName, parms);
           })
+<<<<<<< HEAD
         })
       })
       res.render(layName, parms);
@@ -63,6 +89,27 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res) {
   var layName = './Admin/admin';
+=======
+         })
+       })
+     }
+    //  else{
+ 		// 	res.redirect('/');																							//if the roleID's don't match redirects to indexStud
+ 		// }
+
+ 	// });
+})
+    // else{
+		// 	res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
+		// }
+
+//   });
+// });
+
+router.post('/', function (req, res) {
+  //-----Basic Variables-------------------
+  var layName = './Admin/admin';  //sets up the name of the layout to be displayed
+>>>>>>> a2e90dee9b0ebc688242e1b68c0fe692ce4765cf
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
   const title = 'admin';

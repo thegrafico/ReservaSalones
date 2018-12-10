@@ -24,7 +24,6 @@ router.get('/:id', function (req, res) {
   var profEmail   = req.params.id;
   var parms       = {title: titleName};                 // Sets up the names of the variables used in hbs
 
-
   // If a value exists in the username variable
   if(userName){
 
@@ -33,7 +32,7 @@ router.get('/:id', function (req, res) {
 
     // Defines the query i want to make
     let query = `SELECT name, email
-                 FROM Users NATURAL JOIN ProfHours
+                 FROM Users
                  WHERE email = '${profEmail}'`;
 
     // establishes connection to database
@@ -41,6 +40,7 @@ router.get('/:id', function (req, res) {
 
       //to make the query to the dataBase
       connection.query(query, function(error, results, fields){
+        console.log (results);
 
         if (error) throw error;
 
@@ -123,6 +123,7 @@ router.post('/:id', function (req, res) {
       if(err) throw err;
 
       connection.query(query, function(error, results, fields) {
+        if (results != ""){
 
         /*========= Variables for FrondEnd =========*/
 
