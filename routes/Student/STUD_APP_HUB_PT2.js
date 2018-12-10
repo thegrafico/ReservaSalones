@@ -1,15 +1,15 @@
 //-----------------------------------
 /*
 Code still can't handle two cases:
-1. It crashes whenever the user tries to search for available without having entered any input
-2. It crashes whenever the user enters submit too many times without choosing anything
 3. Also, does not check if appointment is taken to make the request
+4.Does not make appointment if the user does not reselect the day
 */
 //-----------------------------------
 
 var express = require('express')
 var router = express.Router()
 // Initial connection with database.
+var roleCheckHelper = require('../../helpers/roleCheck'); //path for the roleCheck
 var dataB = require("../../helpers/mysqlConnection").mysql_pool;
 
 // Define the home page route
@@ -23,51 +23,35 @@ router.get('/:id', function (req, res) {
   const userEmail = req.cookies.graph_user_email;       // Record user's Email.
   var profEmail   = req.params.id;
   var parms       = {title: titleName};                 // Sets up the names of the variables used in hbs
+  var role        = "";
 
   // If a value exists in the username variable
-  if(userName){
+  roleCheckHelper.roleCheck (role, userEmail, userName, function (pass){
+
+    if (pass){
 
     // Object that will be sent to the hbs fie for the variables to be displayed
-    parms.user = userName;
+      parms.user = userName;
 
-    // Defines the query i want to make
-    let query = `SELECT name, email
-                 FROM Users
-                 WHERE email = '${profEmail}'`;
+      getProfCred(profEmail, function (filled, profCred){
+        //checks if query for name and email came back filled
+        if (filled){
 
-    // establishes connection to database
-    dataB.getConnection(function(err, connection){
+          parms.profName  = profCred[0]["name"];
+          parms.profEmail = profCred[0]["email"];
+          parms.layout    = layName;
 
-      //to make the query to the dataBase
-      connection.query(query, function(error, results, fields){
-        console.log (results);
+          res.render(layName, parms);
 
-        if (error) throw error;
+        }else{
+          res.send("Oops, no professor name or email");
+        }
 
-        // result of query is called results
-        // it is an array
-        // which the first index is given by
-        // and the second is given by name
-        // an example of how to call a similar array would be like
-        // var array1 = {once: "once", twice: "twice"}
-        // var array2 = [array1];
-        // console.log(array2[0]["once"]);
-        // example using the results array
-        // console.log(results[0]["profName"]);
-
-        /* ==== Variables for frondEnd ==== */
-        parms.profName  = results[0]["name"];
-        parms.profEmail = results[0]["email"];
-        parms.layout    = layName;
-
-        res.render(layName, parms);
-      });
-      connection.release();
-    });
-  } else {
-    res.redirect('/home');
-  }
-
+      })
+    }else{
+      res.redirect('/home');
+    }
+  })
   //res.send('Birds home page')
 });
 
@@ -81,65 +65,110 @@ router.post('/:id', function (req, res) {
   const userEmail = req.cookies.graph_user_email;       // Records user's Email.
   var profEmail   = req.params.id;                      // Records professor Email.
   var parms       = {title: titleName};
+  var role        = "";
 
-  /* ======== VARAIBLES ======= */
 
-  var date;                         // Stores datepicker where we retireve the day (Ex. Mon, Tue, Wed, etc.) This is used for the first query.
-  var dateSearch;                   // Stores datepicker value where we extract the day ^ for the query.
-  var id;                           // Stores the professor email chosen by student. Used to find the professor hours.
-  var myID;                         // Stores user's table "userID". This is the result of "query_1".
-  var profID;                       // Stores professor's table "userID". This is the result of "query_2". We also use this in the Insert query(query_3).
-  var timeChoice;                   // Stores user's choice of hours for appointment.
-  var dateChoice;                   // Stores datepicker value used for the Appointment request.
-  var arr = [];                     // Array used to store the day.
-  var time = [];                    // Array used to store the hours chosen by the user.
+  roleCheckHelper.roleCheck (role, userEmail, userName, function (pass){
 
-//gets value of first button
-  if(req.body.button != undefined) {
-    dateSearch = req.body.button;
+    if (pass){
+
+    /* ======== VARAIBLES ======= */
+
+      var date;                         // Stores datepicker where we retireve the day (Ex. Mon, Tue, Wed, etc.) This is used for the first query.
+      var dateSearch = req.body.search; // Stores datepicker value where we extract the day ^ for the query.
+      var id;                           // Stores the professor email chosen by student. Used to find the professor hours.
+      var myID;                         // Stores user's table "userID". This is the result of "query_1".
+      var profID;                       // Stores professor's table "userID". This is the result of "query_2". We also use this in the Insert query(query_3).
+      var timeChoice = req.body.hourChoice;// Stores user's choice of hours for appointment.
+      var dateChoice;                   // Stores datepicker value used for the Appointment request.
+      var arr = [];                     // Array used to store the day.
+      var time = [];                    // Array used to store the hours chosen by the user.
+      var submit = req.body.btnSt;
+
+      parms.user = userName;
+
+
+      console.log(req.body);
+      console.log("Button State: " + submit);
+      console.log(dateSearch);
+
+      getUserID(userEmail, function (filled, id){
+        if (filled){
+          userID = id[0]["userID"];
+        }else{
+          res.redirect('/home')
+        }
+      })
+      getProfCred(profEmail, function (filled, profCred){
+        //checks if query for name and email came back filled
+        if (filled){
+
+          parms.profName  = profCred[0]["name"];
+          parms.profEmail = profCred[0]["email"];
+          parms.layout    = layName;
+          profID = profCred[0]["userID"];
+
+
+          //if the search button has been pressed
+          if (dateSearch && dateSearch != undefined){
+
+            date = req.body.date;
+
+            //check if the user did press the button without entering a date
+            if (date != ''){
+
+              arr.push(date.split(","));
+              let day = arr[0][0].trim();
+
+              getProfHour (profID, day, function (filled, profHour){
+
+                parms.results   = profHour;
+                res.render(layName, parms);
+              })
+
+              console.log("Inside date not empty")
+
+            //else, the user pressed the button empty, render normal page
+            }else{
+              console.log("Inside date is empty")
+              res.render(layName, parms);
+            }
+
+          //else the submit button has been pressed
+          }else{
+            //if runs in here, then submit button has been pressed
+            date = req.body.date;
+            //if date isnt empty
+            if (date != '' && timeChoice != undefined){
+
+              timeChoice = String(req.body.hourChoice);
+
+              time.push(timeChoice.split(","));
+              console.log(time[0][0]);
+              //userID start end date status profID description
+
+              makeAppointment(userID, time, date, profID);
+              res.render(layName, parms);
+
+            //else, render page as normal
+            }else{
+              res.render(layName, parms);
+            }
+
+
+            console.log("Undefined");
+          }
+
+        }else{
+          res.send("Oops, no professor name or email");
+        }
+      })
+
+      //checks if the  search for available was clicked
   }
+    /*
 
-  //just get the day
-  if (dateSearch != undefined) {
-
-    //get date
-    if(req.body.date != undefined) {
-      date  = req.body.date;
-
-      parms.date = date;
-
-      //fill up the array with date
-      arr.push(date.split(","));
-    }
-
-    let day = arr[0][0].trim();
-
-    // Query which returns all of the hours of a selected day.
-    let query = `SELECT name, email, start, end, Day
-                 FROM Users NATURAL JOIN ProfHours
-                 WHERE email = '${profEmail}' AND day = '${day}'`;
-
-    dataB.getConnection(function(err, connection){
-
-      if(err) throw err;
-
-      connection.query(query, function(error, results, fields) {
-
-
-        /*========= Variables for FrondEnd =========*/
-
-        parms.results   = results;
-        parms.user      = userName;
-        parms.profName  = results[0]["name"];
-        parms.profEmail = results[0]["email"];
-        parms.layout    = layName;
-
-        res.render(layName, parms);
-      });
-      connection.release();
-    });
-    } else {
-
+the submit button has been pressed
       dateChoice= req.body.btnSt;
       //console.log(dateChoice);
       timeChoice = String(req.body.hourChoice);
@@ -173,7 +202,6 @@ router.post('/:id', function (req, res) {
 
             //console.log("Values1 are: " + myID + " " + time[0][1] + " " + time[0][2] + " " + dateChoice + " " + profID);
 
-            /*========== Trying to create the loop for multiple appointments ==========*/
             //Adds new appointments to the Database
             for (var i = 0; i < time[0].length; i += 2) {
               //console.log(i);
@@ -195,7 +223,102 @@ router.post('/:id', function (req, res) {
       });
       res.redirect('/home/appointment/${profEmail}');
   }
+  */
+  });
 });
 
+
+//gets name, email and ID of the Professor
+function getProfCred(profEmail, callback){
+
+  let selectProfCred = `SELECT userID, name, email
+                        FROM Users
+                        WHERE email = '${profEmail}'`;
+
+  dataB.getConnection(function (err,connection){
+
+    connection.query(selectProfCred, function (err, results, field){
+
+      if (err) throw error;
+
+      if (results != ""){
+
+        callback (true, results);
+      }else{
+        callback(false, results);
+      }
+    })
+
+    connection.release();
+  })
+}
+
+
+
+function getProfHour (profID, day, callback){
+
+  // Query which returns all of the hours of a selected day.
+  let selectHours = `SELECT name, email, start, end, Day
+               FROM Users NATURAL JOIN ProfHours
+               WHERE userID = '${profID}' AND day = '${day}'`;
+
+  dataB.getConnection(function(err, connection){
+
+    if(err) throw err;
+
+    connection.query(selectHours, function(error, results, fields) {
+
+      if (results != ""){
+
+        callback (true, results);
+      }else{
+        callback(false, results);
+      }
+    })
+    connection.release();
+  })
+}
+
+
+
+function getUserID (userEmail, callback){
+  let selectUserID = `SELECT userID
+                      FROM Users
+                      WHERE email = '${userEmail}'`;
+
+  dataB.getConnection (function (err, connection){
+    if (err) throw error;
+    connection.query(selectUserID, function(error, results, fields) {;
+      if (results != ""){
+
+        callback (true, results);
+      }else{
+        callback(false, results);
+      }
+    })
+    connection.release()
+  })
+}
+
+
+
+function makeAppointment (userID, time, date, profID){
+
+    dataB.getConnection(function(err, connection){
+
+    for (var i = 0; i < time[0].length; i += 2) {
+      //console.log(i);
+      //console.log(time[0][i] + ' && ' + time[0][i+1]);
+
+      // Query which inserts the appointment.
+      let query_3 = `INSERT INTO Appointment(userID, start, end, date, status, profID) VALUES('${userID}','${time[0][i]}','${time[0][i+1]}','${date}','Pending','${profID}');`;
+      connection.query(query_3, function(error, results, fields){
+        console.log(results);
+      });
+    }
+    connection.release();
+  })
+
+}
 
 module.exports = router
