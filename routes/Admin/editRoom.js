@@ -129,6 +129,7 @@ function roomID (userEmail, callback){
     callback(false, results);
     }
   })
+  connection.release();
   })
 }
 
