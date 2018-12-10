@@ -98,3 +98,22 @@ p b {
   width: 35%;
   margin-right: auto;
   margin-left: auto;
+}
+.Btn{
+
+background-color: rgba(255, 0, 0, 0.75);
+width: 10em;
+margin-top: 1px;
+
+}
+
+.Btn2{
+  background-color: rgb(255, 252, 62);
+  color: black;
+  width:10em;
+  margin-top: 10px;
+}
+
+.td{
+  width: 20%;
+}

@@ -17,12 +17,20 @@ function roleCheck(reqRoleID, email, userName, callback){            //creates t
 
         console.log(dbRoleID);
 
-        if (results != "")                                           //checks if the result from the database is empty
+        console.log("outside if");
+        if (results [0] != undefined){                                           //checks if the result from the database is empty
         dbRoleID = results[0].roleID;                                //iguala el roleID de la db a la variable de dbRoleID
         //console.log(dbEmail);
+        console.log("Results isnt undefined")
+      }else{
+        if (reqRoleID == ""){
+
+          dbRoleID = '';
+        }
+      }
 
         if (error) throw error;                                      //checks for error
-
+        console.log (reqRoleID);
         console.log(dbRoleID);
 
         if (dbRoleID == reqRoleID)  callback(true);                  //if the user roleID matches the dbRoleID sends true to the function
@@ -30,6 +38,8 @@ function roleCheck(reqRoleID, email, userName, callback){            //creates t
           callback(false);                                           //if the user roleID dosen't matches the dbRoleID sends false to the function
         }
       });
+      connection.release();
+
     });
   }
 }

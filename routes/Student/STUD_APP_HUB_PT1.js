@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 //to interact with the databea and make queries
-var dataB = require("../helpers/mysqlConnection").mysql_pool;
+var dataB = require("../../helpers/mysqlConnection").mysql_pool;
 
 //basically page response as in the layout, buttons, all html stuff, etc
 router.get('/', function (req, res) {
@@ -65,6 +65,9 @@ router.get('/', function (req, res) {
         //it reanders the webpage visual and styling elements
         res.render(layName, parms);
       })
+
+      connection.release();
+
     })
     // Defines a variable in the object parms and defines it as the userName
     parms.user = userName;
@@ -74,13 +77,5 @@ router.get('/', function (req, res) {
     res.redirect('/home');
   }
 })
-
-//converts index number to an equivalent table name
-function getColumn (index, name, email, description){
-  return 0;
-    switch (index){
-      case '0':
-    }
-}
 
 module.exports = router

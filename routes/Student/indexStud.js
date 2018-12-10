@@ -2,8 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
-var authHelper = require('../helpers/auth');
-var db = require("../helpers/mysqlConnection").mysql_pool;
+var authHelper = require('../../helpers/auth');
+var db = require("../../helpers/mysqlConnection").mysql_pool;
 
 /* GET home page. */
 router.get('/', async function(req, res) {
@@ -60,10 +60,6 @@ router.get('/', async function(req, res) {
             ` SELECT * FROM (SELECT '${userName}', '${email}') as nUser`  +             //of the user is on the db
             ` WHERE NOT EXISTS (SELECT email FROM ${user} where email = '${email}')`;   //if he is not on db, add his credential to the db
 
-            db.getConnection(function(err, connection) {                                //checks if there is a connection error with db
-
-              if (err) throw error;                                                     //if there is a db error, display error
-
               connection.query(query, function (error, results, fields) {               //query that adds the email if it's not on the db
 
                 if (error) throw error;                                                 //checks if there was an error if the query
@@ -79,7 +75,7 @@ router.get('/', async function(req, res) {
 
                 res.render(layName, parms);
               });
-            });
+              connection.release();
           }
           else {
             authHelper.clearCookies(res); //clears the user cookies

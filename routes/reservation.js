@@ -1,3 +1,9 @@
+/*
+1. Puede tener un check date donde el resultado te de not available de ese date
+2. Cuando selecciones el roomID se quede despues del search
+3.
+*/
+
 var express = require('express'); //server
 var router = express.Router(); //router
 var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
@@ -7,7 +13,7 @@ var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 router.get('/',  function(req, res, next) {
 
   var building = "Building";
-  var layoutRender = 'reservation';     //cambiamos esto para cambiar el view
+  var layoutRender = 'reservation';//cambiamos esto para cambiar el view
 
   let parms = {layout: layoutRender, title: 'Reservation'};
   //graba el username e email de los cookies que se grabaron en auth
@@ -64,15 +70,15 @@ router.post('/', function(req, res, next) {
   console.log("day: ",day);
   console
   let query = `SELECT *
-               FROM Rooms NATURAL JOIN RoomHours
+               FROM RoomHours Natural Join (Select distinct(roomID) from Rooms) as DRooms
                WHERE roomID = '${rID}'`;
 
-console.log("test");
+
   // if(userName){
     getRooms2(email ,function(roomIDs, userID){
-console.log("test3");
+
       db.getConnection(function(err, connection) {
-console.log("test2");
+
         //error
         if(err) throw err;
 
@@ -92,23 +98,22 @@ console.log("test2");
                        WHERE not exists (Select *
                        from (select roomID, start, end, day date, description
                        from RoomHours union all Select roomID, start, end, date, description from Reservation where status = 'Accepted') AllReservation
-                       where end >= '${rStart}' and start <= '${rEnd}' and roomID = '${rID}' and (date = '${day[0]}' or date = '${rDate}'));`;
+                       where end >= '${rStart}' and start <= '${rEnd}' and roomID = '${rID}' and (date = '${day[0]}' or date = '${rDate}' or date = 'all'));`;
 
-          if (rStart != "" && rEnd != "" && rID != "" && day[0] != "" && rDate != ""){
-            db.getConnection(function(err, connection) {
-              connection.query(query_2, function (error, results_2, fields) {
+          if (rStart != "" && rEnd != "" && rID != "" && rID != undefined && day[0] != "" && rDate != ""){
 
-                if (error) throw error;
-                if (results_2.insertId > 0){
-                  // console.log(query_2);
-                  console.log("SUUUUUUUUU");
-                }
-                else {
-                  console.log("Can not make reservation, Date is not available");
-                }
+            connection.query(query_2, function (error, results_2, fields) {
 
-              });
+              if (error) throw error;
+              if (results_2.insertId > 0){
+                // console.log(query_2);
+                console.log("SUUUUUUUUU");
+              }
+              else {
+                console.log("Can not make reservation, Date is not available");
+              }
             });
+
           }
           else{
             console.log("One of the Variables is blank");
@@ -117,6 +122,7 @@ console.log("test2");
           //render the html
           res.render(layoutRender, parms);
         });
+        connection.release();
       });
     });
   // }else{
@@ -140,6 +146,7 @@ function getRooms(callback){
 
       callback(results);
     });
+    connection.release();
   });
 }
 
@@ -159,19 +166,17 @@ function getRooms2(email, callback){
                   ` from Users` +                                      //is on the database
                   ` where email = '${email}'`;                         //database query using his email
 
-      db.getConnection(function(err, connection) {
+      if(err) throw err;
 
-        if(err) throw err;
+      connection.query(query_2, function (error, results_2, fields) {
+        if (error) throw error;
 
-        connection.query(query_2, function (error, results_2, fields) {
-          if (error) throw error;
+        userID = results_2[0].userID;
+        // console.log("UserID-query: ",userID);
 
-          userID = results_2[0].userID;
-          // console.log("UserID-query: ",userID);
-
-          callback(results, userID);
-        });
+        callback(results, userID);
       });
+      connection.release();
     });
   });
 }

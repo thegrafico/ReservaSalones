@@ -1,6 +1,6 @@
 var express = require('express')											 //requirements for the code
 var router = express.Router()													 //requirements for the code
-var roleCheckHelper = require('../helpers/roleCheck'); //path for the roleCheck
+var roleCheckHelper = require('../../helpers/roleCheck'); //path for the roleCheck
 
 router.get('/', function (req, res) {	//requirements for the code
 
@@ -11,8 +11,8 @@ router.get('/', function (req, res) {	//requirements for the code
 
 		if(pass == true){																											//if the roleID's matches run the indexProf
 
-			var layout = './Super_Admin/manageRoom';
-		  let parms = { title: 'adminRoom/ManageRoom'};
+			var layout = './Super_Admin/indexSAdmin'; /* ==== Missing! ==== */											/* === Missing! === */
+		  let parms = { title: 'adminRoom	', active: { home: true }, urlManageRoom: '/', urlManageRole: '/'};
 
 		 	parms.user = userName;
 			res.render(layout, parms);
