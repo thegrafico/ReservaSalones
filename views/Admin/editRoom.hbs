@@ -30,19 +30,11 @@
       </div>
     </nav>
 
-<<<<<<< HEAD
-    <form action="/home/reservation" method="post">
-      <div class="row chooseDate z-depth-2">
-      <!-- =================== Form Starts ==================== -->
-          <div class="col s6">
-            <select name="searchRoom[id]">
-=======
     <form action="/adminHome/addEdit/editRoom" method="post">
       <div class="row chooseDate z-depth-2">
       <!-- =================== Form Starts ==================== -->
           <div class="col s6">
             <select name="optionID">
->>>>>>> 12e1c2908f28f850ab932c96255a1844cd055e12
               <option value="" disabled selected>Select Room</option>
               {{#each id}}
               <option>{{this.roomID}}</option>
@@ -51,11 +43,7 @@
           </div>
 
           <div class="col s6">
-<<<<<<< HEAD
-            <button class="btn" type="submit" name="checkAvailable">Check Availability</button>
-=======
             <button class="btn" type="submit" name="optionID">Check Room Hours</button>
->>>>>>> 12e1c2908f28f850ab932c96255a1844cd055e12
           </div>
         </div>
      </form>
@@ -67,29 +55,17 @@
         <table>
           <thead>
             <tr>
-<<<<<<< HEAD
-=======
               <th>Room</th>
->>>>>>> 12e1c2908f28f850ab932c96255a1844cd055e12
               <th>Description</th>
               <th>Starts</th>
               <th>Ends</th>
               <th>Day</th>
-<<<<<<< HEAD
-=======
               <th>Decision</th>
->>>>>>> 12e1c2908f28f850ab932c96255a1844cd055e12
             </tr>
           </thead>
           <tbody>
             {{#each results}}
             <tr>
-<<<<<<< HEAD
-              <td class="td" >{{this.description}}</td>
-              <td class="td" >{{this.start}}</td>
-              <td class="td" >{{this.end}}</td>
-              <td class="td" >{{this.day}}</td>
-=======
               <td>
                 {{this.roomID}}
               </td>
@@ -142,7 +118,6 @@
                   Edit
                 </button>
               </td>
->>>>>>> 12e1c2908f28f850ab932c96255a1844cd055e12
             </tr>
             {{/each}}
           </tbody>
@@ -152,10 +127,7 @@
     </div>
 
     <!-- === Javascript === -->
-<<<<<<< HEAD
-=======
     <script type="text/javascript" src="/behavior/editRoomBeha.js"></script>
->>>>>>> 12e1c2908f28f850ab932c96255a1844cd055e12
     <script type="text/javascript" src="/behavior/Reservation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
