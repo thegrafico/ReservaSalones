@@ -13,18 +13,18 @@ var db                = require("./helpers/mysqlConnection").mysql_pool; //pool 
 /* ==== All of the Route pages === */
 var loginRoute        = require('./routes/login');							// Login route, this is where the  user is  greeted.
 var authorize         = require('./routes/authorize');					// Microsoft authentication page.
-var indexStud         = require('./routes/indexStud');					// Index route, this route takes us to the student decision page.
+var indexStud         = require('./routes/Student/indexStud');					// Index route, this route takes us to the student decision page.
 var reservationRouter = require('./routes/reservation');				// Reservation route, takes the user to the Room Reservation Hub.
-var studAppHubPT1			= require('./routes/STUD_APP_HUB_PT1');		// Student Appointment Hub Pt 1, Which Professor.
-var studAppHubPT2 		= require('./routes/STUD_APP_HUB_PT2');		// Student Appointment Hub Pt 2, Shows Professor choosen hours.
-var indexProf					= require('./routes/indexProf');					// Professor Home, this page displays students request and appoints already accepted.
-var profAppointment 	= require('./routes/profAppointment');		//
-var reservationAdmin	= require('./routes/reservationAdmin');		// Admin Home, this pages displays any room reservation.
-var indexAdmin			  = require('./routes/indexAdmin');
-var AddEdit           = require('./routes/AddEdit');
-var addRoom						= require('./routes/addRoom');
-var editRoom					= require('./routes/editRoom');
-var indexSAdmin				= require('./routes/indexSAdmin');
+var studAppHubPT1			= require('./routes/Student/STUD_APP_HUB_PT1');		// Student Appointment Hub Pt 1, Which Professor.
+var studAppHubPT2 		= require('./routes/Student/STUD_APP_HUB_PT2');		// Student Appointment Hub Pt 2, Shows Professor choosen hours.
+var indexProf					= require('./routes/Professor/indexProf');					// Professor Home, this page displays students request and appoints already accepted.
+var profAppointment 	= require('./routes/Professor/profAppointment');		//
+var indexAdmin			  = require('./routes/Admin/indexAdmin');
+var reservationAdmin	= require('./routes/Admin/reservationAdmin');		// Admin Home, this pages displays any room reservation.
+var AddEdit           = require('./routes/Admin/AddEdit');
+var addRoom						= require('./routes/Admin/addRoom');
+var editRoom					= require('./routes/Admin/editRoom');
+var indexSAdmin				= require('./routes/Super_Admin/indexSAdmin');
 /* === Routes End Here === */
 
 /* === Port === */

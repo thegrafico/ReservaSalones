@@ -1,7 +1,7 @@
 var express         = require ('express');
 var router          = express.Router ()
-var roleCheckHelper = require ('../helpers/roleCheck');
-var db = require("../helpers/mysqlConnection").mysql_pool;
+var roleCheckHelper = require ('../../helpers/roleCheck');
+var db = require("../../helpers/mysqlConnection").mysql_pool;
 
 router.get('/', function (req, res){
 

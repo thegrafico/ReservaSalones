@@ -30,6 +30,8 @@ function roleCheck(reqRoleID, email, userName, callback){            //creates t
           callback(false);                                           //if the user roleID dosen't matches the dbRoleID sends false to the function
         }
       });
+      connection.release();
+  
     });
   }
 }

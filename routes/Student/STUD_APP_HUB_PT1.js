@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 //to interact with the databea and make queries
-var dataB = require("../helpers/mysqlConnection").mysql_pool;
+var dataB = require("../../helpers/mysqlConnection").mysql_pool;
 
 //basically page response as in the layout, buttons, all html stuff, etc
 router.get('/', function (req, res) {

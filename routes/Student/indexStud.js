@@ -2,8 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
-var authHelper = require('../helpers/auth');
-var db = require("../helpers/mysqlConnection").mysql_pool;
+var authHelper = require('../../helpers/auth');
+var db = require("../../helpers/mysqlConnection").mysql_pool;
 
 /* GET home page. */
 router.get('/', async function(req, res) {

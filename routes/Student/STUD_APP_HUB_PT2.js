@@ -10,7 +10,7 @@ Code still can't handle two cases:
 var express = require('express')
 var router = express.Router()
 // Initial connection with database.
-var dataB = require("../helpers/mysqlConnection").mysql_pool;
+var dataB = require("../../helpers/mysqlConnection").mysql_pool;
 
 // Define the home page route
 // Basically page response as in the layout, buttons, all html stuff, etc
