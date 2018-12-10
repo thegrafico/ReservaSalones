@@ -22,7 +22,7 @@ function roleCheck(reqRoleID, email, userName, callback){            //creates t
         //console.log(dbEmail);
 
         if (error) throw error;                                      //checks for error
-
+        console.log (reqRoleID);
         console.log(dbRoleID);
 
         if (dbRoleID == reqRoleID)  callback(true);                  //if the user roleID matches the dbRoleID sends true to the function
