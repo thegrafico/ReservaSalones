@@ -25,6 +25,7 @@ var AddEdit           = require('./routes/AddEdit');
 var addRoom						= require('./routes/addRoom');
 var editRoom					= require('./routes/editRoom');
 var indexSAdmin				= require('./routes/indexSAdmin');
+var manageRoom				= require('./routes/manageRoom');
 /* === Routes End Here === */
 
 /* === Port === */
@@ -62,6 +63,7 @@ app.use('/adminHome/addEdit', AddEdit);
 app.use('/adminHome/addEdit/addRoom', addRoom);
 app.use('/adminHome/addEdit/editRoom', editRoom);
 app.use('/superAdminHome', indexSAdmin);
+app.use('/superAdminHome/manageRoom', manageRoom);
 
 // //PAGE NOT FOUND ERROR catch 404 and forward to error handler
 // app.use(function(req, res, next) {

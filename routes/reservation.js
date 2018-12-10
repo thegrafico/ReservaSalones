@@ -7,7 +7,7 @@ var db = require("../helpers/mysqlConnection").mysql_pool; //pool connection
 router.get('/',  function(req, res, next) {
 
   var building = "Building";
-  var layoutRender = 'reservation';//cambiamos esto para cambiar el view
+  var layoutRender = 'reservation';     //cambiamos esto para cambiar el view
 
   let parms = {layout: layoutRender, title: 'Reservation'};
   //graba el username e email de los cookies que se grabaron en auth
