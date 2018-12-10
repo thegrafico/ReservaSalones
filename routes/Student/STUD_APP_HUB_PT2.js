@@ -130,8 +130,8 @@ router.post('/:id', function (req, res) {
 
             //else, the user pressed the button empty, render normal page
             }else{
-              console.log("Inside date is empty")
-              res.render(layName, parms);
+              req.flash("error", `Select a date available`);
+              res.redirect(`/home/appointment/${parms.profEmail}`);
             }
 
           //else the submit button has been pressed
@@ -154,11 +154,7 @@ router.post('/:id', function (req, res) {
             }else{
               res.render(layName, parms);
             }
-
-
-            console.log("Undefined");
           }
-
         }else{
           res.send("Oops, no professor name or email");
         }

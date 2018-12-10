@@ -29,6 +29,21 @@
     </nav>
     <!-- NavBar Ends -->
 
+    <div class="container">
+  		<!--check if error and display a message-->
+  		{{#if error}}
+  			<div class="alert alert-danger" role="alert">
+  				{{error}}
+  			</div>
+  		{{/if}}
+  		<!--check if success and display a message-->
+  		{{#if success}}
+  			<div class="alert alert-success" role="alert">
+  				{{success}} {{user}}
+  			</div>
+  		{{/if}}
+	 </div>
+
 
     <div class="row">
 

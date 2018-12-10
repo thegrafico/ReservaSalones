@@ -14,7 +14,7 @@ router.get('/', async function(req, res, next) {
 
     try {
       token = await authHelper.getTokenFromCode(code, res);
-    } 
+    }
     catch (error) {
       res.render('error', { title: 'Error', message: 'Error exchanging code for token', error: error });
     }
@@ -24,7 +24,8 @@ router.get('/', async function(req, res, next) {
     const userName = req.cookies.graph_user_name;
     var email = req.cookies.graph_user_email;
 
-    console.log("email: ",req.cookies);
+    // console.log("email: ",req.cookies);
+    req.flash("success", `WELCOME `);
     // Redirect to home
     res.redirect('/home');
 

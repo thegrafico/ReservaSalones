@@ -1,5 +1,6 @@
 // var passFormySql = require('../passmySql');
 var mysql = require('mysql');
+const pass = require('./pass');
 var config;
 //forma estandar de conectarse a mysql utilizando nodejs
 //se cambia el database, user y password, dependiendo de las necesidades
@@ -13,8 +14,8 @@ config = {
       //establece el route basico donde se ouede accessar
       host     : 'localhost',          //THIS IS THE SAME FOR YOUR
       user     : 'root',               //THIS IS THE SAME FOR YOUR
-      password : 'radames121',         //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-      database : 'Inter Reservation'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+      password :  pass,         //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+      database : 'DB_project_Reservation_Appoitment'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
     })
 };
 
