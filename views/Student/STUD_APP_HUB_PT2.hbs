@@ -40,13 +40,13 @@
       <!--check if error and display a message-->
       {{#if error}}
         <div class="errorColor" role="alert">
-          <h3>{{error}}</h3>
+          <h4>{{error}}</h4>
         </div>
       {{/if}}
       <!--check if success and display a message-->
       {{#if success}}
         <div class="sucessColor" role="alert">
-          <h3>{{success}} {{user}}</h3>
+          <h4>{{success}}</h4>
         </div>
       {{/if}}
    </div>
@@ -79,7 +79,11 @@
         <div class="dateBox">
           <form  action="/home/appointment/{{profEmail}}" method="POST">
             <div class="dateBoxWithBnt">
-              <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+              {{#if datePickedByUser}}
+                <input id="date" name="date" type="text" class="datepicker" value="{{datePickedByUser}}">
+              {{else}}
+                <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
+              {{/if}}
               <button class="waves-effect waves-light btn" type="submit" name="search" value="True" >Search for available Date</button>
             </div>
         </div>
