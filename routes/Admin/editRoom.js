@@ -48,6 +48,20 @@ router.get('/', function (req, res){
         var parms = {title: 'editRoom'};
         var arr = []
         var id = req.body.optionID;
+        var editButton   = req.body.editButton;
+        var removeButton = req.body.removeButton;
+
+        if(editButton != undefined){
+        var editData       = editButton.split('*=*');
+        var roomHoursID    = editData[0];
+        var descriptionTB  = editData[2];
+        var startTB        = editData[3];
+        var endTB          = editData[4];
+        var dayTB          = editData[5];
+        console.log ("In");
+        console.log('description testing', req.body.description[0]);
+      }
+
 
         parms.user = userName;
 
@@ -57,27 +71,50 @@ router.get('/', function (req, res){
           if (pass2){
             //then record results
             parms.id = roomID;
-            console.log ("id: " + id[0]);
+            // console.log ("id: " + id[0]);
 
-            if (id != ""){
+            db.getConnection (function (err, connection){
+              if (id != undefined){
 
-              db.getConnection (function (err, connection){
                 let selectRoomHours = `SELECT *
                                        FROM RoomHours
                                        WHERE roomID = '${id[0]}'`;
 
                 connection.query (selectRoomHours, function (err,results,fields){
                   parms.results = results;
-                  console.log(results);
+                  //console.log(results);
+
 
                   res.render (layName, parms);
 
                 })
+              }
+              else if(editButton != undefined){
+                // console.log("edit button");
+                // console.log('req body', req.body);
+                //console.log(editData);
 
-              })
-            }else{
-              res.render (layName, parms);
-            }
+                let editRoomData = `update RoomHours
+                set description = '${descriptionTB}', start = '${startTB}', end = '${endTB}', day = '${dayTB}'
+                where roomhoursID = ${roomHoursID};`
+
+                // connection.query (selectRoomHours, function (err,results,fields){})
+                res.render (layName, parms);
+              }
+              else if(removeButton != undefined){
+                console.log('Remove Button');
+
+                let removeData = `DELETE from RoomHours where roomHoursID = ${removeButton};`
+                connection.query (removeData, function (err,results,fields){})
+
+                res.render (layName, parms);
+              }
+              else{
+                console.log(req.body);
+                res.render (layName, parms);
+              }
+              connection.release();
+            })
           }else{
             res.render(layName, parms);
           }
