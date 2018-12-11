@@ -109,10 +109,14 @@ router.post('/:id', function (req, res) {
           profID = profCred[0]["userID"];
 
 
+        //================================ESTE ES EL QUERY SOLO para la fecha========================
           //if the search button has been pressed
           if (dateSearch && dateSearch != undefined){
 
             date = req.body.date;
+            parms.datePickedByUser = date;
+
+            console.log("datepickedByUser: ", parms.datePickedByUser);
 
             //check if the user did press the button without entering a date
             if (date != ''){
@@ -134,7 +138,7 @@ router.post('/:id', function (req, res) {
               res.redirect(`/home/appointment/${parms.profEmail}`);
             }
 
-          //else the submit button has been pressed
+          //===========else the submit button has been pressed==================
           }else{
             //if runs in here, then submit button has been pressed
             date = req.body.date;
@@ -148,11 +152,14 @@ router.post('/:id', function (req, res) {
               //userID start end date status profID description
 
               makeAppointment(userID, time, date, profID);
-              res.render(layName, parms);
+
+              req.flash("success", "Your Reservation was Submitted Successfully");
+              res.redirect(`/home/appointment/${parms.profEmail}`);
 
             //else, render page as normal
             }else{
-              res.render(layName, parms);
+              req.flash("error", "Select a date and pick an appoitment");
+              res.redirect(`/home/appointment/${parms.profEmail}`);
             }
           }
         }else{
