@@ -32,19 +32,22 @@
      <div class="row">
        <div class="col s12">
 
-
+         <form  action="/superAdminHome/manageRole" method="POST">
          <table>
            <thead>
              <tr>
-
             <td class="Add">
-              <input placeholder="email" id="first_name" type="text" class="validate">
+              <input placeholder="Name" id="first_name" type="text" class="validate" value="" name="nName">
+
+            </td>
+            <td class="Add">
+              <input placeholder="Email" id="first_name" type="text" class="validate" value="" name="nEmail">
 
             </td>
 
             <td class="Add">
-              <select>
-                <option value="" disabled selected>Choose your option</option>
+              <select name="nRole">
+                <option value="">Choose your option</option>
                 <option value="A">Admin</option>
                 <option value="D">Director</option>
                 <option value="S">Secretary</option>
@@ -53,42 +56,46 @@
             </td>
             <td class="Add">
 
-              <button class="waves-effect waves-light btn addBtn">Add</button>
+              <button class="waves-effect waves-light btn addBtn" name="addButton">Add</button>
 
             </td>
             </tr>
             <tr>
               <td class ="H2">
-                Delete
+                Name
               </td>
               <td class ="H2">
-                Name
+                Email
               </td>
               <td class ="H2">
                 Role
               </td>
               <td class ="H2">
-                Edit
+                Action
               </td>
             </tr>
            </thead>
 
            <tbody>
-             <tr>
-             <td>
-
+             {{#each results}}
              </td>
              <td>
                {{this.name}}
+             </td>
+             </td>
+             <td>
+               {{this.email}}
              </td>
              <td>
                {{this.role}}
              </td>
              <td>
-               <button class="waves-effect waves-light btn editBtn">Edit</button>
+               <button class="waves-effect waves-light btn editBtn" name="editButton">Edit</button>
              </td>
              </tr>
 
+             </form>
+             {{/each}}
            </tbody>
          </table>
        </div>
