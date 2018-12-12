@@ -475,7 +475,7 @@ insert into RoomHours (roomID, start, end, day, description) values('G247B', '9:
                                                                    ('G247B', '18:00:00', '19:50:00', 'Thu', 'Class: LAB-COEN 3510, Prof: Wilson Lozano');
 
 /* === Entering data to UserRoles === */
-
+-- EL QUE HIZO ESTO DEBIO SER UN POCO MAS DESCRIPTIVO
 insert into UserRoles values(1, 'S');
 insert into UserRoles values(2, 'P');
 insert into UserRoles values(3, 'P');
