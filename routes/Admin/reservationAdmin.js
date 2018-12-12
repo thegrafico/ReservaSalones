@@ -42,9 +42,13 @@ router.get('/', function(req, res, next) {
 
           connection.query(query_2, function(err, results){
 
-            parms.appPending = results;
+            getPendingCount(userID, function(pendingCount){
+              parms.pending = pendingCount[0].Pending;
+              parms.appPending = results;
 
-            res.render(layName, parms);
+              res.render(layName, parms);
+
+            });
           })
          })
          connection.release();
@@ -107,8 +111,11 @@ router.post('/', function (req, res) {
               where status = 'Pending'`;
 
               connection.query(query_2, function (err, results){
-                parms.appPending = results;
-                res.render(layName, parms);
+                getPendingCount(userID, function(pendingCount){
+                  parms.pending = pendingCount[0].Pending;
+                  parms.appPending = results;
+                  res.render(layName, parms);
+              });
               })
             })
 
@@ -166,8 +173,12 @@ router.post('/', function (req, res) {
             where status = 'Pending'`;
 
             connection.query(query_2, function (err, results){
-              parms.appPending = results;
-              res.render(layName, parms);
+              getPendingCount(userID, function(pendingCount){
+
+                parms.pending = pendingCount[0].Pending;
+                parms.appPending = results;
+                res.render(layName, parms);
+              });
             })
           })
         })
@@ -218,8 +229,11 @@ router.post('/', function (req, res) {
               where status = 'Pending'`;
 
               connection.query(query_2, function (err, results){
-                parms.appPending = results;
-                res.render(layName, parms);
+                getPendingCount(userID, function(pendingCount){
+                  parms.pending = pendingCount[0].Pending;
+                  parms.appPending = results;
+                  res.render(layName, parms);
+                });
               })
             })
           })
@@ -231,5 +245,22 @@ router.post('/', function (req, res) {
     }
   }
 })
+
+function getPendingCount(userID, callback){
+  dataB.getConnection (function (err, connection){
+
+    let qGetPendingCount = `Select count(status) Pending
+    from Reservation natural join (select roomID
+    from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
+    where userID = ${userID}) UReservations
+    where status = 'Pending'
+    group by status;`
+
+    connection.query(qGetPendingCount, function (err, results){
+      callback(results);
+    })
+    connection.release();
+  })
+}
 
 module.exports = router;
