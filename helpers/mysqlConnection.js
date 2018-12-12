@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 const pass = require('./pass');
+const database = require('./database');
 
 
 var config;
@@ -16,7 +17,7 @@ config = {
       host     : 'localhost',       //THIS IS THE SAME FOR YOUR
       user     : 'root',               //THIS IS THE SAME FOR YOUR
       password :  pass,            //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-      database : 'DB_project_Reservation_Appoitment'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+      database : database   //HERE GO THE DATABASE THAT WE ARE GONNA USED
     })
 };
 

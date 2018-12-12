@@ -45,3 +45,14 @@
   margin-left: 1%;
   background-color: red;
 }
+.changeWidthBox{
+  width: 100%;
+}
+
+.changeWidth{
+  width: 30%;
+}
+
+#infoUser th{
+  width: 14%;
+}

@@ -5,11 +5,11 @@ var express = require('express'); //server
 var router = express.Router(); //router
 var roleCheckHelper = require('../../helpers/roleCheck'); //path for the roleCheck
 var dataB = require("../../helpers/mysqlConnection").mysql_pool;
+var layName = './Admin/reservationAdmin';  //sets up the name of the layout to be displayed
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-  var layName = './Admin/reservationAdmin';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
 
@@ -56,7 +56,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function (req, res) {
   //-----Basic Variables-------------------
-  var layName = './Admin/reservationAdmin';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
   const title = 'admin';
@@ -87,14 +86,14 @@ router.post('/', function (req, res) {
         var activeTrigger = acceptID.split(",");
 
         console.log(activeTrigger);
-    //query changes the status of the appointment to Accept
-    let query_A = `UPDATE Reservation
+        //query changes the status of the appointment to Accept
+      let query_A = `UPDATE Reservation
                    SET status ='${activeTrigger[1]}'
                    WHERE resID = '${activeTrigger[0]}'`;
 
-    //query that Updates the status of the appointment from
-    dataB.getConnection (function (err, connection){
-        connection.query(query_A, function (err, results){
+      //query that Updates the status of the appointment from
+      dataB.getConnection (function (err, connection){
+          connection.query(query_A, function (err, results){
 
             // connection.query(query_1, function (err, results){
             //
@@ -115,10 +114,57 @@ router.post('/', function (req, res) {
             //     parms.appPending = results;
             //   })
 
-          res.redirect('/adminHome/Reservations');
-          connection.release();
-      });
-    });
+            res.redirect('/adminHome/Reservations');
+            connection.release();
+          });
+        });
+    }else if(req.body.searchReservation != undefined){
+      console.log("BODY: ", req.body);
+
+      if(req.body.date != '' && req.body.status == undefined ){
+        let qSearchReservation = `SELECT * FROM Reservation_Status NATURAL JOIN Users
+                                  WHERE date = '${req.body.date}'`;
+        dataB.getConnection (function (err, connection){
+
+            connection.query(qSearchReservation, function (err, results){
+              parms.results = results;
+              res.render(layName, parms);
+            });
+            connection.release();
+        });
+      }else if(req.body.status == undefined || req.body.date == '' || req.body.date == undefined ){
+        let qSearchReservation = `SELECT * FROM Reservation_Status NATURAL JOIN Users`;
+        dataB.getConnection (function (err, connection){
+
+            connection.query(qSearchReservation, function (err, results){
+              parms.results = results;
+              console.log(results);
+              res.render(layName, parms);
+            });
+            connection.release();
+
+        });
+      }else{
+        let qInfo = [req.body.status, req.body.date];
+
+        let qSearchReservation = `SELECT * FROM Reservation_Status NATURAL JOIN Users
+                                  WHERE status = '${qInfo[0]}' AND date = '${qInfo[1]}'`;
+
+        dataB.getConnection (function (err, connection){
+
+            connection.query(qSearchReservation, function (err, results){
+
+              parms.results = results;
+
+              if(results.length < 1)
+                console.log(results);
+
+              res.render(layName, parms);
+
+            });
+            connection.release();
+        });
+      }
 
   // }else if (declineID != undefined || cancelID != undefined ){
   //   if (cancelID != undefined)
