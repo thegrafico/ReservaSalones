@@ -15,18 +15,61 @@ drop table if exists DeptManagers;
 
 /* Creating the Tables*/
 
-create table Roles(roleID varchar(10), role varchar(15), Primary key(roleID));
-create table Users(userID MediumInt NOT NULL auto_increment, name varchar(30) NOT NULL, email varchar(30) NOT NULL, Primary Key(userID));
-create table Rooms(roomID varchar(10), capacity tinyInt, deptID tinyInt, Primary key(roomID, deptID));
-create table Department(deptID tinyInt NOT NULL auto_increment, deptName varchar(50), Primary Key(deptID));
-create table ProfHours(profHoursID mediumInt NOT NULL auto_increment, userID mediumInt, start time, end time, day varchar(10), description varchar(255), Primary key(profHoursID));
-create table Reservation(resID mediumInt NOT NULL auto_increment, userID mediumInt, start time, end time, date varchar(30), status varchar(10), roomID varchar(10), description varchar(255), Primary Key(resID));
-create table Appointment(appID mediumInt NOT NULL auto_increment, userID mediumInt, start time, end time, date varchar(30), status varchar(10), profID varchar(10), description varchar(255), Primary Key(appID));
-create table RoomHours(roomHoursID mediumInt NOT NULL auto_increment, roomID varchar(10), start time, end time, day varchar(10), description varchar(255), primary key(roomHoursID));                                          /*Hours Not Available*/
-create table ResDecline(resID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30), status varchar(10), roomID varchar(10), description varchar(255), Primary Key(resID));
-create table AppDecline(appID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30), status varchar(10), profID varchar(10), description varchar(255), Primary Key(appID));
-create table UserRoles(userID mediumInt, roleID varchar(10), Primary key(userID, roleID));
-create table DeptManagers(userID mediumInt, deptID tinyInt, Primary Key(userID, deptID));
+create table Roles      (roleID varchar(10), role varchar(15), Primary key(roleID));
+
+
+create table Users      (userID MediumInt NOT NULL auto_increment, name varchar(30) NOT NULL,
+                        email varchar(30) NOT NULL, Primary Key(userID));
+
+
+create table Department (deptID tinyInt NOT NULL auto_increment, deptName varchar(50), Primary Key(deptID));
+
+
+create table Rooms      (roomID varchar(10), capacity tinyInt, deptID tinyInt, Primary key(roomID, deptID));
+
+create table ProfHours  (profHoursID mediumInt NOT NULL auto_increment, userID mediumInt,
+                        start time, end time, day varchar(10), description varchar(255), Primary key(profHoursID),
+                        FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+create table Reservation(resID mediumInt NOT NULL auto_increment, userID mediumInt, start time,
+                        end time, date varchar(30), status varchar(10), roomID varchar(10),
+                        description varchar(255), Primary Key(resID),
+                        FOREIGN KEY (roomID) REFERENCES Rooms(roomID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+create table Appointment(appID mediumInt NOT NULL auto_increment, userID mediumInt, start time, end time,
+                        date varchar(30), status varchar(10), profID varchar(10), description varchar(255),
+                        Primary Key(appID),
+                        FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+/*Hours Not Available*/
+create table RoomHours  (roomHoursID mediumInt NOT NULL auto_increment, roomID varchar(10), start time,
+                        end time, day varchar(10), description varchar(255), primary key(roomHoursID),
+                        FOREIGN KEY (roomID) REFERENCES Rooms(roomID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+create table ResDecline(resID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30),
+                        status varchar(10), roomID varchar(10), description varchar(255),
+                        FOREIGN KEY (resID) REFERENCES Reservation(resID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        FOREIGN KEY (roomID) REFERENCES Rooms(roomID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+create table AppDecline(appID mediumInt NOT NULL, userID mediumInt, start time, end time,
+                        date varchar(30), status varchar(10), profID varchar(10), description varchar(255),
+                        FOREIGN KEY (appID) REFERENCES Appointment(appID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+create table UserRoles  (userID mediumInt, roleID varchar(10),
+                        FOREIGN KEY (roleID) REFERENCES Roles(roleID) ON DELETE CASCADE,
+                        FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+create table DeptManagers(userID mediumInt, deptID tinyInt,
+                          FOREIGN KEY (deptID) REFERENCES Department(deptID) ON DELETE CASCADE ON UPDATE CASCADE,
+                          FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 /* === Entering data to Roles === */
 
@@ -54,6 +97,25 @@ insert into Users values( 14, 'Jaime Yeckle Sanchez', 'jyeckle@bayamon.inter.edu
 insert into Users values( 15, 'Eduardo Perez Diaz', 'eperezd@bayamon.inter.edu');
 insert into Users values( 16, 'Catherine Aguilar Ramos','caguilar@bayamon.inter.edu');
 insert into Users values( 17, 'Javier Quintana Mendez', 'jquintana@bayamon.inter.edu');
+
+
+
+  /* === Entering data to Department === */
+
+insert into Department values( 1, 'Electrical and Computer Engineering'),
+                             ( 2, 'Industrial Engineering'),
+                             ( 3, 'Mechanical Engineering'),
+                             ( 4, 'Informatica');
+
+/* === Entering data to DeptManagers === */
+
+insert into DeptManagers values( 1, 1);
+insert into DeptManagers values( 1, 2);
+insert into DeptManagers values( 1, 3);
+insert into DeptManagers values( 5, 1);
+insert into DeptManagers values( 15, 3);
+insert into DeptManagers values( 16, 2);
+
 
 /* Example of adding Users */
 /*
@@ -432,19 +494,3 @@ insert into UserRoles values(14, 'P');
 insert into UserRoles values(15, 'D');
 insert into UserRoles values(16, 'D');
 insert into UserRoles values(17, 'D');
-
-  /* === Entering data to Department === */
-
-insert into Department values( 1, 'Electrical and Computer Engineering'),
-                             ( 2, 'Industrial Engineering'),
-                             ( 3, 'Mechanical Engineering'),
-                             ( 4, 'Informatica');
-
-/* === Entering data to DeptManagers === */
-
-insert into DeptManagers values( 1, 1);
-insert into DeptManagers values( 1, 2);
-insert into DeptManagers values( 1, 3);
-insert into DeptManagers values( 5, 1);
-insert into DeptManagers values( 15, 3);
-insert into DeptManagers values( 16, 2);

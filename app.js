@@ -47,8 +47,28 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/* === Flash Message === */
+/* === Flash Message === *///to use flash message
 app.use(flash());
+//remove all campgrounds and created again
+//seedDB(); //usando la function que exportamos de el archivo seeds.js
+//-------------------------------------------------------------------
+//======================EXPRESS-SESSION CONFI======================
+
+app.use(require("express-session")({
+	secret: "Thegrafico is a cool guy",
+	resave: false,
+	saveUninitialized: false
+}));
+
+
+//this is a midleware tha run in every route.
+app.use(function(req, res, next){
+	//every route got accest to variable currentUser
+	res.locals.error = req.flash("error"); //error mesage go red
+	res.locals.success = req.flash("success"); //success message go green
+	//move to the next function
+	next();
+});
 
 /* === All of the Routes. === */
 app.use("/", loginRoute);

@@ -46,6 +46,7 @@ router.get('/', function(req, res, next) {
             res.render(layName, parms);
           })
          })
+         connection.release();
        })
      }
 
@@ -110,6 +111,7 @@ router.post('/', function (req, res) {
             })
 
       })
+      connection.release();
     })
 
   }else if (declineID != undefined || cancelID != undefined ){
@@ -120,60 +122,44 @@ router.post('/', function (req, res) {
       date = arr [0][1];
       parms.date = date;
     }
-    let query_D = `UPDATE Reservation
-                   SET status ='Decline'
-                   WHERE resID = '${declineID}'`;
-    let query_D2 = `SELECT *
-                   FROM Reservation
-                   Where resID = '${declineID}'`;
-
+    let query_D = `DELETE FROM Reservation
+                   where resID = ${declineID}`;
 
     dataB.getConnection (function (err, connection){
 
       connection.query(query_D,  function (err, results){
-
-    })
-
-
-    connection.query(query_D2,  function (err, results){
-
-      let query_D3 = `INSERT
-                      INTO ResDecline (resID, userID, start, end, date, status, roomID, description) values ('${results[0]["resID"]}', '${results[0]["userID"]}','${results[0]["start"]}', '${results[0]["end"]}', '${results[0]["date"]}', '${results[0]["status"]}', '${results[0]["roomID"]}', 'null')`;
-
-
-      connection.query(query_D3,  function (err, results){
       })
+
       let query_D4 = `select *
                      from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
                      natural join
                      (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Accepted' and date = '${date}') PReservation`;
 
       connection.query(query_D4, function (err, results){
-      parms.appAccept = results;
-          connection.query(query_1, function (err, results){
-            //console.log(results);Appointments
-            if (results[0] == undefined){
-              // console.log("It is undefined.");
-            }
-            else if (results[0] != undefined){
-              // console.log ("It is not undefined.");
-              userID = results[0]["userID"];
-            }
+        parms.appAccept = results;
+        connection.query(query_1, function (err, results){
+          //console.log(results);Appointments
+          if (results[0] == undefined){
+            // console.log("It is undefined.");
+          }
+          else if (results[0] != undefined){
+            // console.log ("It is not undefined.");
+            userID = results[0]["userID"];
+          }
 
-            let query_2 = `select *
-                           from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
-                           natural join
-                           (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
+          let query_2 = `select *
+                         from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
+                         natural join
+                         (select * from Reservation natural join (Select userID, name, email from Users) TUsers where status = 'Pending') PReservation`;
 
-            connection.query(query_2, function (err, results){
-              parms.appPending = results;
-              res.render(layName, parms);
-            })
+          connection.query(query_2, function (err, results){
+            parms.appPending = results;
+            res.render(layName, parms);
           })
-
         })
+      })
+      connection.release();
     })
-  })
 }else if (searchFlag){
     if (date != ""){
 
@@ -211,6 +197,7 @@ router.post('/', function (req, res) {
           })
 
         })
+        connection.release();
       })
     }else{
       res.render(layName, parms);

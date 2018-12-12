@@ -12,8 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- CSS Style Sheet -->
     <link rel="stylesheet" href="/stylesheets/manageRoom.css">
+    <link rel="stylesheet" href="/stylesheets/flahsStyle.css">
 
-    <title></title>
+    <title>{{title}}</title>
   </head>
   <body>
     <!-- NavBar Starts Here -->
@@ -30,43 +31,81 @@
     </nav>
     <!-- NavBar Ends -->
 
-    <div class="row z-depth-2">
-      <table>
-        <thead>
-          <tr>
-            <td><input type="text" name="roomID" value="" placeholder="Room"></td>t
-            <td><input type="text" name="cap" value="" placeholder="Cap"></td>
-            <td>
-              <select name="searchRoom[id]">
-                <option value="" disabled selected>Select Day</option>
-                <option value="">ELEN & COEN Engineering</option>
-                <option value="">INEN Engineering</option>
-                <option value="">MECN Engineering</option>
-                <option value="">Informatic</option>
-              </select>
-            </td>
-            <td>Button</td>
-          </tr>
+    <!-- TIENEN QUE CAMBIAR ESTE ESTILO PARA UNO MAS BONITO -->
+    <div class="containerFlash">
+      <!--check if error and display a message-->
+      {{#if error}}
+        <div class="errorColor" role="alert">
+          <h4>{{error}}</h4>
+        </div>
+      {{/if}}
+      <!--check if success and display a message-->
+      {{#if success}}
+        <div class="sucessColor" role="alert">
+          <h4>{{success}}</h4>
+        </div>
+      {{/if}}
+   </div>
 
-          <tr>
-            <td></td>
-            <td>Room</td>
-            <td>Capacity</td>
-            <td>Department</td>
-          </tr>
+<!-- ====================================ADD ROOM FROM======================== -->
+    <form  action="/superAdminHome/manageRoom" method="POST">
+      <div class="row2 z-depth-2">
+        <table>
+          <thead>
+            <tr class="headerAdd">
+              <td><span>ADD ROOM</span> </td>
+              <td><input autocomplete="off" type="text" name="roomID" placeholder="Room"></td>
+              <td><input autocomplete="off" type="text" name="cap"  placeholder="Capacity"></td>
+              <td>
+                <select name="dept">
+                  <option  disabled selected>Select Department</option>
+                  <option value="1">ELEN & COEN Engineering</option>
+                  <option value="2">INEN Engineering</option>
+                  <option value="3">MECN Engineering</option>
+                  <option value="4">Informatic</option>
+                </select>
+              </td>
+              <td><button type="submit" name="addRoom" value="TRUE">Add Room</button></td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+  </form>
+<!-- ========================================================================================== -->
+    <form  action="/superAdminHome/manageRoom" method="POST">
 
-        </thead>
+      <div class="row z-depth-2">
+        <table>
+          <thead>
+            <tr class="headerRemove">
+              <td><span>REMOVE</span></td>
+              <td>Room</td>
+              <td>Capacity</td>
+              <td>Department</td>
+              <td></td>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr>
-            <td><button type="button" name="button" class="btn waves-effect waves-light z-depth-2 "><i class="fas fa-trash-alt"></i></button></td>
-            <td>roomID</td>
-            <td>cap</td>
-            <td>dept</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+          <tbody>
+            {{#each results}}
+              <tr>
+                <td>
+                  <button type="submit" name="dltBtn" class="btn waves-effect waves-light z-depth-2 " value="{{this.roomID}}">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+                <td>{{this.roomID}}</td>
+                <td>{{this.capacity}}</td>
+                <td>{{this.deptName}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </form>
+
+  <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT2_Beha.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   </body>
 </html>

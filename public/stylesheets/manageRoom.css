@@ -3,6 +3,16 @@
   width: 95%;
   background-color: rgba(0, 0, 0, 0.1);
   margin-top: 2.5%;
+  height: 650px;
+  overflow-y: scroll;
+}
+.row2{
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5em;
+  width: 95%;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 2.5%;
 }
 .nav-wrapper {
   background: rgb(0,177,32);
@@ -19,4 +29,23 @@ nav li a {
 
 .btn {
   background-color: red;
+}
+
+.headerAdd{
+  background-color: rgba(75, 185, 48,0.5);
+}
+::placeholder{
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+}
+span{
+  font-weight: bold;
+}
+
+.headerRemove{
+  background-color: rgba(255, 23, 0, 0.7);
+}
+.row td{
+  width: 25%;
+  text-align: center;
 }

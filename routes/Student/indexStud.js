@@ -46,9 +46,9 @@ router.get('/', async function(req, res) {
 
         console.log(dbRoleID);
         if (dbRoleID == 'A') res.redirect('/superAdminHome');        //if the role is admin on the db, route to admin
-        if (dbRoleID == 'S') res.redirect('/adminHome');             //if the role is admin on the db, route to scretary
+        else if (dbRoleID == 'S') res.redirect('/adminHome');             //if the role is admin on the db, route to scretary
         // if (dbRoleID == 'D') res.redirect('/director');           //if the role is admin on the db, route to director
-        if (dbRoleID == 'P') res.redirect('/profHome');              //if the role is a Professor on the db, route to profHome
+        else if (dbRoleID == 'P') res.redirect('/profHome');              //if the role is a Professor on the db, route to profHome
 
         else{
           var emailCarrier = email.split("@");                                          //spliting the email into 2 string to get the email carrier
