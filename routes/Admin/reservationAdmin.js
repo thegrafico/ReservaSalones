@@ -94,7 +94,7 @@ router.post('/', function (req, res) {
       //query that Updates the status of the appointment from
       dataB.getConnection (function (err, connection){
           connection.query(query_A, function (err, results){
-
+            //
             // connection.query(query_1, function (err, results){
             //
             //   if (results[0] == undefined){
@@ -113,7 +113,7 @@ router.post('/', function (req, res) {
             //   connection.query(query_2, function (err, results){
             //     parms.appPending = results;
             //   })
-
+            // })
             res.redirect('/adminHome/Reservations');
             connection.release();
           });
@@ -128,7 +128,20 @@ router.post('/', function (req, res) {
 
             connection.query(qSearchReservation, function (err, results){
               parms.results = results;
-              res.render(layName, parms);
+
+              // let query_2 = `Select *
+              //   from Users natural join Reservation natural join (select roomID
+              //   from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
+              //   where userID = ${userID}) UReservations
+              //   where status = 'Pending'`;
+              //
+              //   connection.query(query_2, function (err, results){
+              //     parms.appPending = results;
+              //
+              //   })
+
+                res.render(layName, parms);
+
             });
             connection.release();
         });

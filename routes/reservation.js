@@ -74,6 +74,11 @@ router.post('/', function(req, res, next) {
                WHERE roomID = '${rID}'`;
 
 
+   //
+   // if(req.body.SubmitReservation != undefined){
+   //   if(req.body.searchRoom)
+   // }
+
   // if(userName){
     getRooms2(email ,function(roomIDs, userID){
 
@@ -117,9 +122,12 @@ router.post('/', function(req, res, next) {
               }
             });
           }
-          else{
-            req.flash("error", "Fill up all imputs");
+          else if(req.body.SubmitReservation != undefined && (rStart == "" || rEnd != "" || rID == "" || rID == undefined || day[0] == "" || rDate == "")){
+            req.flash("error", "Fill up all inputs");
             res.redirect(`/home/reservation`);
+          }
+          else{
+            res.render(layoutRender, parms);
           }
         });
         connection.release();
