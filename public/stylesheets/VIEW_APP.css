@@ -54,11 +54,14 @@ em {
   margin-left: 1%;
   background-color: red;
 }
-
-nav li a {
-  font-size: 1.5em;
+.changeWidthBox{
+  width: 100%;
 }
 
-.brand-logo {
-  margin-left: 10px;
+.changeWidth{
+  width: 30%;
+}
+
+#infoUser th{
+  width: 14%;
 }
