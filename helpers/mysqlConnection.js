@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 const pass = require('./pass');
+const database = require('./database');
 
 
 var config;
@@ -13,10 +14,10 @@ config = {
       connectionLimit : 15,
 
       //establece el route basico donde se ouede accessar
-      host     : 'localhost',       //THIS IS THE SAME FOR YOUR
+      host     : 'localhost',           //THIS IS THE SAME FOR YOUR
       user     : 'root',               //THIS IS THE SAME FOR YOUR
-      password :  pass,            //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
-      database : 'DB_project_Reservation_Appoitment'   //HERE GO THE DATABASE THAT WE ARE GONNA USED
+      password :  pass,               //HERE GO YOUR PASSWORD TO ENTER IN YOUR DB
+      database :  database           //HERE GO THE DATABASE THAT WE ARE GONNA USED
     })
 };
 
