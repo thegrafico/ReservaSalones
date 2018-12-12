@@ -18,12 +18,10 @@ where status = 'Pending';
 /*Group Query*/
 
 Select *
-FROM (Select count(status), status from ResDecline natural join 
-(select distinct(roomID) from Rooms natural join  (select userID, deptID from Users natural join DeptManagers) as DUsers where userID = 1) UReservations
+FROM (Select count(status) count, status from ResDecline natural join (select distinct(roomID) from Rooms) Rooms
 group by status) ResDecline2
 union all
-(select count(status),status from Reservation natural join 
-(select distinct(roomID) from Rooms natural join  (select userID, deptID from Users natural join DeptManagers) as DUsers where userID = 1) UReservations
+(select count(status),status from Reservation natural join (select distinct(roomID) from Rooms) Rooms
 group by status)
 order by status;
 
