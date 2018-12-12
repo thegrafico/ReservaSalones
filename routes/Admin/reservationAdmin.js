@@ -124,18 +124,12 @@ router.post('/', function (req, res) {
     }
     let query_D = `DELETE FROM Reservation
                    where resID = ${declineID}`;
-    let query_D2 = `SELECT *
-                   FROM Reservation
-                   Where resID = ${declineID}`;
-
 
     dataB.getConnection (function (err, connection){
 
       connection.query(query_D,  function (err, results){
       })
 
-      connection.query(query_D2,  function (err, results){
-      })
       let query_D4 = `select *
                      from (Select distinct (roomID) from Rooms where (deptID = 1 or deptID = 2 or deptID = 3)) TRooms
                      natural join
