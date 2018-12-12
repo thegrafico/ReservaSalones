@@ -59,10 +59,13 @@
 
        <!--=============== Date picker Start ===============-->
        <div class="row">
-         <div class="col s6">
+         <div class="col s4">
            <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
          </div>
-         <div class="col s6">
+         <div class="col s4 pend">
+           <p>You have <em>{{pending}}</em> pending.</p>
+         </div>
+         <div class="col s4">
            <button class="waves-effect waves-light btn button3" type = "submit" name = "button" value = "True">Search for possible appointments</button>
          </div>
        </div>
