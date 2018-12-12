@@ -42,9 +42,13 @@ router.get('/', function(req, res, next) {
 
           connection.query(query_2, function(err, results){
 
-            parms.appPending = results;
+            getPendingCount(userID, function(pendingCount){
+              parms.pending = pendingCount[0].Pending;
+              parms.appPending = results;
 
-            res.render(layName, parms);
+              res.render(layName, parms);
+
+            });
           })
          })
          connection.release();
@@ -270,8 +274,11 @@ else if (searchFlag){
               where status = 'Pending'`;
 
               connection.query(query_2, function (err, results){
-                parms.appPending = results;
-                res.render(layName, parms);
+                getPendingCount(userID, function(pendingCount){
+                  parms.pending = pendingCount[0].Pending;
+                  parms.appPending = results;
+                  res.render(layName, parms);
+                });
               })
             })
           })
@@ -283,5 +290,21 @@ else if (searchFlag){
     }
   }
 })
+
+function getPendingCount(userID, callback){
+  dataB.getConnection (function (err, connection){
+
+    let qGetPendingCount = `Select count(status) Pending
+    from Reservation natural join (select distinct(roomID)
+    from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
+    where userID = ${userID}) UReservations
+    where status = 'Pending';`
+
+    connection.query(qGetPendingCount, function (err, results){
+      callback(results);
+    })
+    connection.release();
+  })
+}
 
 module.exports = router;

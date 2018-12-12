@@ -102,7 +102,7 @@ router.post('/', function(req, res, next) {
                        FROM (Select ${userID}, '${rStart}','${rEnd}', '${rDate}', '${rID}', 'Pending' ) as NRoomHours
                        WHERE not exists (Select *
                        from (select roomID, start, end, day date, description
-                       from RoomHours union all Select roomID, start, end, date, description from Reservation where status = 'Accepted') AllReservation
+                       from RoomHours union all Select roomID, start, end, date, description from Reservation_Status where status = 'Accepted') AllReservation
                        where (end > '${rStart}' and start < '${rEnd}') and roomID = '${rID}' and (date = '${day[0]}' or date = '${rDate}' or date = 'all'));`;
 
           if (rStart != "" && rEnd != "" && rID != "" && rID != undefined && day[0] != "" && rDate != ""){

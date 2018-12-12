@@ -40,6 +40,15 @@
   overflow-y: scroll;
 }
 
+.pend {
+ text-align: center;
+}
+
+em {
+  font-size: 1.5em;
+  color: red;
+}
+
 .button {
   float: right;
   margin-left: 1%;
