@@ -140,29 +140,15 @@ router.post('/', function (req, res) {
       date = arr [0][1];
       parms.date = date;
     }
-    let query_D = `UPDATE Appointment
-                   SET status ='Decline'
-                   WHERE appID = '${declineID}'`;
-    let query_D2 = `SELECT *
-                   FROM Appointment
-                   Where appID = '${declineID}'`;
+    let query_D = `DELETE FROM Appointment
+                   where appID = ${declineID}`;
 
 
     dataB.getConnection (function (err, connection){
 
       connection.query(query_D,  function (err, results){
-
-    })
-
-
-    connection.query(query_D2,  function (err, results){
-
-      let query_D3 = `INSERT
-                      INTO AppDecline (appID, userID, start, end, date, status, profID, description) values ('${results[0]["appID"]}', '${results[0]["userID"]}','${results[0]["start"]}', '${results[0]["end"]}', '${results[0]["date"]}', '${results[0]["status"]}', '${results[0]["profID"]}', 'null')`;
-
-
-      connection.query(query_D3,  function (err, results){
       })
+
       let query_D4 = `SELECT name, email, start, end, appID
                      FROM Appointment NATURAL JOIN Users
                      WHERE date = '${date}' and status = 'Accept';`
@@ -200,7 +186,6 @@ router.post('/', function (req, res) {
           })
 
         })
-    })
     connection.release();
   })
 }else if (searchFlag){

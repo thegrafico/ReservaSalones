@@ -114,8 +114,8 @@ console.log('results',results);
       connection.query (qGetRooms, function (err, results, fields){
         callback(results);
       })
-      connection.release();
     })
+    connection.release();
   })
 }
 
