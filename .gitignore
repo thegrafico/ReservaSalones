@@ -1,3 +1,4 @@
 *.env
 pass.js
 package-lock.json
+database.js

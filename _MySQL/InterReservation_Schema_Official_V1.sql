@@ -12,6 +12,7 @@ drop table if exists Users;
 drop table if exists Roles;
 drop table if exists Rooms;
 drop table if exists Department;
+drop table if exists Reservation_Status;
 
 /* Creating the Tables*/
 
@@ -20,7 +21,6 @@ create table Roles      (roleID varchar(10), role varchar(15), Primary key(roleI
 
 create table Users      (userID MediumInt NOT NULL auto_increment, name varchar(30) NOT NULL,
                         email varchar(30) NOT NULL, Primary Key(userID));
-
 
 create table Department (deptID tinyInt NOT NULL auto_increment, deptName varchar(50), Primary Key(deptID));
 
@@ -49,11 +49,12 @@ create table RoomHours  (roomHoursID mediumInt NOT NULL auto_increment, roomID v
                         end time, day varchar(10), description varchar(255), primary key(roomHoursID),
                         FOREIGN KEY (roomID) REFERENCES Rooms(roomID) ON DELETE CASCADE ON UPDATE CASCADE);
 
-create table ResDecline(resID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30),
-                        status varchar(10), roomID varchar(10), description varchar(255),
-                        FOREIGN KEY (roomID) REFERENCES Rooms(roomID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
 
+create table Reservation_Status(resID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30),
+                        status varchar(10), roomID varchar(10), description varchar(255),
+                        FOREIGN KEY (roomID) REFERENCES Rooms(roomID) ON UPDATE CASCADE,
+                        FOREIGN KEY (resID) REFERENCES Reservation(resID) ON DELETE CASCADE,
+                        FOREIGN KEY (userID) REFERENCES Users(userID) ON UPDATE CASCADE);
 
 create table AppDecline(appID mediumInt NOT NULL, userID mediumInt, start time, end time,
                         date varchar(30), status varchar(10), profID varchar(10), description varchar(255),
@@ -68,6 +69,12 @@ create table UserRoles  (userID mediumInt, roleID varchar(10),
 create table DeptManagers(userID mediumInt, deptID tinyInt,
                           FOREIGN KEY (deptID) REFERENCES Department(deptID) ON DELETE CASCADE ON UPDATE CASCADE,
                           FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+CREATE TRIGGER `UPDATE_RESERTATION_BU` BEFORE UPDATE ON `Reservation`
+FOR EACH ROW INSERT INTO Reservation_Status (resID,userID, start, end, date, status, roomID)
+VALUES
+(OLD.resID,OLD.userID, OLD.start, OLD.end, OLD.date, NEW.STATUS, OLD.roomID);
 
 /* === Entering data to Roles === */
 
@@ -95,6 +102,7 @@ insert into Users values( 14, 'Jaime Yeckle Sanchez', 'jyeckle@bayamon.inter.edu
 insert into Users values( 15, 'Eduardo Perez Diaz', 'eperezd@bayamon.inter.edu');
 insert into Users values( 16, 'Catherine Aguilar Ramos','caguilar@bayamon.inter.edu');
 insert into Users values( 17, 'Javier Quintana Mendez', 'jquintana@bayamon.inter.edu');
+insert into Users values( 18, 'Raul Pichardo Avalo', 'RPICHARDO3780@interbayamon.edu');
 
 
 
@@ -113,6 +121,11 @@ insert into DeptManagers values( 1, 3);
 insert into DeptManagers values( 5, 1);
 insert into DeptManagers values( 15, 3);
 insert into DeptManagers values( 16, 2);
+insert into DeptManagers values( 18, 1);
+insert into DeptManagers values( 18, 2);
+insert into DeptManagers values( 18, 3);
+
+
 
 
 /* Example of adding Users */
@@ -473,7 +486,7 @@ insert into RoomHours (roomID, start, end, day, description) values('G247B', '9:
                                                                    ('G247B', '18:00:00', '19:50:00', 'Thu', 'Class: LAB-COEN 3510, Prof: Wilson Lozano');
 
 /* === Entering data to UserRoles === */
-
+-- EL QUE HIZO ESTO DEBIO SER UN POCO MAS DESCRIPTIVO
 insert into UserRoles values(1, 'S');
 insert into UserRoles values(2, 'P');
 insert into UserRoles values(3, 'P');
@@ -492,3 +505,4 @@ insert into UserRoles values(14, 'P');
 insert into UserRoles values(15, 'D');
 insert into UserRoles values(16, 'D');
 insert into UserRoles values(17, 'D');
+insert into UserRoles values(18, 'S');
