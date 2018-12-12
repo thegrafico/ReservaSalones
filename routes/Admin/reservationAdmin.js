@@ -46,6 +46,7 @@ router.get('/', function(req, res, next) {
             res.render(layName, parms);
           })
          })
+         connection.release();
        })
      }
 
@@ -110,6 +111,7 @@ router.post('/', function (req, res) {
             })
 
       })
+      connection.release();
     })
 
   }else if (declineID != undefined || cancelID != undefined ){
@@ -162,6 +164,7 @@ router.post('/', function (req, res) {
           })
         })
       })
+      connection.release();
     })
 }else if (searchFlag){
     if (date != ""){
@@ -200,6 +203,7 @@ router.post('/', function (req, res) {
           })
 
         })
+        connection.release();
       })
     }else{
       res.render(layName, parms);
