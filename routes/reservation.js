@@ -107,20 +107,20 @@ router.post('/', function(req, res, next) {
               if (error) throw error;
               if (results_2.insertId > 0){
                 // console.log(query_2);
-                console.log("SUUUUUUUUU");
+                // console.log("SUUUUUUUUU");
+                req.flash("success", "Your Reservation Was Send");
+                res.redirect(`/home/reservation`);
               }
               else {
-                console.log("Can not make reservation, Date is not available");
+                req.flash("error", "Can't Make Reservation");
+                res.redirect(`/home/reservation`);
               }
             });
-
           }
           else{
-            console.log("One of the Variables is blank");
+            req.flash("error", "Fill up all imputs");
+            res.redirect(`/home/reservation`);
           }
-          // console.log(results);
-          //render the html
-          res.render(layoutRender, parms);
         });
         connection.release();
       });

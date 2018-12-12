@@ -79,102 +79,107 @@ router.post('/', function (req, res) {
 
   //checks which button has been clicked and excecutes different queries
   //depending on the functionality. If the button is not clicked, it returns undefined
-   if (acceptID != undefined){
+   if (acceptID != undefined || declineID != undefined){
 
-     //query changes the status of the appointment to Accept
+      if(declineID != undefined)
+        var activeTrigger = declineID.split(",");
+      else if(acceptID != undefined)
+        var activeTrigger = acceptID.split(",");
+
+        console.log(activeTrigger);
+    //query changes the status of the appointment to Accept
     let query_A = `UPDATE Reservation
-                   SET status ='Accepted'
-                   WHERE resID = '${acceptID}'`;
+                   SET status ='${activeTrigger[1]}'
+                   WHERE resID = '${activeTrigger[0]}'`;
 
-                   console.log ("Inside Here");
     //query that Updates the status of the appointment from
     dataB.getConnection (function (err, connection){
-      connection.query(query_A, function (err, results){
+        connection.query(query_A, function (err, results){
 
-            connection.query(query_1, function (err, results){
+            // connection.query(query_1, function (err, results){
+            //
+            //   if (results[0] == undefined){
+            //     // console.log("It is undefined.");
+            //   }
+            //   else if (results[0] != undefined){
+            //     // console.log ("It is not undefined.");
+            //     userID = results[0]["userID"];
+            //   }
+            //   let query_2 = `Select *
+            //   from Users natural join Reservation natural join (select roomID
+            //   from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
+            //   where userID = ${userID}) UReservations
+            //   where status = 'Pending'`;
+            //
+            //   connection.query(query_2, function (err, results){
+            //     parms.appPending = results;
+            //   })
 
-              if (results[0] == undefined){
-                // console.log("It is undefined.");
-              }
-              else if (results[0] != undefined){
-                // console.log ("It is not undefined.");
-                userID = results[0]["userID"];
-              }
-              let query_2 = `Select *
-              from Users natural join Reservation natural join (select roomID
-              from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
-              where userID = ${userID}) UReservations
-              where status = 'Pending'`;
+          res.redirect('/adminHome/Reservations');
+          connection.release();
+      });
+    });
 
-              connection.query(query_2, function (err, results){
-                parms.appPending = results;
-                res.render(layName, parms);
-              })
-            })
-
-      })
-      connection.release();
-    })
-
-  }else if (declineID != undefined || cancelID != undefined ){
-    if (cancelID != undefined)
-    {
-      arr.push(cancelID.split(":"));
-      declineID = arr[0][0];
-      date = arr [0][1];
-      parms.date = date;
-    }
-    let query_D = `DELETE FROM Reservation
-                   where resID = ${declineID}`;
-
-    dataB.getConnection (function (err, connection){
-
-      connection.query(query_D,  function (err, results){
-      })
-
-      connection.query(query_1, function (err, results){
-
-        if (results[0] == undefined){
-          // console.log("It is undefined.");
-        }
-        else if (results[0] != undefined){
-          // console.log ("It is not undefined.");
-          userID = results[0]["userID"];
-        }
-        let query_D4 = `Select *
-        from Users natural join Reservation natural join (select roomID
-        from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
-        where userID = ${userID}) UReservations
-        where status = 'Accepted' and date = '${date}'`;
-
-        connection.query(query_D4, function (err, results){
-          parms.appAccept = results;
-          connection.query(query_1, function (err, results){
-            //console.log(results);Appointments
-            if (results[0] == undefined){
-              // console.log("It is undefined.");
-            }
-            else if (results[0] != undefined){
-              // console.log ("It is not undefined.");
-              userID = results[0]["userID"];
-            }
-
-            let query_2 = `Select *
-            from Users natural join Reservation natural join (select roomID
-            from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
-            where userID = ${userID}) UReservations
-            where status = 'Pending'`;
-
-            connection.query(query_2, function (err, results){
-              parms.appPending = results;
-              res.render(layName, parms);
-            })
-          })
-        })
-      })
-      connection.release();
-    })
-}else if (searchFlag){
+  // }else if (declineID != undefined || cancelID != undefined ){
+  //   if (cancelID != undefined)
+  //   {
+  //     arr.push(cancelID.split(":"));
+  //     declineID = arr[0][0];
+  //     date = arr [0][1];
+  //     parms.date = date;
+  //   }
+  //   let query_D = `DELETE FROM Reservation
+  //                  where resID = ${declineID}`;
+  //
+  //   dataB.getConnection (function (err, connection){
+  //
+  //     connection.query(query_D,  function (err, results){
+  //     })
+  //
+  //     connection.query(query_1, function (err, results){
+  //
+  //       if (results[0] == undefined){
+  //         // console.log("It is undefined.");
+  //       }
+  //       else if (results[0] != undefined){
+  //         // console.log ("It is not undefined.");
+  //         userID = results[0]["userID"];
+  //       }
+  //       let query_D4 = `Select *
+  //       from Users natural join Reservation natural join (select roomID
+  //       from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
+  //       where userID = ${userID}) UReservations
+  //       where status = 'Accepted' and date = '${date}'`;
+  //
+  //       connection.query(query_D4, function (err, results){
+  //         parms.appAccept = results;
+  //         connection.query(query_1, function (err, results){
+  //           //console.log(results);Appointments
+  //           if (results[0] == undefined){
+  //             // console.log("It is undefined.");
+  //           }
+  //           else if (results[0] != undefined){
+  //             // console.log ("It is not undefined.");
+  //             userID = results[0]["userID"];
+  //           }
+  //
+  //           let query_2 = `Select *
+  //           from Users natural join Reservation natural join (select roomID
+  //           from Rooms natural join (select userID, deptID from Users natural join DeptManagers) as DUsers
+  //           where userID = ${userID}) UReservations
+  //           where status = 'Pending'`;
+  //
+  //           connection.query(query_2, function (err, results){
+  //             parms.appPending = results;
+  //             res.render(layName, parms);
+  //           })
+  //         })
+  //       })
+  //     })
+  //     connection.release();
+  //   })
+}
+else if (searchFlag){
     if (date != ""){
 
       dataB.getConnection (function (err, connection){

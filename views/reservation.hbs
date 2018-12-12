@@ -12,7 +12,7 @@
 
 
     <link rel="stylesheet" href="/stylesheets/reservation.css">
-
+    <link rel="stylesheet" href="/stylesheets/flahsStyle.css">
 
     <title>Reservation</title>
   </head>
@@ -29,6 +29,22 @@
       </div>
     </nav>
 
+    <!-- TIENEN QUE CAMBIAR ESTE ESTILO PARA UNO MAS BONITO -->
+    <div class="containerFlash">
+      <!--check if error and display a message-->
+      {{#if error}}
+        <div class="errorColor" role="alert">
+          <h4>{{error}}</h4>
+        </div>
+      {{/if}}
+      <!--check if success and display a message-->
+      {{#if success}}
+        <div class="sucessColor" role="alert">
+          <h4>{{success}}</h4>
+        </div>
+      {{/if}}
+   </div>
+   <!-- ================================================================= -->
     <form action="/home/reservation" method="post">
       <div class="row chooseDate z-depth-2">
       <!-- =================== Form Starts ==================== -->
