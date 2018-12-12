@@ -1,17 +1,17 @@
 /* Deletes Table if it already exists */
 
-drop table if exists Roles;
-drop table if exists Users;
-drop table if exists Rooms;
-drop table if exists Department;
+drop table if exists AppDecline;
+drop table if exists ResDecline;
+drop table if exists UserRoles;
 drop table if exists ProfHours;
 drop table if exists Reservation;
 drop table if exists Appointment;
 drop table if exists RoomHours;
-drop table if exists ResDecline;
-drop table if exists AppDecline;
-drop table if exists UserRoles;
 drop table if exists DeptManagers;
+drop table if exists Users;
+drop table if exists Roles;
+drop table if exists Rooms;
+drop table if exists Department;
 
 /* Creating the Tables*/
 
@@ -51,14 +51,12 @@ create table RoomHours  (roomHoursID mediumInt NOT NULL auto_increment, roomID v
 
 create table ResDecline(resID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30),
                         status varchar(10), roomID varchar(10), description varchar(255),
-                        FOREIGN KEY (resID) REFERENCES Reservation(resID) ON DELETE CASCADE ON UPDATE CASCADE,
                         FOREIGN KEY (roomID) REFERENCES Rooms(roomID) ON DELETE CASCADE ON UPDATE CASCADE,
                         FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 
 create table AppDecline(appID mediumInt NOT NULL, userID mediumInt, start time, end time,
                         date varchar(30), status varchar(10), profID varchar(10), description varchar(255),
-                        FOREIGN KEY (appID) REFERENCES Appointment(appID) ON DELETE CASCADE ON UPDATE CASCADE,
                         FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 
