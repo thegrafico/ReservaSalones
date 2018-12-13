@@ -30,9 +30,11 @@ router.get('/', function (req, res) {	//requirements for the code
 				connection.query (getStats, function (err, results, fields){
 
 					console.log(results);
-					if (results != undefined){
-						parms.accepted = results[0].count;
-						parms.acceptedN = results[0].status;
+					if (results != undefined || results != ""){
+						if(results[0] != undefined || results != ""){
+							parms.accepted = results[0].count;
+							parms.acceptedN = results[0].status;
+						}
 						if (results[1] != undefined){
 							parms.decline	 = results[1].count;
 							parms.declineN = results[1].status;
