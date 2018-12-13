@@ -4,6 +4,7 @@ drop table if exists AppDecline;
 drop table if exists ResDecline;
 drop table if exists UserRoles;
 drop table if exists ProfHours;
+drop table if exists Reservation_Status;
 drop table if exists Reservation;
 drop table if exists Appointment;
 drop table if exists RoomHours;
@@ -12,7 +13,7 @@ drop table if exists Users;
 drop table if exists Roles;
 drop table if exists Rooms;
 drop table if exists Department;
-drop table if exists Reservation_Status;
+
 
 /* Creating the Tables*/
 
