@@ -53,7 +53,6 @@ create table RoomHours  (roomHoursID mediumInt NOT NULL auto_increment, roomID v
 create table Reservation_Status(resID mediumInt NOT NULL, userID mediumInt, start time, end time, date varchar(30),
                         status varchar(10), roomID varchar(10), description varchar(255),
                         FOREIGN KEY (roomID) REFERENCES Rooms(roomID) ON UPDATE CASCADE,
-                        FOREIGN KEY (resID) REFERENCES Reservation(resID) ON DELETE CASCADE,
                         FOREIGN KEY (userID) REFERENCES Users(userID) ON UPDATE CASCADE);
 
 create table AppDecline(appID mediumInt NOT NULL, userID mediumInt, start time, end time,

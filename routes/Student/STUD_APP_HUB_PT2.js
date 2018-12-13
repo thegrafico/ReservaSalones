@@ -67,7 +67,6 @@ router.post('/:id', function (req, res) {
   var parms       = {title: titleName};
   var role        = "";
 
-
   roleCheckHelper.roleCheck (role, userEmail, userName, function (pass){
 
     if (pass){

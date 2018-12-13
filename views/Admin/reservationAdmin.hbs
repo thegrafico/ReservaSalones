@@ -12,6 +12,8 @@
 
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="/stylesheets/VIEW_APP.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+
 
     <title>Reservations</title>
   </head>
@@ -28,6 +30,21 @@
         </ul>
       </div>
     </nav>
+
+    <div class="container">
+  		<!--check if error and display a message-->
+  		{{#if error}}
+  			<div class="alert alert-danger" role="alert">
+  				{{error}}
+  			</div>
+  		{{/if}}
+  		<!--check if success and display a message-->
+  		{{#if success}}
+  			<div class="alert alert-success" role="alert">
+  				{{success}} {{user}}
+  			</div>
+  		{{/if}}
+	 </div>
 
   <div class="row z-depth-2">
    <form  action="/adminHome/Reservations" method="POST">
@@ -59,37 +76,45 @@
 
        <!--=============== Date picker Start ===============-->
        <div class="row">
-         <div class="col s6">
+         <div class="col s6" style="width:30%;">
            <input id="date" name="date" type="text" class="datepicker" placeholder="mm/dd/yyyy">
          </div>
-         <div class="col s6">
-           <button class="waves-effect waves-light btn button3" type = "submit" name = "button" value = "True">Search for possible appointments</button>
+         <div class="col s6" style="width:30%;">
+           <select name="status">
+             <option  disabled selected>View Reservations</option>
+             <option value="ACCEPTED">Accepted</option>
+             <option value="DECLINED">Declined</option>
+           </select>
+         </div>
+         <div class="col s6" style="width:30%;">
+           <button class="waves-effect waves-light btn button3" type = "submit" name = "searchReservation" value = "True">Search for possible Reservation</button>
          </div>
        </div>
        <!--=============== Date picker Start ===============-->
 
        <table>
          <thead>
-           <tr>
+           <tr id="infoUser">
              <th>Student Name</th>
              <th>Student Email</th>
              <th>Start Hour</th>
              <th>End Hour</th>
-             <th>Cancel?</th>
+             <th>Date</th>
+             <th>Status</th>
+             <th>Chaneg Status</th>
            </tr>
          </thead>
 
          <tbody>
-           {{#each appAccept}}
+           {{#each results}}
            <tr>
              <td>{{this.name}}</td>
              <td>{{this.email}}</td>
              <td>{{this.start}}</td>
              <td>{{this.end}}</td>
-
-             <td>
-               <button class="waves-effect waves-light btn button" type = "submit" name = "Cbutton" value = "{{this.resID}}:{{../date}}">Cancel</button>
-             </td>
+             <th>{{this.date}}</th>
+             <td>{{this.status}}</td>
+             <td><button type="button" name="button">Change Status</button> </td>
             </tr>
            {{/each}}
          </tbody>
