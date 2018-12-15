@@ -1,3 +1,6 @@
+
+//======================================	PRINCIPAL LOGIG FILE. ======================================
+
 /* === All of the Imports === */
 require('dotenv').config();
 var createError       = require('http-errors');
@@ -29,8 +32,6 @@ var manageRole				= require('./routes/Super_Admin/manageRoles');
 // ADD MANAGEROOM ROUTE
 /* === Routes End Here === */
 
-/* === Port === */
-var port = 3000;
 
 /*=== This is what allows us to use the server.  ===*/
 var app = express();
@@ -91,6 +92,9 @@ app.use('/superAdminHome/manageRole', manageRole);
 // app.use(function(req, res, next) {
 //   next(createError(404));
 // });
+
+/* === Port of Connection=== */
+var port = 3000;
 
 /* === Export all of the functionality. === */
 app.listen(port, process.env.IP, function(){
