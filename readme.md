@@ -28,9 +28,14 @@ This project is made with Nodejs, mysql, Express, and other NPM packages. To tes
 
 ## Developers:
   -Raul Pichardo Avalo
-  -Carlos J. Alvarado Solís
-  -Noah R. Almeda Sánchez
-  -Kemuel Suárez Andino
-  -Francisco J. Torres Cardona.
 
-  Students of Inter American University of Puerto Rico, Bayamon Campus. 
+  -Carlos J. Alvarado Solís
+
+  -Noah R. Almeda Sánchez
+
+  -Kemuel Suárez Andino
+
+  -Francisco J. Torres Cardona.
+  
+
+  Students of Inter American University of Puerto Rico, Bayamon Campus.
