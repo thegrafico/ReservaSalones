@@ -1,10 +1,9 @@
 var mysql = require('mysql');
 const pass = require('./pass');
 const database = require('./database');
-
-
 var config;
-var pass = require('./setPassMysql');
+
+
 //forma estandar de conectarse a mysql utilizando nodejs
 //se cambia el database, user y password, dependiendo de las necesidades
 
