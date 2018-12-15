@@ -1,0 +1,27 @@
+.containerFlash{
+  width: 80%;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: inline;
+}
+.errorColor{
+  margin-top: 20px;
+  width: 80%;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgba(233, 26, 26,0.9);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sucessColor{
+  margin-top: 20px;
+  width: 80%;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgba(74, 255, 0, 1);
+  margin-left: auto;
+  margin-right: auto;
+}

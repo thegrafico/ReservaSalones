@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- JQuery Link -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Fonts Awesome Link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Materialize Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- CSS Style Sheet -->
+    <link rel="stylesheet" href="/stylesheets/manageRoom.css">
+    <link rel="stylesheet" href="/stylesheets/flahsStyle.css">
+
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <!-- NavBar Starts Here -->
+    <nav>
+      <div class="nav-wrapper z-depth-2">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+            <li><a href="/home">Home</a></li>
+            <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+    <!-- NavBar Ends -->
+
+    <!-- TIENEN QUE CAMBIAR ESTE ESTILO PARA UNO MAS BONITO -->
+    <div class="containerFlash">
+      <!--check if error and display a message-->
+      {{#if error}}
+        <div class="errorColor" role="alert">
+          <h4>{{error}}</h4>
+        </div>
+      {{/if}}
+      <!--check if success and display a message-->
+      {{#if success}}
+        <div class="sucessColor" role="alert">
+          <h4>{{success}}</h4>
+        </div>
+      {{/if}}
+   </div>
+
+<!-- ====================================ADD ROOM FROM======================== -->
+    <form  action="/superAdminHome/manageRoom" method="POST">
+      <div class="row2 z-depth-2">
+        <table>
+          <thead>
+            <tr class="headerAdd">
+              <td><span>ADD ROOM</span> </td>
+              <td><input autocomplete="off" type="text" name="roomID" placeholder="Room"></td>
+              <td><input autocomplete="off" type="text" name="cap"  placeholder="Capacity"></td>
+              <td>
+                <select name="dept">
+                  <option  disabled selected>Select Department</option>
+                  <option value="1">ELEN & COEN Engineering</option>
+                  <option value="2">INEN Engineering</option>
+                  <option value="3">MECN Engineering</option>
+                  <option value="4">Informatic</option>
+                </select>
+              </td>
+              <td><button type="submit" name="addRoom" value="TRUE">Add Room</button></td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+  </form>
+<!-- ========================================================================================== -->
+    <form  action="/superAdminHome/manageRoom" method="POST">
+
+      <div class="row z-depth-2">
+        <table>
+          <thead>
+            <tr class="headerRemove">
+              <td><span>REMOVE</span></td>
+              <td>Room</td>
+              <td>Capacity</td>
+              <td>Department</td>
+              <td></td>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{#each results}}
+              <tr>
+                <td>
+                  <button type="submit" name="dltBtn" class="btn waves-effect waves-light z-depth-2 " value="{{this.roomID}}">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+                <td>{{this.roomID}}</td>
+                <td>{{this.capacity}}</td>
+                <td>{{this.deptName}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </form>
+
+  <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT2_Beha.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  </body>
+</html>

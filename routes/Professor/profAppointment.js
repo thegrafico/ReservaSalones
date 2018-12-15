@@ -8,53 +8,64 @@
 
 var express = require('express')	//requirements for the code
 var router = express.Router()		//requirements for the code
-var dataB = require("../helpers/mysqlConnection").mysql_pool;
+var dataB = require("../../helpers/mysqlConnection").mysql_pool;
+var roleCheckHelper = require('../../helpers/roleCheck'); //path for the roleCheck
 
 
 router.get('/', function (req, res) {	//requirements for the code
   var layName = './Professor/profAppointment';  //sets up the name of the layout to be displayed
   const userName = req.cookies.graph_user_name; //gets the username from the email
   const userEmail = req.cookies.graph_user_email;
-  const title = 'profAppointment';
-  var parms = {title: title, user: userName } ;
 
-  var userID;
+  roleCheckHelper.roleCheck('P', userEmail, userName, function(pass){					//checks if the roleID matches the dbRoleID
+    if(pass==true){
+      const title = 'profAppointment';
+      var parms = {title: title, user: userName } ;
 
-  let query_1 = `SELECT userID
-                 FROM Users
-                 WHERE email = '${userEmail}'`;
-  dataB.getConnection(function (err, connection){
+      var userID;
 
-    connection.query(query_1, function(err, results){
+      let query_1 = `SELECT userID
+                     FROM Users
+                     WHERE email = '${userEmail}'`;
+      dataB.getConnection(function (err, connection){
 
-      if (results[0] == undefined){
-        // console.log("It is undefined1.");
-      }
-      else if (results[0] != undefined){
-        // console.log ("It is not undefined1.");
-        userID = results[0]["userID"];
-      }
-      let query_2 = `SELECT name, email, start, end, date
-                     FROM Users NATURAL JOIN Appointment
-                     WHERE profID = '${userID}' AND status = 'Pending'`;
+        connection.query(query_1, function(err, results){
 
-      connection.query(query_2, function(err, results){
+          if (results[0] == undefined){
+            // console.log("It is undefined1.");
+          }
+          else if (results[0] != undefined){
+            // console.log ("It is not undefined1.");
+            userID = results[0]["userID"];
+          }
+          let query_2 = `SELECT name, email, start, end, date
+                         FROM Users NATURAL JOIN Appointment
+                         WHERE profID = '${userID}' AND status = 'Pending'`;
 
-        // if (results[0] == undefined){
-        //   console.log("It is undefined2.");
-        // }
-        // else if (results[0] != undefined){
-        //   console.log ("It is not undefined2.");
-        // }
-        parms.appPending = results;
+          connection.query(query_2, function(err, results){
 
-        res.render(layName, parms);
+            // if (results[0] == undefined){
+            //   console.log("It is undefined2.");
+            // }
+            // else if (results[0] != undefined){
+            //   console.log ("It is not undefined2.");
+            // }
+            parms.appPending = results;
+
+            res.render(layName, parms);
+            })
+
+
         })
 
+        connection.release();
+      })
+    }
+    else{
+			res.redirect('/home');																							//if the roleID's don't match redirects to indexStud
+		}
 
-    })
-
-  })
+	});
 })
 
 router.post('/', function (req, res) {
@@ -114,8 +125,9 @@ router.post('/', function (req, res) {
                 res.render(layName, parms);
               })
             })
-
       })
+      connection.release();
+
     })
 
   }else if (declineID != undefined || cancelID != undefined ){
@@ -128,29 +140,15 @@ router.post('/', function (req, res) {
       date = arr [0][1];
       parms.date = date;
     }
-    let query_D = `UPDATE Appointment
-                   SET status ='Decline'
-                   WHERE appID = '${declineID}'`;
-    let query_D2 = `SELECT *
-                   FROM Appointment
-                   Where appID = '${declineID}'`;
+    let query_D = `DELETE FROM Appointment
+                   where appID = ${declineID}`;
 
 
     dataB.getConnection (function (err, connection){
 
       connection.query(query_D,  function (err, results){
-
-    })
-
-
-    connection.query(query_D2,  function (err, results){
-
-      let query_D3 = `INSERT
-                      INTO AppDecline (appID, userID, start, end, date, status, profID, description) values ('${results[0]["appID"]}', '${results[0]["userID"]}','${results[0]["start"]}', '${results[0]["end"]}', '${results[0]["date"]}', '${results[0]["status"]}', '${results[0]["profID"]}', 'null')`;
-
-
-      connection.query(query_D3,  function (err, results){
       })
+
       let query_D4 = `SELECT name, email, start, end, appID
                      FROM Appointment NATURAL JOIN Users
                      WHERE date = '${date}' and status = 'Accept';`
@@ -188,7 +186,7 @@ router.post('/', function (req, res) {
           })
 
         })
-    })
+    connection.release();
   })
 }else if (searchFlag){
     if (date != ""){
@@ -203,6 +201,7 @@ router.post('/', function (req, res) {
 
       dataB.getConnection (function (err, connection){
       connection.query(query_S, function (err, results){
+
 
         console.log(results);
 
@@ -232,6 +231,7 @@ router.post('/', function (req, res) {
           })
 
         })
+        connection.release();
       })
     }
 }

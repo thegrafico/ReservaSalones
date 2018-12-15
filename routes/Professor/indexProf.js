@@ -1,6 +1,6 @@
 var express = require('express')	//requirements for the code
 var router = express.Router()		//requirements for the code
-var roleCheckHelper = require('../helpers/roleCheck'); //path for the roleCheck
+var roleCheckHelper = require('../../helpers/roleCheck'); //path for the roleCheck
 
 router.get('/', function (req, res) {	//requirements for the code
 

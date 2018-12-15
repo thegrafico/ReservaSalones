@@ -99,3 +99,6 @@ p b {
   margin-right: auto;
   margin-left: auto;
 }
+.datepicker-date-display {
+  background-color: rgb(6, 161, 23);
+}

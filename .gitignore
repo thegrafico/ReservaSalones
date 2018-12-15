@@ -1,5 +1,5 @@
 pass.txt
 *.env
-passmySql.js
+pass.js
 package-lock.json
-helpers/setPassMysql.js
+database.js

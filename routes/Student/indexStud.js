@@ -2,8 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
-var authHelper = require('../helpers/auth');
-var db = require("../helpers/mysqlConnection").mysql_pool;
+var authHelper = require('../../helpers/auth');
+var db = require("../../helpers/mysqlConnection").mysql_pool;
 
 /* GET home page. */
 router.get('/', async function(req, res) {
@@ -44,10 +44,10 @@ router.get('/', async function(req, res) {
         if (results != "")                                           //checks if the result from the database is empty
 
         console.log(dbRoleID);
-        // if (dbRoleID == 'A') res.redirect('/admin');              //if the role is admin on the db, route to admin
-        if (dbRoleID == 'S') res.redirect('/admin');                 //if the role is admin on the db, route to scretary
+        if (dbRoleID == 'A') res.redirect('/superAdminHome');        //if the role is admin on the db, route to admin
+        else if (dbRoleID == 'S') res.redirect('/adminHome');             //if the role is admin on the db, route to scretary
         // if (dbRoleID == 'D') res.redirect('/director');           //if the role is admin on the db, route to director
-        if (dbRoleID == 'P') res.redirect('/profHome');              //if the role is a Professor on the db, route to profHome
+        else if (dbRoleID == 'P') res.redirect('/profHome');              //if the role is a Professor on the db, route to profHome
 
         else{
           var emailCarrier = email.split("@");                                          //spliting the email into 2 string to get the email carrier
@@ -58,10 +58,6 @@ router.get('/', async function(req, res) {
             let query =`INSERT INTO ${user} (name, email)` +                            //query to check if the email
             ` SELECT * FROM (SELECT '${userName}', '${email}') as nUser`  +             //of the user is on the db
             ` WHERE NOT EXISTS (SELECT email FROM ${user} where email = '${email}')`;   //if he is not on db, add his credential to the db
-
-            db.getConnection(function(err, connection) {                                //checks if there is a connection error with db
-
-              if (err) throw error;                                                     //if there is a db error, display error
 
               connection.query(query, function (error, results, fields) {               //query that adds the email if it's not on the db
 
@@ -78,7 +74,7 @@ router.get('/', async function(req, res) {
 
                 res.render(layName, parms);
               });
-            });
+              connection.release();
           }
           else {
             authHelper.clearCookies(res); //clears the user cookies
@@ -88,6 +84,11 @@ router.get('/', async function(req, res) {
       });
     });
   }
+  else {
+    // authHelper.clearCookies(res); //clears the user cookies
+    res.redirect('/');            // if the email is not from @INTERBAYAMON it redirects to login
+  }
+
 });
 
 

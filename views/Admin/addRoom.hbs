@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Materialize Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/addRoom.css">
+
+    <title>Add Room</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/home" class="brand-logo">{{user}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#if user}}
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sign Out</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row notAvailable z-depth-2">
+
+      <div class="col s12">
+        <form action="/adminHome/addEdit/addRoom" method="post">
+        <table>
+          <thead>
+            <tr>
+              <th>Room ID</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Day</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each loop}}
+            <tr>
+
+              <td class="room" >
+                <select name="roomID">
+                  <option value="">Select Room</option>
+                  {{#each ../id}}
+                  <option>{{this.roomID}}</option>
+                  {{/each}}
+                </select>
+              </td>
+
+              <td class="start" >
+                <input type="text" class="timepicker" name="start">
+              </td>
+
+              <td class="end" >
+                <input type="text" class="timepicker" name="end">
+              </td>
+
+              <td class="day" >
+                <select name="day">
+                  <option value="">Select Day</option>
+                  <option value="all">all</option>
+                  <option value="Mon">Mon</option>
+                  <option value="Tue">Tue</option>
+                  <option value="Wed">Wed</option>
+                  <option value="Thu">Thu</option>
+                  <option value="Fri">Fri</option>
+                </select>
+              </td>
+
+              <td class="td">
+                <input placeholder="Description" id="first_name" type="text" class="validate" name="description" value="">
+              </td>
+
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <button type="submit" class="submit waves-effect waves-light btn" name="button">Submit</button>
+
+  </body>
+  </form>
+
+  <script src="/behavior/addRoomBeha.js"></script>
+
+</html>
