@@ -1,6 +1,3 @@
-
-//======================================	PRINCIPAL LOGIG FILE. ======================================
-
 /* === All of the Imports === */
 require('dotenv').config();
 var createError       = require('http-errors');
@@ -9,6 +6,7 @@ var path              = require('path');
 var cookieParser      = require('cookie-parser');
 var logger            = require('morgan');
 var bodyParser        = require('body-parser');
+var flash						  = require("connect-flash");
 var db                = require("./helpers/mysqlConnection").mysql_pool; //pool connection
 /* === END IMPORTS === */
 
@@ -32,6 +30,8 @@ var manageRole				= require('./routes/Super_Admin/manageRoles');
 // ADD MANAGEROOM ROUTE
 /* === Routes End Here === */
 
+/* === Port === */
+var port = 3000;
 
 /*=== This is what allows us to use the server.  ===*/
 var app = express();
@@ -92,9 +92,6 @@ app.use('/superAdminHome/manageRole', manageRole);
 // app.use(function(req, res, next) {
 //   next(createError(404));
 // });
-
-/* === Port of Connection=== */
-var port = 3000;
 
 /* === Export all of the functionality. === */
 app.listen(port, process.env.IP, function(){
