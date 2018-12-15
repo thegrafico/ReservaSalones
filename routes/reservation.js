@@ -189,11 +189,4 @@ function getRooms2(email, callback){
   });
 }
 
-function removeDuplicateUsingFilter(arr){
-    let unique_array = arr.filter(function(elem, index, self) {
-        return index == self.indexOf(elem);
-    });
-    return unique_array
-}
-
 module.exports = router;

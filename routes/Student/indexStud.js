@@ -42,6 +42,7 @@ router.get('/', async function(req, res) {
         console.log(dbRoleID);
 
         if (results != "")                                           //checks if the result from the database is empty
+          dbRoleID = results[0].roleID;                              //iguala el roleID de la db a la variable de dbRoleID
 
         console.log(dbRoleID);
         if (dbRoleID == 'A') res.redirect('/superAdminHome');        //if the role is admin on the db, route to admin

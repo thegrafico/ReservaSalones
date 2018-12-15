@@ -14,4 +14,4 @@ router.get('/', function (req, res){
   res.render(layName, parms);
 });
 
-module.exports = router;			//requirements for the code
+module.exports = router;			//requirements for the code  

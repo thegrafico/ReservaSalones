@@ -235,8 +235,5 @@ router.post('/', function (req, res) {
       })
     }
 }
-
-
-
 })
 module.exports = router;			//requirements for the code
