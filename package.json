@@ -1,10 +1,7 @@
 {
   "name": "node-tutorial",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
@@ -23,7 +20,7 @@
     "nodemon": "^1.18.7",
     "simple-oauth2": "^2.2.1"
   },
-  "description": "Este repositorio es para la clase de Base de datos. Como ya saben, el proyecto se encarga de reservar salones para estudiantes con el email de office 365.",
+  "description": "Now is more Easy make appoitment with Professor & Reservation for Rooms with this web App.",
   "main": "app.js",
   "devDependencies": {},
   "repository": {

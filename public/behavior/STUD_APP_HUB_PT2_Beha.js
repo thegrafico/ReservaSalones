@@ -42,13 +42,3 @@ $(document).ready(function(){
      }
   });
 });
-// Date Picker Javascript Ends
-
-// This is for the checkbox
-console.log();
-
-// $(document).ready(function(){
-//     $('.check').click(function() {
-//         $('.check').not(this).prop('checked', false);
-//     });
-// });

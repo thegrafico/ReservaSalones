@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var authHelper = require('../helpers/auth');
-var db = require("../helpers/mysqlConnection").mysql_pool; //database path
 
 /* GET /authorize. */
 router.get('/', async function(req, res, next) {
