@@ -1,9 +1,6 @@
 
 body {
-  height: 1080px;
   background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,0.6615021008403361) 62%, rgba(255,250,0,1) 100%);
-  overflow: hidden;
 }
 
 .info-box {
