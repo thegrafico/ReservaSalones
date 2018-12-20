@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
 
-    <!-- Materialize Link-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<head>
+  <meta charset="utf-8">
 
-    <!-- CSS Style Sheet -->
-    <link rel="stylesheet" href="/stylesheets/indexAdmin.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-
-    <title>Home</title>
-  </head>
-  <body>
-
-    <!-- NavBar Starts Here -->
-    <nav>
-      <div class="nav-wrapper z-depth-2">
-        <a href="/profHome" class="brand-logo">{{user}}</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          {{#if user}}
-            <li><a href="/home">Home</a></li>
-            <li><a href="/authorize/signout">Sign Out</a></li>
-          {{/if}}
-        </ul>
-      </div>
-    </nav>
-    <!-- NavBar Ends -->
+  <!-- Materialize Link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
+  <!-- CSS Style Sheet -->
+  <link rel="stylesheet" href="/stylesheets/adminCSS/indexAdmin.css">
+
+
+  <title>Admin Home</title>
+</head>
+
+<body>
+
+  <!-- NavBar Starts Here -->
+
+  <nav>
+    <div class="nav-wrapper z-depth-2">
+      <a href="/profHome" class="brand-logo">{{user}}</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"> <i class="large material-icons">view_headline</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {{#if user}}
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sign Out</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    {{#if user}}
+      <li><a href="/home">Home</a></li>
+      <li><a href="/authorize/signout">Sign Out</a></li>
+    {{/if}}
+  </ul>
+  <!-- NavBar Ends -->
+
+  <div class="container">
     <div class="row">
-
-      <div class="col s6">
+      <div class="col m12 l6 s12">
         <div class="info-box z-depth-2">
           <div class="img-box" style="background-image: url('/imgs/reservation.jpg')"></div>
           <div class="textStyle">
@@ -41,8 +56,8 @@
         </div>
       </div>
 
-      <div class="col s6">
-        <div class="info-box   z-depth-2">
+      <div class="col m12 l6 s12">
+        <div class="info-box z-depth-2">
           <div class="img-box" style="background-image: url('http://meadowlark.epsb.ca/media/elementaryjuniorhighschools/meadowlark/images/Clock-300x300.png')"></div>
           <div class="textStyle">
             <a href="adminHome{{urlManageRoomHours}}">Manage Room Hours</a>
@@ -51,8 +66,15 @@
       </div>
 
     </div>
+  </div>
 
 
+  <script type="text/javascript">
 
-  </body>
+    $(document).ready(function() {
+      $('.sidenav').sidenav();
+    });
+  </script>
+</body>
+
 </html>

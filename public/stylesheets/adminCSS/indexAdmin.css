@@ -1,20 +1,13 @@
 
 body {
-  height: 1080px;
   background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,0.6615021008403361) 62%, rgba(255,250,0,1) 100%);
-  overflow: hidden;
 }
 
 .info-box {
   border-radius: 8px;
   text-align: center;
-  height: 600px;
-  width: 550px;
-  padding-top: 15px;
+  padding: 15px 0 25px 0;
   margin-top: 20%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .info-box a{
@@ -22,7 +15,7 @@ body {
   color: white;
   text-decoration: none;
   font-size: 2.0em;
-  padding: 10px 20px;
+  padding: 1.5% 2.5%;
   background-color: rgb(64, 64, 73);
   border-radius: 8px;
 }
@@ -41,7 +34,6 @@ body {
 .info-box a:hover{
   background-color: rgba(64, 64, 73, 0.5);
 }
-
 .brand-logo {
   margin-left: 10px;
 }
