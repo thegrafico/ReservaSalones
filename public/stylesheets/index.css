@@ -4,14 +4,10 @@ body {
 }
 
 .info-box {
-  border-radius: 8px;
+  border-radius: 4%;
   text-align: center;
-  height: 600px;
-  width: 550px;
-  padding-top: 15px;
+  padding: 5% 5% 10% 5%;
   margin-top: 20%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .info-box a{
@@ -19,20 +15,20 @@ body {
   color: white;
   text-decoration: none;
   font-size: 2.0em;
-  padding: 10px 20px;
+  padding: 2% 5%;
   background-color: rgb(64, 64, 73);
   border-radius: 8px;
 }
 
 .img-box{
   border-radius: 50%;
-  width: 400px;
+  width: 70%;
   height: 400px;
   background-size: cover;
   display: block;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 30px;
+  margin-bottom: 10%;
 }
 
 .info-box a:hover{
@@ -135,4 +131,39 @@ tr td{
 .alert-success{
   padding: 10px;
   background-color: rgba(76, 186, 44, 0.4);
+}
+
+@media only screen and (max-width: 600px) {
+  .img-box{
+    width: 70%;
+    height: 200px;
+  }
+}
+
+@media only screen and (min-width: 1000px ) {
+  .img-box{
+    width: 60%;
+    height: 400px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .img-box{
+    width: 80%;
+    height: 300px;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .img-box{
+    width: 80%;
+    height: 400px;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .img-box{
+    width: 70%;
+    height: 400px;
+  }
+
 }

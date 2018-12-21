@@ -1,62 +1,76 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
 
-    <!-- Materialize Link-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<head>
+  <meta charset="utf-8">
 
-    <!-- CSS Style Sheet -->
-    <link rel="stylesheet" href="/stylesheets/index.css">
+  <script src="/behavior/jquery.min.3.3.1.js" charset="utf-8"></script>
 
+  <!-- Materialize Link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Home</title>
-  </head>
-  <bod
+  <!-- CSS Style Sheet -->
+  <link rel="stylesheet" href="/stylesheets/index.css">
+  <script src="/behavior/admin/bh_Admin.js" charset="utf-8"></script>
 
-    <!-- NavBar Starts Here -->
-    <nav>
-      <div class="nav-wrapper z-depth-2">
-        <a href="/home" class="brand-logo">{{user}}</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          {{#if user}}
-            <li><a href="/home">Home</a></li>
-            <li><a href="/authorize/signout">Sign Out</a></li>
-          {{/if}}
-        </ul>
+  <title>Home</title>
+</head>
+
+<body>
+
+  <!-- NavBar Starts Here -->
+  <nav>
+    <div class="nav-wrapper z-depth-2">
+      {{#if user}}
+      <a href="/profHome" class="brand-logo">{{user}}</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"> <i class="large material-icons">view_headline</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sign Out</a></li>
+      </ul>
+      {{/if}}
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    {{#if user}}
+      <li><a href="/home">Home</a></li>
+      <li><a href="/authorize/signout">Sign Out</a></li>
+    {{/if}}
+  </ul>
+  <!-- NavBar Ends -->
+
+  <div class="container">
+    <!--check if error and display a message-->
+    {{#if error}}
+      <div class="alert alert-danger" role="alert">
+        {{error}}
       </div>
-    </nav>
-    <!-- NavBar Ends -->
+    {{/if}}
+    <!--check if success and display a message-->
+    {{#if success}}
+      <div class="alert alert-success" role="alert">
+        {{success}} {{user}}
+      </div>
+    {{/if}}
+  </div>
 
-    <div class="container">
-  		<!--check if error and display a message-->
-  		{{#if error}}
-  			<div class="alert alert-danger" role="alert">
-  				{{error}}
-  			</div>
-  		{{/if}}
-  		<!--check if success and display a message-->
-  		{{#if success}}
-  			<div class="alert alert-success" role="alert">
-  				{{success}} {{user}}
-  			</div>
-  		{{/if}}
-	 </div>
-
-
+  <div class="container">
     <div class="row">
 
-      <div class="col s6">
+      <div class="col xl6 l12 m12 s12">
         <div class="info-box z-depth-2">
           <div class="img-box" style="background-image: url('/imgs/reservation.jpg')"></div>
           <div class="textStyle">
             <a href="home{{urlReservation}}">Make a Reservation!</a>
           </div>
-        </div>
+          </div>
       </div>
 
-      <div class="col s6">
+      <div class="col xl6 l12 m12 s12">
         <div class="info-box   z-depth-2">
           <div class="img-box" style="background-image: url('/imgs/teacherApp.png')"></div>
           <div class="textStyle">
@@ -66,8 +80,8 @@
       </div>
 
     </div>
+  </div>
 
+</body>
 
-
-  </body>
 </html>
