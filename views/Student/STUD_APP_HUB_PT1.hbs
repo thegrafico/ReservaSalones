@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html lang="
 " dir="ltr">
-  <head>
-    <meta charset="utf-8">
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<head>
+  <meta charset="utf-8">
 
-    <!-- Materialize Link-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- JQuery -->
+  <script src="/behavior/jquery.min.3.3.1.js" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/stylesheets/STUD_APP_HUB_PT1.css">
+  <!-- Materialize Link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title></title>
-  </head>
-  <body>
 
-    <!-- NavBar Starts Here -->
-    <nav>
-      <div class="nav-wrapper z-depth-2">
-        <a href="/home" class="brand-logo">{{user}}</a>
+  <link rel="stylesheet" href="/stylesheets/studentsCSS/STUD_APP_HUB_PT1.css">
+  <script src="/behavior/admin/bh_Admin.js" charset="utf-8"></script>
+
+
+  <title></title>
+</head>
+
+<body>
+
+  <!-- NavBar Starts Here -->
+  <nav>
+    <div class="nav-wrapper z-depth-2">
+      {{#if user}}
+        <a href="/profHome" class="brand-logo">{{user}}</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"> <i class="large material-icons">view_headline</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          {{#if user}}
-            <li><a href="/home">Home</a></li>
-            <li><a href="/authorize/signout">Sign Out</a></li>
-          {{/if}}
+          <li><a href="/home">Home</a></li>
+          <li><a href="/authorize/signout">Sign Out</a></li>
         </ul>
-      </div>
-    </nav>
-    <!-- NavBar Ends -->
+      {{/if}}
+    </div>
+  </nav>
 
-    <!-- First Row Begins -->
+  <ul class="sidenav" id="mobile-demo">
+    {{#if user}}
+      <li><a href="/home">Home</a></li>
+      <li><a href="/authorize/signout">Sign Out</a></li>
+    {{/if}}
+  </ul>
+  <!-- NavBar Ends -->
+
+  <!-- First Row Begins -->
+  <div class="containerR">
     <div class="row">
       <!-- First Box Start-->
       {{#each results}}
-        <div id="box" class="col s3 z-depth-3">
+        <div id="box" class="col xl4 l6 m6 s12 z-depth-3">
           <div id="uno"> </div>
           <div class="profInfo">
-            <a href="/home/appointment/{{this.email}}" id="ini">{{this.name}}</a>
-            <a href="/home/appointment/{{this.email}}" id="ini">{{this.email}}</a>
+            <a href="/home/appointment/{{this.email}}" id="ini">{{this.name}}<br> </a>
+            <a href="/home/appointment/{{this.email}}" id="ini">{{this.email}} <br> </a>
             <!-- <p id="ini">{{this.userID}}</p> -->
             <p id="ini">Faculty Member</p>
           </div>
         </div>
       {{/each}}
     </div>
+  </div>
 
-    <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT1_Beha.js"></script>
+  <script type="text/javascript" src="/behavior/STUD_APP_HUB_PT1_Beha.js"></script>
 
-  </body>
+</body>
+
 </html>
